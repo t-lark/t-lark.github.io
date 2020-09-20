@@ -3,6 +3,7 @@
         <title>t-lark.github.io</title>
         <link>https://t-lark.github.io/</link>
         <description>t-lark.github.io</description>
+<<<<<<< HEAD
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Sep 2020 21:27:27 -0700</lastBuildDate>
             <atom:link href="https://t-lark.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
@@ -14,11 +15,20 @@
     <description><![CDATA[Shipping Jamf Pro Webhooks to Snowflake Jamf Pro has a builtin feature where you have the ability to ship a webhook event when specific events happen in their application. This allows for a near real time feed of event based data which you can consume and leverage to gain insights about your fleet. Jamf provides some documentation online, found here.
 Webhooks are generated automatically, and near instantly when an event occurs.]]></description>
 </item><item>
+=======
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Sep 2020 19:45:03 -0700</lastBuildDate>
+            <atom:link href="https://t-lark.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+>>>>>>> ec900ab6b5266eec529115e37d8c849b992f3d75
     <title>Data Sharing</title>
     <link>https://t-lark.github.io/posts/data-sharing/</link>
     <pubDate>Sat, 19 Sep 2020 19:45:03 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/posts/data-sharing/</guid>
+<<<<<<< HEAD
     <description><![CDATA[Data Sharing is Data Caring ❤️ I have come to the conclusion that there are essentially two types of people when it comes to data. The people that have data, and the people that wish they had the data. Another thought is that I would rather have the data and not need it versus need the data and not have it. For almost the past two years I have had the privilege to work for a great data platform company.]]></description>
+=======
+    <description><![CDATA[Data Sharing is Data Caring ❤️ I have come to the conclusion that there are essentially two types of people when it comes to data. The people that have data, and the people that don&rsquo;t have data. Another thought is that I would rather have the data and not need it versus need the data and not have it. For almost the past two years I have had the privilege to work for a great data platform company.]]></description>
+>>>>>>> ec900ab6b5266eec529115e37d8c849b992f3d75
 </item></channel>
 </rss>
