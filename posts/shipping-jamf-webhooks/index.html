@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Shipping Jamf Webhooks with Fivetran - t-lark.github.io</title><meta name="Description" content=""><meta property="og:title" content="Shipping Jamf Webhooks with Fivetran" />
+<meta property="og:description" content="Shipping Jamf Pro Webhooks to Snowflake Jamf Pro has a builtin feature where you have the ability to ship a webhook event when specific events happen in their application. This allows for a near real time feed of event based data which you can consume and leverage to gain insights about your fleet. Jamf provides some documentation online, found here.
+Webhooks are generated automatically, and near instantly when an event occurs." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://t-lark.github.io/posts/shipping-jamf-webhooks/" />
+<meta property="article:published_time" content="2020-09-19T21:27:27-07:00" />
+<meta property="article:modified_time" content="2020-09-19T21:27:27-07:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Shipping Jamf Webhooks with Fivetran"/>
+<meta name="twitter:description" content="Shipping Jamf Pro Webhooks to Snowflake Jamf Pro has a builtin feature where you have the ability to ship a webhook event when specific events happen in their application. This allows for a near real time feed of event based data which you can consume and leverage to gain insights about your fleet. Jamf provides some documentation online, found here.
+Webhooks are generated automatically, and near instantly when an event occurs."/>
+<meta name="application-name" content="t-lark.github.io">
+<meta name="apple-mobile-web-app-title" content="t-lark.github.io"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/shipping-jamf-webhooks/" /><link rel="prev" href="https://t-lark.github.io/posts/data-sharing/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Shipping Jamf Webhooks with Fivetran",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/t-lark.github.io\/posts\/shipping-jamf-webhooks\/"
+        },"genre": "posts","keywords": "data, webhooks, fivetran, jamf, snowflake","wordcount":  1364 ,
+        "url": "https:\/\/t-lark.github.io\/posts\/shipping-jamf-webhooks\/","datePublished": "2020-09-19T21:27:27-07:00","dateModified": "2020-09-19T21:27:27-07:00","publisher": {
+            "@type": "Organization",
+            "name": "tlark"},"author": {
+                "@type": "Person",
+                "name": "tlark"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Shipping Jamf Webhooks with Fivetran</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/webhooks/"><i class="far fa-folder fa-fw"></i>webhooks</a>&nbsp;<a href="/categories/jamf/"><i class="far fa-folder fa-fw"></i>jamf</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw"></i>snowflake</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-19">2020-09-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1364 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><h1 id="shipping-jamf-pro-webhooks-to-snowflake">Shipping Jamf Pro Webhooks to Snowflake</h1>
+<p>Jamf Pro has a builtin feature where you have the ability to ship a webhook event when specific events happen in their
+application.  This allows for a near real time feed of event based data which you can consume and leverage to gain insights
+about your fleet.  Jamf provides some documentation online, found <a href="https://www.jamf.com/developers/webhooks/" target="_blank" rel="noopener noreffer">here</a>.</p>
+<p>Webhooks are generated automatically, and near instantly when an event occurs.  In the linked documentation above you
+will see all the possible webhooks and sample data of what each webhook ships.  There are many ways to ship webhooks,
+and you can choose from many paths to take.  You can roll your own webhook receiver, you can ship webhooks directly to
+cloud storage (S3, Azure Blob, GCP Cloud Storage), use one of many data ingestion tools, and so forth.  Right now we are
+leveraging a tool called <a href="https://fivetran.com/" target="_blank" rel="noopener noreffer">Fivetran</a>.  Fivetran has built in integration to many SaaS and cloud
+services.  What tools work best for your Organization will be up to your Org to decide.</p>
+<p>Here is how the data flow looks:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jamf_webhooks.png"
+        data-srcset="/img/jamf_webhooks.png, /img/jamf_webhooks.png 1.5x, /img/jamf_webhooks.png 2x"
+        data-sizes="auto"
+        alt="/img/jamf_webhooks.png"
+        title="Data Flow" /></p>
+<p>First we need to configure <a href="https://fivetran.com/docs/destinations/snowflake#setupinstructions" target="_blank" rel="noopener noreffer">Fivetran Snowflake Connector</a></p>
+<p>After that create the database in Snowflake, for reference here is the <a href="https://docs.snowflake.com/en/sql-reference/sql/create-database.html" target="_blank" rel="noopener noreffer">documentation</a></p>
+<p>This blog post assumes you have this operating and working, as every Org might have different configurations or requirements
+in their apps, please refer to the official documentation to ensure this is working.  With in Snowflake you can have
+many warehouses, databases, schemas, and a wide range of <a href="https://en.wikipedia.org/wiki/Role-based_access_control" target="_blank" rel="noopener noreffer">RBAC</a> controls in place.
+So, you may need to adjust some knobs to get this to work.</p>
+<p>Here is what I have created in my dev account:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jamf_db_snowflake.png"
+        data-srcset="/img/jamf_db_snowflake.png, /img/jamf_db_snowflake.png 1.5x, /img/jamf_db_snowflake.png 2x"
+        data-sizes="auto"
+        alt="/img/jamf_db_snowflake.png"
+        title="jamf events table" /></p>
+<p>If you have your database setup now we need to log into Fivetran and create our connector.  Find the Webhook Conector
+with in Fivetran and create a new one.  You will want to make sure you already have the database in place and Fivetran
+has the proper RBAC on that table for data ingestion.</p>
+<p>Here is an example:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/ft_jamf_webhook.png"
+        data-srcset="/img/ft_jamf_webhook.png, /img/ft_jamf_webhook.png 1.5x, /img/ft_jamf_webhook.png 2x"
+        data-sizes="auto"
+        alt="/img/ft_jamf_webhook.png"
+        title="jamf_webhook_conf" /></p>
+<p>There will be a Webhook URL once created which you will need to configure in the Jamf Pro Server.  Navigate to <code>Settings</code> &gt;
+<code>Global Management</code> &gt; <code>Webhooks</code>.  Create a new webhook, select the event you want to ship (above example was <code>ComputerCheckin</code>),
+and make sure you select JSON as the data type.  Input the URL you generated in Fivetran and any other options you would
+like to tweak.  You can see that I have my schema set and the table set that matches my dev account in the screenshots.</p>
+<p>For reference:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/ex_jamf_webhook.png"
+        data-srcset="/img/ex_jamf_webhook.png, /img/ex_jamf_webhook.png 1.5x, /img/ex_jamf_webhook.png 2x"
+        data-sizes="auto"
+        alt="/img/ex_jamf_webhook.png"
+        title="example webhook" /></p>
+<p>In Fivetran you can select how often data synchronizes with Snowflake.  Since Webhooks are event based data, it is my
+opinion that the faster you can consume the event, the more valuable that data is.  So, I have chosen to ingest
+every 5 minutes.  If you want to pick a different time, you may do so.  Your Org may have different needs or requirements,
+but I do strongly suggest you ingest the webhooks as fast as you can.  For example, if you are building data around events,
+the event based data is more valuable if you can get it in near-realtime.  Below are the settings I have configured.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/ft_sync_settings.png"
+        data-srcset="/img/ft_sync_settings.png, /img/ft_sync_settings.png 1.5x, /img/ft_sync_settings.png 2x"
+        data-sizes="auto"
+        alt="/img/ft_sync_settings.png"
+        title="fivetran ingest" /></p>
+<p>So that is it!  Just repeat this process for each webhook event you wish to ship to Snowflake.  Now you can let the data
+flow right in, and you are ready to query some of the data and get intelligence off of it.</p>
+<p>Now for some fun.  If you want to find out how many times a specific <code>Policy ID</code> has ran on your fleet with in a specific
+time frame you can do this quite easily.  Since Snowflake is highly scalable and allows one to store massive amounts of data
+you can keep all your historic data as you see fit.  Here is an example query:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">SESSION</span> <span class="k">SET</span> <span class="n">TIMEZONE</span> <span class="o">=</span> <span class="s1">&#39;UTC&#39;</span><span class="p">;</span>
+
+<span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">EVENT</span><span class="p">:</span><span class="n">policyId</span> <span class="k">as</span> <span class="n">policy_id</span>
+ <span class="p">,</span> <span class="n">EVENT</span><span class="p">:</span><span class="n">computer</span><span class="p">.</span><span class="n">jssID</span> <span class="k">as</span> <span class="n">jss_id</span>
+ <span class="p">,</span> <span class="n">EVENT</span><span class="p">:</span><span class="n">successful</span> <span class="k">as</span> <span class="k">state</span>
+<span class="k">from</span> <span class="s2">&#34;JAMF_EVENTSDB&#34;</span><span class="p">.</span><span class="s2">&#34;JAMF_EVENTS&#34;</span><span class="p">.</span><span class="s2">&#34;POLICIES&#34;</span>
+<span class="k">where</span> <span class="n">policy_id</span> <span class="o">=</span> <span class="s1">&#39;256&#39;</span> <span class="k">and</span> 
+<span class="n">TO_TIMESTAMP</span><span class="p">(</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">INTEGER</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">dateadd</span><span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">())</span>
+<span class="k">group</span> <span class="k">by</span> <span class="k">state</span><span class="p">,</span> <span class="n">policy_id</span><span class="p">,</span> <span class="n">jss_id</span><span class="p">;</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>NOTE:  Jamf Pro Webhooks ship with UTC millisecond epoch time stamps</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>COUNT(*)</th>
+<th>POLICY_ID</th>
+<th>JSS_ID</th>
+<th>STATE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>256</td>
+<td>2240</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<p>In the above output we can see that <code>Policy ID 256</code> has executed twice in the past 24 hours, and it has returned successful.
+We also know the <code>JJS ID</code> of the device that ran this policy, and it is the same computer.  This would allow Jamf Pro
+Admins to really leverage webhook data and get near-real time results on specific polices, or all policies.</p>
+<p>You can track what your fleet is doing by webhook event.  This is normally data that is not even exposed to the Jamf Admins
+at all.  Like how many inventories is each device doing?  I have found some interesting things parsing this data, another
+query example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- inventory snapshot in past 24 hours
+</span><span class="c1"></span><span class="k">ALTER</span> <span class="k">SESSION</span> <span class="k">SET</span> <span class="n">TIMEZONE</span> <span class="o">=</span> <span class="s1">&#39;UTC&#39;</span><span class="p">;</span>
+<span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">inventory_24hr</span>
+<span class="p">,</span> <span class="n">EVENT</span><span class="p">:</span><span class="n">jssID</span> <span class="k">as</span> <span class="n">id</span> <span class="k">from</span> <span class="s2">&#34;JAMF_EVENTSDB&#34;</span><span class="p">.</span><span class="s2">&#34;JAMF_EVENTS&#34;</span><span class="p">.</span><span class="s2">&#34;INVENTORY&#34;</span>
+<span class="k">where</span> <span class="n">TO_TIMESTAMP</span><span class="p">(</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">INTEGER</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">dateadd</span><span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">())</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">id</span> <span class="k">limit</span> <span class="mi">10</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Output:</p>
+<table>
+<thead>
+<tr>
+<th>INVENTORY_24HR</th>
+<th>ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>4363</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1577</td>
+</tr>
+<tr>
+<td>1</td>
+<td>4520</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4132</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2750</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4319</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1600</td>
+</tr>
+<tr>
+<td>37</td>
+<td>3272</td>
+</tr>
+</tbody>
+</table>
+<p>Look 👀 at that computer, <code>JSS ID 3272</code>!  This is older data, and I wanted to use this as an example of how powerful data
+can be.  That device spammed inventory to the Jamf Pro Servers 37 times in 24 hours.  Upon inspecting the device record
+there was nothing in scope that called a <code>recon</code> so I was at a loss as to why this device was spamming my cloud tenant with
+inventory updates.  Turns out the binary/agent on the client was in a weird state.  When I find these, typically having the
+user reboot their computer fixes it.  In some cases we need to remove Jamf and re-enroll the device.  Jamf does not provide
+this data to you at all in the web console. However, if you ship and collect webhooks you can track this yourself.  You can
+also keep the full historical data and trend it over time.</p>
+<p>One last example that is a nice to have, is being able to track what devices are in DEP.  Apple does not have a very good way
+of getting data from ABM/ASM about all your devices that are DEP Enabled.  Jamf Pro will ship a hook anytime a DEP Device
+is added to a prestage.  So, while this is not directly from Apple, it is at least something to help track all your DEP
+devices and no one has to log into ABM/ASM to do this.  Since it is in Snowflake, you can Data Share it as well to
+asset/inventory folks.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="s2">&#34;JAMF_EVENTSDB&#34;</span><span class="p">.</span><span class="s2">&#34;JAMF_EVENTS&#34;</span><span class="p">.</span><span class="s2">&#34;DEP_ADDITIONS&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The above is just a count, so it will return how many devices are in DEP.  However, since Snowflake can ingest and parse
+JSON data natively, you can query anything from the webhook itself.  Here is an example webhook taken from Jamf&rsquo;s
+documentation linked near the beginning of this post:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="p">{</span>
+    <span class="nt">&#34;event&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;assetTag&#34;</span><span class="p">:</span> <span class="s2">&#34;1664194&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Mac Pro&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;deviceAssignedDate&#34;</span><span class="p">:</span> <span class="mi">1552478234000</span><span class="p">,</span>
+        <span class="nt">&#34;deviceEnrollmentProgramInstanceId&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Mac Pro&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;serialNumber&#34;</span><span class="p">:</span> <span class="s2">&#34;92D8014694C4BE96B3&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;webhook&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;eventTimestamp&#34;</span><span class="p">:</span> <span class="mi">1553550275590</span><span class="p">,</span>
+        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Webhook Documentation&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;webhookEvent&#34;</span><span class="p">:</span> <span class="s2">&#34;DeviceAddedToDEP&#34;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>So you would be able to grab all those data points around every device you have in ABM/ASM, and the Webhook event would generate
+and ship to Snowflake almost instantly after it happens.</p>
+<p>So, this is a quick guide to a few of the things we are doing with Webhooks in Snowflake.  As time permits I will post more
+about the benefits of having data about your fleet. I know I also did not show off any visualizations of data in this post.
+You can definitely visualize all this data.  I will try to post some of our sanitized visualizations, or post examples in the future.
+In the meantime, if you feel this is valuable and would like to also leverage this as much as we do, I have a feature request you should up-vote <a href="https://www.jamf.com/jamf-nation/feature-requests/8932/webhooks-inventory-ship-all-the-data-please" target="_blank" rel="noopener noreffer">here</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-09-19</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/shipping-jamf-webhooks/" data-title="Shipping Jamf Webhooks with Fivetran" data-via="https://twitter.com/tlark8" data-hashtags="data,webhooks,fivetran,jamf,snowflake"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/data/">data</a>,&nbsp;<a href="/tags/webhooks/">webhooks</a>,&nbsp;<a href="/tags/fivetran/">fivetran</a>,&nbsp;<a href="/tags/jamf/">jamf</a>,&nbsp;<a href="/tags/snowflake/">snowflake</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/data-sharing/" class="prev" rel="prev" title="Data Sharing"><i class="fas fa-angle-left fa-fw"></i>Data Sharing</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.75.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

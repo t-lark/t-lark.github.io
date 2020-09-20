@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>data - Tag - t-lark.github.io</title>
+        <link>https://t-lark.github.io/tags/data/</link>
+        <description>data - Tag - t-lark.github.io</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Sep 2020 21:27:27 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/data/" rel="self" type="application/rss+xml" /><item>
+    <title>Shipping Jamf Webhooks with Fivetran</title>
+    <link>https://t-lark.github.io/posts/shipping-jamf-webhooks/</link>
+    <pubDate>Sat, 19 Sep 2020 21:27:27 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/posts/shipping-jamf-webhooks/</guid>
+    <description><![CDATA[Shipping Jamf Pro Webhooks to Snowflake Jamf Pro has a builtin feature where you have the ability to ship a webhook event when specific events happen in their application. This allows for a near real time feed of event based data which you can consume and leverage to gain insights about your fleet. Jamf provides some documentation online, found here.
+Webhooks are generated automatically, and near instantly when an event occurs.]]></description>
+</item></channel>
+</rss>
