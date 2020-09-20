@@ -3,7 +3,6 @@
         <title>Tags - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/</link>
         <description>Tags - Tag - t-lark.github.io</description>
-<<<<<<< HEAD
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Sep 2020 21:27:27 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
     <title>data</title>
     <link>https://t-lark.github.io/tags/data/</link>
@@ -24,19 +23,10 @@
     <pubDate>Sat, 19 Sep 2020 21:27:27 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/tags/jamf/</guid>
-=======
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Sep 2020 19:45:03 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
-    <title>data sharing</title>
-    <link>https://t-lark.github.io/tags/data-sharing/</link>
-    <pubDate>Sat, 19 Sep 2020 19:45:03 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/data-sharing/</guid>
->>>>>>> ec900ab6b5266eec529115e37d8c849b992f3d75
     <description><![CDATA[]]></description>
 </item><item>
     <title>snowflake</title>
     <link>https://t-lark.github.io/tags/snowflake/</link>
-<<<<<<< HEAD
     <pubDate>Sat, 19 Sep 2020 21:27:27 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/tags/snowflake/</guid>
@@ -47,18 +37,6 @@
     <pubDate>Sat, 19 Sep 2020 21:27:27 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/tags/webhooks/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>data sharing</title>
-    <link>https://t-lark.github.io/tags/data-sharing/</link>
-    <pubDate>Sat, 19 Sep 2020 19:45:03 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/data-sharing/</guid>
-=======
-    <pubDate>Sat, 19 Sep 2020 19:45:03 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/snowflake/</guid>
->>>>>>> ec900ab6b5266eec529115e37d8c849b992f3d75
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

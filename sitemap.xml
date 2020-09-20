@@ -2,7 +2,6 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-<<<<<<< HEAD
             <loc>https://t-lark.github.io/categories/</loc><lastmod>2020-09-19T21:27:27-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/data/</loc><lastmod>2020-09-19T21:27:27-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/fivetran/</loc><lastmod>2020-09-19T21:27:27-07:00</lastmod></url><url>
@@ -15,18 +14,4 @@
             <loc>https://t-lark.github.io/</loc><lastmod>2020-09-19T21:27:27-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/</loc><lastmod>2020-09-19T21:27:27-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/webhooks/</loc><lastmod>2020-09-19T21:27:27-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/webhooks/</loc><lastmod>2020-09-19T21:27:27-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/posts/data-sharing/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/data-sharing/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/data-sharing/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url></urlset>
-=======
-            <loc>https://t-lark.github.io/categories/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/posts/data-sharing/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/data-sharing/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/data-sharing/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/posts/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/snowflake/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/snowflake/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url></urlset>
->>>>>>> ec900ab6b5266eec529115e37d8c849b992f3d75
+            <loc>https://t-lark.github.io/categories/webhooks/</loc><lastmod>2020-09-19T21:27:27-07:00</lastmod></url></urlset>
