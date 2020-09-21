@@ -243,7 +243,7 @@ something like <code>/opt</code></p>
 <p>Note:  you will see the tool output a bunch fo stuff in the terminal, let it finish</p>
 </blockquote>
 <ol start="5">
-<li>No we will create our symbolic link to make this easier when we want to call this environment in code</li>
+<li>Next we will create our symbolic link to make this easier when we want to call this environment in code</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -274,7 +274,7 @@ Type <span class="s2">&#34;help&#34;</span>, <span class="s2">&#34;copyright&#34
 </code></pre></td></tr></table>
 </div>
 </div><ol start="6">
-<li>Now you just need to use your preferred packaging tool to add this folder path, including the symbolic link in an
+<li>Finally, you just need to use your preferred packaging tool to add this folder path, including the symbolic link in an
 Apple Installer Package.</li>
 </ol>
 <h3 id="caveats-and-things-to-consider">Caveats, and things to consider</h3>
@@ -307,7 +307,7 @@ have that space to themselves.</p>
 </div>
 </div><p>When you install that, it does put <code>python3</code> in the standard <code>$PATH</code> and if your code calls that path or if you just type
 <code>python3</code> in the shell, without typing the full path, you will get that Python environment.  Some planning will be needed
-as well as some decision-making by the IT Admin/Engineer that wants to deploy their own Python.  Ther is no gold standard
+as well as some decision-making by the IT Admin/Engineer that wants to deploy their own Python.  There is no gold standard
 answer, so you will need to figure out what is the best answer for your team and Org.</p>
 <p><strong>Requirements.txt file</strong></p>
 <p>The author of Relocatable Python did something clever, but some may have missed it.  They made an assumption that if you
