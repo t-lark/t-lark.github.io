@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>macOS - Category - t-lark.github.io</title>
+        <link>https://t-lark.github.io/categories/macos/</link>
+        <description>macOS - Category - t-lark.github.io</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 20 Sep 2020 17:52:37 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/macos/" rel="self" type="application/rss+xml" /><item>
+    <title>Shipping Your Own Python to macOS</title>
+    <link>https://t-lark.github.io/posts/shipping-python/</link>
+    <pubDate>Sun, 20 Sep 2020 17:52:37 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/posts/shipping-python/</guid>
+    <description><![CDATA[With the announcement at Catalina&rsquo;s release that some third party run times will be removed, and the fact that Python 2 is end of life it is time to ship your own. Just like everything in tech, there are many ways to accomplish this. I have been using a tool for about over a year now called relocatable python.
+The reasons I chose to use relocatable python were pretty good ones in my opinion.]]></description>
+</item></channel>
+</rss>
