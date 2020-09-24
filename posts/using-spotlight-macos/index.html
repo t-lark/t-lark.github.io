@@ -348,8 +348,8 @@ from this search.</p>
 </div><p>There is a lot of output I won&rsquo;t paste into a code block here, but you can play around with this to see the different
 output you can get from these binaries. Last year there was a pretty nasty <a href="https://blog.mozilla.org/security/2019/10/09/iterm2-critical-issue-moss-audit/" target="_blank" rel="noopener noreffer">iTerm2 Vuln</a> that
 we detected through our security tools, and the fact it was all over Twitter and the rest of the Internet.  We wanted to
-detect how many vulnerable versions we had adn then plan on patching after assessing how many vuln versions we had.  A
-simple spotlight script was deployed, and anything that wasn&rsquo;t teh current version got flagged.  Since <code>iTerm2</code> is just
+detect how many vulnerable versions we had and then plan on patching after assessing how many vuln versions we had.  A
+simple spotlight script was deployed, and anything that wasn&rsquo;t the current version got flagged.  Since <code>iTerm2</code> is just
 a zipped App bundle, we had no idea where the user installed it.  We also do not block users from installing their own
 software and tools, so there could be multiple versions present.  Tools like <code>Jamf Pro</code> will not search for Apps outside of
 a default path unless you specify so in the inventory collection preferences.  A quick Spotlight script made sense and
