@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Using Spotlight with macOS - t-lark.github.io</title><meta name="Description" content=""><meta property="og:title" content="Using Spotlight with macOS" />
+<meta property="og:description" content="Spotlight is a system wide metadata indexing system that Apple has been shipping since OS X 10.4 Tiger, and has been improved over the years with each OS. I like using Spotlight for some tasks and general searching for files in Terminal.app. I also use it for finding anything on my Mac. Typically, I do not use my mouse or trackpad to find files or navigate to folders. One just needs to hit cmd &#43; spacebar on their Mac to pull up the Spotlight search menu and start typing." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://t-lark.github.io/posts/using-spotlight-macos/" />
+<meta property="article:published_time" content="2020-09-23T18:22:00-07:00" />
+<meta property="article:modified_time" content="2020-09-23T18:22:00-07:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Using Spotlight with macOS"/>
+<meta name="twitter:description" content="Spotlight is a system wide metadata indexing system that Apple has been shipping since OS X 10.4 Tiger, and has been improved over the years with each OS. I like using Spotlight for some tasks and general searching for files in Terminal.app. I also use it for finding anything on my Mac. Typically, I do not use my mouse or trackpad to find files or navigate to folders. One just needs to hit cmd &#43; spacebar on their Mac to pull up the Spotlight search menu and start typing."/>
+<meta name="application-name" content="t-lark.github.io">
+<meta name="apple-mobile-web-app-title" content="t-lark.github.io"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/using-spotlight-macos/" /><link rel="prev" href="https://t-lark.github.io/posts/shipping-python/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Using Spotlight with macOS",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/t-lark.github.io\/posts\/using-spotlight-macos\/"
+        },"genre": "posts","keywords": "macOS, spotlight, scripting","wordcount":  2087 ,
+        "url": "https:\/\/t-lark.github.io\/posts\/using-spotlight-macos\/","datePublished": "2020-09-23T18:22:00-07:00","dateModified": "2020-09-23T18:22:00-07:00","publisher": {
+            "@type": "Organization",
+            "name": "tlark"},"author": {
+                "@type": "Person",
+                "name": "tlark"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Using Spotlight with macOS</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/macos/"><i class="far fa-folder fa-fw"></i>macOS</a>&nbsp;<a href="/categories/scripting/"><i class="far fa-folder fa-fw"></i>scripting</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-23">2020-09-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2087 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;10 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#spotlight-in-the-terminal-getting-attributes">Spotlight in the Terminal getting attributes</a></li>
+        <li><a href="#spotlight-in-the-terminal-searching">Spotlight in the Terminal searching</a></li>
+        <li><a href="#using-mdfind-with-mdls">Using mdfind with mdls</a></li>
+        <li><a href="#metadata-tagging">Metadata Tagging</a></li>
+        <li><a href="#caveats-with-custom-tagging">Caveats with Custom Tagging</a></li>
+        <li><a href="#python-objc-bridge">Python Objc Bridge</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><a href="https://en.wikipedia.org/wiki/Spotlight_%28software%29" target="_blank" rel="noopener noreffer">Spotlight</a> is a system wide metadata indexing system that Apple has been
+shipping since <code>OS X 10.4 Tiger</code>, and has been improved over the years with each OS. I like using Spotlight for some tasks
+and general searching for files in Terminal.app.  I also use it for finding anything on my Mac. Typically, I do not use my mouse
+or trackpad to find files or navigate to folders. One just needs to hit <code>cmd + spacebar</code> on their Mac to pull up the Spotlight
+search menu and start typing.  If you use a Mac, there is a good chance you also use this regularly like I do.  This isn&rsquo;t
+anything groundbreaking or new, but I have enjoyed using Spotlight over the years when it fits as a good tool.</p>
+<h3 id="spotlight-in-the-terminal-getting-attributes">Spotlight in the Terminal getting attributes</h3>
+<p>There are two binaries Apple supplies on macOS which you can leverage.  They are <code>mdls</code> and <code>mdfind</code>, there is also another
+tool called <code>xattr</code> which also allows you to manipulate metadata in code.  To start using these binaries we can just take
+a look at an application like say Firefox.  Refer to their <code>man pages</code> for the documentation.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">% mdls /Applications/Firefox.app       
+<span class="nv">_kMDItemDisplayNameWithExtensions</span>      <span class="o">=</span> <span class="s2">&#34;Firefox.app&#34;</span>
+<span class="nv">kMDItemAlternateNames</span>                  <span class="o">=</span> <span class="o">(</span>
+    <span class="s2">&#34;Firefox.app&#34;</span>
+<span class="o">)</span>
+<span class="nv">kMDItemAppStoreCategory</span>                <span class="o">=</span> <span class="s2">&#34;Productivity&#34;</span>
+<span class="nv">kMDItemAppStoreCategoryType</span>            <span class="o">=</span> <span class="s2">&#34;public.app-category.productivity&#34;</span>
+<span class="nv">kMDItemCFBundleIdentifier</span>              <span class="o">=</span> <span class="s2">&#34;org.mozilla.firefox&#34;</span>
+<span class="nv">kMDItemContentCreationDate</span>             <span class="o">=</span> 2020-08-31 18:05:40 +0000
+<span class="nv">kMDItemContentCreationDate_Ranking</span>     <span class="o">=</span> 2020-08-31 00:00:00 +0000
+<span class="nv">kMDItemContentModificationDate</span>         <span class="o">=</span> 2020-09-08 17:37:19 +0000
+<span class="nv">kMDItemContentModificationDate_Ranking</span> <span class="o">=</span> 2020-09-08 00:00:00 +0000
+<span class="nv">kMDItemContentType</span>                     <span class="o">=</span> <span class="s2">&#34;com.apple.application-bundle&#34;</span>
+<span class="nv">kMDItemContentTypeTree</span>                 <span class="o">=</span> <span class="o">(</span>
+    <span class="s2">&#34;com.apple.application-bundle&#34;</span>,
+    <span class="s2">&#34;com.apple.application&#34;</span>,
+    <span class="s2">&#34;public.executable&#34;</span>,
+    <span class="s2">&#34;com.apple.localizable-name-bundle&#34;</span>,
+    <span class="s2">&#34;com.apple.bundle&#34;</span>,
+    <span class="s2">&#34;public.directory&#34;</span>,
+    <span class="s2">&#34;public.item&#34;</span>,
+    <span class="s2">&#34;com.apple.package&#34;</span>
+<span class="o">)</span>
+<span class="nv">kMDItemDateAdded</span>                       <span class="o">=</span> 2020-09-08 17:35:57 +0000
+<span class="nv">kMDItemDateAdded_Ranking</span>               <span class="o">=</span> 2020-09-08 00:00:00 +0000
+<span class="nv">kMDItemDisplayName</span>                     <span class="o">=</span> <span class="s2">&#34;Firefox&#34;</span>
+<span class="nv">kMDItemDocumentIdentifier</span>              <span class="o">=</span> <span class="m">0</span>
+<span class="nv">kMDItemExecutableArchitectures</span>         <span class="o">=</span> <span class="o">(</span>
+    <span class="s2">&#34;x86_64&#34;</span>
+<span class="o">)</span>
+<span class="nv">kMDItemFSContentChangeDate</span>             <span class="o">=</span> 2020-09-08 17:37:19 +0000
+<span class="nv">kMDItemFSCreationDate</span>                  <span class="o">=</span> 2020-08-31 18:05:40 +0000
+<span class="nv">kMDItemFSCreatorCode</span>                   <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+<span class="nv">kMDItemFSFinderFlags</span>                   <span class="o">=</span> <span class="m">0</span>
+<span class="nv">kMDItemFSHasCustomIcon</span>                 <span class="o">=</span> <span class="o">(</span>null<span class="o">)</span>
+<span class="nv">kMDItemFSInvisible</span>                     <span class="o">=</span> <span class="m">0</span>
+<span class="nv">kMDItemFSIsExtensionHidden</span>             <span class="o">=</span> <span class="m">1</span>
+<span class="nv">kMDItemFSIsStationery</span>                  <span class="o">=</span> <span class="o">(</span>null<span class="o">)</span>
+<span class="nv">kMDItemFSLabel</span>                         <span class="o">=</span> <span class="m">0</span>
+<span class="nv">kMDItemFSName</span>                          <span class="o">=</span> <span class="s2">&#34;Firefox.app&#34;</span>
+<span class="nv">kMDItemFSNodeCount</span>                     <span class="o">=</span> <span class="m">1</span>
+<span class="nv">kMDItemFSOwnerGroupID</span>                  <span class="o">=</span> <span class="m">80</span>
+<span class="nv">kMDItemFSOwnerUserID</span>                   <span class="o">=</span> <span class="m">0</span>
+<span class="nv">kMDItemFSSize</span>                          <span class="o">=</span> <span class="m">210713091</span>
+<span class="nv">kMDItemFSTypeCode</span>                      <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+<span class="nv">kMDItemInterestingDate_Ranking</span>         <span class="o">=</span> 2020-09-08 00:00:00 +0000
+<span class="nv">kMDItemKind</span>                            <span class="o">=</span> <span class="s2">&#34;Application&#34;</span>
+<span class="nv">kMDItemLastUsedDate</span>                    <span class="o">=</span> 2020-09-08 17:37:09 +0000
+<span class="nv">kMDItemLastUsedDate_Ranking</span>            <span class="o">=</span> 2020-09-08 00:00:00 +0000
+<span class="nv">kMDItemLogicalSize</span>                     <span class="o">=</span> <span class="m">210713091</span>
+<span class="nv">kMDItemPhysicalSize</span>                    <span class="o">=</span> <span class="m">211038208</span>
+<span class="nv">kMDItemUseCount</span>                        <span class="o">=</span> <span class="m">1</span>
+<span class="nv">kMDItemUsedDates</span>                       <span class="o">=</span> <span class="o">(</span>
+    <span class="s2">&#34;2020-09-08 07:00:00 +0000&#34;</span>
+<span class="o">)</span>
+<span class="nv">kMDItemVersion</span>                         <span class="o">=</span> <span class="s2">&#34;80.0.1&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>There are many metadata tags we can get right from the shell as well.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">% mdls /Applications/Firefox.app -name kMDItemVersion
+<span class="nv">kMDItemVersion</span> <span class="o">=</span> <span class="s2">&#34;80.0.1&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>You can see this is easy to get the metadata from an object on disk, it is also very fast as it searches the indexes and
+returns the indexed data.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">% mdls /Applications/Firefox.app -name kMDItemVersion -raw
+80.0.1                        
+</code></pre></td></tr></table>
+</div>
+</div><p>There is also no need to pipe to <code>awk</code> or <code>grep</code> as the tool gives you an argument of <code>-raw</code> to just return the data.
+Easily get multiple metadata attributes by passing multiple arguments.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">% mdls /Applications/Firefox.app -name kMDItemVersion -name kMDItemFSName -name kMDItemLastUsedDate    
+<span class="nv">kMDItemFSName</span>       <span class="o">=</span> <span class="s2">&#34;Firefox.app&#34;</span>
+<span class="nv">kMDItemLastUsedDate</span> <span class="o">=</span> 2020-09-08 17:37:09 +0000
+<span class="nv">kMDItemVersion</span>      <span class="o">=</span> <span class="s2">&#34;80.0.1&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="spotlight-in-the-terminal-searching">Spotlight in the Terminal searching</h3>
+<p><code>mdls</code> is great for listing the metadata for objects on disk, and you can probably
+guess what <code>mdfind</code> is used for.  After getting the metadata tags from <code>mdls</code> we can use them in <code>mdfind</code> you can also
+pass strings to <code>mdfind</code> and it performs searches similar to when you use it in the Finder.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">% mdfind <span class="s2">&#34;using-spotlight&#34;</span>
+/Users/tlarkin/blog/tlark/content/posts/using-spotlight-macos.md
+/Users/tlarkin/Library/Application Support/JetBrains/IdeaIC2020.1/workspace/1hksXRhYWu8MI2RnUXoH3oitxRW.xml
+</code></pre></td></tr></table>
+</div>
+</div><p>Like finding the blog post I am currently working on, which my IDE is also storing data about on disk.  This output makes sense
+considering I do all my blog work in my IDE with <code>hugo</code> along with built in tools.  We can also use the metadata tags which we
+see in <code>mdls</code> output.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">% mdfind <span class="s2">&#34;kMDItemFSName = Firefox.app&#34;</span>
+/Applications/Firefox.app
+</code></pre></td></tr></table>
+</div>
+</div><p>You can specify file paths if you have an idea or what to limit search scope for metadata searching.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">% mdfind -onlyin /Users/tlarkin <span class="s2">&#34;kMDItemContentType = public.python-script&#34;</span> <span class="p">|</span> wc -l
+   <span class="m">11582</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>I have a lot of Python scripts on my Mac, so I just did a line count of the output.  I have a lot of repos cloned, open source
+tools cloned, and there are a lot of apps that use Python, so a big chunk of these results are from the software I have
+installed.  However, every object in my home folder that has <code>kMDItemContentType = public.python-script</code> tag will return
+from this search.</p>
+<h3 id="using-mdfind-with-mdls">Using mdfind with mdls</h3>
+<p>Of course with things like pipes in the shell you can easily use these tools together.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">% mdfind -0 -onlyin /Applications <span class="s2">&#34;kMDItemContentType = com.apple.application-bundle&#34;</span> <span class="p">|</span> xargs -0 mdls -name kMDItemCFBundleIdentifier -name kMDItemDisplayName -name kMDItemVersion
+</code></pre></td></tr></table>
+</div>
+</div><p>There is a lot of output I won&rsquo;t paste into a code block here, but you can play around with this to see the different
+output you can get from these binaries. Last year there was a pretty nasty <a href="https://blog.mozilla.org/security/2019/10/09/iterm2-critical-issue-moss-audit/" target="_blank" rel="noopener noreffer">iTerm2 Vuln</a> that
+we detected through our security tools, and the fact it was all over Twitter and the rest of the Internet.  We wanted to
+detect how many vulnerable versions we had adn then plan on patching after assessing how many vuln versions we had.  A
+simple spotlight script was deployed, and anything that wasn&rsquo;t teh current version got flagged.  Since <code>iTerm2</code> is just
+a zipped App bundle, we had no idea where the user installed it.  We also do not block users from installing their own
+software and tools, so there could be multiple versions present.  Tools like <code>Jamf Pro</code> will not search for Apps outside of
+a default path unless you specify so in the inventory collection preferences.  A quick Spotlight script made sense and
+it didn&rsquo;t require much effort.  There are tools out there like <a href="https://osquery.io/" target="_blank" rel="noopener noreffer">OSquery</a> which is probably a better answer
+to get data about your fleet on a regular basis.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/zsh
+</span><span class="cp"></span>
+<span class="nv">results</span><span class="o">=</span><span class="k">$(</span>mdfind -name <span class="s2">&#34;kMDItemCFBundleIdentifier = com.googlecode.iterm2 &amp;&amp; kMDItemVersion != 3.3.6&#34;</span><span class="k">)</span>
+
+<span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">results</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;&#34;</span> <span class="o">]]</span>
+    <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&#34;&lt;result&gt;false&lt;/result&gt;&#34;</span>
+    <span class="k">else</span> <span class="nb">echo</span> <span class="s2">&#34;&lt;result&gt;true&lt;/result&gt;&#34;</span>
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>With a day we had the data back, and we had very few users with a vulnerable version on their system as most users were
+updating their versions on their own.  So, we just had to send an update to a few systems.  I do think there are better
+ways and better tools to manage application state out there, but if you don&rsquo;t have those every Mac has Spotlight on it.</p>
+<h3 id="metadata-tagging">Metadata Tagging</h3>
+<p>None of this is new, and I am certainly not the first person to use these tools or <a href="https://eclecticlight.co/2019/07/23/how-to-save-file-metadata-in-icloud-and-new-info-on-extended-attributes/" target="_blank" rel="noopener noreffer">blog about this stuff</a>.
+The linked blog has some pretty good reading material you can reference.  A quick reference how you can do this below.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># create a file</span>
+touch file.txt
+<span class="c1"># add a custom tag</span>
+xattr -w com.apple.metadata:<span class="s2">&#34;_customTag&#34;</span> <span class="s2">&#34;customVal1&#34;</span> file.txt
+<span class="c1"># get the attribute</span>
+mdls -name _customTag file.txt -raw                           
+customVal1
+<span class="c1"># search for it</span>
+mdfind <span class="s2">&#34;_customTag = customVal1&#34;</span>
+/Users/tlarkin/file.txt
+</code></pre></td></tr></table>
+</div>
+</div><p>There are a lot of things you could do with metadata tagging in macOS.  You can programmatically search for metadata tags,
+as well as set your own tags.</p>
+<h3 id="caveats-with-custom-tagging">Caveats with Custom Tagging</h3>
+<p>When tagging things on disk that get overwritten, like contents of an installer package, the tags could be deleted.  So,
+if you were to say tag an app you installed with your automation tools, then a user downloads another version and overwrites it,
+your tags, are now probably gone.</p>
+<p>Some file paths are not indexed by Spotlight. Paths like <code>/tmp</code> are not indexed.  So, make sure you test the paths you are
+using if you use these tools.  I have definitely forgotten this before and tested custom tags with <code>xattr</code> in <code>/tmp</code> and
+completely spaced that this doesn&rsquo;t work.</p>
+<p>Some file names are error prone with certain characters.  Apple, I think has fixed this bug as I can now tag a file
+located in a folder with a <code>.</code> in the folder name. This was broken at some point in time, Mac Mule discovered it.  I was not
+able to locate his blog post on it, but will update with a link if I can find it.</p>
+<h3 id="python-objc-bridge">Python Objc Bridge</h3>
+<p>You can also do all of these neat things in Python as well.  I wrote this script not too long ago to search and find all the
+Parallels VMs on a Mac. The end goal was to collect the OS versions of all VMs and ship that data to Snowflake, so we could
+report on them for vulnerabilities on the OS.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/python</span>
+
+<span class="s2">&#34;&#34;&#34;
+</span><span class="s2">this is a script to detect what VMs are on a system and escrow what OS they are
+</span><span class="s2">You can run this daily or in another workflow
+</span><span class="s2">It will use Spotlight to find files with the .pvm extension to locate where the files are on the file system
+</span><span class="s2">then parse the PvInfo file for Parallels VMs
+</span><span class="s2">
+</span><span class="s2">credit:  https://github.com/munki/munki/blob/b6a4b015297c262124fb80086b6b55e329a4fec0/code/client/munkilib/info.py#L362-L396
+</span><span class="s2">
+</span><span class="s2">&#34;&#34;&#34;</span>
+
+<span class="c1"># import modules</span>
+<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="kn">as</span> <span class="nn">et</span>
+<span class="kn">from</span> <span class="nn">Foundation</span> <span class="kn">import</span> <span class="n">NSMetadataQuery</span><span class="p">,</span> <span class="n">NSPredicate</span><span class="p">,</span> <span class="n">NSRunLoop</span><span class="p">,</span> <span class="n">NSDate</span>
+
+
+<span class="c1"># start functions</span>
+
+
+<span class="k">def</span> <span class="nf">get_vms</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34;use spotlight to find parallels VM files&#34;&#34;&#34;</span>
+    <span class="n">file_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">NSMetadataQuery</span><span class="o">.</span><span class="n">alloc</span><span class="p">()</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+    <span class="n">query</span><span class="o">.</span><span class="n">setPredicate_</span><span class="p">(</span>
+        <span class="n">NSPredicate</span><span class="o">.</span><span class="n">predicateWithFormat_</span><span class="p">(</span>
+            <span class="s2">&#34;(kMDItemContentType == &#39;com.parallels.vm.vmpackage&#39;)&#34;</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">query</span><span class="o">.</span><span class="n">setSearchScopes_</span><span class="p">([</span><span class="s2">&#34;/Applications&#34;</span><span class="p">,</span> <span class="s2">&#34;/Users&#34;</span><span class="p">])</span>
+    <span class="n">query</span><span class="o">.</span><span class="n">startQuery</span><span class="p">()</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">max_time</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">isGathering</span><span class="p">()</span> <span class="ow">and</span> <span class="n">start_time</span> <span class="o">&lt;=</span> <span class="n">max_time</span><span class="p">:</span>
+        <span class="n">start_time</span> <span class="o">+=</span> <span class="mf">0.3</span>
+        <span class="n">NSRunLoop</span><span class="o">.</span><span class="n">currentRunLoop</span><span class="p">()</span><span class="o">.</span><span class="n">runUntilDate_</span><span class="p">(</span>
+            <span class="n">NSDate</span><span class="o">.</span><span class="n">dateWithTimeIntervalSinceNow_</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="n">query</span><span class="o">.</span><span class="n">stopQuery</span><span class="p">()</span>
+    <span class="c1"># get the results of the file names, and find their file path via spotlight attribute</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">query</span><span class="o">.</span><span class="n">results</span><span class="p">():</span>
+        <span class="n">pathname</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">valueForAttribute_</span><span class="p">(</span><span class="s2">&#34;kMDItemPath&#34;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pathname</span><span class="p">:</span>
+            <span class="n">file_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pathname</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">file_list</span>
+
+
+<span class="k">def</span> <span class="nf">get_vm_os</span><span class="p">(</span><span class="n">vm_list</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;feed this function a list of results from Spotlight to parse what VM is running what OS&#34;&#34;&#34;</span>
+    <span class="c1"># blank list to populate data in</span>
+    <span class="n">os_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># loop through return from spotlight and grab needed info</span>
+    <span class="k">for</span> <span class="n">vm</span> <span class="ow">in</span> <span class="n">vm_list</span><span class="p">:</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">vm</span> <span class="o">+</span> <span class="s2">&#34;/VmInfo.pvi&#34;</span><span class="p">)</span>
+        <span class="c1"># load XML file into parser</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">et</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="nb">file</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
+        <span class="c1"># find the text of the tags we want</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">iter</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&#34;RealOsType&#34;</span> <span class="ow">and</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="c1"># only want the data up until the first comma</span>
+                <span class="n">os_type</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;,&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&#34;RealOsVersion&#34;</span> <span class="ow">and</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">os_ver</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+                <span class="c1"># combine the two pieces of data into single string for the list</span>
+                <span class="n">cstring</span> <span class="o">=</span> <span class="n">os_type</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span> <span class="o">+</span> <span class="n">os_ver</span>
+                <span class="n">os_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cstring</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">os_list</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34;main to rule them all&#34;&#34;&#34;</span>
+    <span class="c1"># get VM XML files</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="n">get_vms</span><span class="p">()</span>
+    <span class="c1"># parse XML files</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">get_vm_os</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+    <span class="c1"># loop through and print out multi value EA for jamf inventory</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;&lt;result&gt;&#34;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;&lt;/result&gt;&#34;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The above code was pretty much stolen from the <a href="https://github.com/munki/munki/blob/b6a4b015297c262124fb80086b6b55e329a4fec0/code/client/munkilib/info.py#L362-L396" target="_blank" rel="noopener noreffer">Munki Project</a></p>
+<p>Munki is probably the best online resource for Python ObjectiveC code.  It is filled with tons of gems from the maintainer
+as well as the community.</p>
+<p>I think that BYOD deployments are a very bad idea for many reasons. To sum up the biggest two reasons I will simply put:</p>
+<ol>
+<li>
+<p>Good luck putting that BYOD device on term hold</p>
+</li>
+<li>
+<p>Good luck putting that BYOD device on legal hold</p>
+</li>
+</ol>
+<p>That being stated, over a few beers a year or two ago I was chatting with a buddy of mine about this topic. Spotlight tagging
+came into the conversation and I found myself bored about a week later one evening so decided to just add something like this
+to a <a href="https://gitlab.com/Mactroll/DEPNotify" target="_blank" rel="noopener noreffer">DEP Notify</a> workflow.  So, I posted it here on my <a href="https://github.com/t-lark/DEP-Notify-Decom" target="_blank" rel="noopener noreffer">GitHub</a></p>
+<p>That project is not tested (except for like once in a VM), nor maintained and was really just meant as a code example.  Use at your own risk, and think
+about not doing BYOD if you can. The code uses similar tooling as the binaries above, but allows for the flexibility
+of Python.  It also interacts with the macOS APIs, so some extended functionality is there.</p>
+<p>So, there are many uses for Spotlight one can use in IT/Ops workflows.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-09-23</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/using-spotlight-macos/" data-title="Using Spotlight with macOS" data-via="https://twitter.com/tlark8" data-hashtags="macOS,spotlight,scripting"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/macos/">macOS</a>,&nbsp;<a href="/tags/spotlight/">spotlight</a>,&nbsp;<a href="/tags/scripting/">scripting</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/shipping-python/" class="prev" rel="prev" title="Shipping Your Own Python to macOS"><i class="fas fa-angle-left fa-fw"></i>Shipping Your Own Python to macOS</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.75.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

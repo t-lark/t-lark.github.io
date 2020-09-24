@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>spotlight - Tag - t-lark.github.io</title>
+        <link>https://t-lark.github.io/tags/spotlight/</link>
+        <description>spotlight - Tag - t-lark.github.io</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 23 Sep 2020 18:22:00 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/spotlight/" rel="self" type="application/rss+xml" /><item>
+    <title>Using Spotlight with macOS</title>
+    <link>https://t-lark.github.io/posts/using-spotlight-macos/</link>
+    <pubDate>Wed, 23 Sep 2020 18:22:00 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/posts/using-spotlight-macos/</guid>
+    <description><![CDATA[Spotlight is a system wide metadata indexing system that Apple has been shipping since OS X 10.4 Tiger, and has been improved over the years with each OS. I like using Spotlight for some tasks and general searching for files in Terminal.app. I also use it for finding anything on my Mac. Typically, I do not use my mouse or trackpad to find files or navigate to folders. One just needs to hit cmd + spacebar on their Mac to pull up the Spotlight search menu and start typing.]]></description>
+</item></channel>
+</rss>
