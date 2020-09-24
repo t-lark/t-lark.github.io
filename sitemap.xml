@@ -2,17 +2,21 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>https://t-lark.github.io/categories/</loc><lastmod>2020-09-23T18:22:00-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/macos/</loc><lastmod>2020-09-23T18:22:00-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/macos/</loc><lastmod>2020-09-23T18:22:00-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/posts/</loc><lastmod>2020-09-23T18:22:00-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/scripting/</loc><lastmod>2020-09-23T18:22:00-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/scripting/</loc><lastmod>2020-09-23T18:22:00-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/spotlight/</loc><lastmod>2020-09-23T18:22:00-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/</loc><lastmod>2020-09-23T18:22:00-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/</loc><lastmod>2020-09-23T18:22:00-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/posts/using-spotlight-macos/</loc><lastmod>2020-09-23T18:22:00-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/apple/</loc><lastmod>2020-09-20T17:52:37-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/</loc><lastmod>2020-09-20T17:52:37-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/macos/</loc><lastmod>2020-09-20T17:52:37-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/macos/</loc><lastmod>2020-09-20T17:52:37-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/posts/</loc><lastmod>2020-09-20T17:52:37-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/python/</loc><lastmod>2020-09-20T17:52:37-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/python/</loc><lastmod>2020-09-20T17:52:37-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/python3/</loc><lastmod>2020-09-20T17:52:37-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/shipping-python/</loc><lastmod>2020-09-20T17:52:37-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/</loc><lastmod>2020-09-20T17:52:37-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/</loc><lastmod>2020-09-20T17:52:37-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/data/</loc><lastmod>2020-09-19T21:27:27-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/fivetran/</loc><lastmod>2020-09-19T21:27:27-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/jamf/</loc><lastmod>2020-09-19T21:27:27-07:00</lastmod></url><url>

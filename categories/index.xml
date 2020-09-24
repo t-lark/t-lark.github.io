@@ -3,19 +3,26 @@
         <title>Categories - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/</link>
         <description>Categories - Category - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 20 Sep 2020 17:52:37 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 23 Sep 2020 18:22:00 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>macOS</title>
+    <link>https://t-lark.github.io/categories/macos/</link>
+    <pubDate>Wed, 23 Sep 2020 18:22:00 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/categories/macos/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>scripting</title>
+    <link>https://t-lark.github.io/categories/scripting/</link>
+    <pubDate>Wed, 23 Sep 2020 18:22:00 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/categories/scripting/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>Apple</title>
     <link>https://t-lark.github.io/categories/apple/</link>
     <pubDate>Sun, 20 Sep 2020 17:52:37 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/categories/apple/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>macOS</title>
-    <link>https://t-lark.github.io/categories/macos/</link>
-    <pubDate>Sun, 20 Sep 2020 17:52:37 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/categories/macos/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>python</title>

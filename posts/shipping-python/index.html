@@ -19,7 +19,7 @@ The reasons I chose to use relocatable python were pretty good ones in my opinio
 <meta name="application-name" content="t-lark.github.io">
 <meta name="apple-mobile-web-app-title" content="t-lark.github.io"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/shipping-python/" /><link rel="prev" href="https://t-lark.github.io/posts/shipping-jamf-webhooks/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/shipping-python/" /><link rel="prev" href="https://t-lark.github.io/posts/shipping-jamf-webhooks/" /><link rel="next" href="https://t-lark.github.io/posts/using-spotlight-macos/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -28,7 +28,7 @@ The reasons I chose to use relocatable python were pretty good ones in my opinio
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/t-lark.github.io\/posts\/shipping-python\/"
-        },"genre": "posts","keywords": "macOS, python, python3","wordcount":  1270 ,
+        },"genre": "posts","keywords": "macOS, python, python3","wordcount":  1290 ,
         "url": "https:\/\/t-lark.github.io\/posts\/shipping-python\/","datePublished": "2020-09-20T17:52:37-07:00","dateModified": "2020-09-20T17:52:37-07:00","publisher": {
             "@type": "Organization",
             "name": "tlark"},"author": {
@@ -105,8 +105,8 @@ The reasons I chose to use relocatable python were pretty good ones in my opinio
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Shipping Your Own Python to macOS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/macos/"><i class="far fa-folder fa-fw"></i>macOS</a>&nbsp;<a href="/categories/apple/"><i class="far fa-folder fa-fw"></i>Apple</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>python</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-20">2020-09-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1270 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-20">2020-09-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1290 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -372,8 +372,9 @@ in a simple Jamf EA.  Here is a quick example I wrote in the shell:</p>
 </div>
 </div><p>This script will return a <code>false</code> value for any broken Python environment.  So, I have an ongoing policy that will reinstall
 my Python3 environment scoped to this EA with a value of <code>false</code> so this is intentional.  I highly recommend you never use
-blank values in anything you use.  Always be explicit with your data, you will never now what a <code>null</code> or blank string value
+blank values in anything you use.  Always be explicit with your data, you will never know what a <code>null</code> or blank string value
 will affect, down or up stream.</p>
+<p>So, you can track it by the version and create policies to auto remediate any broken Python3 environment you encounter</p>
 <h3 id="conclusion-and-acknowledgements">Conclusion and acknowledgements</h3>
 <p>You have many options to choose from.  This is not too difficult as I have been doing this for coming up on 2 years now.
 If I can do this, so can everyone else.</p>
@@ -406,7 +407,8 @@ If I can do this, so can everyone else.</p>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/shipping-jamf-webhooks/" class="prev" rel="prev" title="Shipping Jamf Webhooks with Fivetran"><i class="fas fa-angle-left fa-fw"></i>Shipping Jamf Webhooks with Fivetran</a></div>
+    <div class="post-nav"><a href="/posts/shipping-jamf-webhooks/" class="prev" rel="prev" title="Shipping Jamf Webhooks with Fivetran"><i class="fas fa-angle-left fa-fw"></i>Shipping Jamf Webhooks with Fivetran</a>
+            <a href="/posts/using-spotlight-macos/" class="next" rel="next" title="Using Spotlight with macOS">Using Spotlight with macOS<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
