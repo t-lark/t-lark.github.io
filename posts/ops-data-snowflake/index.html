@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>IT &amp; Ops Data with Snowflake Part I - t-lark.github.io</title><meta name="Description" content=""><meta property="og:title" content="IT &amp; Ops Data with Snowflake Part I" />
+<meta property="og:description" content="Be Data Driven in IT/Ops with Snowflake Technology changes very fast, and it keeps getting bigger and more complex. We have so many systems these days, our systems have systems. It doesn&rsquo;t have to be complex and daunting to get reliable, and up-to-date data. Getting accurate data, while getting it fast, is key to developing data driven strategies. We no longer have to live in the constraints of capacity, limited storage, and limited scalability." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://t-lark.github.io/posts/ops-data-snowflake/" />
+<meta property="article:published_time" content="2021-04-15T20:00:08-07:00" />
+<meta property="article:modified_time" content="2021-04-15T20:00:08-07:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="IT &amp; Ops Data with Snowflake Part I"/>
+<meta name="twitter:description" content="Be Data Driven in IT/Ops with Snowflake Technology changes very fast, and it keeps getting bigger and more complex. We have so many systems these days, our systems have systems. It doesn&rsquo;t have to be complex and daunting to get reliable, and up-to-date data. Getting accurate data, while getting it fast, is key to developing data driven strategies. We no longer have to live in the constraints of capacity, limited storage, and limited scalability."/>
+<meta name="application-name" content="t-lark.github.io">
+<meta name="apple-mobile-web-app-title" content="t-lark.github.io"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/ops-data-snowflake/" /><link rel="prev" href="https://t-lark.github.io/posts/using-spotlight-macos/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "IT \u0026 Ops Data with Snowflake Part I",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/t-lark.github.io\/posts\/ops-data-snowflake\/"
+        },"genre": "posts","keywords": "data sharing, snowflake, data driven, IT tools","wordcount":  2876 ,
+        "url": "https:\/\/t-lark.github.io\/posts\/ops-data-snowflake\/","datePublished": "2021-04-15T20:00:08-07:00","dateModified": "2021-04-15T20:00:08-07:00","publisher": {
+            "@type": "Organization",
+            "name": "tlark"},"author": {
+                "@type": "Person",
+                "name": "tlark"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">IT &amp; Ops Data with Snowflake Part I</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/it-data/"><i class="far fa-folder fa-fw"></i>IT data</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw"></i>snowflake</a>&nbsp;<a href="/categories/asset-management/"><i class="far fa-folder fa-fw"></i>asset management</a>&nbsp;<a href="/categories/ops-data/"><i class="far fa-folder fa-fw"></i>Ops Data</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-15">2021-04-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2876 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;14 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#before-you-begin">Before you Begin</a></li>
+    <li><a href="#what-data-should-i-ship">What Data Should I ship?</a></li>
+    <li><a href="#use-asset-tracking-systems-as-a-source-of-truth">Use Asset Tracking Systems as a Source of Truth</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#discoveries-from-the-data">Discoveries from the Data</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#what-if-systems-are-missing-from-the-asset-tracker">What If Systems Are Missing From the Asset Tracker?</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#discoveries-from-the-data-1">Discoveries from the Data</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#using-event-based-data-to-monitor-jamf-cloud">Using Event Based Data to Monitor Jamf Cloud</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#discoveries-from-the-data-2">Discoveries from the Data</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#security-and-compliance-data">Security and Compliance Data</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#discoveries-from-the-data-3">Discoveries from the Data</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#closing-of-part-i">Closing of Part I</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="be-data-driven-in-itops-with-snowflake">Be Data Driven in IT/Ops with Snowflake</h1>
+<p>Technology changes very fast, and it keeps getting bigger and more complex.  We have so many systems these days, our
+systems have systems.  It doesn&rsquo;t have to be complex and daunting to get reliable, and up-to-date data. Getting accurate
+data, while getting it fast, is key to developing data driven strategies.  We no longer have to live in the constraints of
+capacity, limited storage, and limited scalability. With the power and scale of the cloud, you can now simply just ship all of
+your IT/Ops data to a centralized location and share it among your teams.</p>
+<p>IT/Ops shops often find some sort of niche tool that was designed for their purpose.  These tools are fine, but they are
+often complex, and require specialized knowledge. Then sometimes you are faced with figuring out what data to ship.  For
+example, some data tools might transform the data during the shipping process. Breaking it out into say a JSON doc, and
+then creating indices for these files, and tagging them with metadata. This made it even more complex as you would have
+to design all of these things up front, or suffer the rite of passage of remodeling your data ingest and re-indexing your
+data when you need to change something. Snowflake has solved these problems in a pretty straight forward way. With
+Snowflake, you just ship all your data. You can then use post processing to make the data more actionable.</p>
+<p>Ship all the raw data you can, and then store that raw data in a schema with in the Snowflake platform.  No need to spend
+countless hours of labor on this.  You also do not have to worry about indexing, or tagging your data.  You can just post
+process all your raw data with in Snowflake.</p>
+<h2 id="before-you-begin">Before you Begin</h2>
+<p>When you get to the point of having multiple data pipelines into a data tool which you can easily share data from multiple
+sources of truth, you must convince yourself of the following:</p>
+<ul>
+<li><code>You will probably be wrong</code></li>
+<li><code>The data will show you when you are wrong</code> (when you are right too!)</li>
+<li><code>Use the data to fix what is wrong</code></li>
+<li><code>Fix things upstream, so next data ingest it will be fixed downstream</code></li>
+<li><code>Establish baselines, sources of truth and context to your data</code></li>
+<li><code>Data with out a source of turth or context is sometimes not as valuable</code></li>
+</ul>
+<p>I really cannot stress this enough. I had to admit some methods I had been using for years, which I thought to be pretty
+solid, were in fact wrong. I also stopped treating MDM data as a single source of truth. When you think about it, this makes
+actual logical sense. MDM admins often only have the MDM tools to work with though, so they build deep knowledge and skills
+around these tools. So much, that it gives them <a href="https://idioms.thefreedictionary.com/tunnel&#43;vision#:~:text=A%20tendency%2C%20habit%2C%20or%20conscious,from%20him%20for%20a%20while." target="_blank" rel="noopener noreffer">Tunnel Vision</a></p>
+<p>The big lesson learned here is that the MDM collecting third party agent data is at best a nice to have, but the actual source of truth
+is cloud data from the agent&rsquo;s SaaS. That is what matters the most in context. Not if some Launch Daemon is running, or an
+agent binary can return <code>stdout</code>, or the plethora of other tricks us Mac Admins have come up with over the years to verify
+if local agents are actually healthy. I found out through collecting data that methods I had been using for years really
+were not as effective as I thought they were. I discovered I was wrong.</p>
+<blockquote>
+<p>To define a healthy agent, that agent has to submit data back to its cloud tenant, and if
+the agent is not submitting data, then it does not matter what the local state data says.</p>
+</blockquote>
+<p>So, now I have set my source of truth to the App stack each agent talks to, and the context of the data is around when was the
+last time that agent phoned home and submitted data? The rest of the data are just nice to haves, and sometimes that data is not as
+useful as we thought it was. All I had to do was build my context and request that set of data to the teams that owned that data, and they shared that data to me directly. Now I have the ability to query agent connection statuses from the actual source of
+truth of the agent, and I am not relying on MDM data to detect these failures for me.</p>
+<blockquote>
+<p>All queries and data here are samples from actual data. While they are small sample sets, and things have been changed
+to share in this blog, the concepts are very real world applicable.</p>
+</blockquote>
+<h2 id="what-data-should-i-ship">What Data Should I ship?</h2>
+<p>If you are new to shipping data, and aren&rsquo;t quite sure what to ship, here are some high level starting points I recommend:</p>
+<ul>
+<li><code>Asset Data</code> (hardware, software, applications, etc)</li>
+<li><code>Event Data</code> (webhooks, event based APIs, etc)</li>
+<li><code>Log Data</code> (any logs that you need info on, or just ship all the logs)</li>
+<li><code>Tools Data</code> (MDM, security agents, etc)</li>
+</ul>
+<h2 id="use-asset-tracking-systems-as-a-source-of-truth">Use Asset Tracking Systems as a Source of Truth</h2>
+<p>At my current work, we have <a href="https://www.servicenow.com/products/it-asset-management.html" target="_blank" rel="noopener noreffer">Service Now</a> as our asset management
+system. We track what Org assets are assigned to what human in this system.  Also, we spent lots of effort cleaning up our
+sub statuses of assets in Service Now.  Things like classifying systems as <code>primary</code>, or as <code>secondary</code>. We have also
+classified assets that are designated as <code>Zoom Room</code> computers. Leveraging data like this helps a ton on things you haven&rsquo;t
+even planned for yet. Anything you add upstream in Service Now, will be ingested downstream into Snowflake later on. So,
+we use Service Now as our source of truth for asset tracking.</p>
+<p>One example is that we query to check if primary assets are checking into MDM in the last 30 days. We chose 30 days as the
+metric for this simply because employees take time off. Plus there are holidays, and many other reasons an employee would not
+be working.  However, it is probably extremely rare for an employee to be out of the office and offline for over 30 days.</p>
+<p><code>Example Query:  Primary Assets from Intune that have not checked in for over 30 days</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">//</span> <span class="k">get</span> <span class="n">latest</span> <span class="n">compliance</span> <span class="n">log</span> <span class="k">from</span> <span class="n">Intune</span> <span class="k">on</span> <span class="n">Win10</span> <span class="n">clients</span> <span class="n">over</span> <span class="mi">30</span> <span class="n">days</span>
+<span class="k">SELECT</span>
+    <span class="n">SN</span><span class="p">.</span><span class="n">SUBSTATUS</span> <span class="k">as</span> <span class="k">type</span>
+  <span class="p">,</span> <span class="n">SN</span><span class="p">.</span><span class="n">EMAIL</span> <span class="k">as</span> <span class="n">email</span>
+  <span class="p">,</span> <span class="n">SN</span><span class="p">.</span><span class="n">SERIAL_NUMBER</span> <span class="n">sn_serial</span>
+  <span class="p">,</span> <span class="n">IM</span><span class="p">.</span><span class="n">JSON_DATA</span><span class="p">:</span><span class="n">properties</span><span class="p">.</span><span class="n">SerialNumber</span><span class="p">::</span><span class="nb">varchar</span> <span class="n">im_serial</span>
+  <span class="p">,</span> <span class="n">IM</span><span class="p">.</span><span class="n">JSON_DATA</span><span class="p">:</span><span class="n">properties</span><span class="p">.</span><span class="n">LastContact</span><span class="p">::</span><span class="nb">varchar</span> <span class="k">as</span> <span class="n">im_last_inv</span>
+  <span class="k">FROM</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">SERVICENOW_ASSETS</span> <span class="k">as</span> <span class="n">SN</span>
+  <span class="k">JOIN</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">INTUNE_DEVICECOMPLIANCE_LOGS</span> <span class="k">as</span> <span class="n">IM</span> <span class="k">on</span> <span class="n">SN</span><span class="p">.</span><span class="n">SERIAL_NUMBER</span> <span class="o">=</span> <span class="n">IM</span><span class="p">.</span><span class="n">JSON_DATA</span><span class="p">:</span><span class="n">properties</span><span class="p">.</span><span class="n">SerialNumber</span>
+  <span class="k">Where</span> <span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;primary&#39;</span>
+  <span class="n">QUALIFY</span> <span class="mi">1</span> <span class="o">=</span> <span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">im_serial</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">im_last_inv</span> <span class="k">DESC</span><span class="p">)</span>
+  <span class="k">AND</span> <span class="n">TO_TIMESTAMP</span><span class="p">(</span><span class="n">IM</span><span class="p">.</span><span class="n">JSON_DATA</span><span class="p">:</span><span class="n">properties</span><span class="p">.</span><span class="n">LastContact</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">dateadd</span><span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">())</span>
+  <span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Example Query: Primary Assets from Jamf that have not checked in over 30 days</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">//</span> <span class="k">get</span> <span class="n">lastest</span> <span class="n">inventory</span> <span class="n">webhook</span> <span class="k">from</span> <span class="n">jamf</span> <span class="k">on</span> <span class="n">clients</span> <span class="n">over</span> <span class="mi">30</span> <span class="n">days</span>
+<span class="k">SELECT</span>
+    <span class="n">SN</span><span class="p">.</span><span class="n">SUBSTATUS</span> <span class="k">as</span> <span class="k">type</span>
+  <span class="p">,</span> <span class="n">SN</span><span class="p">.</span><span class="n">EMAIL</span> <span class="k">as</span> <span class="n">email</span>
+  <span class="p">,</span> <span class="k">upper</span><span class="p">(</span><span class="n">SN</span><span class="p">.</span><span class="n">SERIAL_NUMBER</span><span class="p">)</span> <span class="n">sn_serial</span>
+  <span class="p">,</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">serialNumber</span><span class="p">::</span><span class="nb">varchar</span> <span class="n">ji_serial</span>
+  <span class="p">,</span> <span class="n">JI</span><span class="p">.</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="n">string</span><span class="p">::</span><span class="n">TIMESTAMP_LTZ</span> <span class="k">as</span> <span class="n">ji_last_inv</span>
+  <span class="k">FROM</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">SERVICENOW_ASSETS</span> <span class="k">as</span> <span class="n">SN</span>
+  <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">JAMF_INVENTORY</span> <span class="k">as</span> <span class="n">JI</span> <span class="k">on</span> <span class="n">SN</span><span class="p">.</span><span class="n">SERIAL_NUMBER</span> <span class="o">=</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">serialNumber</span>
+  <span class="k">Where</span> <span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;primary&#39;</span>
+  <span class="n">QUALIFY</span> <span class="mi">1</span> <span class="o">=</span> <span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">ji_serial</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">ji_last_inv</span> <span class="k">DESC</span><span class="p">)</span>
+  <span class="k">AND</span> <span class="n">TO_TIMESTAMP</span><span class="p">(</span><span class="n">JI</span><span class="p">.</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">INTEGER</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">dateadd</span><span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">())</span>
+  <span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="discoveries-from-the-data">Discoveries from the Data</h4>
+<p>All software agents can break, MDM clients can get into weird states, and even things like an OS update can cause issues.
+A lot of times you just need to reboot the computer to fix these too.  This is just an easy way to report on them and make
+the data actionable.  We are also using Service Now as the source of truth here and not our MDM services. This is really
+just because MDM solutions aren&rsquo;t normally true asset management systems. Use the right tool for the right job.</p>
+<p><code>Visualization Example:</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/mac-not-checking-in.png"
+        data-srcset="/img/mac-not-checking-in.png, /img/mac-not-checking-in.png 1.5x, /img/mac-not-checking-in.png 2x"
+        data-sizes="auto"
+        alt="/img/mac-not-checking-in.png"
+        title="mac_not_checking_in" /></p>
+<h2 id="what-if-systems-are-missing-from-the-asset-tracker">What If Systems Are Missing From the Asset Tracker?</h2>
+<p>If you are an Org that allows BYOD, you might not have a great way to tell what devices are BYOD. Devices sometimes also
+may not end up in your asset system for whatever reason. With having multiple data sources in Snowflake you can easily join tables from these
+sources to craft such data sets.  BYOD systems are probably not in your asset tracker as they are not Org owned. A failure
+also may occur in your process to import assets, or data was entered wrong. This is also pretty easy to solve when you have
+access to the proper data.</p>
+<p><code>Example Query: Devices Checking into MDM but not present in Service Now</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> 
+    <span class="n">JI</span><span class="p">.</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">varchar</span><span class="p">::</span><span class="n">TIMESTAMP_LTZ</span> <span class="k">as</span> <span class="n">last_contact</span>
+  <span class="p">,</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">computer</span><span class="p">:</span><span class="n">serialNumber</span><span class="p">::</span><span class="nb">varchar</span> <span class="k">as</span> <span class="n">j_serial</span>
+  <span class="k">from</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">JAMF_CHECKIN</span> <span class="k">as</span> <span class="n">JI</span>
+  <span class="k">WHERE</span> <span class="n">TO_TIMESTAMP</span><span class="p">(</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">INTEGER</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">dateadd</span><span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">())</span>
+  <span class="n">QUALIFY</span> <span class="mi">1</span> <span class="o">=</span> <span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">computer</span><span class="p">:</span><span class="n">serialNumber</span><span class="p">::</span><span class="nb">varchar</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">last_contact</span> <span class="k">DESC</span><span class="p">)</span>
+  <span class="k">and</span> <span class="k">not</span> <span class="k">exists</span><span class="p">(</span>
+      <span class="k">select</span> <span class="k">upper</span><span class="p">(</span><span class="n">SN</span><span class="p">.</span><span class="n">SERIAL_NUMBER</span><span class="p">)::</span><span class="nb">varchar</span> <span class="k">as</span> <span class="n">sn_serial</span>
+      <span class="k">from</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">SERVICENOW_ASSETS</span> <span class="k">as</span> <span class="n">SN</span>
+      <span class="k">where</span> <span class="n">sn_serial</span> <span class="o">=</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">computer</span><span class="p">:</span><span class="n">serialNumber</span><span class="p">::</span><span class="nb">varchar</span>
+  <span class="p">)</span>
+ <span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>In the above query we are using each unique device&rsquo;s last check-in into Jamf from the Webhook Event in the past 30 days,
+and we only need the event data for this. Then if we cannot join that unique ID (serial number in this case) to the
+Service Now assets table, then it does not exist in Service Now. You also now have all the serial numbers which you can use
+to create those asset objects in your asset tracker.</p>
+<p><code>Visualization Example:</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/macs-not-in-servicenow.png"
+        data-srcset="/img/macs-not-in-servicenow.png, /img/macs-not-in-servicenow.png 1.5x, /img/macs-not-in-servicenow.png 2x"
+        data-sizes="auto"
+        alt="/img/macs-not-in-servicenow.png"
+        title="macs-missing-service-now" /></p>
+<h4 id="discoveries-from-the-data-1">Discoveries from the Data</h4>
+<p>What we discovered is that most of the time when a device does not show up in Service Now, there is likely some sort of
+data entry issue. Either our automation with our resellers had a glitch, or perhaps a human mistyped a character in for
+an asset that was manually entered. We also discovered that sometimes if you scan a serial number barcode off of the box
+the laptop was shipped in, it will append the beginning of the string with a <code>S</code>. On rare occasion we just missed getting
+it in our asset tracker. My favorite discovery though by far with this data point, was that if a human enters a serial number
+in Service Now with all lower case characters, it will fail on the table join. The matching is case-sensitive.
+To fix this, I simply now sanitize my data in post processing by converting all serial numbers to all upper case with the
+<code>upper()</code> function. This goes to show you how powerful this data platform is. Sure, we could have fixed our data upstream, but
+will you ever be able to really stop humans from making simple human mistakes? Having this data allowed us to drill down into each edge case and failure point and discover why
+it was happening. With the best part being is that we have the data to fix it!</p>
+<h2 id="using-event-based-data-to-monitor-jamf-cloud">Using Event Based Data to Monitor Jamf Cloud</h2>
+<p>SaaS is great! I love SaaS Apps, because as an IT/Ops person that means all the management of the App is on the vendor.
+I can focus on other things, and not have to worry about the app itself, nor the infrastructure required to self
+host the App.  One of the very few downsides of using SaaS is that you often lack access to data. This is especially true
+when looking at operational data, or access to data that requires direct access to the host. In this case we will be using
+event based data shipped from <a href="https://www.jamf.com/developers/webhooks/" target="_blank" rel="noopener noreffer">Jamf Cloud Webhooks</a>.</p>
+<p><code>Example Query: Total Number of Events every hour</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">JAMF_APIOPS</span>
+    <span class="k">where</span> <span class="n">TO_TIMESTAMP</span><span class="p">(</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">INTEGER</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">dateadd</span><span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">())</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">APIOPS</span><span class="p">,</span>
+    <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">JAMF_CHECKIN</span>
+    <span class="k">where</span> <span class="n">TO_TIMESTAMP</span><span class="p">(</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">INTEGER</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">dateadd</span><span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">())</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">CHECKINS</span><span class="p">,</span>
+    <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">JAMF_INVENTORY</span>
+    <span class="k">where</span> <span class="n">TO_TIMESTAMP</span><span class="p">(</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">INTEGER</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">dateadd</span><span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">())</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">INVENTORIES</span><span class="p">,</span>
+    <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">JAMF_POLICIES</span>
+    <span class="k">where</span> <span class="n">TO_TIMESTAMP</span><span class="p">(</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">INTEGER</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">dateadd</span><span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">())</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">POLICIES</span><span class="p">,</span>
+    <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">JAMF_CHECKIN</span>
+    <span class="k">where</span> <span class="n">TO_TIMESTAMP</span><span class="p">(</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">INTEGER</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">dateadd</span><span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">())</span>
+    <span class="k">AND</span> <span class="n">EVENT</span><span class="p">:</span><span class="k">trigger</span> <span class="o">=</span> <span class="s1">&#39;enrollmentComplete&#39;</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">ENROLLMENT</span>
+<span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>In the above query I am tracking the total count of each event type by the common events we want to track from our Jamf Cloud
+instance.  The above query also is tracking the number of events per the last hour, and you could adjust this part of
+the query <code>dateadd(hours, -1, current_timestamp())</code> to expand the time threshold.</p>
+<p><code>Example Query: Total API Operations in last 24 hours</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> 
+  <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">total</span>
+<span class="p">,</span> <span class="n">EVENT</span><span class="p">:</span><span class="n">authorizedUsername</span><span class="p">::</span><span class="nb">varchar</span> <span class="k">as</span> <span class="n">usr</span>
+<span class="p">,</span> <span class="n">EVENT</span><span class="p">:</span><span class="n">operationSuccessful</span> <span class="k">as</span> <span class="k">state</span> 
+<span class="k">from</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">JAMF_APIOPS</span>
+<span class="k">where</span> <span class="n">TO_TIMESTAMP</span><span class="p">(</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">INTEGER</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">dateadd</span><span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">())</span>
+<span class="k">group</span> <span class="k">by</span> <span class="k">state</span><span class="p">,</span> <span class="n">usr</span>
+<span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Caveat - Come to find out Jamf does not ship event hooks on failed API operations unfortunately. I have brought this to
+their attention and asked for this as a feature request. In this case I think tracking failures is more important than
+the successful operations.</p>
+</blockquote>
+<p><code>Visualization Example:</code>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jamf-api-ops.png"
+        data-srcset="/img/jamf-api-ops.png, /img/jamf-api-ops.png 1.5x, /img/jamf-api-ops.png 2x"
+        data-sizes="auto"
+        alt="/img/jamf-api-ops.png"
+        title="jamf-ops-dash" /></p>
+<h4 id="discoveries-from-the-data-2">Discoveries from the Data</h4>
+<p>This data is useful to monitor our Jamf Cloud instance. If events start to spike heavily in either an uptrend, or a downtrend
+pattern, something is probably wrong. I did use this data to detect an impacted workflow from an API bug a year or so back.
+Basically, an API call from <a href="https://github.com/jssimporter/JSSImporter" target="_blank" rel="noopener noreffer">JSS-Importer</a> had failed updating a smart group.
+The actual failure (after tracking it down) was that the Jamf API had timed out and returned a 502. However, it actually did
+complete the <code>PUT</code> to the smart group, but failed to update the package payload of a policy.  This resulted in a policy to
+install one version of an app, and a smart group based on a different version of the same app. I only caught this because
+my fleet was constantly spamming my Jamf Cloud with over 80,000 recon in a 24-hour period.</p>
+<h2 id="security-and-compliance-data">Security and Compliance Data</h2>
+<p>Every Org has a responsibility to their stakeholders, employees (or staff/students), and definitely their customers around
+security.  This is a very big and encompassing subject. One could write entire books on this subject alone. So, for this blog
+post I am going to focus on disk encryption. Which is a part of the <a href="https://www.cisecurity.org/" target="_blank" rel="noopener noreffer">CIS framework</a>, and a very common requirement.</p>
+<p><code>Example Query: FV2 Status from Jamf</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> 
+     <span class="n">JI</span><span class="p">.</span><span class="n">EMAIL</span>
+   <span class="p">,</span> <span class="n">JI</span><span class="p">.</span><span class="n">SERIAL_NUMBER</span>
+   <span class="p">,</span> <span class="n">PART</span><span class="p">.</span><span class="n">VALUE</span><span class="p">:</span><span class="s2">&#34;filevault2_status&#34;</span><span class="p">::</span><span class="nb">VARCHAR</span> <span class="k">AS</span> <span class="n">FV2_STATUS</span>
+   <span class="p">,</span> <span class="n">JI</span><span class="p">.</span><span class="k">GENERAL</span><span class="p">:</span><span class="s2">&#34;last_contact_time_epoch&#34;</span><span class="p">::</span><span class="n">string</span><span class="p">::</span><span class="n">TIMESTAMP_LTZ</span> <span class="k">AS</span> <span class="n">jamf_last_contact</span>
+  <span class="k">FROM</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">JAMF_INVENTORY</span> <span class="n">JI</span>
+      <span class="p">,</span><span class="k">LATERAL</span> <span class="n">FLATTEN</span><span class="p">(</span><span class="n">JI</span><span class="p">.</span><span class="n">HARDWARE</span><span class="p">:</span><span class="s2">&#34;storage&#34;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">VOL</span>
+      <span class="p">,</span><span class="k">LATERAL</span> <span class="n">FLATTEN</span><span class="p">(</span><span class="n">VOL</span><span class="p">.</span><span class="n">VALUE</span><span class="p">:</span><span class="s2">&#34;partitions&#34;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">PART</span>
+<span class="k">WHERE</span> <span class="n">PART</span><span class="p">.</span><span class="n">VALUE</span><span class="p">:</span><span class="s2">&#34;type&#34;</span><span class="p">::</span><span class="nb">VARCHAR</span> <span class="o">=</span> <span class="s1">&#39;boot&#39;</span>
+<span class="k">AND</span> <span class="n">EMAIL</span> <span class="o">!=</span> <span class="s1">&#39;exclusion-user@company.com&#39;</span>
+<span class="k">AND</span> <span class="n">jamf_last_contact</span> <span class="o">&gt;</span> <span class="n">dateadd</span><span class="p">(</span><span class="k">day</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">())</span>
+<span class="n">QUALIFY</span> <span class="mi">1</span> <span class="o">=</span> <span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">JI</span><span class="p">.</span><span class="n">SERIAL_NUMBER</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">jamf_last_contact</span> <span class="k">DESC</span><span class="p">)</span>
+<span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Example Query: FV2 Overall Score from Jamf</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">WITH</span> <span class="n">X</span> <span class="k">AS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="n">JI</span><span class="p">.</span><span class="n">EMAIL</span>
+   <span class="p">,</span> <span class="n">JI</span><span class="p">.</span><span class="n">SERIAL_NUMBER</span>
+   <span class="p">,</span> <span class="n">PART</span><span class="p">.</span><span class="n">VALUE</span><span class="p">:</span><span class="s2">&#34;filevault2_status&#34;</span><span class="p">::</span><span class="nb">VARCHAR</span> <span class="k">AS</span> <span class="n">FV2_STATUS</span>
+   <span class="p">,</span> <span class="n">JI</span><span class="p">.</span><span class="k">GENERAL</span><span class="p">:</span><span class="s2">&#34;last_contact_time_epoch&#34;</span><span class="p">::</span><span class="n">string</span><span class="p">::</span><span class="n">TIMESTAMP_LTZ</span> <span class="k">AS</span> <span class="n">jamf_last_contact</span>
+  <span class="k">FROM</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">JAMF_INVENTORY</span> <span class="n">JI</span>
+      <span class="p">,</span><span class="k">LATERAL</span> <span class="n">FLATTEN</span><span class="p">(</span><span class="n">JI</span><span class="p">.</span><span class="n">HARDWARE</span><span class="p">:</span><span class="s2">&#34;storage&#34;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">VOL</span>
+      <span class="p">,</span><span class="k">LATERAL</span> <span class="n">FLATTEN</span><span class="p">(</span><span class="n">VOL</span><span class="p">.</span><span class="n">VALUE</span><span class="p">:</span><span class="s2">&#34;partitions&#34;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">PART</span>
+<span class="k">WHERE</span> <span class="n">PART</span><span class="p">.</span><span class="n">VALUE</span><span class="p">:</span><span class="s2">&#34;type&#34;</span><span class="p">::</span><span class="nb">VARCHAR</span> <span class="o">=</span> <span class="s1">&#39;boot&#39;</span>
+<span class="k">AND</span> <span class="n">EMAIL</span> <span class="o">!=</span> <span class="s1">&#39;exclusion-user@company.com&#39;</span>
+<span class="k">AND</span> <span class="n">jamf_last_contact</span> <span class="o">&gt;</span> <span class="n">dateadd</span><span class="p">(</span><span class="k">day</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">())</span>
+<span class="n">QUALIFY</span> <span class="mi">1</span> <span class="o">=</span> <span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">JI</span><span class="p">.</span><span class="n">SERIAL_NUMBER</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">jamf_last_contact</span> <span class="k">DESC</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">SELECT</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">FV2_STATUS</span> <span class="o">!=</span> <span class="s1">&#39;Not Encrypted&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">NULLIFZERO</span><span class="p">(</span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">))</span> <span class="k">AS</span> <span class="n">PERCENTAGE</span>
+  <span class="k">FROM</span> <span class="n">X</span>
+<span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This will return the current FV2 status for every device record that has checked into Jamf in the last 30 days. Devices
+that have not submitted inventory or checked into Jamf in greater than 30 days go into a separate violation, and will be
+remediated in a separate flow.  Any device returning <code>Pending</code>, <code>Encrypting</code>, and <code>Encrypted</code> are considered in a desired
+state, and <code>Not Encrypted</code> will be used to calculate the percentage of devices in an undesired state.</p>
+<blockquote>
+<p>NOTE: These queries do include an example of how to exclude say a service account that is used on non-human used
+devices that may not require full disk encryption for their specific use case.</p>
+</blockquote>
+<h4 id="discoveries-from-the-data-3">Discoveries from the Data</h4>
+<p>This data was one of the easiest ones to address. Jamf will report 4 different states of disk encryption from a device
+record. They include: <code>Encrypted</code>, <code>Encrypting</code>, <code>Pending</code>, <code>Not Encrypted</code>, and each of these is very self-explanatory.
+In this data point <code>Not Encrypted</code> is the violation we are looking for. If devices stay in <code>Pending</code> or in <code>Encrypting</code>
+for long periods of time, then we consider that a violation. The failure point is almost always FV2 was deployed, but the
+user never rebooted, or in rare instance the MDM just failed to fully enable it.</p>
+<h2 id="closing-of-part-i">Closing of Part I</h2>
+<p>This is still the beginning of my data journey, and I have much to learn and do still. What I would like to close with, is
+that having all these data points shared to me and my teams, has really changed the game. This data ends debates, answers questions,
+shows area of improvement, and is actionable. The last thing I would like to point out is that data drives collaboration.
+I partner with our security teams here, and we data share to each other. I share our fleet data with them, they share their
+security and agent data with me. Now when I engage with security, we both look at what the data is telling us, and we collaborate
+on it.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-04-15</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/ops-data-snowflake/" data-title="IT &amp; Ops Data with Snowflake Part I" data-via="https://twitter.com/tlark8" data-hashtags="data sharing,snowflake,data driven,IT tools"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/data-sharing/">data sharing</a>,&nbsp;<a href="/tags/snowflake/">snowflake</a>,&nbsp;<a href="/tags/data-driven/">data driven</a>,&nbsp;<a href="/tags/it-tools/">IT tools</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/using-spotlight-macos/" class="prev" rel="prev" title="Using Spotlight with macOS"><i class="fas fa-angle-left fa-fw"></i>Using Spotlight with macOS</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.75.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
