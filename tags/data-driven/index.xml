@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>data driven - Tag - t-lark.github.io</title>
+        <link>https://t-lark.github.io/tags/data-driven/</link>
+        <description>data driven - Tag - t-lark.github.io</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 15 Apr 2021 20:00:08 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/data-driven/" rel="self" type="application/rss+xml" /><item>
+    <title>IT &amp; Ops Data with Snowflake Part I</title>
+    <link>https://t-lark.github.io/posts/ops-data-snowflake/</link>
+    <pubDate>Thu, 15 Apr 2021 20:00:08 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/posts/ops-data-snowflake/</guid>
+    <description><![CDATA[Be Data Driven in IT/Ops with Snowflake Technology changes very fast, and it keeps getting bigger and more complex. We have so many systems these days, our systems have systems. It doesn&rsquo;t have to be complex and daunting to get reliable, and up-to-date data. Getting accurate data, while getting it fast, is key to developing data driven strategies. We no longer have to live in the constraints of capacity, limited storage, and limited scalability.]]></description>
+</item></channel>
+</rss>
