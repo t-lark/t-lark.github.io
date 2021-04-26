@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>IT &amp; Ops Data with Snowflake Part II - t-lark.github.io</title><meta name="Description" content=""><meta property="og:title" content="IT &amp; Ops Data with Snowflake Part II" />
+<meta property="og:description" content="Working with Data in Snowflake Welcome to Part II of my miniseries blog around Snowflake with IT &amp; Ops Data. If you have not read Part I, you may click that link to read it first. Data has always been very important, and Snowflake just makes using the data a ton easier than we have ever had before. This post will focus on some basic ways one can work with data with in Snowflake." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://t-lark.github.io/posts/ops-data-snowflake-pt2/" />
+<meta property="article:published_time" content="2021-04-22T20:02:00-07:00" />
+<meta property="article:modified_time" content="2021-04-22T20:02:00-07:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="IT &amp; Ops Data with Snowflake Part II"/>
+<meta name="twitter:description" content="Working with Data in Snowflake Welcome to Part II of my miniseries blog around Snowflake with IT &amp; Ops Data. If you have not read Part I, you may click that link to read it first. Data has always been very important, and Snowflake just makes using the data a ton easier than we have ever had before. This post will focus on some basic ways one can work with data with in Snowflake."/>
+<meta name="application-name" content="t-lark.github.io">
+<meta name="apple-mobile-web-app-title" content="t-lark.github.io"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/ops-data-snowflake-pt2/" /><link rel="prev" href="https://t-lark.github.io/posts/ops-data-snowflake/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "IT \u0026 Ops Data with Snowflake Part II",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/t-lark.github.io\/posts\/ops-data-snowflake-pt2\/"
+        },"genre": "posts","keywords": "data sharing, snowflake, data driven, IT tools","wordcount":  2540 ,
+        "url": "https:\/\/t-lark.github.io\/posts\/ops-data-snowflake-pt2\/","datePublished": "2021-04-22T20:02:00-07:00","dateModified": "2021-04-22T20:02:00-07:00","publisher": {
+            "@type": "Organization",
+            "name": "tlark"},"author": {
+                "@type": "Person",
+                "name": "tlark"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">IT &amp; Ops Data with Snowflake Part II</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/it-data/"><i class="far fa-folder fa-fw"></i>IT data</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw"></i>snowflake</a>&nbsp;<a href="/categories/asset-management/"><i class="far fa-folder fa-fw"></i>asset management</a>&nbsp;<a href="/categories/ops-data/"><i class="far fa-folder fa-fw"></i>Ops Data</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-22">2021-04-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2540 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;12 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#jamf-webhooks-right-to-snowflake-tables">Jamf Webhooks Right to Snowflake Tables</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#create-a-table-with-json-data">Create A table with JSON Data</a></li>
+            <li><a href="#parsing-the-jamf-data">Parsing the Jamf Data</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#organizing-your-data-and-leveraging-views">Organizing Your Data and Leveraging Views</a></li>
+    <li><a href="#data-sharing-with-snowflake">Data Sharing with Snowflake</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#role-based-access-controls-rbac">Role Based Access Controls (RBAC)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#data-sharing-is-limitless">Data Sharing is Limitless</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#concluding-part-ii">Concluding Part II</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="working-with-data-in-snowflake">Working with Data in Snowflake</h1>
+<p>Welcome to Part II of my miniseries blog around Snowflake with IT &amp; Ops Data. If you have not read <a href="https://t-lark.github.io/posts/ops-data-snowflake/" target="_blank" rel="noopener noreffer">Part I</a>,
+you may click that link to read it first. Data has always been very important, and Snowflake just makes using the data a ton
+easier than we have ever had before. This post will focus on some basic ways one can work with data with in Snowflake.
+For this blog I will be focusing on JSON data stored in Snowflake columns. <a href="https://en.wikipedia.org/wiki/JSON" target="_blank" rel="noopener noreffer">JSON</a> documents are very common all over tech. Especially in things
+like <a href="https://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank" rel="noopener noreffer">REST APIs</a>, so if you haven&rsquo;t worked with JSON
+you will work with JSON data most likely at some point.</p>
+<p>Snowflake can store semi-structured data in columns natively using the <a href="https://docs.snowflake.com/en/sql-reference/data-types-semistructured.html#semi-structured-data-types" target="_blank" rel="noopener noreffer">variant</a>
+data type. This allows IT and Operations people to ingest JSON data in their data pipelines without having to transform
+the data beforehand. Just ship the JSON data as is right to the platform.</p>
+<p>IT and Operations folks have also most likely dealt with some sort of SQL based database at some point in their career.
+Things like: MySQL, Postgres, Oracle, Microsoft SQL, or another SQL based database. So, you might already be familiar enough with SQL.
+This is another great thing about Snowflake is that you can use all the SQL experience you have gained over the years and apply it right to the platform. There is no esoteric proprietary
+query language used here, just simply SQL. The best part as an IT &amp; Ops professional is that Snowflake uses the power and
+scale of the cloud, meaning IT &amp; Ops folks don&rsquo;t ever have to worry about managing the service and platform. No knobs to adjust,
+no database configurations to deploy, so all you have to do is use the product and let Snowflake take all of that heavy
+lifting off of your plate!</p>
+<h2 id="jamf-webhooks-right-to-snowflake-tables">Jamf Webhooks Right to Snowflake Tables</h2>
+<p>Since Jamf provides example <a href="https://www.jamf.com/developers/webhooks/" target="_blank" rel="noopener noreffer">Webhook Data</a> in their online documentation, we
+will just use their examples in Snowflake for this blog post. Snowflake can parse JSON natively, meaning you can store
+JSON data in raw form right in your database. So, lets get started!</p>
+<h4 id="create-a-table-with-json-data">Create A table with JSON Data</h4>
+<p>Let&rsquo;s create a table first, so we can insert some data into it:</p>
+<p><code>Query:</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">TABLE</span> <span class="n">DB</span><span class="p">.</span><span class="n">TESTING</span><span class="p">.</span><span class="n">JAMF_EVENTS_RAW</span><span class="p">(</span>
+  <span class="nb">date</span> <span class="nb">varchar</span><span class="p">,</span>
+  <span class="n">json_data</span> <span class="n">variant</span>
+<span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>the above table has two columns. A &ldquo;date&rdquo; column which is set to a varchar data type,
+json_data which is set to a variant type since JSON is a semi-structured data type. I added <code>raw</code> into the table name
+to represent a table that might receive raw data from a data ingest pipeline.</p>
+</blockquote>
+<p>An empty table is no good without any data in it. I am just copy/pasting the actual example data from Jamf&rsquo;s developer
+documentation site linked above.</p>
+<p><code>Query:</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">JAMF_EVENTS_RAW</span><span class="p">(</span><span class="nb">DATE</span><span class="p">,</span> <span class="n">JSON_DATA</span><span class="p">)</span> <span class="k">SELECT</span> <span class="k">current_timestamp</span><span class="p">(),</span> <span class="n">parse_json</span><span class="p">(</span><span class="err">$${</span>
+    <span class="s2">&#34;event&#34;</span><span class="p">:</span> <span class="err">{</span>
+        <span class="s2">&#34;computer&#34;</span><span class="p">:</span> <span class="err">{</span>
+            <span class="s2">&#34;alternateMacAddress&#34;</span><span class="p">:</span> <span class="s2">&#34;72:00:01:DD:A0:B9&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;building&#34;</span><span class="p">:</span> <span class="s2">&#34;Block D&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;department&#34;</span><span class="p">:</span> <span class="s2">&#34;Information Technology&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;deviceName&#34;</span><span class="p">:</span> <span class="s2">&#34;John&#39;s MacBook Pro&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;emailAddress&#34;</span><span class="p">:</span> <span class="s2">&#34;john.smith@company.com&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;jssID&#34;</span><span class="p">:</span> <span class="mi">13</span><span class="p">,</span>
+            <span class="s2">&#34;macAddress&#34;</span><span class="p">:</span> <span class="s2">&#34;60:03:08:A3:64:9D&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;13-inch Retina MacBook Pro (Late 2013)&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;osBuild&#34;</span><span class="p">:</span> <span class="s2">&#34;16G29&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;osVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;10.12.6&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;phone&#34;</span><span class="p">:</span> <span class="s2">&#34;555-472-9829&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;position&#34;</span><span class="p">:</span> <span class="s2">&#34;Desktop Services Specialist&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;realName&#34;</span><span class="p">:</span> <span class="s2">&#34;John Smith&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;room&#34;</span><span class="p">:</span> <span class="s2">&#34;487&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;serialNumber&#34;</span><span class="p">:</span> <span class="s2">&#34;C02M23PJFH50&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;udid&#34;</span><span class="p">:</span> <span class="s2">&#34;EBBFF74D-C6B7-5599-93A9-19E8BDDEFE32&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;userDirectoryID&#34;</span><span class="p">:</span> <span class="s2">&#34;-1&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;username&#34;</span><span class="p">:</span> <span class="s2">&#34;john.smith&#34;</span>
+        <span class="err">}</span><span class="p">,</span>
+        <span class="s2">&#34;trigger&#34;</span><span class="p">:</span> <span class="s2">&#34;CLIENT_CHECKIN&#34;</span><span class="p">,</span>
+        <span class="s2">&#34;username&#34;</span><span class="p">:</span> <span class="s2">&#34;John Smith&#34;</span>
+    <span class="err">}</span><span class="p">,</span>
+    <span class="s2">&#34;webhook&#34;</span><span class="p">:</span> <span class="err">{</span>
+        <span class="s2">&#34;eventTimestamp&#34;</span><span class="p">:</span> <span class="mi">1553550275590</span><span class="p">,</span>
+        <span class="s2">&#34;id&#34;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+        <span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Webhook Documentation&#34;</span><span class="p">,</span>
+        <span class="s2">&#34;webhookEvent&#34;</span><span class="p">:</span> <span class="s2">&#34;ComputerCheckIn&#34;</span>
+    <span class="err">}</span>
+<span class="err">}$$</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>I repeated this process a few times to get several rows of data. I just picked a few random examples of the hooks
+from Jamf&rsquo;s website and reran the above query. Snowflake has a built in <a href="https://docs.snowflake.com/en/sql-reference/functions/parse_json.html" target="_blank" rel="noopener noreffer">parse_json</a>
+function that will interpret the string as JSON data, and produce it as a variant data type</p>
+</blockquote>
+<p>Let&rsquo;s check our work but running a <code>SELECT *</code> on our table and see what sort of data we get back.</p>
+<p><code>Query:</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">JAMF_EVENTS_RAW</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Screenshot of rows:</code></p>
+<a class="lightgallery" href="/img/blog-jamf-rows.png" title="/img/blog-jamf-rows.png" data-thumbnail="/img/blog-jamf-rows.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/blog-jamf-rows.png"
+            data-srcset="/img/blog-jamf-rows.png, /img/blog-jamf-rows.png 1.5x, /img/blog-jamf-rows.png 2x"
+            data-sizes="auto"
+            alt="/img/blog-jamf-rows.png" />
+    </a>
+<p><code>Screenshot of some JSON data:</code></p>
+<a class="lightgallery" href="/img/blog-jamf-data2.png" title="/img/blog-jamf-data2.png" data-thumbnail="/img/blog-jamf-data2.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/blog-jamf-data2.png"
+            data-srcset="/img/blog-jamf-data2.png, /img/blog-jamf-data2.png 1.5x, /img/blog-jamf-data2.png 2x"
+            data-sizes="auto"
+            alt="/img/blog-jamf-data2.png" />
+    </a>
+<h4 id="parsing-the-jamf-data">Parsing the Jamf Data</h4>
+<p>Now that we have some data in there, lets look at how one could get some data out of it:</p>
+<p><code>Query:</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> 
+  <span class="n">JSON_DATA</span><span class="p">:</span><span class="n">event</span><span class="p">.</span><span class="n">computer</span><span class="p">.</span><span class="n">serialNumber</span> <span class="k">as</span> <span class="n">SERIAL_NUMBER</span>
+<span class="p">,</span> <span class="n">JSON_DATA</span><span class="p">:</span><span class="n">event</span><span class="p">.</span><span class="n">computer</span><span class="p">.</span><span class="n">osVersion</span> <span class="k">as</span> <span class="n">OS</span>
+<span class="k">FROM</span> <span class="n">JAMF_EVENTS_RAW</span>
+<span class="k">WHERE</span> <span class="n">JSON_DATA</span><span class="p">:</span><span class="n">webhook</span><span class="p">.</span><span class="n">webhookEvent</span> <span class="o">=</span> <span class="s1">&#39;ComputerPolicyFinished&#39;</span>
+<span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Results:</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">SERIAL_NUMBER</span>	<span class="n">OS</span>
+<span class="s2">&#34;C02M23PJFH50&#34;</span>	<span class="s2">&#34;10.14.3&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>In the above query and results you can see that Snowflake can just natively parse raw JSON/Variant data stored in a column.
+No big deal, right? The syntax is pretty simple. It is simply one single<code>:</code> to tell Snowflake to interpret the rest as JSON/Variant. After that
+first <code>:</code> you can swap back to <code>.</code> and, you don&rsquo;t have to hold down the <code>shift key</code> a ton. It is really that simple and
+at the same time powerful.</p>
+<h2 id="organizing-your-data-and-leveraging-views">Organizing Your Data and Leveraging Views</h2>
+<p>With data like Jamf Pro Webhooks, you probably want to organize your data in a way where each event type is in its own
+table. We will first create a new table, just like our previous one, and this time we will use it for check-in hook events
+from Jamf Pro. It would not make a ton of sense to toss two or more different types of hook data sets in the same table.
+Event data is about capturing what events are taking place and mixing two different event types has no benefit and would
+make your queries way more complex. Since we already have our table from before that worked, we can use <code>like</code> to
+create another table just like it.</p>
+<p><code>Query:</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">DB</span><span class="p">.</span><span class="n">TESTING</span><span class="p">.</span><span class="n">JAMF_EVENTS_CHECKINS</span> 
+<span class="k">like</span> <span class="n">DB</span><span class="p">.</span><span class="n">TESTING</span><span class="p">.</span><span class="n">JAMF_EVENTS_RAW</span>
+<span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Following the same steps previously mentioned in this blog post, I inserted some check-in webhook events into my new table
+I just created using the example data from Jamf&rsquo;s website. Now that the raw JSON example data is in a fresh table I can
+now look at creating a view. For more information please check out <a href="https://docs.snowflake.com/en/user-guide/views-introduction.html" target="_blank" rel="noopener noreffer">Snowflake&rsquo;s Documentation</a>
+on views. I will only share a few pieces of the data in my view that might be relevant to the requester of said data.
+Data owners can always pick and choose what they share with other people and teams using Snowflake, and this is such a
+fantastic thing!</p>
+<p><code>Query:</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"> <span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">VIEW</span> <span class="n">JAMF_EVENTS_CHECKINS_V</span> <span class="k">AS</span> 
+  <span class="k">SELECT</span> <span class="n">JSON_DATA</span><span class="p">:</span><span class="s2">&#34;event&#34;</span><span class="p">:</span><span class="s2">&#34;computer&#34;</span><span class="p">:</span><span class="s2">&#34;building&#34;</span><span class="p">::</span><span class="nb">VARCHAR</span> <span class="k">AS</span> <span class="n">BUILDING</span>
+        <span class="p">,</span><span class="n">JSON_DATA</span><span class="p">:</span><span class="s2">&#34;event&#34;</span><span class="p">:</span><span class="s2">&#34;computer&#34;</span><span class="p">:</span><span class="s2">&#34;department&#34;</span><span class="p">::</span><span class="nb">VARCHAR</span> <span class="k">AS</span> <span class="n">DEPARTMENT</span>
+        <span class="p">,</span><span class="n">JSON_DATA</span><span class="p">:</span><span class="s2">&#34;event&#34;</span><span class="p">:</span><span class="s2">&#34;computer&#34;</span><span class="p">:</span><span class="s2">&#34;emailAddress&#34;</span><span class="p">::</span><span class="nb">VARCHAR</span> <span class="k">AS</span> <span class="n">EMAIL</span>
+        <span class="p">,</span><span class="n">JSON_DATA</span><span class="p">:</span><span class="s2">&#34;event&#34;</span><span class="p">:</span><span class="s2">&#34;computer&#34;</span><span class="p">:</span><span class="s2">&#34;realName&#34;</span><span class="p">::</span><span class="nb">VARCHAR</span> <span class="k">AS</span> <span class="n">FULL_NAME</span>
+        <span class="p">,</span><span class="n">JSON_DATA</span><span class="p">:</span><span class="s2">&#34;webhook&#34;</span><span class="p">:</span><span class="s2">&#34;eventTimestamp&#34;</span><span class="p">::</span><span class="nb">VARCHAR</span><span class="p">::</span><span class="n">TIMESTAMP_LTZ</span> <span class="k">AS</span> <span class="n">TIME</span>
+ <span class="k">FROM</span> <span class="n">DB</span><span class="p">.</span><span class="n">TESTING</span><span class="p">.</span><span class="n">JAMF_EVENTS_CHECKINS</span>
+ <span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>NOTE: Jamf Pro Webhooks use <a href="https://en.wikipedia.org/wiki/Unix_time" target="_blank" rel="noopener noreffer">epoch</a> timestamps, so I decided to type cast it as more readable time stamp. This is another
+great quality feature of Snowflake. See the screenshot and query results below, it displays a human-readable time stamp now.
+This query also is only sharing a relevant data set to the view, and not the entire raw data of the hook itself.
+I also added a <code>_v</code> to the view name to visually indicate it is a view.</p>
+</blockquote>
+<p>The short version is that a view can turn query results into a table. This is a very cool feature, and useful to just
+convert queries you write into a view. I am also specifying data types here, please refer to the <a href="https://docs.snowflake.com/en/sql-reference/data-types.html" target="_blank" rel="noopener noreffer">official docs</a>
+to learn more about data types in Snowflake. Let&rsquo;s take a look at the data set we just created with a view.</p>
+<p><code>Query:</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span>  <span class="n">DB</span><span class="p">.</span><span class="n">TESTING</span><span class="p">.</span><span class="n">JAMF_EVENTS_CHECKINS_V</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Results:</code></p>
+<a class="lightgallery" href="/img/blog-jamfhook-view2.png" title="/img/blog-jamfhook-view2.png" data-thumbnail="/img/blog-jamfhook-view2.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/blog-jamfhook-view2.png"
+            data-srcset="/img/blog-jamfhook-view2.png, /img/blog-jamfhook-view2.png 1.5x, /img/blog-jamfhook-view2.png 2x"
+            data-sizes="auto"
+            alt="/img/blog-jamfhook-view2.png" />
+    </a>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">BUILDING</span>	<span class="n">DEPARTMENT</span>	<span class="n">EMAIL</span>	<span class="n">FULL_NAME</span>	<span class="n">TIME</span>
+<span class="n">Block</span> <span class="n">D</span>	<span class="n">Information</span> <span class="n">Technology</span>	<span class="n">john</span><span class="p">.</span><span class="n">smith</span><span class="o">@</span><span class="n">company</span><span class="p">.</span><span class="n">com</span>	<span class="n">John</span> <span class="n">Smith</span>	<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">25</span> <span class="mi">14</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">35</span><span class="p">.</span><span class="mi">590</span> <span class="o">-</span><span class="mi">0700</span>
+<span class="n">Block</span> <span class="n">D</span>	<span class="n">Information</span> <span class="n">Technology</span>	<span class="n">john</span><span class="p">.</span><span class="n">smith</span><span class="o">@</span><span class="n">company</span><span class="p">.</span><span class="n">com</span>	<span class="n">John</span> <span class="n">Smith</span>	<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">25</span> <span class="mi">14</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">35</span><span class="p">.</span><span class="mi">590</span> <span class="o">-</span><span class="mi">0700</span>
+<span class="n">Block</span> <span class="n">D</span>	<span class="n">Information</span> <span class="n">Technology</span>	<span class="n">jane</span><span class="p">.</span><span class="n">smith</span><span class="o">@</span><span class="n">company</span><span class="p">.</span><span class="n">com</span>	<span class="n">Jane</span> <span class="n">Smith</span>	<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">25</span> <span class="mi">14</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">35</span><span class="p">.</span><span class="mi">590</span> <span class="o">-</span><span class="mi">0700</span>
+<span class="n">Block</span> <span class="n">D</span>	<span class="n">Information</span> <span class="n">Technology</span>	<span class="n">jane</span><span class="p">.</span><span class="n">smith</span><span class="o">@</span><span class="n">company</span><span class="p">.</span><span class="n">com</span>	<span class="n">Jane</span> <span class="n">Smith</span>	<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">25</span> <span class="mi">14</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">35</span><span class="p">.</span><span class="mi">590</span> <span class="o">-</span><span class="mi">0700</span>
+<span class="n">Block</span> <span class="n">D</span>	<span class="n">Information</span> <span class="n">Technology</span>	<span class="n">jane</span><span class="p">.</span><span class="n">smith</span><span class="o">@</span><span class="n">company</span><span class="p">.</span><span class="n">com</span>	<span class="n">Jane</span> <span class="n">Smith</span>	<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">25</span> <span class="mi">14</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">35</span><span class="p">.</span><span class="mi">590</span> <span class="o">-</span><span class="mi">0700</span>
+<span class="n">Block</span> <span class="n">D</span>	<span class="n">Information</span> <span class="n">Technology</span>	<span class="n">jane</span><span class="p">.</span><span class="n">smith</span><span class="o">@</span><span class="n">company</span><span class="p">.</span><span class="n">com</span>	<span class="n">Jane</span> <span class="n">Smith</span>	<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">25</span> <span class="mi">14</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">35</span><span class="p">.</span><span class="mi">590</span> <span class="o">-</span><span class="mi">0700</span>
+<span class="n">Apple</span> <span class="n">Park</span>	<span class="n">Executive</span>	<span class="n">tim</span><span class="p">.</span><span class="n">cook</span><span class="o">@</span><span class="n">company</span><span class="p">.</span><span class="n">com</span>	<span class="n">Tim</span> <span class="n">Cook</span>	<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">25</span> <span class="mi">14</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">35</span><span class="p">.</span><span class="mi">590</span> <span class="o">-</span><span class="mi">0700</span>
+<span class="n">Apple</span> <span class="n">Park</span>	<span class="n">Executive</span>	<span class="n">tim</span><span class="p">.</span><span class="n">cook</span><span class="o">@</span><span class="n">company</span><span class="p">.</span><span class="n">com</span>	<span class="n">Tim</span> <span class="n">Cook</span>	<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">25</span> <span class="mi">14</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">35</span><span class="p">.</span><span class="mi">590</span> <span class="o">-</span><span class="mi">0700</span>
+<span class="n">Apple</span> <span class="n">Park</span>	<span class="n">Executive</span>	<span class="n">tim</span><span class="p">.</span><span class="n">cook</span><span class="o">@</span><span class="n">company</span><span class="p">.</span><span class="n">com</span>	<span class="n">Tim</span> <span class="n">Cook</span>	<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">25</span> <span class="mi">14</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">35</span><span class="p">.</span><span class="mi">590</span> <span class="o">-</span><span class="mi">0700</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Features like this come in very handy when you want to share data to other people and teams. The view above is a view that
+just shows some basic data for the webhook event of client check-in. When sharing data to others, they probably do not need
+to access the raw data. Parts of the data could be confusing, not needed, or even considered confidential. Features like this give the
+data owners the power to share exactly what they want, nothing more, nothing less.</p>
+<h2 id="data-sharing-with-snowflake">Data Sharing with Snowflake</h2>
+<p>Data sharing is such a game changer. It is hard to describe in some ways, because I feel that you have to experience it
+to really see the absolute beauty that data sharing is. In the past I have had to deal with many APIs, CSV reports, and in some
+cases I had to log into an app to generate a report and download it. This is time-consuming, and very labor intensive.
+The end result was typically a bunch of scripts, emails with attachments, and then me having to cobble together data from these sources and
+documents. I never have to do any of that ever again. That is a thing of the past, a relic, things lost in time like tears
+in the rain.</p>
+<p>A quick high level example of how data sharing empowers IT &amp; Ops workers could be around inventory and asset control. An IT &amp; Ops
+professional could have access to basic HR data (think employee directory), asset data in the Org&rsquo;s asset tracker, and then
+MDM data from the MDM tool you use. All of which is directly ingested into Snowflake. Zero API calls, zero CSV parsing, and
+definitely not logging into random apps to run reports manually. With this simple data set I can check if a terminated
+employee&rsquo;s laptop is checking into MDM, or if the asset in the asset tracker is not set to some sort of <code>term hold</code> state.
+One could also ensure that every FTE of the Org has a primary use computer assigned to them by simply joining the HR data to the
+asset tracker data, and then filtering for every full time employee that is missing a primary use computer.</p>
+<h4 id="role-based-access-controls-rbac">Role Based Access Controls (RBAC)</h4>
+<p><a href="https://en.wikipedia.org/wiki/Role-based_access_control" target="_blank" rel="noopener noreffer">Role Based Access</a> is an industry standard that is used in many
+things. The general idea is you create roles to do certain functions, and only grant those roles the least amount of
+permissions and access they need to do their jobs. A user of a system will assume that role when they authenticate
+to the tech stack they are working in. Here are the <a href="https://docs.snowflake.com/en/user-guide/security-access-control-overview.html" target="_blank" rel="noopener noreffer">official docs</a>
+for how Snowflake handles access and ownership of objects with in Snowflake itself.</p>
+<p>Using part of the example above, lets
+assume Security Engineering has a request into IT to consume data around end user computers checking into the Org&rsquo;s MDM.
+For the use case we will also use that they are trying to track employee laptops where the employee has left the company,
+but the laptop is still acitvely online and checking into MDM. This would be considered a risk the Security Team wants to
+monitor and alert on.</p>
+<p>Let&rsquo;s create a role called <code>SECENG_BFF</code>, since IT and Security should be best friends forever. Grant that role <code>SELECT</code>
+access to the view we just created before. This will be the view we are data sharing to Security Engineering, so they
+may audit and monitor data in the scenario described.</p>
+<p><code>Query:</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">SECENG_BFF</span><span class="p">;</span>
+
+<span class="k">GRANT</span> <span class="k">USAGE</span> <span class="k">ON</span> <span class="n">WAREHOUSE</span> <span class="n">DB_WH</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">SECENG_BFF</span><span class="p">;</span>
+
+<span class="k">GRANT</span> <span class="k">USAGE</span> <span class="k">ON</span> <span class="k">DATABASE</span> <span class="n">DB</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">SECENG_BFF</span><span class="p">;</span>
+
+<span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">VIEW</span> <span class="n">DB</span><span class="p">.</span><span class="n">TESTING</span><span class="p">.</span><span class="n">JAMF_EVENTS_CHECKINS_V</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">SECENG_BFF</span><span class="p">;</span>
+
+<span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">SECENG_BFF</span> <span class="k">TO</span> <span class="k">USER</span> <span class="s2">&#34;USER.NAME@ORG.COM&#34;</span><span class="p">;</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>DANGER<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><strong>WARNING</strong> - this is in no way an example of a best practice when it comes to granting access to data. Please consult
+your security teams, and the official documentation to ensure you are using the proper security and access controls.</div>
+        </div>
+    </div>
+<p>Roles do need some level of basic access to warehouses and databases to access views and tables with in those objects.
+This example is not advice on how anyone should organize and use role based access. However, now we can test our role to
+see if it can <code>SELECT</code> against the view we just created.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">USE</span> <span class="k">ROLE</span> <span class="n">SECENG_BFF</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span>  <span class="n">DB</span><span class="p">.</span><span class="n">TESTING</span><span class="p">.</span><span class="n">JAMF_EVENTS_CHECKINS_V</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>If you get a return on the data, then you have now successfully created a view based off raw data, created a role to
+access that data, and finally granted a person that role. Folks working with in Snowflake can assume roles through the
+App GUI, or by running a query <code>USE ROLE &lt;ROLE_NAME&gt;</code>, and users can have multiple roles. My <code>SELECT *</code> query ran fine,
+and returned all the same results in the example earlier in this blog post.</p>
+<h2 id="data-sharing-is-limitless">Data Sharing is Limitless</h2>
+<p>In this post I have only really touched on internal data sharing between teams with in your Organization. Snowflake also has
+an entire platform for third party data sharing, called the <a href="https://www.snowflake.com/data-marketplace/" target="_blank" rel="noopener noreffer">Snowflake Data Marketplace</a></p>
+<p>IT and Operations teams now have the ability to directly share and directly consume data from with in your Organization.
+This enables people to access and consume data freely with your Org once granted access. Often IT &amp; Ops teams need to share
+data with Security, and Compliance and Governance teams. Data sharing makes this extremely easy. It also allows data
+owners to share only the exact data they need to share, and scope the data to specific teams or people. IT &amp; Ops teams can
+also easily consume data from other teams as well, and this is such a wonderful thing.</p>
+<p>When you share the same data across teams, then all teams are looking at the same data. Historically, you might have had
+an experience where data is not centralized and shared from the same data sources, and ended up with different teams
+having different data sets. When you have the ability to ship all your raw data to a single data platform and share your
+data with people and teams across your Org, you get rid of all those legacy methods you used to have to deal with.</p>
+<h4 id="concluding-part-ii">Concluding Part II</h4>
+<p>Thanks for reading if you got this far. This concludes Part II of my miniseries on being data driven with Snowflake. The
+thing I would like to close on is that Snowflake makes data ingest extremely easy. Most APIs or data shippers can ship
+JSON data natively, and Snowflake can just consume that natively. No need to transform your data in the shipping and ingest
+process. Then having the ability to just work with variant data with in Snowflake is honestly just sort of mind-blowing.
+This also means the integration opportunity for IT &amp; Ops tools is exponentially broad. If you can get IT &amp; Ops JSON data
+into cloud storage you are pretty much just done at that point. The rest is using the data in Snowflake itself.
+There will be a <code>Part III</code>, but I have not fully planned out what that will be just yet, so stay tuned please.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-04-22</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/ops-data-snowflake-pt2/" data-title="IT &amp; Ops Data with Snowflake Part II" data-via="https://twitter.com/tlark8" data-hashtags="data sharing,snowflake,data driven,IT tools"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/data-sharing/">data sharing</a>,&nbsp;<a href="/tags/snowflake/">snowflake</a>,&nbsp;<a href="/tags/data-driven/">data driven</a>,&nbsp;<a href="/tags/it-tools/">IT tools</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/ops-data-snowflake/" class="prev" rel="prev" title="IT &amp; Ops Data with Snowflake Part I"><i class="fas fa-angle-left fa-fw"></i>IT &amp; Ops Data with Snowflake Part I</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.75.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

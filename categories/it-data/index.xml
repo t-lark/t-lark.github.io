@@ -3,7 +3,14 @@
         <title>IT data - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/it-data/</link>
         <description>IT data - Category - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 15 Apr 2021 20:00:08 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/it-data/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 22 Apr 2021 20:02:00 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/it-data/" rel="self" type="application/rss+xml" /><item>
+    <title>IT &amp; Ops Data with Snowflake Part II</title>
+    <link>https://t-lark.github.io/posts/ops-data-snowflake-pt2/</link>
+    <pubDate>Thu, 22 Apr 2021 20:02:00 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/posts/ops-data-snowflake-pt2/</guid>
+    <description><![CDATA[Working with Data in Snowflake Welcome to Part II of my miniseries blog around Snowflake with IT &amp; Ops Data. If you have not read Part I, you may click that link to read it first. Data has always been very important, and Snowflake just makes using the data a ton easier than we have ever had before. This post will focus on some basic ways one can work with data with in Snowflake.]]></description>
+</item><item>
     <title>IT &amp; Ops Data with Snowflake Part I</title>
     <link>https://t-lark.github.io/posts/ops-data-snowflake/</link>
     <pubDate>Thu, 15 Apr 2021 20:00:08 -0700</pubDate>
