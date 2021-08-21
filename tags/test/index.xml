@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>test - Tag - t-lark.github.io</title>
+        <link>https://t-lark.github.io/tags/test/</link>
+        <description>test - Tag - t-lark.github.io</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Sep 2020 18:46:32 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/test/" rel="self" type="application/rss+xml" /><item>
+    <title>First_post</title>
+    <link>https://t-lark.github.io/posts/first_post/</link>
+    <pubDate>Sat, 19 Sep 2020 18:46:32 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/posts/first_post/</guid>
+    <description><![CDATA[fake python function
+1 2  def function(): print(&#39;hell world&#39;)   ]]></description>
+</item></channel>
+</rss>
