@@ -6,20 +6,18 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>IT &amp; Ops Data with Snowflake Part III - t-lark.github.io</title><meta name="Description" content=""><meta property="og:title" content="IT &amp; Ops Data with Snowflake Part III" />
-<meta property="og:description" content="Leverage Snowflake to Improve Asset &amp; Inventory Data Welcome to Part III of my mini blog series on being data driven with Snowflake. This post will be solely dedicated to how an organization can leverage a platform like Snowflake to improve their asset and inventory controls. Both Part I and Part II can be viewed with those links if you haven&rsquo;t read them yet.
-Every Organization I have worked for has struggled a bit with inventory of assets." />
+<meta property="og:description" content="Gain Oversight of your Asset Inventory with Snowflake Welcome to Part III of my mini blog series on being data driven with Snowflake. This post will be solely dedicated to how an organization can leverage a platform like Snowflake to improve their asset and inventory controls. Both Part I and Part II can be viewed with those links if you haven&rsquo;t read them yet. This post will focus on end user devices for the most part and not networking hardware, application catalogs, servers, and so forth." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://t-lark.github.io/posts/ops-data-snowflake-pt3/" />
-<meta property="article:published_time" content="2021-04-22T20:02:00-07:00" />
-<meta property="article:modified_time" content="2021-04-22T20:02:00-07:00" />
+<meta property="article:published_time" content="2021-08-10T20:02:00-07:00" />
+<meta property="article:modified_time" content="2021-08-10T20:02:00-07:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="IT &amp; Ops Data with Snowflake Part III"/>
-<meta name="twitter:description" content="Leverage Snowflake to Improve Asset &amp; Inventory Data Welcome to Part III of my mini blog series on being data driven with Snowflake. This post will be solely dedicated to how an organization can leverage a platform like Snowflake to improve their asset and inventory controls. Both Part I and Part II can be viewed with those links if you haven&rsquo;t read them yet.
-Every Organization I have worked for has struggled a bit with inventory of assets."/>
+<meta name="twitter:description" content="Gain Oversight of your Asset Inventory with Snowflake Welcome to Part III of my mini blog series on being data driven with Snowflake. This post will be solely dedicated to how an organization can leverage a platform like Snowflake to improve their asset and inventory controls. Both Part I and Part II can be viewed with those links if you haven&rsquo;t read them yet. This post will focus on end user devices for the most part and not networking hardware, application catalogs, servers, and so forth."/>
 <meta name="application-name" content="t-lark.github.io">
 <meta name="apple-mobile-web-app-title" content="t-lark.github.io"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/ops-data-snowflake-pt3/" /><link rel="prev" href="https://t-lark.github.io/posts/ops-data-snowflake/" /><link rel="next" href="https://t-lark.github.io/posts/ops-data-snowflake-pt2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/ops-data-snowflake-pt3/" /><link rel="prev" href="https://t-lark.github.io/posts/ops-data-snowflake-pt2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -28,8 +26,8 @@ Every Organization I have worked for has struggled a bit with inventory of asset
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/t-lark.github.io\/posts\/ops-data-snowflake-pt3\/"
-        },"genre": "posts","keywords": "data sharing, snowflake, data driven, IT tools","wordcount":  191 ,
-        "url": "https:\/\/t-lark.github.io\/posts\/ops-data-snowflake-pt3\/","datePublished": "2021-04-22T20:02:00-07:00","dateModified": "2021-04-22T20:02:00-07:00","publisher": {
+        },"genre": "posts","keywords": "data sharing, snowflake, data driven, IT tools","wordcount":  3522 ,
+        "url": "https:\/\/t-lark.github.io\/posts\/ops-data-snowflake-pt3\/","datePublished": "2021-08-10T20:02:00-07:00","dateModified": "2021-08-10T20:02:00-07:00","publisher": {
             "@type": "Organization",
             "name": "tlark"},"author": {
                 "@type": "Person",
@@ -105,18 +103,50 @@ Every Organization I have worked for has struggled a bit with inventory of asset
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">IT &amp; Ops Data with Snowflake Part III</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/it-data/"><i class="far fa-folder fa-fw"></i>IT data</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw"></i>snowflake</a>&nbsp;<a href="/categories/asset-management/"><i class="far fa-folder fa-fw"></i>asset management</a>&nbsp;<a href="/categories/ops-data/"><i class="far fa-folder fa-fw"></i>Ops Data</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-22">2021-04-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;191 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-10">2021-08-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3522 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;17 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><h1 id="leverage-snowflake-to-improve-asset--inventory-data">Leverage Snowflake to Improve Asset &amp; Inventory Data</h1>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#building-data-pipelines-for-success">Building Data Pipelines for Success</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#event-based-mdm-data">Event Based MDM Data</a></li>
+            <li><a href="#hr-data">HR Data</a></li>
+            <li><a href="#inventory-and-asset-data">Inventory and Asset Data</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#turning-the-data-into-magic">Turning the Data into Magic</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#establishing-baselines-and-context">Establishing Baselines and Context</a></li>
+          </ul>
+        </li>
+        <li><a href="#putting-the-data-together">Putting the Data Together</a></li>
+        <li><a href="#reducing-the-noise">Reducing the Noise</a></li>
+        <li><a href="#tracking-broken-mdm-clients-and-usage">Tracking Broken MDM Clients and Usage</a>
+          <ul>
+            <li><a href="#concluding-part-iii">Concluding Part III</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="gain-oversight-of-your-asset-inventory-with-snowflake">Gain Oversight of your Asset Inventory with Snowflake</h1>
 <p>Welcome to Part III of my mini blog series on being data driven with Snowflake. This post will be solely dedicated to
 how an organization can leverage a platform like Snowflake to improve their asset and inventory controls. Both <a href="https://t-lark.github.io/posts/ops-data-snowflake/" target="_blank" rel="noopener noreffer">Part I</a>
-and <a href="https://t-lark.github.io/posts/ops-data-snowflake-pt2/" target="_blank" rel="noopener noreffer">Part II</a> can be viewed with those links if you haven&rsquo;t read them yet.</p>
+and <a href="https://t-lark.github.io/posts/ops-data-snowflake-pt2/" target="_blank" rel="noopener noreffer">Part II</a> can be viewed with those links if you haven&rsquo;t read
+them yet. This post will focus on end user devices for the most part and not networking hardware, application catalogs,
+servers, and so forth.  The concepts in this post could be applied to those things though.</p>
 <p>Every Organization I have worked for has struggled a bit with inventory of assets. It is not an easy task to just solve
 with a single tool or platform. Many aspects of Asset and Inventory control are also done with manual processes. Meaning,
 a human has to verify objects in asset trackers or change their states when physically verified. Some asset tools I
@@ -124,11 +154,398 @@ wouldn&rsquo;t even really consider products, but I would rather consider them p
 the vast amount of integration these platforms can have. With more integrations you will naturally have more data. This
 is where data cloud platforms like Snowflake can really enable IT &amp; Ops teams to use data to drive change and improvements
 in their asset tools.</p>
+<p>This is my personal opinion based off the experiences I have learned while working with data in Snowflake. There are always
+many ways to accomplish the same goals with data. So, this is not the only way one can be data driven around this topic,
+but my personal opinion this is a wonderful way to start.</p>
+<h2 id="building-data-pipelines-for-success">Building Data Pipelines for Success</h2>
+<p>Inventory and Asset data is great by itself, as it can tell and Organization lots of information around their assets
+inventory. Inventory and Asset data is a lot better with friends. In a previous post I touched on applying baselines and
+context to your data sets, and this blog post will completely expand on that. Different tool stacks can act as a source of
+truth for the function is provides. MDM data for example can be the source of truth for all your active endpoints in your
+fleet checking in online. An Asset tool probably doesn&rsquo;t have this data, and if you integrate it, you may end up with data
+lag. Remember, one of the key things about really being data driven is to get data quickly and reliably. If you have to wait
+days to get data, then you are days behind the current state of things. MDM data though is probably not really great
+asset data for several reasons. It probably does not tie into HR systems, and MDM systems typically do not support all the
+configurations around the many assets and Organization can own.</p>
+<p>At a high level, this is my recommended starting point for data collection:</p>
+<ul>
+<li><code>MDM Data</code>
+<ul>
+<li>Event Data</li>
+<li>WebHooks</li>
+<li>Log data</li>
+</ul>
+</li>
+<li><code>HR Data</code>
+<ul>
+<li>Employee Directory</li>
+<li>Employee Data (FTE, contractor, start date, end date, etc)</li>
+</ul>
+</li>
+<li><code>Asset and Inventory Data</code>
+<ul>
+<li>Asset Type (laptop, desktop, Mac, PC, etc)</li>
+<li>Asset State (primary, secondary, test device, etc)</li>
+<li>Assignment Data (what human is assigned this device)</li>
+</ul>
+</li>
+</ul>
+<p>If you ship data from tools like the listed above, each will act as a source of truth for a specific data point in context.
+After you have this, you can start creating your baselines of what the data should mean. After you know it, you will be
+modeling your data and writing queries to get back the data you want on each point. Now, lets break down each data point
+and see how we can apply it.</p>
+<h4 id="event-based-mdm-data">Event Based MDM Data</h4>
+<p>Event based data is fantastic to get near-real-time data about your fleet. MDM tools that can ship Webhook Events, or any
+sort of logging that runs on a regular basis to indicate an asset has checked into your MDM tool and submitted data is pretty clutch. The
+MDM App data is the source of truth for active online endpoints in your fleet that are online and properly communicating
+to your MDM. Any MDM that can ship event data is pretty key here, if your MDM vendor does not support this I would recommend
+you file a feature request with them to get this data. It has a lot of value.</p>
+<p>In this blog I will use <a href="https://www.jamf.com/developers/webhooks/" target="_blank" rel="noopener noreffer">Jamf Pro Webhooks</a> as my event based data set. The specific
+event we care about is the <code>Iventory Event</code> as this event is only generated when a device submits data to Jamf. Devices that
+do not submit data are considered in a broken or undesired state. Devices not submitting data can easily be put into a different
+data set, with a different context.</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>Filter data but never get rid of data<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">While mentioning filtering out devices that are not submitting data, this is important in the context of tracking active
+devices in your fleet. Devices that are not checking in should be grouped into a different context, so you can leverage
+that data in different ways. Like opening tickets for remediation, or using that data set in a workflow, etc.</div>
+        </div>
+    </div>
+<p>The WebHook data <strong>must contain</strong> some sort of <a href="https://en.wikipedia.org/wiki/Primary_key" target="_blank" rel="noopener noreffer">primary key</a> in it for it to be
+valuable. Typically, a serial number is good enough, but the more <code>Unique IDs</code> a hook can ship the better. That would give
+the IT &amp; Ops teams more options to work with. The primary key will be used to run <a href="https://docs.snowflake.com/en/sql-reference/constructs/join.html" target="_blank" rel="noopener noreffer">joins</a>
+to match different data sets you share with in the Snowflake platform. You should ingest these WebHooks as often and quickly
+as possible. They are typically very minimal, so you can store them historically a very long time.</p>
+<h4 id="hr-data">HR Data</h4>
+<p>Most Organizations have some sort of Employee Directory, which includes some basic information about each employee that is
+shared throughout the entire Organization. This data should also be available in Snowflake, and it is very useful for many
+applications. HR data is often highly protected, and a lot of it is considered to be <a href="https://en.wikipedia.org/wiki/Personal_data" target="_blank" rel="noopener noreffer">PII data</a>.
+So, you must do your own due diligence on working with privacy and legal teams to ensure you are sharing allowable data.
+Things like department, email, start date of work, end date of work, manager, and the like is pretty much all you need
+to enhance your Inventory and Asset data assessments.</p>
+<p>There is likely an integration to ship this data in your HR tools to some sort of cloud storage. If not, you might have
+to roll your own integration via an API. Admittedly, HR systems are an area where I do not possess deep knowledge on, as I
+have never really had to work with them a lot in my career. Remember you can create tables and views in Snowflake that allow
+data owners to share only the exact data they want, nothing more, nothing less. I wrote about this in Part II. So, HR will
+still have all the controls in place with in Snowflake to safely and securely only share the minimum data needed for this.</p>
+<h4 id="inventory-and-asset-data">Inventory and Asset Data</h4>
+<p>This will be short and sweet. Ship all of your Inventory and Asset data to Snowflake. Yes, every single bit of it. Every
+CMDB table, every event hook, every API endpoint, so on and so forth. If you start off only shipping bits and pieces, you
+will likely end up in a situation where you don&rsquo;t have all the data you really want and need. Then you will be constantly
+creating more data pipelines. So, do yourself a favor up front and just ship everything.</p>
+<h2 id="turning-the-data-into-magic">Turning the Data into Magic</h2>
+<p>Assuming that you have all these data pipelines in place, the data is shared, and you can leverage it to build data sets
+for intelligence we can start to dive into it. In the beginning the data will likely look bad, and do not
+worry about this. This really should just be expected. If you have never had this data before, you were in the dark about the
+overall state of it all. As one of my favorite books stated, <code>&quot;Don't Panic!&quot;</code> You shouldn&rsquo;t have an expectation that everything
+you were doing was correct. The data will turn into magic you can leverage down the road to fix all the gaps in your
+systems and processes.</p>
+<p>The data will tell you a story of what you are missing. One of the first things I would establish is some baseline
+expectations. Something simple, like that every full time staff member is required to have a primary asset in your asset
+tracker. This is a great place to start, and it might require you to change how you approach asset management. Devices you
+deploy to end users should have explicit definitions of what the asset is, and this is why I think requiring every full time
+staff member having a primary asset is a good place to start. Secondary devices could be allowed, but the expectation of
+a secondary device is that it is used less frequently compared to a primary device. If we define these states in our asset
+tracking systems, it is quite trivial to leverage that data in Snowflake.</p>
+<h4 id="establishing-baselines-and-context">Establishing Baselines and Context</h4>
+<p>When you think about managing your fleet from an asset and inventory perspective, it helps to define a new things to
+establish some baselines. This helps you define the data sets which you can ingest into Snowflake. These things also
+can help define process as well. Here is a table of some examples one could use in their asset tracking system:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Status</strong></th>
+<th><strong>Definition</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary</td>
+<td>Primary work computer</td>
+<td>Every staff member must have a primary work computer assigned to them</td>
+</tr>
+<tr>
+<td>Secondary</td>
+<td>Secondary work computer</td>
+<td>Staff may request a secondary computer if they need one</td>
+</tr>
+<tr>
+<td>Conference Room</td>
+<td>Devices that are used in conference rooms</td>
+<td>These devices can be seen more like appliances and not really end user computers</td>
+</tr>
+<tr>
+<td>Lost</td>
+<td>Devices that have been lost</td>
+<td>Lost devices should be marked as lost and follow the lost device process</td>
+</tr>
+<tr>
+<td>Stolen</td>
+<td>Devices that have been stolen</td>
+<td>Stolen devices should be marked as stolen and follow the stolen device process</td>
+</tr>
+<tr>
+<td>In-Transit</td>
+<td>Devices that are being shipped or received</td>
+<td>Devices that are in the process of being shipped</td>
+</tr>
+<tr>
+<td>Out for Repairs</td>
+<td>Devices that have hardware failures</td>
+<td>Any device that needs hardware repair should be marked as this</td>
+</tr>
+<tr>
+<td>Testing</td>
+<td>Devices that are used for testing</td>
+<td>Test devices are often in weird and non-compliant states use this state for devices you want to filter from compliance. Think like a laptop running beta software. Test devices should never be used as a production device</td>
+</tr>
+<tr>
+<td>Retired</td>
+<td>Devices that are no longer being used by anyone</td>
+<td>Using a &ldquo;Retired&rdquo; status means you can track the historical data and filter it</td>
+</tr>
+<tr>
+<td>Disposed</td>
+<td>Devices that have been officially <a href="https://en.wikipedia.org/wiki/Electronic_waste" target="_blank" rel="noopener noreffer">eWasted</a></td>
+<td>This state could imply you have disposed your old hardware with a certification of the data being destroyed</td>
+</tr>
+</tbody>
+</table>
+<p>With the example table above, we can now use these data points to make much safer assumptions. We can assume that actual
+end user computes will only ever be either <code>Primary</code> or <code>Secondary</code> statuses, and we can leverage that in Snowflake. While
+<code>Conference Room</code> devices we can safely assume those devices are only used for hardware needs in the conference rooms. The
+<code>Testing</code> status I think is also important to track. As an IT &amp; Ops person myself, I often have a few tester laptops in my
+possession. These laptops run beta versions of macOS, Windows 10, various tools and applications in preview or beta release
+as well. This means my tester laptops are probably never in compliance, and a high probability they are in a non-working state.
+Test devices aren&rsquo;t meant to do production work, they are meant to be used to test new software and configurations.</p>
+<p>If our baseline consists of every employee being required to have a primary work device, we can use this in the data.
+How you establish these baselines and definitions is very much up to the Organization itself to decide. There aren&rsquo;t really
+any right or wrong answers here, just answers that work best for your Organization. This also helps establish your asset
+tracker as a source of truth for these asset data sets. It is important to decide which data source is the source of
+truth, and your asset tracking system should be the source of truth for your assets.</p>
+<p>My team has engaged with our Service Now team to help define these asset states in Service Now to make our data more
+actionable.  It also helps you as the IT Ops professional make easier use of the data.</p>
+<h3 id="putting-the-data-together">Putting the Data Together</h3>
+<p>With Snowflake, we can use the power of SQL, and execute queries with <a href="https://en.wikipedia.org/wiki/Join_%28SQL%29" target="_blank" rel="noopener noreffer">joins</a> and
+leverage data sharing features. Let&rsquo;s look at a query example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> 
+    <span class="n">JI</span><span class="p">.</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">varchar</span><span class="p">::</span><span class="n">TIMESTAMP_LTZ</span> <span class="k">as</span> <span class="n">last_contact</span>
+  <span class="p">,</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">computer</span><span class="p">:</span><span class="n">serialNumber</span><span class="p">::</span><span class="nb">varchar</span> <span class="k">as</span> <span class="n">j_serial</span>
+  <span class="k">from</span> <span class="s2">&#34;DB&#34;</span><span class="p">.</span><span class="s2">&#34;SCHEMA&#34;</span><span class="p">.</span><span class="s2">&#34;JAMF_CHECKIN&#34;</span> <span class="k">as</span> <span class="n">JI</span>
+  <span class="k">WHERE</span> <span class="n">TO_TIMESTAMP</span><span class="p">(</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">INTEGER</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">dateadd</span><span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">())</span>
+  <span class="n">QUALIFY</span> <span class="mi">1</span> <span class="o">=</span> <span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">computer</span><span class="p">:</span><span class="n">serialNumber</span><span class="p">::</span><span class="nb">varchar</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">last_contact</span> <span class="k">DESC</span><span class="p">)</span>
+  <span class="k">and</span> <span class="k">not</span> <span class="k">exists</span><span class="p">(</span>
+      <span class="k">select</span> <span class="k">upper</span><span class="p">(</span><span class="n">SN</span><span class="p">.</span><span class="n">SERIAL_NUMBER</span><span class="p">)::</span><span class="nb">varchar</span> <span class="k">as</span> <span class="n">sn_serial</span>
+      <span class="k">from</span> <span class="s2">&#34;DB&#34;</span><span class="p">.</span><span class="s2">&#34;SCHEMA.SERVICENOW_ASSETS_V as SN
+</span><span class="s2">      where sn_serial = JI.EVENT:computer:serialNumber::varchar
+</span><span class="s2">  )
+</span></code></pre></td></tr></table>
+</div>
+</div><p>The above query is a method we leverage to find devices that have somehow failed to get into our asset tracker. We all know failures
+happen, and if we can catch them and fix them, then typically everything is all good. When we do not catch them, and then
+an incident happens weeks or months later, it does not reflect well on IT. A lot of times adding an asset into your asset
+tracker is a manual process, or if there is automation with a reseller/vendor, sometimes that fails, or they make a mistake.
+I have observed all these edge cases in the real world be actual real failures. MDM webhooks will ship to Snowflake each time
+the device phones home, so this is where event based data is amazing to have. You don&rsquo;t have to wait for workflows or code to run,
+just simply wait until the next time the device checks into MDM, and the event will be shipped to your data platform.</p>
+<p><code>Visualization Example:</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/blog-missing-assets.png"
+        data-srcset="/img/blog-missing-assets.png, /img/blog-missing-assets.png 1.5x, /img/blog-missing-assets.png 2x"
+        data-sizes="auto"
+        alt="/img/blog-missing-assets.png"
+        title="missing-assets" /></p>
+<p>The data isn&rsquo;t just valuable for insights and metrics, it is extremely valuable to help you find gaps in your tech stacks.
+Typically, everyone is happy when you are proactive, and this is exactly what we are doing in IT/Ops with data in Snowflake.</p>
+<h3 id="reducing-the-noise">Reducing the Noise</h3>
+<p>Once you put in some effort into cleaning up your asset tracking systems, and using the data to help guide you, you will find
+out the return on this investment is quite large. Using the examples from the table above, I now know that actual employees
+will only ever have a <code>primary</code>, or a <code>secondary</code> computer. Put in the effort up front to improve and sanitize your data inputs,
+and then reap the benefits downstream when your data gets ingested.</p>
+<p><code>Filtering Example</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> 
+  <span class="n">SN</span><span class="p">.</span><span class="n">substatus</span> <span class="k">as</span> <span class="k">type</span> 
+<span class="p">,</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">emailAddress</span><span class="p">::</span><span class="nb">varchar</span> <span class="k">as</span> <span class="k">USER</span>
+<span class="p">,</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">osVersion</span><span class="p">::</span><span class="nb">varchar</span> <span class="k">as</span> <span class="n">OS_VERS</span>
+<span class="p">,</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">serialNumber</span><span class="p">::</span><span class="nb">varchar</span> <span class="k">as</span> <span class="n">SERIAL_NUMBER</span>
+<span class="p">,</span> <span class="n">IFF</span><span class="p">(</span><span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">emailAddress</span><span class="p">::</span><span class="nb">varchar</span> <span class="o">=</span> <span class="s1">&#39;service-acount@company.com&#39;</span> <span class="k">AND</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">department</span><span class="p">::</span><span class="nb">varchar</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;conference room&#39;</span><span class="p">,</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">department</span><span class="p">::</span><span class="nb">varchar</span><span class="p">)</span> <span class="k">as</span> <span class="n">department</span>
+<span class="p">,</span> <span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">varchar</span><span class="p">::</span><span class="n">timestamp_ltz</span> <span class="k">as</span> <span class="n">event_date</span>
+<span class="k">FROM</span> 
+  <span class="s2">&#34;DB&#34;</span><span class="p">.</span><span class="s2">&#34;SCHEMA&#34;</span><span class="p">.</span><span class="s2">&#34;JAMF_INVENTORY&#34;</span> <span class="k">as</span> <span class="n">JI</span>
+  <span class="k">inner</span> <span class="k">join</span> <span class="s2">&#34;DB&#34;</span><span class="p">.</span><span class="s2">&#34;SCHEMA&#34;</span><span class="p">.</span><span class="s2">&#34;SERVICENOW_ASSETS_V&#34;</span> <span class="k">as</span> <span class="n">SN</span> <span class="k">on</span> <span class="n">SN</span><span class="p">.</span><span class="n">SERIAL_NUMBER</span> <span class="o">=</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">serialNumber</span>
+  <span class="k">where</span> <span class="k">type</span> <span class="k">in</span> <span class="p">(</span><span class="s1">&#39;Primary&#39;</span><span class="p">,</span> <span class="s1">&#39;Secondary&#39;</span><span class="p">,</span> <span class="s1">&#39;Conference Room&#39;</span><span class="p">)</span>
+   <span class="n">qualify</span> <span class="mi">1</span> <span class="o">=</span> <span class="n">row_number</span><span class="p">()</span> <span class="n">over</span> <span class="p">(</span><span class="n">partition</span> <span class="k">by</span> <span class="n">serial_number</span> <span class="k">order</span> <span class="k">by</span> <span class="n">event_date</span> <span class="k">desc</span><span class="p">)</span>
+<span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>In the above query, we can now reap all the benefits of using data to fix your asset tracking system and get actual real numbers
+of devices by type and context. In IT Operations, you are typically responsible for patching the OS. SLAs are also attached
+to patching the OS many times. So, we know that IT must patch all primary, secondary, and conference room computers. These
+are the computers that have been defined contextually as in use and in production. MDM solutions have no knowledge at all of
+your asset systems, and your MDM doesn&rsquo;t understand that perhaps not all devices are actually used in production workflows.
+What we are accomplishing here is the following:</p>
+<ul>
+<li>Devices submit inventory to MDM</li>
+<li>MDM will ship an inventory webhook when the device submits data to MDM</li>
+<li>Join that data to Service Now to ensure it is a production use device</li>
+</ul>
+<blockquote>
+<p>Note: There is also a bit more going on here. A lot of times you might use a service account for a conference room
+computer, or just a computer that is not used by an actual human. Service accounts don&rsquo;t have departments, or belong to
+Orgs/teams really. So, to mark this in our visualization if you detect the service account adn the department info is blank
+then assign that device as a <code>Conference Room</code> computer as the department</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/blog-pt3-os-dept.png"
+        data-srcset="/img/blog-pt3-os-dept.png, /img/blog-pt3-os-dept.png 1.5x, /img/blog-pt3-os-dept.png 2x"
+        data-sizes="auto"
+        alt="/img/blog-pt3-os-dept.png"
+        title="os-vers" /></p>
+<h3 id="tracking-broken-mdm-clients-and-usage">Tracking Broken MDM Clients and Usage</h3>
+<p>Everything has a failure rate in technology. Nothing runs at 100%, even the most highly available and scalable systems
+humans have ever created cannot guarantee you a 100% uptime. Compound this with secondary devices it adds complexity to
+the situation. People sometimes have legit business reasons to have more than one computer, and IT should help the people
+at your Org be as successful as possible. So, how do you track primary and secondary device usage? How would you track
+when a device stops phoning home to MDM and needs a re-enroll? What if I told you that you could accomplish both of these
+problems with a single query and a dash of data sharing?</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">with</span> <span class="n">latest_jamf_data</span> <span class="k">as</span> <span class="p">(</span>
+ <span class="k">SELECT</span>
+    <span class="n">SN</span><span class="p">.</span><span class="k">TYPE</span> 
+  <span class="p">,</span> <span class="n">SN</span><span class="p">.</span><span class="n">SN_EMAIL</span> <span class="k">as</span> <span class="n">email</span>
+  <span class="p">,</span> <span class="k">upper</span><span class="p">(</span><span class="n">SN</span><span class="p">.</span><span class="n">SERIAL_NUMBER</span><span class="p">)</span> <span class="n">sn_serial</span>
+  <span class="p">,</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">serialNumber</span><span class="p">::</span><span class="nb">varchar</span> <span class="n">ji_serial</span>
+  <span class="p">,</span> <span class="n">JI</span><span class="p">.</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="n">string</span><span class="p">::</span><span class="n">TIMESTAMP_LTZ</span> <span class="k">as</span> <span class="n">ji_last_inv</span>
+  <span class="p">,</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">emailAddress</span><span class="p">::</span><span class="nb">varchar</span> <span class="k">as</span> <span class="n">JI_EMAIL</span>
+  <span class="p">,</span> <span class="n">HR</span><span class="p">.</span><span class="n">DEPARTMENT</span> <span class="k">as</span> <span class="n">DEPARTMENT</span>
+  <span class="p">,</span> <span class="n">HR</span><span class="p">.</span><span class="n">LAST_DAY_OF_WORK</span>
+  <span class="k">FROM</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">JAMF_INVENTORY</span> <span class="k">as</span> <span class="n">JI</span>
+  <span class="k">INNER</span> <span class="k">JOIN</span> <span class="p">(</span>
+    <span class="k">SELECT</span> 
+      <span class="k">upper</span><span class="p">(</span><span class="n">SERIAL_NUMBER</span><span class="p">)</span> <span class="k">as</span> <span class="n">SERIAL_NUMBER</span>
+    <span class="p">,</span> <span class="n">SUBSTATUS</span> <span class="k">as</span> <span class="k">type</span>
+    <span class="p">,</span> <span class="n">EMAIL</span> <span class="k">as</span> <span class="n">SN_EMAIL</span>
+    <span class="k">FROM</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">SERVICENOW_ASSETS_V</span>
+    <span class="k">Where</span> <span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;primary&#39;</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">SN</span> <span class="k">on</span> <span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">serialNumber</span><span class="p">::</span><span class="nb">varchar</span> <span class="o">=</span> <span class="n">SN</span><span class="p">.</span><span class="n">SERIAL_NUMBER</span>
+<span class="k">inner</span> <span class="k">join</span> <span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">HR_DATA</span> <span class="k">as</span> <span class="n">HR</span> <span class="k">on</span> <span class="n">SN</span><span class="p">.</span><span class="n">SN_EMAIL</span> <span class="o">=</span> <span class="n">HR</span><span class="p">.</span><span class="n">PRIMARY_WORK_EMAIL</span>
+  <span class="k">where</span> <span class="n">LAST_DAY_OF_WORK</span> <span class="k">is</span> <span class="k">Null</span>
+<span class="p">)</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">latest_jamf_data</span>
+<span class="n">QUALIFY</span> <span class="mi">1</span> <span class="o">=</span> <span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">over</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">by</span> <span class="n">ji_serial</span> <span class="k">order</span> <span class="k">by</span> <span class="n">ji_last_inv</span> <span class="k">DESC</span><span class="p">)</span>
+<span class="k">AND</span> <span class="n">ji_last_inv</span> <span class="o">&lt;</span> <span class="n">dateadd</span><span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">())</span>
+  <span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>NOTE: This query is one of several where we made separate dashboard tiles for each status in Service Now.
+So, you could edit this query to add more states and have a different visual effect if desired.</p>
+</blockquote>
+<p>The above query does a few things. It pulls in our MDM data, joins that to service now to ensure we are looking at the
+devices we want to look at, and then goes even further and joins to HR data to ensure the devices is from an employee that is
+still actively employed. Why filter out exited employees? So, my philosophy is you never throw away data, but filtering data
+into specific buckets makes a lot of sense. It makes the data easy to digest and visualize as well. So, while I am only
+querying devices that are from actively employed employees at my Org, I am also filtering out all exited employees in an
+entire different set of tiles and data sets.</p>
+<p><code>Visual Example</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/blog-pt3-not-checkingin.png"
+        data-srcset="/img/blog-pt3-not-checkingin.png, /img/blog-pt3-not-checkingin.png 1.5x, /img/blog-pt3-not-checkingin.png 2x"
+        data-sizes="auto"
+        alt="/img/blog-pt3-not-checkingin.png"
+        title="not-checking-in" /></p>
+<p>Another thing we leveraged from this data, is that it proactively helps us check back in with folks that have secondary devices.
+Many times an employee just needs a test device to test out a few things for a short period of time. Tracking this data in Snowflake
+allows us in IT to check back in when the device stops checking in to see if the person still needs it. Many times they are
+actually done using the device for their secondary purposes and will gladly turn it back into IT. Using Webhook Event data
+from our MDM tools, along with Service Now data, has allowed us to remediate when things break. It allows us to know very
+quickly when something is missed. Without a centralized data platform with data sharing I am not sure how one would accomplish
+this without putting massive amounts of effort and custom dev work into it.</p>
+<h4 id="concluding-part-iii">Concluding Part III</h4>
+<p>During my data journey so far in IT, I have learned a lot, changed a lot of my views, and used the data to change things with
+in my organization and collaborate with other teams. Having solid asset data is important for not only audit purposes, but
+also for it being available to leverage. Tracking the failures and gaps we have with the data in Snowflake is invaluable,
+as it allows us to be proactive and fix data in our asset tracker all the time. The better our data is in our asset tracking
+systems, the better it is for everyone to use and leverage. It helps cut out the extra noise and enables your Org to focus
+on the specific problems at hand.</p>
+<p>I think this will probably conclude my miniseries of the beginning of my data journey with Snowflake. I will definitely
+write and post more content, but I feel this is a good spot to end.</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2021-04-22</span>
+                <span>Updated on 2021-08-10</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -147,8 +564,7 @@ in their asset tools.</p>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/ops-data-snowflake/" class="prev" rel="prev" title="IT &amp; Ops Data with Snowflake Part I"><i class="fas fa-angle-left fa-fw"></i>IT &amp; Ops Data with Snowflake Part I</a>
-            <a href="/posts/ops-data-snowflake-pt2/" class="next" rel="next" title="IT &amp; Ops Data with Snowflake Part II">IT &amp; Ops Data with Snowflake Part II<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/posts/ops-data-snowflake-pt2/" class="prev" rel="prev" title="IT &amp; Ops Data with Snowflake Part II"><i class="fas fa-angle-left fa-fw"></i>IT &amp; Ops Data with Snowflake Part II</a></div>
 </div>
 </article></div>
             </main><footer class="footer">

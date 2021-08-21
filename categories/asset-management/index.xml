@@ -3,7 +3,14 @@
         <title>asset management - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/asset-management/</link>
         <description>asset management - Category - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 22 Apr 2021 20:02:00 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/asset-management/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 10 Aug 2021 20:02:00 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/asset-management/" rel="self" type="application/rss+xml" /><item>
+    <title>IT &amp; Ops Data with Snowflake Part III</title>
+    <link>https://t-lark.github.io/posts/ops-data-snowflake-pt3/</link>
+    <pubDate>Tue, 10 Aug 2021 20:02:00 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/posts/ops-data-snowflake-pt3/</guid>
+    <description><![CDATA[Gain Oversight of your Asset Inventory with Snowflake Welcome to Part III of my mini blog series on being data driven with Snowflake. This post will be solely dedicated to how an organization can leverage a platform like Snowflake to improve their asset and inventory controls. Both Part I and Part II can be viewed with those links if you haven&rsquo;t read them yet. This post will focus on end user devices for the most part and not networking hardware, application catalogs, servers, and so forth.]]></description>
+</item><item>
     <title>IT &amp; Ops Data with Snowflake Part II</title>
     <link>https://t-lark.github.io/posts/ops-data-snowflake-pt2/</link>
     <pubDate>Thu, 22 Apr 2021 20:02:00 -0700</pubDate>
