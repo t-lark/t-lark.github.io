@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>tech - Category - t-lark.github.io</title>
+        <link>https://t-lark.github.io/categories/tech/</link>
+        <description>tech - Category - t-lark.github.io</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 18 Nov 2021 20:44:15 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/categories/tech/" rel="self" type="application/rss+xml" /><item>
+    <title>Post JNUC 2021</title>
+    <link>https://t-lark.github.io/posts/post-jnuc-2021/</link>
+    <pubDate>Thu, 18 Nov 2021 20:44:15 -0800</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/posts/post-jnuc-2021/</guid>
+    <description><![CDATA[JNUC 2021 Recap Hello everyone, this will be a quick recap of my experience from the JNUC 2021 virtual conference, and a companion update to the talk I gave. First, I need to really thank Jamf for putting on a well produced virtual conference. I will admit that I was a bit skeptical of things like audio and video quality, participant interaction, and the look and feel of pre-recorded talks. Everything exceeded my expectations.]]></description>
+</item></channel>
+</rss>

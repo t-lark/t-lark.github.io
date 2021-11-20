@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Lessons Learned Mentoring - t-lark.github.io</title><meta name="Description" content=""><meta property="og:title" content="Lessons Learned Mentoring" />
+<meta property="og:description" content="Mentoring: A Year in Review Last week I met our intern in person for the first time. They had started with us during the COVID-19 pandemic, so everyone was still working from home. I took them out for lunch, gave them some company swag, and said my goodbyes. Our intern has been with us for an entire year, and they are now leaving to go to college. My employer partners with a local program that helps under privileged Bay Area high school kids get a real world job experience." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://t-lark.github.io/posts/lessons-learned-mentoring/" />
+<meta property="article:published_time" content="2021-08-21T12:27:16-07:00" />
+<meta property="article:modified_time" content="2021-08-21T12:27:16-07:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Lessons Learned Mentoring"/>
+<meta name="twitter:description" content="Mentoring: A Year in Review Last week I met our intern in person for the first time. They had started with us during the COVID-19 pandemic, so everyone was still working from home. I took them out for lunch, gave them some company swag, and said my goodbyes. Our intern has been with us for an entire year, and they are now leaving to go to college. My employer partners with a local program that helps under privileged Bay Area high school kids get a real world job experience."/>
+<meta name="application-name" content="t-lark.github.io">
+<meta name="apple-mobile-web-app-title" content="t-lark.github.io"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/lessons-learned-mentoring/" /><link rel="prev" href="https://t-lark.github.io/posts/ops-data-snowflake-pt3/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Lessons Learned Mentoring",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/t-lark.github.io\/posts\/lessons-learned-mentoring\/"
+        },"genre": "posts","keywords": "python, shell, mentorship","wordcount":  1567 ,
+        "url": "https:\/\/t-lark.github.io\/posts\/lessons-learned-mentoring\/","datePublished": "2021-08-21T12:27:16-07:00","dateModified": "2021-08-21T12:27:16-07:00","publisher": {
+            "@type": "Organization",
+            "name": "tlark"},"author": {
+                "@type": "Person",
+                "name": "tlark"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Lessons Learned Mentoring</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/mentoring/"><i class="far fa-folder fa-fw"></i>mentoring</a>&nbsp;<a href="/categories/tech/"><i class="far fa-folder fa-fw"></i>tech</a>&nbsp;<a href="/categories/intern/"><i class="far fa-folder fa-fw"></i>intern</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-21">2021-08-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1567 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#dont-forget-what-being-a-beginner-is-like">Don&rsquo;t Forget What Being a Beginner is Like</a></li>
+        <li><a href="#dont-always-focus-on-the-job-focus-on-skills">Don&rsquo;t Always Focus on the Job, Focus on Skills</a></li>
+        <li><a href="#ensure-you-have-time">Ensure You Have Time</a></li>
+        <li><a href="#make-work-fun">Make Work Fun</a></li>
+        <li><a href="#use-empathy">Use Empathy</a></li>
+        <li><a href="#give-them-work">Give Them Work</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="mentoring-a-year-in-review">Mentoring: A Year in Review</h1>
+<p>Last week I met our intern in person for the first time. They had started with us during the COVID-19 pandemic,
+so everyone was still working from home. I took them out for lunch, gave them some company swag, and said
+my goodbyes. Our intern has been with us for an entire year, and they are now leaving to go to college.
+My employer partners with a local program that helps under privileged Bay Area high school kids get a
+real world job experience. This year my team got an intern, and I was designated as the primary mentor. I have mentored
+people before, but never for an entire year so this was a brand-new learning experience for me. It was also the very
+first time I did this thing remote, and the first time and hopefully the last time during a pandemic. It was a big
+learning experience for me as well.</p>
+<p>What I wanted to share in this blog post is what I learned about mentoring in tech. Especially, with someone who is brand
+new to the industry and may not have a ton of tech work experience.</p>
+<h3 id="dont-forget-what-being-a-beginner-is-like">Don&rsquo;t Forget What Being a Beginner is Like</h3>
+<p>Senior IT people can have a wealth of knowledge and experience to share with newcomers into the industry, but sometimes
+I think we all forget what it is like to be a beginner. Maybe you are like me and have hit your second decade in the industry,
+and remembering back 20 years is just fuzzy, or perhaps you have changed jobs enough by now that you don&rsquo;t reflect much on
+your early career years. This happens, but we should all step back and remember that we were all once beginners ourselves.</p>
+<p>No one is born with any knowledge, especially tech knowledge. Knowledge and skills are only developed over time through
+various practices. So remember this when you get an entry level employee, or an intern on your team. Let the intern do
+the driving too. Have them open up a terminal window, drill into an OS setting, or open up the documentation on their computer
+and let them screen share. I do think most people learn the most by doing the actual thing they are learning.</p>
+<p>Let the person you are mentoring drive, complete the tasks, and do the work.</p>
+<h3 id="dont-always-focus-on-the-job-focus-on-skills">Don&rsquo;t Always Focus on the Job, Focus on Skills</h3>
+<p>When I first found out I was getting an intern, I went to Tech Twitter to ask for advice or ideas. I got a lot of great
+feedback from the community, but I also got a few things that were expressed by several tech professionals. I received
+Tweets stating that their teams don&rsquo;t take on interns anymore, and it is due to things like not being able to give them
+admin access to tool stacks to perform tasks. This is understandable, you probably don&rsquo;t want to give your intern Global
+Admin to the cloud or Active Directory. That is not a great practice, and obviously a huge gap for problems to occur.</p>
+<p>I thought to myself, well why just focus on that aspect of IT &amp; Operations? So, I decided to take a different approach and
+focus on skill training.  I had two one-hour one on one sessions with our intern every week. The first few months after we
+trained them to do some basics help desk tickets, and a few remediation flows, I started to split my time between having them
+self train and do ticket work.  Our early lessons focused on them learning basic <code>zsh</code> code and then later on Python 3.
+I gave them quick lessons on Computer Science 101 type stuff. Like data types, loops, logic, if/then tests, and so forth.
+I would even give them tiny bits of homework for them to figure out something in code, and we would review it next week in
+our one on one meeting.</p>
+<p>This turned out to be great, because about 3 months later when they had some basics down, I gave them their first code
+assignment. When I started working at my current job, I inherited our Jamf Cloud instance from previous admins. I wanted
+to standardize code in Jamf to Python 3 and <code>zsh</code> only. I don&rsquo;t have any workflows that need to be run in recovery mode,
+so <code>zsh</code> was a fine choice for us, and it is one of the more modern shells Apple ships. Python 2 was end of life, but we
+still had Python 2 code in production.</p>
+<p>I had them download each Extension Attribute script from Jamf and convert any shell code to <code>zsh</code> and any Python 2 code
+to Python 3. Then each week during our meetings we would review the work, I would test them, and if they worked I would
+move them to prod. I found this approach to be a great fit since this work was not critical in a time sensitive manner,
+and the intern could write and test all the code locally without having admin access to anything.</p>
+<h3 id="ensure-you-have-time">Ensure You Have Time</h3>
+<p>This is the biggest thing you must consider. It is unfair to both you, and the intern if you do not have time to mentor them.
+Also, as the mentor accept the fact this will take up your time. I knew that I would have to make time, and my calendar
+is already pretty messy during the pandemic. However, I did make the active decision to make it work. There were a few times when
+I had to shift our meetings around due to other work commitments, but overall I feel we were able to maintain a
+steady schedule.</p>
+<p>If you cannot make the time commitment, I would recommend you suggest the intern work with someone, or a team that can
+invest the time. This is how we give back to our work community. We help out the new folks that will eventually replace us
+when we get old and retire. They will hopefully return this favor when they mentor the next generation of interns.</p>
+<h3 id="make-work-fun">Make Work Fun</h3>
+<p>Our intern loved food, so I used that as a common theme in coding lessons. In fact, their final Python 3 lesson I gave before
+I had them switch over to doing some work on our code, was to have them create an entire interactive In-N-Out menu. So, they
+wrote a command line interface In-N-Out menu that had a price dictionary, prompted users for interaction on selecting their
+food, used simple math, and several other nifty built-in Python features. It also maintained a list of all the items they wanted to
+order, and finally calculated all sales and taxes for their grand total.</p>
+<p>You don&rsquo;t have to talk about users and groups, SaaS apps, or the cloud to have someone new to tech learn basic skills.
+So, try to find a subject that is fun, and go with it. I honestly did not know what I was doing with this at first,
+but in the end I just kept adding more lessons around writing code with food-related themes. Going right into the complexity
+of tech stacks we use to a beginner is probably overwhelming, confusing, and possibly boring.</p>
+<h3 id="use-empathy">Use Empathy</h3>
+<p>Your words and actions have an effect on others, even if you are unaware of it. Remember what it is like to be a beginner.
+Remember what it was like to struggle learning something new. Take all the past mistakes you made in tech and use them
+as a tool to educate. Focus on building skills, and not just technical skills. Soft skills are just as important. We had
+our intern interacting with our entire company, contacting colleagues for help tickets and remediation tickets. Thus,
+we did go through things like Slack etiquette and how to interact with people who might be upset that their computer is
+in a non-working state.</p>
+<p>Remember as a mentor you can impact how someone views the workforce or industry, so put in effort to help shape our future
+generation of workers.</p>
+<h3 id="give-them-work">Give Them Work</h3>
+<p>I think everyone wants to work, and everyone wants to accomplish something. Give your interns work and goals they can
+accomplish. Even if the goal is to go watch a training video to learn something new, or do some online labs. That is still
+work, and work related. In my experience they get the work done, and sometimes they get it done faster than you hoped
+because you were trying to assign enough work to space things out between your next sync meeting with them.</p>
+<p>So, my approach was to always have some sort of tech work that needed to be done, and I also included online training videos
+and online training labs for them to complete when they were between work tasks my team or manager had given them. This
+did work out pretty well, because when the intern did power through a task way faster than I anticipated, I had already told
+them to go focus on training if they get their work done quicker than we estimated.</p>
+<p>In the end the intern is here to learn and grow, and we should help embrace that as mentors. You must at some point give them
+some sort of work or deliverable. That is why we have intern and apprenticeship programs, so we can give that person actual
+work experience.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-08-21</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/lessons-learned-mentoring/" data-title="Lessons Learned Mentoring" data-via="https://twitter.com/tlark8" data-hashtags="python,shell,mentorship"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">python</a>,&nbsp;<a href="/tags/shell/">shell</a>,&nbsp;<a href="/tags/mentorship/">mentorship</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/ops-data-snowflake-pt3/" class="prev" rel="prev" title="IT &amp; Ops Data with Snowflake Part III"><i class="fas fa-angle-left fa-fw"></i>IT &amp; Ops Data with Snowflake Part III</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.75.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

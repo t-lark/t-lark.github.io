@@ -3,12 +3,26 @@
         <title>Tags - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/</link>
         <description>Tags - Tag - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 10 Aug 2021 20:02:00 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 18 Nov 2021 20:44:15 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>cloud</title>
+    <link>https://t-lark.github.io/tags/cloud/</link>
+    <pubDate>Thu, 18 Nov 2021 20:44:15 -0800</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/cloud/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>data driven</title>
     <link>https://t-lark.github.io/tags/data-driven/</link>
-    <pubDate>Tue, 10 Aug 2021 20:02:00 -0700</pubDate>
+    <pubDate>Thu, 18 Nov 2021 20:44:15 -0800</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/tags/data-driven/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>it-ops-data</title>
+    <link>https://t-lark.github.io/tags/it-ops-data/</link>
+    <pubDate>Thu, 18 Nov 2021 20:44:15 -0800</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/it-ops-data/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>data sharing</title>
@@ -58,20 +72,6 @@
     <pubDate>Sun, 20 Sep 2020 17:52:37 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/tags/python/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>python3</title>
-    <link>https://t-lark.github.io/tags/python3/</link>
-    <pubDate>Sun, 20 Sep 2020 17:52:37 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/python3/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>data</title>
-    <link>https://t-lark.github.io/tags/data/</link>
-    <pubDate>Sat, 19 Sep 2020 21:27:27 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/data/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
