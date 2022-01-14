@@ -3,7 +3,14 @@
         <title>data driven - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/data-driven/</link>
         <description>data driven - Tag - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 18 Nov 2021 20:44:15 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/tags/data-driven/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 13 Jan 2022 17:07:04 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/tags/data-driven/" rel="self" type="application/rss+xml" /><item>
+    <title>Snowflake Osquery Fleet Magic</title>
+    <link>https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/</link>
+    <pubDate>Thu, 13 Jan 2022 17:07:04 -0800</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/</guid>
+    <description><![CDATA[Snowflake, osquery and Fleet is Pure Magic! Many of you have probably heard of osquery, which is software you can install onto a computer that allows humans to query the OS to return fast and reliable system data. Osquery is not new, and many Organizations have been using it in various capacity for years now. Vendors and developers also ship osquery with their products these days as well. This allows a developer or vendor to collect local data fast and reliably for their software and solutions.]]></description>
+</item><item>
     <title>Post JNUC 2021</title>
     <link>https://t-lark.github.io/posts/post-jnuc-2021/</link>
     <pubDate>Thu, 18 Nov 2021 20:44:15 -0800</pubDate>

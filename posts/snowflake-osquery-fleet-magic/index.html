@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Snowflake Osquery Fleet Magic - t-lark.github.io</title><meta name="Description" content=""><meta property="og:title" content="Snowflake Osquery Fleet Magic" />
+<meta property="og:description" content="Snowflake, osquery and Fleet is Pure Magic! Many of you have probably heard of osquery, which is software you can install onto a computer that allows humans to query the OS to return fast and reliable system data. Osquery is not new, and many Organizations have been using it in various capacity for years now. Vendors and developers also ship osquery with their products these days as well. This allows a developer or vendor to collect local data fast and reliably for their software and solutions." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/" />
+<meta property="article:published_time" content="2022-01-13T17:07:04-08:00" />
+<meta property="article:modified_time" content="2022-01-13T17:07:04-08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Snowflake Osquery Fleet Magic"/>
+<meta name="twitter:description" content="Snowflake, osquery and Fleet is Pure Magic! Many of you have probably heard of osquery, which is software you can install onto a computer that allows humans to query the OS to return fast and reliable system data. Osquery is not new, and many Organizations have been using it in various capacity for years now. Vendors and developers also ship osquery with their products these days as well. This allows a developer or vendor to collect local data fast and reliably for their software and solutions."/>
+<meta name="application-name" content="t-lark.github.io">
+<meta name="apple-mobile-web-app-title" content="t-lark.github.io"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/" /><link rel="prev" href="https://t-lark.github.io/posts/post-jnuc-2021/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Snowflake Osquery Fleet Magic",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/t-lark.github.io\/posts\/snowflake-osquery-fleet-magic\/"
+        },"genre": "posts","keywords": "data, operations, data-driven, osquery, snowflake","wordcount":  2726 ,
+        "url": "https:\/\/t-lark.github.io\/posts\/snowflake-osquery-fleet-magic\/","datePublished": "2022-01-13T17:07:04-08:00","dateModified": "2022-01-13T17:07:04-08:00","publisher": {
+            "@type": "Organization",
+            "name": "tlark"},"author": {
+                "@type": "Person",
+                "name": "tlark"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Snowflake Osquery Fleet Magic</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/data/"><i class="far fa-folder fa-fw"></i>data</a>&nbsp;<a href="/categories/osquery/"><i class="far fa-folder fa-fw"></i>osquery</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw"></i>snowflake</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-13">2022-01-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2726 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;13 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#data-collection-at-a-glance">Data Collection at a Glance</a></li>
+        <li><a href="#what-is-fleet">What is Fleet?</a></li>
+        <li><a href="#getting-the-data-into-snowflake">Getting the Data Into Snowflake</a></li>
+        <li><a href="#working-with-the-data-in-snowflake">Working with the Data in Snowflake</a></li>
+        <li><a href="#conclusions-and-takeaways">Conclusions and Takeaways</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="snowflake-osquery-and-fleet-is-pure-magic">Snowflake, osquery and Fleet is Pure Magic!</h1>
+<p>Many of you have probably heard of <a href="https://osquery.io/" target="_blank" rel="noopener noreffer">osquery</a>, which is software you can install onto a computer that
+allows humans to query the OS to return fast and reliable system data. Osquery is not new, and many Organizations have been
+using it in various capacity for years now. Vendors and developers also ship osquery with their products these days as well.
+This allows a developer or vendor to collect local data fast and reliably for their software and solutions.</p>
+<p>My team and I have been evaluating osquery along with a product called <a href="https://fleetdm.com/" target="_blank" rel="noopener noreffer">Fleet</a> to see what we can
+accomplish with getting fast and reliable data pipelined to Snowflake. Like all projects, research and development,
+proof-of-concepts, and so forth one can start by simply stating a problem statement or a story. The data story I used to kick this
+proof of concept off was simply this:</p>
+<div class="details admonition quote open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-quote-right fa-fw"></i>Our Data Story<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">As and IT Engineer, I want fast, reliable and robust data from all the systems we manage. While also getting that data
+as fast as we possibly can at scale.</div>
+        </div>
+    </div>
+<p>Our problem statement will probably be things many of us in IT and Operations face every day, especially with endpoint management
+solutions. MDM is really only good for MDM things, and while those things do bring value to IT organizations, it often
+falls short of the full scope of what we need. Data collection is a big part of this, and MDM solutions have limitations
+around data collection and data storage. Honestly, this should be expected as MDM tools primary functions are not data collection,
+nor are they data warehouses.</p>
+<h3 id="data-collection-at-a-glance">Data Collection at a Glance</h3>
+<p>MDM typically collects data every 24 hours in most MDM applications out of the box. It is also either a manual process
+to add inventory data collection into your workflows when you want to collect data on state change, or requires writing a
+series of data collection scripts. For example, every time your MDM tools install an application, the MDM tool must send that data back to the MDM servers to store that data. This often
+results in data drift where the data on the actual system and the data in the server side application do not match. The
+data will match next time that device submits inventory to the MDM service. IT Engineers can sometimes crank up inventory collection, but
+it is at risk of hitting rate limits, or even DDoS&rsquo;ing your own MDM service.  MDM also does not collect things like
+Python Packages, <code>homebrew</code> binaries installed, web browser plugins, running process info, and more. Osquery can collect
+much more data and at a much higher frequency. Since osquery is a completely separate tool chain, it also has no dependencies
+on your MDM or your MDM infrastructure.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>MDM Solutions<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">I have not personally tested every MDM solution out there, so this is an anecdotal summarization of my experiences and an
+overall generalization. Some MDM tools may be able to collect data faster than every 24 hours. Some MDM solutions do allow
+for customized data collection, but that is not without labor to build and maintain.</div>
+        </div>
+    </div>
+<h3 id="what-is-fleet">What is Fleet?</h3>
+<p>Fleet is a centralized management and orchestration tool for osquery. It allows tech professionals to centralize queries,
+query packs, configurations, and handles secure communications from the endpoints to the service. Fleet also provides a
+set of tools to manage the infrastructure and the osquery installers for each platform. There are many osquery solutions out there
+that do similar things, and Fleet was attractive to us because they focused solely on getting the data and managing the queries
+and configurations. Which is what our initial goal was in this proof-of-concept exercise. Fleet has a channel on the Mac Admins
+Slack you can join if you are interested in learning more. Additional noteworthy features are (but not limited to) SAML integration
+for your IdP, support, RBAC for teams, and they are looking to add vulnerability data to their product as well. They also display the
+osquery table schema in the web application for quick reference, which is a nice qualify of life feature add.</p>
+<p>The two features I want to focus on for this blog post are the live queries and the scheduled queries. Live queries are
+probably what you would assume they are. It is a feature where you can run a query from the Fleet application and get
+near-real-time results back from an endpoint (or many endpoints) very quickly. Scheduled queries run at a set increment of time and those
+query results can be streamed from the application to cloud storage.</p>
+<p>Live Query Interface:</p>
+<a class="lightgallery" href="/img/fleet-live-query.png" title="/img/fleet-live-query.png" data-thumbnail="/img/fleet-live-query.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/fleet-live-query.png"
+            data-srcset="/img/fleet-live-query.png, /img/fleet-live-query.png 1.5x, /img/fleet-live-query.png 2x"
+            data-sizes="auto"
+            alt="/img/fleet-live-query.png" />
+    </a>
+<p>Scheduled Queries Interface:</p>
+<a class="lightgallery" href="/img/fleet-scheduled-query.png" title="/img/fleet-scheduled-query.png" data-thumbnail="/img/fleet-scheduled-query.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/fleet-scheduled-query.png"
+            data-srcset="/img/fleet-scheduled-query.png, /img/fleet-scheduled-query.png 1.5x, /img/fleet-scheduled-query.png 2x"
+            data-sizes="auto"
+            alt="/img/fleet-scheduled-query.png" />
+    </a>
+<h3 id="getting-the-data-into-snowflake">Getting the Data Into Snowflake</h3>
+<p>Running Fleet in AWS means you can leverage all the great cloud tech that exists in most modern cloud platforms. We chose to
+host this in AWS, and it is highly likely you could do something similar in another cloud provider. At a high level this is
+how we implemented it:</p>
+<ul>
+<li>The Fleet Application is self-hosted in a private cloud VPC</li>
+<li>Configured <a href="https://aws.amazon.com/kinesis/data-firehose/" target="_blank" rel="noopener noreffer">AWS Kinesis Firehose</a> to stream data to S3</li>
+<li>osquery binary data and query results data go into two separate folders with in the S3 bucket</li>
+<li>Configured <a href="https://docs.snowflake.com/en/user-guide/data-load-snowpipe-intro.html" target="_blank" rel="noopener noreffer">Snowpipe</a> to consume data on the event of data being written to S3</li>
+<li>Exposed a load balance appliance on the edge so clients could communicate to the service securely over the internet</li>
+</ul>
+<p>Quick diagram:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/data_flow_osquery_fleet2.png"
+        data-srcset="/img/data_flow_osquery_fleet2.png, /img/data_flow_osquery_fleet2.png 1.5x, /img/data_flow_osquery_fleet2.png 2x"
+        data-sizes="auto"
+        alt="/img/data_flow_osquery_fleet2.png"
+        title="data-flow" /></p>
+<p>In this proof-of-concept project we decided to get data into our dev environment as fast as we possibly could. So,
+queries were running every 15 minutes against a half dozen or so test devices. We also collected data on Linux, macOS and
+Windows 10 devices. Our observation is we got the data very fast from Fleet and into Snowflake. It seemed to take minutes,
+and it was fast enough it was tough for us to really time how long it actually took end to end. Every time Fleet would
+run a scheduled query, those query results would be pipelined into a S3 bucket by streaming the data with Kinesis Firehose.
+Since Snowpipe can leverage the SQS event API, upon that bucket getting data written to it, the native cloud integration would
+notify Snowpipe to consume the data automatically. This setup allows for continuous automated data flow from the Fleet
+application right into Snowflake.</p>
+<h3 id="working-with-the-data-in-snowflake">Working with the Data in Snowflake</h3>
+<p>Now that our end to end data pipelines were flowing, we needed to next ensure we could use and leverage the data. Fleet will
+store the query results as a JSON document, which is perfect for our setup. We are simply storing all the query results in a
+single raw data table. I wanted to start with Windows 10 data, as our Windows MDM solution doesn&rsquo;t export a lot of data natively.
+The data we do get from our Windows MDM solution is more of a <code>boolean</code> result of True or False, and not the actual data itself.
+To explain this simply, we have a set of compliance policies that check against certain states of security settings, and if any
+one of those states fail, it marks the devices just as <code>Not Compliant</code>, but it does not tell us which state is failing.
+Then there is no way to get third party application data out of it unless you want to build an API ingest connector. Lastly,
+like all MDM solutions inventory collection is often once a day. Our data story was to get this data as fast as we possibly
+could, and we wanted to get it every 15 minutes versus every 24 hours.</p>
+<p>A quick and easy query to test in Fleet with the live query feature to see if I got the results I wanted was simply
+this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">programs</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The above query will result in giving us everything osquery can collect about Windows 10 applications. If you osquery
+installed on a Windows 10 device you can run the interactive mode binary and just test out the query locally. In Fleet
+for this scheduled query we named it <code>windows-apps-ingest</code> which later downstream we can use as a primary key in Snowflake.</p>
+<p>With Snowflake, I can simply run this query to grab the data I need. Remember, we are shipping the raw JSON query results
+to a single schema/table in one column and then leveraging post data processing features in Snowflake to get the data we
+need out of the raw JSON query results. Here is a truncated sample of the data you will get from Fleet into Snowflake.</p>
+<p>data sample:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;action&#34;</span><span class="p">:</span> <span class="s2">&#34;snapshot&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;calendarTime&#34;</span><span class="p">:</span> <span class="s2">&#34;Sun Dec 12 06:13:52 2021 UTC&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;counter&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="nt">&#34;decorations&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;host_uuid&#34;</span><span class="p">:</span> <span class="s2">&#34;UUID-of-device&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;hostname&#34;</span><span class="p">:</span> <span class="s2">&#34;hostname-of-device&#34;</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;epoch&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="nt">&#34;hostIdentifier&#34;</span><span class="p">:</span> <span class="s2">&#34;device-id&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;pack/Global/windows-apps-ingest&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;numerics&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nt">&#34;snapshot&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Brave&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="s2">&#34;programs&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;Program (Windows)&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;96.1.32.115&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Fleet osquery&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="s2">&#34;programs&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;Program (Windows)&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.0.3&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Google Chrome&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="s2">&#34;programs&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;Program (Windows)&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;96.0.4664.93&#34;</span>
+    <span class="p">},</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Now lets really work with the data now that we know we can use the <code>name</code> key in the JSON data to filter out the exact data
+we want to work with. One could also model the data off this raw data table into other tables and views, but that will be
+a future blog post on data modeling. It is just a bit worth of noting now if you are new to working with data. We will use
+a feature in Snowflake called <a href="https://docs.snowflake.com/en/sql-reference/functions/flatten.html" target="_blank" rel="noopener noreffer">flatten</a> to essentially
+turn the JSON keys and values into something similar to columns and rows in a relational database.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> 
+  <span class="n">od</span><span class="p">.</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;decorations&#39;</span><span class="p">][</span><span class="s1">&#39;hostname&#39;</span><span class="p">]::</span><span class="n">string</span> <span class="k">as</span> <span class="n">hostname</span>
+<span class="p">,</span> <span class="n">od</span><span class="p">.</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;decorations&#39;</span><span class="p">][</span><span class="s1">&#39;host_uuid&#39;</span><span class="p">]::</span><span class="n">string</span> <span class="k">as</span> <span class="n">UUID</span>
+<span class="p">,</span> <span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]::</span><span class="n">string</span> <span class="k">as</span> <span class="n">app_name</span>
+<span class="p">,</span> <span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]::</span><span class="n">string</span> <span class="k">as</span> <span class="n">app_source</span>
+<span class="p">,</span> <span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">]::</span><span class="n">string</span> <span class="k">as</span> <span class="n">app_version</span>
+<span class="p">,</span> <span class="n">try_to_timestamp_tz</span><span class="p">(</span><span class="k">left</span><span class="p">(</span><span class="n">od</span><span class="p">.</span><span class="n">raw_data</span><span class="p">:</span><span class="n">calendarTime</span><span class="p">::</span><span class="n">string</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;DY MON DD HH:MI:SS YYYY TZH:TZM&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">CALENDAR_TIME</span>
+<span class="k">from</span> <span class="s2">&#34;DB&#34;</span><span class="p">.</span><span class="s2">&#34;SCHEMA&#34;</span><span class="p">.</span><span class="s2">&#34;IT_DEV_OSQUERY_TABLE_JSON&#34;</span> <span class="k">as</span> <span class="n">od</span>
+<span class="p">,</span> <span class="k">lateral</span> <span class="n">flatten</span><span class="p">(</span><span class="k">input</span><span class="o">=&gt;</span><span class="n">od</span><span class="p">.</span><span class="n">raw_data</span><span class="p">:</span><span class="s2">&#34;snapshot&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span>
+<span class="k">where</span> <span class="n">RAW_DATA</span><span class="p">:</span><span class="s2">&#34;name&#34;</span><span class="p">::</span><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;pack/Global/windows-apps-ingest&#39;</span>
+<span class="n">QUALIFY</span> <span class="mi">1</span> <span class="o">=</span> <span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">UUID</span><span class="p">,</span> <span class="n">app_name</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">CALENDAR_TIME</span> <span class="k">DESC</span><span class="p">)</span>
+<span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>If you look at the JSON data above the query you will see there is an array with in a dictionary like data structure
+under the key name of <code>&quot;snapshot&quot;</code>. This is where osquery will list all the installed applications and other metadata
+relating to the installed applications. Flatten will then allow us to query for a value of a key like one would a
+dictionary data set. The <a href="https://docs.snowflake.com/en/sql-reference/constructs/qualify.html" target="_blank" rel="noopener noreffer">qualify</a> feature allows us
+to return a single result partitioned by a unique key, and only return the absolute latest data. This is so simple, and yet
+so very powerful. We have thousands of rows of data already in our tiny proof-of-concept project, and since we don&rsquo;t have
+really any scale or capacity issues with the power of the cloud we can store all historical data as well. This easily enables
+IT and Operations professionals to keep all your data and with little effort grab the absolute latest data of a device.</p>
+<p>We can also filter by the query name from Fleet, which we have used in our
+proof-of-concept with pretty great success. This allows IT Engineers and Professionals to create specific queries for
+specific data sets, and figure out how to parse, explore, present, and model the data in post-processing instead of dealing
+with data transformation during the data pipeline flows. We split our data into queries that made sense, for example
+<code>firefox-addons-ingest</code> is one of our scheduled queries, and it does exactly what it advertises. It grabs all the installed
+Firefox addons for every platform. Then we can later process that data however we want to in Snowflake.</p>
+<p>Another query we liked was just some basic application info, combined with the last time the application was opened. There
+is a caveat, or perhaps something noteworthy to observe here, and that is that if an application has never been opened
+it defaults to a 1969 date stamp. However, we found this data to be valuable as we can track if users are actually using
+licensed software and perhaps this data could be leveraged to reclaim unused licenses. Thus, saving your org money on the cost
+of software licenses. Another caveat to also make note of, is that when applications update and install an entire new app
+bundle folder in macOS, the metadata is completely reset. For example, lets say Office 365 auto updates the suite of apps,
+and now Microsoft Word has a new version installed, this will also reset the last opened time. Updates to apps are often
+treated like new or fresh installations since they are a new app, new version, and have new metadata.</p>
+<p>Query and data example:
+<a class="lightgallery" href="/img/osquery-macos-apps.png" title="/img/osquery-macos-apps.png" data-thumbnail="/img/osquery-macos-apps.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/osquery-macos-apps.png"
+            data-srcset="/img/osquery-macos-apps.png, /img/osquery-macos-apps.png 1.5x, /img/osquery-macos-apps.png 2x"
+            data-sizes="auto"
+            alt="/img/osquery-macos-apps.png" />
+    </a></p>
+<h3 id="conclusions-and-takeaways">Conclusions and Takeaways</h3>
+<p>Without a doubt we have found this entire proof-of-concept extremely valuable. A product like Fleet that offers centralized
+managed and orchestration of osquery, integrated with the power and scale of Snowflake is truly something to marvel. We
+have been collecting fleet data in our test device group every 15 minutes and getting that data into Snowflake in very
+short periods of time. This is so much faster than MDM, that MDM is not really even comparable. The amount of data we get
+is also fantastic. Browser extensions have always been a pain point of data collection for example, and osquery makes this
+so easy to get.</p>
+<p>The benefits aren&rsquo;t just with data either, they are with your tools stacks as well. Fleet and osquery are standalone products
+that have zero dependencies on MDM, sans installing agents and binaries. This means that if an Organization ever decides
+change MDMs, a stack like Fleet + osquery could easily integrate into the new MDM solution. It also removes the dependency
+of tossing all your data collection in something like MDM. This stack is also cross-platform, which is either a great or
+not-so-great thing depending on context. In this specific context, it is a very good thing. I can now manage data collection
+across our macOS, Linux, and Windows 10 devices. My Org and team manages all three of those platforms, so having a tool stack
+like this is amazing.</p>
+<p>The data pipelines are automated, and we publish data to S3 then consume it into Snowflake at a very fast rate. This is
+another great benefit of this solution. Some IT and Security tools only ship data when an event occurs, meaning the software
+you are using has to detect a specific event, and then ship that event. This model is great for noise reduction in say an
+incident and response or monitoring scenario, but it also is not perfect. You can observe data drift or reactive scenarios
+vs proactive ones without a constant data stream. Now you can have both your fast data stream and your event based data
+together in one data platform!</p>
+<p>Lastly, we have scoped out many benefits and use cases for a solution like this. Even though our data story was originally
+just around getting the best possible data we could, while ingesting it as fast as we possibly could, the use cases have
+already expanded.  Here goes our thoughts on use of a stack like this:</p>
+<ul>
+<li>Robust IT and Operations Data</li>
+<li>Incident and Response investigation</li>
+<li>Threat hunting</li>
+<li>Licensed software usage</li>
+<li>Vulnerability data</li>
+<li>Systems configuration data on security and compliance</li>
+<li>Extended application data for our software patching story</li>
+<li>Data sharing this data to many other teams internally</li>
+<li>Enabling other teams to run live queries to get near-real-time data</li>
+</ul>
+<p>Remember, data sharing is data caring, and IT teams that collect robust data like this should share it to other teams.
+Enable everyone to collaborate more and build a better data culture with in your organization. A solution like this
+could be easily extended into many teams at an organization and Snowflake makes that part pretty easy.</p>
+<p>When I get more time, and as we progress with solutions like this I will likely share more of our data journeys in my blog.
+This is mind-blowing to me, as I have never had a setup at any job where I can get data from our end user device fleet
+this fast. I don&rsquo;t know how to describe this other than it is just pure magic.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-01-13</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/" data-title="Snowflake Osquery Fleet Magic" data-via="https://twitter.com/tlark8" data-hashtags="data,operations,data-driven,osquery,snowflake"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/data/">data</a>,&nbsp;<a href="/tags/operations/">operations</a>,&nbsp;<a href="/tags/data-driven/">data driven</a>,&nbsp;<a href="/tags/osquery/">osquery</a>,&nbsp;<a href="/tags/snowflake/">snowflake</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/post-jnuc-2021/" class="prev" rel="prev" title="Post JNUC 2021"><i class="fas fa-angle-left fa-fw"></i>Post JNUC 2021</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.75.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
