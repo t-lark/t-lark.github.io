@@ -28,7 +28,7 @@ The reasons I chose to use relocatable python were pretty good ones in my opinio
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/t-lark.github.io\/posts\/shipping-python\/"
-        },"genre": "posts","keywords": "macOS, python, python3","wordcount":  1290 ,
+        },"genre": "posts","keywords": "macOS, python, python3","wordcount":  1296 ,
         "url": "https:\/\/t-lark.github.io\/posts\/shipping-python\/","datePublished": "2020-09-20T17:52:37-07:00","dateModified": "2020-09-20T17:52:37-07:00","publisher": {
             "@type": "Organization",
             "name": "tlark"},"author": {
@@ -105,7 +105,7 @@ The reasons I chose to use relocatable python were pretty good ones in my opinio
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Shipping Your Own Python to macOS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/macos/"><i class="far fa-folder fa-fw"></i>macOS</a>&nbsp;<a href="/categories/apple/"><i class="far fa-folder fa-fw"></i>Apple</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>python</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-20">2020-09-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1290 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-20">2020-09-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1296 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -142,7 +142,7 @@ been using a tool for about over a year now called <a href="https://github.com/g
 <p>The reasons I chose to use <code>relocatable python</code> were pretty good ones in my opinion.  They are:</p>
 <ul>
 <li>Easy to use</li>
-<li>Builds full self contained Python environment</li>
+<li>Builds full self-contained Python environment</li>
 <li>Easily able to wrap it up in a standard installer PKG</li>
 </ul>
 <p>Once you have it in an installer package, you can use whatever tools you want to distribute it.  Every management tool and
@@ -346,13 +346,13 @@ download and/or contribute to.  You can find the repo <a href="https://github.co
 for you.  If these design choices are okay with you, then this would be the easiest and fastest way to just ship your own
 Python3 environment to your fleet.</p>
 <p><strong>Virtual Environments</strong></p>
-<p>This is also an option, but it seems most Orgs want to ship their own isolated Ptyhon and if they need to create a <code>venv</code>
+<p>This is also an option, but it seems most Orgs want to ship their own isolated Python and if they need to create a <code>venv</code>
 they can do so from the Python they have shipped.  Personally, I hae never used a <code>venv</code> outside of my on personal development.
 I chose to ship the environments, so I can control it.  If you want to control <code>venv</code> to a fleet I think shipping your own
 is the best to start and then build your <code>venv</code> off of that.</p>
 <h3 id="tracking-versions-upgrades-and-remediation">Tracking Versions, upgrades, and remediation</h3>
-<p>I think in the past ~2 years I have found 2-4 systems total that had bad Python environments I was shipping.  I am not exactly
-sure why they broke, it could have just been a failed install.  So, I started tracking the status and version I was shipping
+<p>I think in the past ~3 years I have found 2-4 systems total that had bad Python environments I was shipping.  I am not exactly
+sure why they broke, it could have just been a failed installation.  So, I started tracking the status and version I was shipping
 in a simple Jamf EA.  Here is a quick example I wrote in the shell:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -376,8 +376,8 @@ blank values in anything you use.  Always be explicit with your data, you will n
 will affect, down or up stream.</p>
 <p>So, you can track it by the version and create policies to auto remediate any broken Python3 environment you encounter</p>
 <h3 id="conclusion-and-acknowledgements">Conclusion and acknowledgements</h3>
-<p>You have many options to choose from.  This is not too difficult as I have been doing this for coming up on 2 years now.
-If I can do this, so can everyone else.</p>
+<p>You have many options to choose from. It really is a lot easier than one might think, and if you have any questions or
+trouble, please join us in <code>#python</code> and <code>#python-beginners</code> on MacAdmins Slack and various community members can assist</p>
 <p>Acknowledgements:</p>
 <ul>
 <li><a href="https://github.com/gregneagle" target="_blank" rel="noopener noreffer">Greg Neagle</a></li>
