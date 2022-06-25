@@ -7,9 +7,10 @@
     <title>First_post</title>
     <link>https://t-lark.github.io/posts/first_post/</link>
     <pubDate>Sat, 19 Sep 2020 18:46:32 -0700</pubDate>
-    <author>Author</author>
+    <author>tlark</author>
     <guid>https://t-lark.github.io/posts/first_post/</guid>
     <description><![CDATA[fake python function
-1 2  def function(): print(&#39;hell world&#39;)   ]]></description>
-</item></channel>
+1 2 def function(): print(&#39;hell world&#39;) ]]></description>
+</item>
+</channel>
 </rss>

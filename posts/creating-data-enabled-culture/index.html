@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Creating Data Enabled Culture - t-lark.github.io</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="Creating Data Enabled Culture" />
+<meta property="og:description" content="Creating a Data-enabled Culture I think the term data-driven is common, and a lot of people are aware of the term. It also has a broad area of application across many practices. I feel my Org is already data-driven. We use data in all our metrics, planning, discussions, collaboration and more. However, today during a cross team meeting I realized that we are also a data-enabled organization. When the term popped into my head I thought maybe I was on to something new, or perhaps maybe something a bit esoteric." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://t-lark.github.io/posts/creating-data-enabled-culture/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-24T16:18:28-07:00" />
+<meta property="article:modified_time" content="2022-06-24T16:18:28-07:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Creating Data Enabled Culture"/>
+<meta name="twitter:description" content="Creating a Data-enabled Culture I think the term data-driven is common, and a lot of people are aware of the term. It also has a broad area of application across many practices. I feel my Org is already data-driven. We use data in all our metrics, planning, discussions, collaboration and more. However, today during a cross team meeting I realized that we are also a data-enabled organization. When the term popped into my head I thought maybe I was on to something new, or perhaps maybe something a bit esoteric."/>
+<meta name="application-name" content="tlark&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="tlark&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/creating-data-enabled-culture/" /><link rel="prev" href="https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Creating Data Enabled Culture",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/t-lark.github.io\/posts\/creating-data-enabled-culture\/"
+        },"genre": "posts","keywords": "data cloud, culture, data sharing","wordcount":  1731 ,
+        "url": "https:\/\/t-lark.github.io\/posts\/creating-data-enabled-culture\/","datePublished": "2022-06-24T16:18:28-07:00","dateModified": "2022-06-24T16:18:28-07:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "tlark"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Creating Data Enabled Culture</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/data/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>data</a>&nbsp;<a href="/categories/data-driven/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>data driven</a>&nbsp;<a href="/categories/culture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>culture</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-06-24">2022-06-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1731 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#data-sharing-is-data-caring-">Data Sharing is Data Caring ♥️</a></li>
+        <li><a href="#applying-this-in-everyday-life">Applying this in Everyday Life</a></li>
+        <li><a href="#enabling-others">Enabling Others</a></li>
+        <li><a href="#build-it">Build It!</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="creating-a-data-enabled-culture">Creating a Data-enabled Culture</h1>
+<p>I think the term <a href="https://en.wikipedia.org/wiki/Data-driven" target="_blank" rel="noopener noreffer ">data-driven</a> is common, and a lot of people are aware of
+the term. It also has a broad area of application across many practices. I feel my Org is already data-driven. We use
+data in all our metrics, planning, discussions, collaboration and more. However, today during a cross team meeting I
+realized that we are also a data-enabled organization. When the term popped into my head I thought maybe I was on to
+something new, or perhaps maybe something a bit esoteric. Turns out, I was wrong, and this term is commonly used in areas already.
+A quick Google search will show lots of results for <code>data enabled</code>, and <a href="https://timelyapp.com/blog/from-data-driven-to-data-enabled" target="_blank" rel="noopener noreffer ">here</a>
+is a blog post I found from the first page of results.</p>
+<p>I have a previous series of blog posts on the topic of being data driven, which starts here with <a href="https://t-lark.github.io/posts/ops-data-snowflake/" target="_blank" rel="noopener noreffer ">Part I</a>.
+This small series of blog posts goes over just some ways we have become a data-driven organization, but during my
+data journey I have been slowly realizing that we are also very much a <code>data-enabled</code> organization. I think this is very
+important to observe and reflect upon. Giving your IT staff access to data enables them to just do the work, to just get
+the answers and to collaborate and share those answers with other people and teams.</p>
+<h3 id="data-sharing-is-data-caring-">Data Sharing is Data Caring ♥️</h3>
+<p>It all starts with data sharing. With products like Snowflake you can easily share data amongst teams and people. Having
+access to raw data from many sources allows us to always be data-enabled. You learn to stop making assumptions, anecdotal
+hypothesis, educated guesses, hunches, or good old-fashioned &ldquo;gut-feelings&rdquo; when it comes to your IT and Operations data.
+If you are an organization that already ships all your data to a platform like Snowflake and you have given your employees
+the proper access, and opportunity to leverage the data, you are now walking the path of being data-enabled.</p>
+<p>Some of the data we leverage:
+<a class="lightgallery" href="/img/blog-data-enabled.png" title="/img/blog-data-enabled.png" data-thumbnail="/img/blog-data-enabled.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/blog-data-enabled.png"
+            data-srcset="/img/blog-data-enabled.png, /img/blog-data-enabled.png 1.5x, /img/blog-data-enabled.png 2x"
+            data-sizes="auto"
+            alt="/img/blog-data-enabled.png" />
+    </a></p>
+<ul>
+<li><code>MDM Data</code> - Intune and Jamf Pro</li>
+<li><code>Inventory &amp; Asset Data</code> - Asset tracking from ServiceNow</li>
+<li><code>Security Agent Data</code> - Vuln scans, EDR/DLP agents, backup logs, etc</li>
+<li><code>Systems Data</code> - osquery data, metadata from MDM, results from data collectors, etc</li>
+<li><code>Authentication Log Data</code> - If you are authenticating to the IdP we can assume you are working (and not on PTO)</li>
+<li><code>Employee Directory Data</code> - Name, department, email address, manager, FTE/Contractor, etc</li>
+<li><code>SaaS/PaaS Data</code> - Data from our SaaS apps and Cloud Services</li>
+</ul>
+<p>When you have all the raw data already available to you, and data pipelines delivering continuous up-to-date data, you can
+enable your IT Organization to be data-enabled. This is very much a game changer, and even a shift in culture, capabilities,
+collaboration, and much more. All the data is already there, you just need to work with it. Data sharing among teams and
+organizations is what helps enable this. This is the future of how Organizations gain IT insight.</p>
+<h3 id="applying-this-in-everyday-life">Applying this in Everyday Life</h3>
+<p>There have been many times in my data journey so far where I have had to unlearn past things, and I have had to admit that
+things I thought that were solid answers throughout my career were oftentimes not quite right. Reflecting upon this, there
+were times when I was mostly-right, and there were times that I was likely way off. Humans can develop a plethora of
+different <a href="https://en.wikipedia.org/wiki/List_of_cognitive_biases" target="_blank" rel="noopener noreffer ">biases</a> which can stray us for the actual truth. This is
+why I have started to train myself to not make assumptions, but instead to put my assumptions in the form of a data query, and
+ask the data a question. We always trust, but verify the results and ensure the data in our data sources is in fact valid.</p>
+<p>I was recently in a conversation about a specific piece of data around an application vulnerability. The data was showing
+around 400 vulnerable instances of this application, and looking through the data I noticed that the vuln scan agent was
+picking up applications that were in end user&rsquo;s downloads folder. This is an old problem we discovered through data a few
+years ago, and I already have a solution to check against our fleet on this. My colleague and I had a discussion about this,
+and I proposed that there were probably at least equal amount of instances of this vulnerable application in random download
+folders across our fleet. My colleague guessed that was way too high and the number was likely a lot smaller. So off to our
+data we went, and I ran my user space application query. The results returned 463 instances of that Application in user space.
+To me, this is an example of how being data-enabled comes into play in our day-to-day work lives. We knew this was a
+possibility from previous project work, I had already built a tiny tool to collect user space applications, and we were
+already ingesting that data into Snowflake. I even already had a dashboard built for this. Having all this data available
+to us at the tips of our fingers is what really helps us be data-enabled.</p>
+<div class="details admonition quote open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-quote-right fa-fw" aria-hidden="true"></i>Data Journey Story<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">I used to assume things like this. In fact, a couple of years ago I would have likely guessed that
+463 instances of a specific application located in random downloads folders across our fleet was too high of a number.
+I have slowly learned to trust the data and make less assumptions. I am still oftentimes reminded of a crucial lesson I
+have learned in my data journey, and that we are often just wrong when we guess.</div>
+        </div>
+    </div>
+<p>In my meeting today with my sister teams, we were discussing how to tackle some stragglers in our post <a href="https://github.com/macadmins/nudge" target="_blank" rel="noopener noreffer ">Nudge</a> campaign
+to update macOS across our entire fleet. The campaign was already a large success numbers wise. We had some of the fastest
+adoption times we have seen by ditching our old macOS update flows in favor of this. We also have all the data for it too!
+One of the talking points that was brought up, was how to improve the existing data to help enable our support teams to
+better assess and distribute the work to go troubleshoot our devices that are in a weird state or experiencing the known
+software bugs we are trying to patch to fix. My colleague asked if we had other data values we could add to the existing
+dashboard to help make their job easier. Since we already have all this data available we are already enabled to make
+changes to the queries to give our colleagues more actionable and better data. Sure I now have to rewrite some queries and
+that is additional work for me or my team to do, but the fact is we already have all the data. We already have all the data
+pipelines with continuous data ingestion, and we are fully enabled to leverage the data to make it work for us. During our
+cross team meeting it felt as if we were all on the same team together looking at the data. We collaborated and formulated a plan to
+make improvements to our existing dashboards and queries. My team is helping provide a service to another team. This was
+possible due to us all being data-enabled.</p>
+<h3 id="enabling-others">Enabling Others</h3>
+<p>Another thing that really reigned in with me this week, is that the dashboards we create are all cross team functional
+for the most part. Sure, there are definitely a few dashboards that are specific to my team, and I can imagine other teams
+might have their specific dashboards as well. However, I find that our queries and data are very much applicable to other people
+and team&rsquo;s interests. When we rolled out our mTLS password-less authentication app here, I made a dashboard for the project.
+I had stakeholders from various teams asking me for data often, so I just enabled other people to get the data whenever they wanted.
+All that had to do was to load the dashboard and hit the play button, and then a few moments later they got the latest
+up-to-date data. We enabled everyone to get the data on demand when they wanted to.</p>
+<a class="lightgallery" href="/img/blog-mtls-versions.png" title="/img/blog-mtls-versions.png" data-thumbnail="/img/blog-mtls-versions.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/blog-mtls-versions.png"
+            data-srcset="/img/blog-mtls-versions.png, /img/blog-mtls-versions.png 1.5x, /img/blog-mtls-versions.png 2x"
+            data-sizes="auto"
+            alt="/img/blog-mtls-versions.png" />
+    </a>
+<p>In the above screenshot is just a time series data of the version of the app we deployed over time. There are many other
+bits of data in this dashboard, so this is just one piece of information from it. In the beginning this
+very useful to see what versions our fleet was at, how well the self updating mechanism was working from the vendor, and
+we could correlate bug fixes and enhancements from the release notes to our support tickets. Things like if a bug fix was
+released in a specific version, we could see what version the fleet was and then tie those to support tickets for the problem
+that the new release fixed. This allowed us to better forecast our support costs to the app, and track when a problem was fixed
+by a new release. Project managers, architects, leadership, support folks, and so forth could just go to the dashboard and
+run the update button. I just enabled them to get the data whenever they wanted it.</p>
+<h3 id="build-it">Build It!</h3>
+<p>One time at a new employee on-boarding training I heard someone say, &ldquo;The second most valuable thing in this room is
+the new laptop you are receiving, with the most valuable thing being you.&rdquo; People do make up the organization, and hiring
+the right people is a good start to building a data-driven culture, and also a data-enabled culture. Managers should
+encourage professional development around the skills that are needed to accomplish this, and the organization should invest
+in its people to train them. Socialize data sharing and let data be free and open among teams. Gate-keeping data doesn&rsquo;t
+help anyone outside the data owners, and it doesn&rsquo;t enable the rest of the organization to leverage that data. Don&rsquo;t
+silo your data, don&rsquo;t keep other teams in the dark, and instead enable them to be successful with all the data you can.</p>
+<p>To me this is the future of how IT and Operations shops leverage their data to make the absolute most of it, enable their
+colleagues to be informed, and to gain the most insight you can about your technology stacks.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-06-24</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/creating-data-enabled-culture/" data-title="Creating Data Enabled Culture" data-via="tlark8" data-hashtags="data cloud,culture,data sharing"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/creating-data-enabled-culture/" data-hashtag="data cloud"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/creating-data-enabled-culture/" data-title="Creating Data Enabled Culture"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/creating-data-enabled-culture/" data-title="Creating Data Enabled Culture"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/creating-data-enabled-culture/" data-title="Creating Data Enabled Culture"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/data-cloud/">data cloud</a>,&nbsp;<a href="/tags/culture/">culture</a>,&nbsp;<a href="/tags/data-sharing/">data sharing</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/snowflake-osquery-fleet-magic/" class="prev" rel="prev" title="Snowflake Osquery Fleet Magic"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Snowflake Osquery Fleet Magic</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

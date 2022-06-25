@@ -7,16 +7,18 @@
     <title>Snowflake Osquery Fleet Magic</title>
     <link>https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/</link>
     <pubDate>Thu, 13 Jan 2022 17:07:04 -0800</pubDate>
-    <author>Author</author>
+    <author>tlark</author>
     <guid>https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/</guid>
     <description><![CDATA[Snowflake, osquery and Fleet is Pure Magic! Many of you have probably heard of osquery, which is software you can install onto a computer that allows humans to query the OS to return fast and reliable system data. Osquery is not new, and many Organizations have been using it in various capacity for years now. Vendors and developers also ship osquery with their products these days as well. This allows a developer or vendor to collect local data fast and reliably for their software and solutions.]]></description>
-</item><item>
+</item>
+<item>
     <title>Shipping Jamf Webhooks with Fivetran</title>
     <link>https://t-lark.github.io/posts/shipping-jamf-webhooks/</link>
     <pubDate>Sat, 19 Sep 2020 21:27:27 -0700</pubDate>
-    <author>Author</author>
+    <author>tlark</author>
     <guid>https://t-lark.github.io/posts/shipping-jamf-webhooks/</guid>
     <description><![CDATA[Shipping Jamf Pro Webhooks to Snowflake Jamf Pro has a builtin feature where you have the ability to ship a webhook event when specific events happen in their application. This allows for a near real time feed of event based data which you can consume and leverage to gain insights about your fleet. Jamf provides some documentation online, found here.
 Webhooks are generated automatically, and near instantly when an event occurs.]]></description>
-</item></channel>
+</item>
+</channel>
 </rss>

@@ -3,19 +3,29 @@
         <title>data - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/data/</link>
         <description>data - Category - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 13 Jan 2022 17:07:04 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/categories/data/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 24 Jun 2022 16:18:28 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/data/" rel="self" type="application/rss+xml" /><item>
+    <title>Creating Data Enabled Culture</title>
+    <link>https://t-lark.github.io/posts/creating-data-enabled-culture/</link>
+    <pubDate>Fri, 24 Jun 2022 16:18:28 -0700</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/creating-data-enabled-culture/</guid>
+    <description><![CDATA[Creating a Data-enabled Culture I think the term data-driven is common, and a lot of people are aware of the term. It also has a broad area of application across many practices. I feel my Org is already data-driven. We use data in all our metrics, planning, discussions, collaboration and more. However, today during a cross team meeting I realized that we are also a data-enabled organization. When the term popped into my head I thought maybe I was on to something new, or perhaps maybe something a bit esoteric.]]></description>
+</item>
+<item>
     <title>Snowflake Osquery Fleet Magic</title>
     <link>https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/</link>
     <pubDate>Thu, 13 Jan 2022 17:07:04 -0800</pubDate>
-    <author>Author</author>
+    <author>tlark</author>
     <guid>https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/</guid>
     <description><![CDATA[Snowflake, osquery and Fleet is Pure Magic! Many of you have probably heard of osquery, which is software you can install onto a computer that allows humans to query the OS to return fast and reliable system data. Osquery is not new, and many Organizations have been using it in various capacity for years now. Vendors and developers also ship osquery with their products these days as well. This allows a developer or vendor to collect local data fast and reliably for their software and solutions.]]></description>
-</item><item>
+</item>
+<item>
     <title>Post JNUC 2021</title>
     <link>https://t-lark.github.io/posts/post-jnuc-2021/</link>
     <pubDate>Thu, 18 Nov 2021 20:44:15 -0800</pubDate>
-    <author>Author</author>
+    <author>tlark</author>
     <guid>https://t-lark.github.io/posts/post-jnuc-2021/</guid>
     <description><![CDATA[JNUC 2021 Recap Hello everyone, this will be a quick recap of my experience from the JNUC 2021 virtual conference, and a companion update to the talk I gave. First, I need to really thank Jamf for putting on a well produced virtual conference. I will admit that I was a bit skeptical of things like audio and video quality, participant interaction, and the look and feel of pre-recorded talks. Everything exceeded my expectations.]]></description>
-</item></channel>
+</item>
+</channel>
 </rss>

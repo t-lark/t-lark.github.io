@@ -2,26 +2,31 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://t-lark.github.io/categories/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/</loc><lastmod>2022-06-24T16:18:28-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/posts/creating-data-enabled-culture/</loc><lastmod>2022-06-24T16:18:28-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/culture/</loc><lastmod>2022-06-24T16:18:28-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/culture/</loc><lastmod>2022-06-24T16:18:28-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/data/</loc><lastmod>2022-06-24T16:18:28-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/data-cloud/</loc><lastmod>2022-06-24T16:18:28-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/data-driven/</loc><lastmod>2022-06-24T16:18:28-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/data-sharing/</loc><lastmod>2022-06-24T16:18:28-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/posts/</loc><lastmod>2022-06-24T16:18:28-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/</loc><lastmod>2022-06-24T16:18:28-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/</loc><lastmod>2022-06-24T16:18:28-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/data/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/data/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/data-driven/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/operations/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/osquery/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/osquery/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/posts/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/snowflake/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/snowflake/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/cloud/</loc><lastmod>2021-11-18T20:44:15-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/conference/</loc><lastmod>2021-11-18T20:44:15-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/it-ops-data/</loc><lastmod>2021-11-18T20:44:15-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/post-jnuc-2021/</loc><lastmod>2021-11-18T20:44:15-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/tech/</loc><lastmod>2021-11-18T20:44:15-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/asset-management/</loc><lastmod>2021-08-10T20:02:00-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/data-sharing/</loc><lastmod>2021-08-10T20:02:00-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/ops-data-snowflake-pt3/</loc><lastmod>2021-08-10T20:02:00-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/it-data/</loc><lastmod>2021-08-10T20:02:00-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/it-tools/</loc><lastmod>2021-08-10T20:02:00-07:00</lastmod></url><url>
@@ -45,5 +50,5 @@
             <loc>https://t-lark.github.io/posts/shipping-jamf-webhooks/</loc><lastmod>2020-09-19T21:27:27-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/webhooks/</loc><lastmod>2020-09-19T21:27:27-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/webhooks/</loc><lastmod>2020-09-19T21:27:27-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/posts/data-sharing/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/data-sharing/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url></urlset>
+            <loc>https://t-lark.github.io/categories/data-sharing/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/posts/data-sharing/</loc><lastmod>2020-09-19T19:45:03-07:00</lastmod></url></urlset>

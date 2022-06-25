@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>culture - Tag - t-lark.github.io</title>
+        <link>https://t-lark.github.io/tags/culture/</link>
+        <description>culture - Tag - t-lark.github.io</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 24 Jun 2022 16:18:28 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/culture/" rel="self" type="application/rss+xml" /><item>
+    <title>Creating Data Enabled Culture</title>
+    <link>https://t-lark.github.io/posts/creating-data-enabled-culture/</link>
+    <pubDate>Fri, 24 Jun 2022 16:18:28 -0700</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/creating-data-enabled-culture/</guid>
+    <description><![CDATA[Creating a Data-enabled Culture I think the term data-driven is common, and a lot of people are aware of the term. It also has a broad area of application across many practices. I feel my Org is already data-driven. We use data in all our metrics, planning, discussions, collaboration and more. However, today during a cross team meeting I realized that we are also a data-enabled organization. When the term popped into my head I thought maybe I was on to something new, or perhaps maybe something a bit esoteric.]]></description>
+</item>
+</channel>
+</rss>

@@ -3,75 +3,85 @@
         <title>Categories - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/</link>
         <description>Categories - Category - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 13 Jan 2022 17:07:04 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 24 Jun 2022 16:18:28 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>culture</title>
+    <link>https://t-lark.github.io/categories/culture/</link>
+    <pubDate>Fri, 24 Jun 2022 16:18:28 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/categories/culture/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>data</title>
     <link>https://t-lark.github.io/categories/data/</link>
-    <pubDate>Thu, 13 Jan 2022 17:07:04 -0800</pubDate>
+    <pubDate>Fri, 24 Jun 2022 16:18:28 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/categories/data/</guid>
     <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
+    <title>data driven</title>
+    <link>https://t-lark.github.io/categories/data-driven/</link>
+    <pubDate>Fri, 24 Jun 2022 16:18:28 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/categories/data-driven/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>osquery</title>
     <link>https://t-lark.github.io/categories/osquery/</link>
     <pubDate>Thu, 13 Jan 2022 17:07:04 -0800</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/categories/osquery/</guid>
     <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
     <title>snowflake</title>
     <link>https://t-lark.github.io/categories/snowflake/</link>
     <pubDate>Thu, 13 Jan 2022 17:07:04 -0800</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/categories/snowflake/</guid>
     <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
     <title>conference</title>
     <link>https://t-lark.github.io/categories/conference/</link>
     <pubDate>Thu, 18 Nov 2021 20:44:15 -0800</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/categories/conference/</guid>
     <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
     <title>tech</title>
     <link>https://t-lark.github.io/categories/tech/</link>
     <pubDate>Thu, 18 Nov 2021 20:44:15 -0800</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/categories/tech/</guid>
     <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
     <title>asset management</title>
     <link>https://t-lark.github.io/categories/asset-management/</link>
     <pubDate>Tue, 10 Aug 2021 20:02:00 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/categories/asset-management/</guid>
     <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
     <title>IT data</title>
     <link>https://t-lark.github.io/categories/it-data/</link>
     <pubDate>Tue, 10 Aug 2021 20:02:00 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/categories/it-data/</guid>
     <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
     <title>Ops Data</title>
     <link>https://t-lark.github.io/categories/ops-data/</link>
     <pubDate>Tue, 10 Aug 2021 20:02:00 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/categories/ops-data/</guid>
     <description><![CDATA[]]></description>
-</item><item>
-    <title>macOS</title>
-    <link>https://t-lark.github.io/categories/macos/</link>
-    <pubDate>Wed, 23 Sep 2020 18:22:00 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/categories/macos/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>scripting</title>
-    <link>https://t-lark.github.io/categories/scripting/</link>
-    <pubDate>Wed, 23 Sep 2020 18:22:00 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/categories/scripting/</guid>
-    <description><![CDATA[]]></description>
-</item></channel>
+</item>
+</channel>
 </rss>
