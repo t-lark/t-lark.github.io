@@ -3,7 +3,39 @@
         <title>Tags - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/</link>
         <description>Tags - Tag - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 24 Jun 2022 16:18:28 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 01 Jul 2022 18:11:46 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>IT Tools</title>
+    <link>https://t-lark.github.io/tags/it-tools/</link>
+    <pubDate>Fri, 01 Jul 2022 18:11:46 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/it-tools/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>nudge</title>
+    <link>https://t-lark.github.io/tags/nudge/</link>
+    <pubDate>Fri, 01 Jul 2022 18:11:46 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/nudge/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>open source</title>
+    <link>https://t-lark.github.io/tags/open-source/</link>
+    <pubDate>Fri, 01 Jul 2022 18:11:46 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/open-source/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>software updates</title>
+    <link>https://t-lark.github.io/tags/software-updates/</link>
+    <pubDate>Fri, 01 Jul 2022 18:11:46 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/software-updates/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>culture</title>
     <link>https://t-lark.github.io/tags/culture/</link>
     <pubDate>Fri, 24 Jun 2022 16:18:28 -0700</pubDate>
@@ -49,38 +81,6 @@
     <pubDate>Thu, 13 Jan 2022 17:07:04 -0800</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/tags/operations/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>osquery</title>
-    <link>https://t-lark.github.io/tags/osquery/</link>
-    <pubDate>Thu, 13 Jan 2022 17:07:04 -0800</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/osquery/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>snowflake</title>
-    <link>https://t-lark.github.io/tags/snowflake/</link>
-    <pubDate>Thu, 13 Jan 2022 17:07:04 -0800</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/snowflake/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>cloud</title>
-    <link>https://t-lark.github.io/tags/cloud/</link>
-    <pubDate>Thu, 18 Nov 2021 20:44:15 -0800</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/cloud/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>it-ops-data</title>
-    <link>https://t-lark.github.io/tags/it-ops-data/</link>
-    <pubDate>Thu, 18 Nov 2021 20:44:15 -0800</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/it-ops-data/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

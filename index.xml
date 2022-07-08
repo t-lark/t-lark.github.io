@@ -3,9 +3,17 @@
         <title>t-lark.github.io</title>
         <link>https://t-lark.github.io/</link>
         <description>This is my cool site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 24 Jun 2022 16:18:28 -0700</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 01 Jul 2022 18:11:46 -0700</lastBuildDate>
             <atom:link href="https://t-lark.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Data-Enabled: Post Nudge Campaign Results</title>
+    <link>https://t-lark.github.io/posts/data-enabled-nudge-results/</link>
+    <pubDate>Fri, 01 Jul 2022 18:11:46 -0700</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/data-enabled-nudge-results/</guid>
+    <description><![CDATA[Data-Enabled: Post Nudge Campaign Results A lot of Organizations have adopted things like CIS Controls and part of those controls are around patching and vulnerability management. Depending on what version of the CIS controls you are using, this could be CIS 3 or CIS 7. This can already be confusing as the controls are very similar between versions but the have moved places in the CIS framework. One thing I think most tech and security professionals can agree upon, is that patching often to the latest operating systems is a great way to avoid your fleet of devices from being exploited.]]></description>
+</item>
+<item>
     <title>Creating Data Enabled Culture</title>
     <link>https://t-lark.github.io/posts/creating-data-enabled-culture/</link>
     <pubDate>Fri, 24 Jun 2022 16:18:28 -0700</pubDate>
@@ -78,14 +86,6 @@ The reasons I chose to use relocatable python were pretty good ones in my opinio
     <guid>https://t-lark.github.io/posts/shipping-jamf-webhooks/</guid>
     <description><![CDATA[Shipping Jamf Pro Webhooks to Snowflake Jamf Pro has a builtin feature where you have the ability to ship a webhook event when specific events happen in their application. This allows for a near real time feed of event based data which you can consume and leverage to gain insights about your fleet. Jamf provides some documentation online, found here.
 Webhooks are generated automatically, and near instantly when an event occurs.]]></description>
-</item>
-<item>
-    <title>Data Sharing</title>
-    <link>https://t-lark.github.io/posts/data-sharing/</link>
-    <pubDate>Sat, 19 Sep 2020 19:45:03 -0700</pubDate>
-    <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/data-sharing/</guid>
-    <description><![CDATA[Data Sharing is Data Caring ❤️ I have come to the conclusion that there are essentially two types of people when it comes to data. The people that have data, and the people that wish they had the data. Another thought is that I would rather have the data and not need it versus need the data and not have it. For almost the past two years I have had the privilege to work for a great data platform company.]]></description>
 </item>
 </channel>
 </rss>
