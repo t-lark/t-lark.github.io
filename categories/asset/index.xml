@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>asset - Category - t-lark.github.io</title>
+        <link>https://t-lark.github.io/categories/asset/</link>
+        <description>asset - Category - t-lark.github.io</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 08 Aug 2022 21:48:09 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/asset/" rel="self" type="application/rss+xml" /><item>
+    <title>Complete Asset Oversight with the Data Cloud</title>
+    <link>https://t-lark.github.io/posts/complete-asset-oversight-datacloud/</link>
+    <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/complete-asset-oversight-datacloud/</guid>
+    <description><![CDATA[Gain All the Insights You Never Had Asset and Inventory controls are difficult, and many Orgs spend tons of time and effort to try to solve problems around this very subject. In fact, they will hire humans, and spend lots of time and money to also get a hold of their inventory of assets. This problem is still very much difficult to solve, but the Data Cloud makes this problem at least solvable.]]></description>
+</item>
+</channel>
+</rss>

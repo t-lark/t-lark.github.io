@@ -3,7 +3,47 @@
         <title>Tags - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/</link>
         <description>Tags - Tag - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 01 Jul 2022 18:11:46 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 08 Aug 2022 21:48:09 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>analytics</title>
+    <link>https://t-lark.github.io/tags/analytics/</link>
+    <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/analytics/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>asset management</title>
+    <link>https://t-lark.github.io/tags/asset-management/</link>
+    <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/asset-management/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>big data</title>
+    <link>https://t-lark.github.io/tags/big-data/</link>
+    <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/big-data/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>data cloud</title>
+    <link>https://t-lark.github.io/tags/data-cloud/</link>
+    <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/data-cloud/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>metrics</title>
+    <link>https://t-lark.github.io/tags/metrics/</link>
+    <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/metrics/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>IT Tools</title>
     <link>https://t-lark.github.io/tags/it-tools/</link>
     <pubDate>Fri, 01 Jul 2022 18:11:46 -0700</pubDate>
@@ -41,46 +81,6 @@
     <pubDate>Fri, 24 Jun 2022 16:18:28 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/tags/culture/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>data cloud</title>
-    <link>https://t-lark.github.io/tags/data-cloud/</link>
-    <pubDate>Fri, 24 Jun 2022 16:18:28 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/data-cloud/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>data sharing</title>
-    <link>https://t-lark.github.io/tags/data-sharing/</link>
-    <pubDate>Fri, 24 Jun 2022 16:18:28 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/data-sharing/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>data</title>
-    <link>https://t-lark.github.io/tags/data/</link>
-    <pubDate>Thu, 13 Jan 2022 17:07:04 -0800</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/data/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>data driven</title>
-    <link>https://t-lark.github.io/tags/data-driven/</link>
-    <pubDate>Thu, 13 Jan 2022 17:07:04 -0800</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/data-driven/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>operations</title>
-    <link>https://t-lark.github.io/tags/operations/</link>
-    <pubDate>Thu, 13 Jan 2022 17:07:04 -0800</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/operations/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
