@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Diversifying Your IT Tools: Integrating Munki - t-lark.github.io</title><meta name="Description" content="I have no idea what I am doing"><meta property="og:title" content="Diversifying Your IT Tools: Integrating Munki" />
+<meta property="og:description" content="Hello Everyone, and it has been a while since my last blog post. I have been busy with work and with some other things outside of work as well. However, we did finally release Munki to our fleet last summer. This was a milestone project for us, and while we aren&rsquo;t the first Org to do this, I wanted to share with the community how and why we did this. Everything I will write here has probably already been done by many other Orgs that currently use Munki, and we aren&rsquo;t really doing much that is radically different." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://t-lark.github.io/posts/diversifying-your-tools-munki/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-22T21:52:42-07:00" />
+<meta property="article:modified_time" content="2023-01-22T21:52:42-07:00" /><meta property="og:site_name" content="My personal blog" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Diversifying Your IT Tools: Integrating Munki"/>
+<meta name="twitter:description" content="Hello Everyone, and it has been a while since my last blog post. I have been busy with work and with some other things outside of work as well. However, we did finally release Munki to our fleet last summer. This was a milestone project for us, and while we aren&rsquo;t the first Org to do this, I wanted to share with the community how and why we did this. Everything I will write here has probably already been done by many other Orgs that currently use Munki, and we aren&rsquo;t really doing much that is radically different."/>
+<meta name="application-name" content="tlark&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="tlark&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/diversifying-your-tools-munki/" /><link rel="prev" href="https://t-lark.github.io/posts/complete-asset-oversight-datacloud/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Diversifying Your IT Tools: Integrating Munki",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/t-lark.github.io\/posts\/diversifying-your-tools-munki\/"
+        },"genre": "posts","keywords": "munki, open source, IT Tools","wordcount":  2127 ,
+        "url": "https:\/\/t-lark.github.io\/posts\/diversifying-your-tools-munki\/","datePublished": "2023-01-22T21:52:42-07:00","dateModified": "2023-01-22T21:52:42-07:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "tlark"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Diversifying Your IT Tools: Integrating Munki</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/automation/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>automation</a>&nbsp;<a href="/categories/patching/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>patching</a>&nbsp;<a href="/categories/software-deployment/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>software deployment</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-22">2023-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2127 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#how-it-all-started">How it all started</a></li>
+        <li><a href="#building-the-requirements">Building the Requirements</a></li>
+        <li><a href="#socializing-the-requirements">Socializing the Requirements</a></li>
+        <li><a href="#the-tools">The Tools</a></li>
+        <li><a href="#it-development-cycle">IT Development Cycle</a></li>
+        <li><a href="#why-not-just-use-mdm">Why Not Just Use MDM?</a></li>
+        <li><a href="#avoiding-vendor-lock-in">Avoiding Vendor Lock-in</a></li>
+        <li><a href="#tools-to-explore">Tools to Explore</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Hello Everyone, and it has been a while since my last blog post. I have been busy with work and with some other things
+outside of work as well. However, we did finally release Munki to our fleet last summer. This was a milestone project for us, and
+while we aren&rsquo;t the first Org to do this, I wanted to share with the community how and why we did this. Everything I will
+write here has probably already been done by many other Orgs that currently use Munki, and we aren&rsquo;t really doing much
+that is radically different. So, if you hae deployed a server-less Munki setup before, this is probably not going to be
+new to you. That being said, <code>server-less</code> is a pretty key word for our vision here.</p>
+<h3 id="how-it-all-started">How it all started</h3>
+<p>Over the years I have been privileged enough to peek behind many curtains around the globe when I worked as a professional
+services engineer in vendor space. This has given me a lot of perspective on how many different IT shops, all try to solve
+very similar problems. One of those common problems is patching third party applications. We all know vulnerabilities
+just keep coming and never stop, therefore an endless amount of patches and updates for apps also come out as well.
+When I swapped over to my current job in 2019 I built <a href="https://github.com/t-lark/Auto-Update" target="_blank" rel="noopener noreffer ">this</a> as our solution. It leveraged
+<a href="https://github.com/autopkg/autopkg" target="_blank" rel="noopener noreffer ">autoPKG</a> and another tool <a href="https://github.com/jssimporter/JSSImporter" target="_blank" rel="noopener noreffer ">JSS Importer</a>
+which is now sunset. Jamf is also <a href="https://developer.jamf.com/jamf-pro/docs/classic-api-authentication-changes" target="_blank" rel="noopener noreffer ">changing</a>
+their classic APIs which will break JSS Importer. With these changes on the horizon we had to make a decision, to either
+migrate everything to a new integration like <a href="https://github.com/grahampugh/jamf-upload" target="_blank" rel="noopener noreffer ">jamf upload</a> or look at using a new tool.
+One thing was definitely certain and that was that we would not be manually packaging up and deploying software updates.
+It had to be automated, no other options allowed.</p>
+<h3 id="building-the-requirements">Building the Requirements</h3>
+<p>When you sit down to design any system at all, it is always a good idea to start with a best-case-scenario. List the things
+you want to accomplish, and list the things you want to avoid. I have found that as my tech career has advanced I have
+observed many things that don&rsquo;t work or scale. I have also done many things myself that don&rsquo;t work or scale. This is fine,
+normal, and acceptable. Many times you will not know what to do or how to scale unless you start somewhere. Start trying
+things out and see what results you get. Trial and error is a part of the scientific process after all. Always bring
+your experiences with you, but also keep an open mind. Here are the things I came up with before I even looked at
+choosing the proper tools, or path we were going to take.</p>
+<ul>
+<li>Has to be server-less (content delivery model)</li>
+<li>Everything has to be in version control</li>
+<li>We need CI/CD</li>
+<li>Everything needs to be in code</li>
+<li>All development should be done locally</li>
+<li>Our dev environment should be the same for both local and CI/CD environments</li>
+<li>Any Mac should easily become the build server if need be</li>
+<li>Everything needs peer review</li>
+<li>Avoid large efforts in API integration</li>
+<li>The tools should do a lot of the basic work for us (versus us writing tons of scripts)</li>
+<li>Easily able to integrate this into any MDM</li>
+</ul>
+<h3 id="socializing-the-requirements">Socializing the Requirements</h3>
+<p>Why server-less? In previous jobs I have been a Linux/Server administrator. This meant I had to deal with vulnerability scans,
+patching, downtime, upgrades, monitoring, on-call rotations, and all the other things that no one really likes to deal with
+when it comes to server and on prem infrastructure. So, then to solve this problem, I just get rid of the servers. You cannot vuln scan or patch a S3 bucket or CloundFront CDN that is
+hosting your software packages. I wanted to just go to a content delivery system and serve up content on a CDN and have the
+client just fetch it when it needed to. I based this off experiences across many past jobs where I had these extra responsibilities
+of managing all of our server infrastructure.</p>
+<p>I wanted to shift us into an engineering focused and automation first approach, over some legacy IT Operations processes
+that are out there. So, I socialized these ideas with my leadership and peers. I wanted to adopt more DevOps practices,
+and steer away from things like manual QA or manual paper work to move something like deploying an app or an app update
+through an end-to-end process. So, when we expanded our team I went after DevOps engineers and not Mac Admins. I wanted
+a more diverse set of skills and experiences to help build a modern team. Luckily for me, my boss agreed.</p>
+<h3 id="the-tools">The Tools</h3>
+<p>This is what we ended up with after some discussions and a few tests:</p>
+<ul>
+<li>Munki</li>
+<li>AutoPKG</li>
+<li>AWS Hosted Mac Mini</li>
+<li>S3 buckets</li>
+<li>CloudFront CDN</li>
+<li>GitHub actions and remote runners</li>
+<li>Build tools</li>
+</ul>
+<h3 id="it-development-cycle">IT Development Cycle</h3>
+<p>Here is a rough diagram of the flow we started with. Things can change too, and we are open to change, but I think we have
+a solid starting place to base us from.
+(starts left to right)</p>
+<a class="lightgallery" href="/img/munki-dev-process.png" title="/img/munki-dev-process.png" data-thumbnail="/img/munki-dev-process.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/munki-dev-process.png"
+            data-srcset="/img/munki-dev-process.png, /img/munki-dev-process.png 1.5x, /img/munki-dev-process.png 2x"
+            data-sizes="auto"
+            alt="/img/munki-dev-process.png" />
+    </a>
+<p>Essentially, one does the following to deploy a new app and have Munki automatically update it:</p>
+<ol>
+<li>Clone the Munki + AutoPKG repo</li>
+<li>Run build tools</li>
+<li>Build tools will build the full local environment</li>
+<li>IT Engineer checks out a new branch and builds the AutoPKG recipe and tests it locally to ensure it works</li>
+<li>Build tools can build a fully functional Munki environment locally using Python&rsquo;s simple HTTP server and a local repo</li>
+<li>Commit and push changes to branch to the remote repo</li>
+<li>Create pull request</li>
+<li>Another engineer is required to check the branch out, test it, and approve/deny the pull request</li>
+<li>Approved pull requests are merged back to the main development branch</li>
+<li>downstream we promote the main dev branch to stage, then later on stage to prod</li>
+</ol>
+<p>This way any Mac can easily be a development environment, AutoPKG server, and local Munki test environment as well. AutoPKG
+builds locally and outputs to a Munki repo in <code>/Users/Shared</code> which you can point your own Mac client to as well. Managed
+Software Center should see your Application. There is a simple Python build script our DevOps engineers wrote that runs the
+whole test end to end for a full test. This is the exact same environment we run on the Mini in AWS, with one minor exception.
+That minor difference is just that the Munki repo in <code>/Users/Shared</code> will get synchronized to S3 via S3 folder sync. This
+is done through GitHub actions and remote runners on the AWS Mini. We also use branch promotion, which means engineers can
+only ever commit and merge changes to the main development branch. The stage and prod branch do not allow for direct commits.
+This allows us to force a peer review system and when we automate promotion from development to stage, our early adopter group
+of end users gets the changes in stage first. Lastly, if no problems are reported or found, we then promote the stage
+branch to production. This is mostly possible due to us using version control.</p>
+<h3 id="why-not-just-use-mdm">Why Not Just Use MDM?</h3>
+<p>MDM solves problems, but typically only for MDM things or in MDM specific ways. This means it is oftentimes binary, absolute,
+and lacks options. Also, the UX of MDM options are also not great. One major example is that MDM solutions will often just
+bulldoze over running apps to patch them, and this is not a good UX, and could also result in data loss. I already had dealt
+with JSS Importer + AutoPKG + Jamf Pro, and it was a lot of engineering efforts for me to maintain. I also had to have a
+series of scripts and smart groups with in Jamf Pro to have the proper automation and UX I wanted to provide. Munki allowed
+me to retire all my API integration, all my bolted on top of the product Python code, and reduce my team&rsquo;s actual labor
+by not having to deal with click-ops.</p>
+<p>MDM also has no real concept of version control, or anything meaningful in that space. It is a highly requested feature
+that has been around for many years and no MDM vendor really adopted anything around a version control system. If I wanted
+to enforce peer review, and build a decent and scalable testing process, version control was going to be a hard requirement
+for this. MDM solutions do offer up an API, but in my experience it typically requires lots of work and effort to
+build and maintain forever. Also, many MDMs are not API first, nor do they offer every an API endpoint for every feature in
+their app.</p>
+<p>Munki for us is server-less (no servers to patch), can be integrated into any MDM we purchase, leverages version control, reduced our labor exponentially,
+modernized our tech stack, CI/CD, and the out-of-the-box features allowed me to retire half
+a dozen Python scripts. So, we still very much want to use MDM, but the way we built Munki, we can take this with us if
+we ever decide to swap MDMs.</p>
+<h3 id="avoiding-vendor-lock-in">Avoiding Vendor Lock-in</h3>
+<p>Another pitfall I have both personally done, and witnessed many times in my career, is that avoiding diversifying your tools
+stack can put you in a bad position. Let&rsquo;s say an event happens, like a very bad event. A data breach can easily scare your
+leadership into making you get rid of the tools that suffered the data breach. Commercial MDM tools are a big risk here of vendor lock-in,
+in my personal opinion, especially if you bolt tons of custom development on top of them. I get that an IT Org probably
+has their MDM in production, and it has been approved through all security processes. Painful security and procurement processes
+can deter IT teams from wanting to deploy multiple tools, and this can put you on a path to vendor lock yourself with
+a MDM. The way MDM is designed in its current state, it naturally puts you into a vendor lock situation.</p>
+<p>Changing MDMs is very painful with Apple products. Apple has never really built any migration paths, and they leave it up to
+the MDM vendor to build these. Well, what incentives do commercial MDM vendors have, to write code and features around
+off-boarding a customer to a competitor? I guess this was Apple&rsquo;s idea (not sure what their idea is)? Basically, it isn&rsquo;t going to happen because
+no commercial MDM vendor is going to spend dev cycles building a tool to help you migrate to one of their competitors. So,
+with a tool like Munki, that is completely separate from MDM, can slipstream into any MDM we choose. My team can suffer
+slightly less if we have to migrate to a new MDM. We also don&rsquo;t have years of tech debt and custom dev piled on top of
+our MDM that makes migrating even more difficult.</p>
+<p>So, imagine if you build entire middleware systems of integration into your MDM, and the MDM ends up being not the best tool
+for your organization? What do you do? Do you suffer with the current MDM and the massive amount of tech debt, or do you
+decide to take the 2 years it will take to migrate to a new MDM? I have both worked in these environments, and observed these
+environments. From my experiences and hard lessons learned, I think diversifying your tools is the smart and agile thing
+any IT shop can do. It also positions the business/Organization in a much better place allowing for negotiation and migration
+of newer software tools in the future, if applicable.</p>
+<h3 id="tools-to-explore">Tools to Explore</h3>
+<p>Here goes some tools we use, or are in the process of using, that are independent of MDM. We can swap out each tool
+independently, for another tool in that space and we don&rsquo;t have to tear our entire stack down. This approach allows my team
+to be modular and agile. It also allows my Organization some flexibility other Organizations may not have, because we can
+take specific tools out and replace them with other like tools. There is also feature overlap, so in a bad situation of
+having to sunset a tool, we will have at the very least, some coverage of features while we integrate the new tool.</p>
+<ul>
+<li><a href="https://github.com/osquery/osquery" target="_blank" rel="noopener noreffer ">osquery</a> Cross platform data collection, improved data collection</li>
+<li><a href="https://github.com/enterprise" target="_blank" rel="noopener noreffer ">GitHub Enterprise</a> Version control, CI/CD via GitHub Actions</li>
+<li><a href="https://github.com/macadmins/nudge" target="_blank" rel="noopener noreffer ">Nudge</a> Notification tool to notify end userse to upgrade macOS (huge fan of this tool)</li>
+<li><a href="https://github.com/1dustindavis/gorilla" target="_blank" rel="noopener noreffer ">Gorilla</a> Application state management and deployment tool for Windows that is similar to Munki</li>
+<li><a href="https://github.com/munki/munki" target="_blank" rel="noopener noreffer ">Munki</a> Application state management and deployment tool</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-22</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/diversifying-your-tools-munki/" data-title="Diversifying Your IT Tools: Integrating Munki" data-via="tlark8" data-hashtags="munki,open source,IT Tools"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/diversifying-your-tools-munki/" data-hashtag="munki"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/diversifying-your-tools-munki/" data-title="Diversifying Your IT Tools: Integrating Munki"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/diversifying-your-tools-munki/" data-title="Diversifying Your IT Tools: Integrating Munki"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/diversifying-your-tools-munki/" data-title="Diversifying Your IT Tools: Integrating Munki"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/munki/">munki</a>,&nbsp;<a href="/tags/open-source/">open source</a>,&nbsp;<a href="/tags/it-tools/">IT Tools</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/complete-asset-oversight-datacloud/" class="prev" rel="prev" title="Complete Asset Oversight with the Data Cloud"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Complete Asset Oversight with the Data Cloud</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

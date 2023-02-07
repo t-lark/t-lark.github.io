@@ -3,7 +3,31 @@
         <title>Tags - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/</link>
         <description>Tags - Tag - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 08 Aug 2022 21:48:09 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 22 Jan 2023 21:52:42 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>IT Tools</title>
+    <link>https://t-lark.github.io/tags/it-tools/</link>
+    <pubDate>Sun, 22 Jan 2023 21:52:42 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/it-tools/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>munki</title>
+    <link>https://t-lark.github.io/tags/munki/</link>
+    <pubDate>Sun, 22 Jan 2023 21:52:42 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/munki/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>open source</title>
+    <link>https://t-lark.github.io/tags/open-source/</link>
+    <pubDate>Sun, 22 Jan 2023 21:52:42 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/open-source/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>analytics</title>
     <link>https://t-lark.github.io/tags/analytics/</link>
     <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
@@ -44,14 +68,6 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>IT Tools</title>
-    <link>https://t-lark.github.io/tags/it-tools/</link>
-    <pubDate>Fri, 01 Jul 2022 18:11:46 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/it-tools/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
     <title>nudge</title>
     <link>https://t-lark.github.io/tags/nudge/</link>
     <pubDate>Fri, 01 Jul 2022 18:11:46 -0700</pubDate>
@@ -60,27 +76,11 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>open source</title>
-    <link>https://t-lark.github.io/tags/open-source/</link>
-    <pubDate>Fri, 01 Jul 2022 18:11:46 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/open-source/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
     <title>software updates</title>
     <link>https://t-lark.github.io/tags/software-updates/</link>
     <pubDate>Fri, 01 Jul 2022 18:11:46 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/tags/software-updates/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>culture</title>
-    <link>https://t-lark.github.io/tags/culture/</link>
-    <pubDate>Fri, 24 Jun 2022 16:18:28 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/culture/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
