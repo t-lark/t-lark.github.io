@@ -3,9 +3,17 @@
         <title>t-lark.github.io</title>
         <link>https://t-lark.github.io/</link>
         <description>I have no idea what I am doing</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 22 Jan 2023 21:52:42 -0700</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 28 Mar 2023 18:49:24 -0700</lastBuildDate>
             <atom:link href="https://t-lark.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Servicenow Asset Data in Snowflake</title>
+    <link>https://t-lark.github.io/posts/servicenow-asset-data-in-snowflake/</link>
+    <pubDate>Tue, 28 Mar 2023 18:49:24 -0700</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/servicenow-asset-data-in-snowflake/</guid>
+    <description><![CDATA[Inventory Asset data is extremely important to any organization. It is also some of the most difficult data to keep accurate and up-to-date. We have been shipping ServiceNow data to Snowflake here for a good while. Over the years the asset data has proven time after time to be extremely valuable. It helps filter out tons of noise and allows one to focus on specific asset data at any given time.]]></description>
+</item>
+<item>
     <title>Diversifying Your IT Tools: Integrating Munki</title>
     <link>https://t-lark.github.io/posts/diversifying-your-tools-munki/</link>
     <pubDate>Sun, 22 Jan 2023 21:52:42 -0700</pubDate>
@@ -76,14 +84,6 @@
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/ops-data-snowflake/</guid>
     <description><![CDATA[Be Data Driven in IT/Ops with Snowflake Technology changes very fast, and it keeps getting bigger and more complex. We have so many systems these days, our systems have systems. It doesn&rsquo;t have to be complex and daunting to get reliable, and up-to-date data. Getting accurate data, while getting it fast, is key to developing data driven strategies. We no longer have to live in the constraints of capacity, limited storage, and limited scalability.]]></description>
-</item>
-<item>
-    <title>Using Spotlight with macOS</title>
-    <link>https://t-lark.github.io/posts/using-spotlight-macos/</link>
-    <pubDate>Wed, 23 Sep 2020 18:22:00 -0700</pubDate>
-    <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/using-spotlight-macos/</guid>
-    <description><![CDATA[Spotlight is a system wide metadata indexing system that Apple has been shipping since OS X 10.4 Tiger, and has been improved over the years with each OS. I like using Spotlight for some tasks and general searching for files in Terminal.app. I also use it for finding anything on my Mac. Typically, I do not use my mouse or trackpad to find files or navigate to folders. One just needs to hit cmd + spacebar on their Mac to pull up the Spotlight search menu and start typing.]]></description>
 </item>
 </channel>
 </rss>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Servicenow Asset Data in Snowflake - t-lark.github.io</title><meta name="Description" content="I have no idea what I am doing"><meta property="og:title" content="Servicenow Asset Data in Snowflake" />
+<meta property="og:description" content="Inventory Asset data is extremely important to any organization. It is also some of the most difficult data to keep accurate and up-to-date. We have been shipping ServiceNow data to Snowflake here for a good while. Over the years the asset data has proven time after time to be extremely valuable. It helps filter out tons of noise and allows one to focus on specific asset data at any given time." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://t-lark.github.io/posts/servicenow-asset-data-in-snowflake/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-28T18:49:24-07:00" />
+<meta property="article:modified_time" content="2023-03-28T18:49:24-07:00" /><meta property="og:site_name" content="My personal blog" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Servicenow Asset Data in Snowflake"/>
+<meta name="twitter:description" content="Inventory Asset data is extremely important to any organization. It is also some of the most difficult data to keep accurate and up-to-date. We have been shipping ServiceNow data to Snowflake here for a good while. Over the years the asset data has proven time after time to be extremely valuable. It helps filter out tons of noise and allows one to focus on specific asset data at any given time."/>
+<meta name="application-name" content="tlark&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="tlark&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/servicenow-asset-data-in-snowflake/" /><link rel="prev" href="https://t-lark.github.io/posts/diversifying-your-tools-munki/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Servicenow Asset Data in Snowflake",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/t-lark.github.io\/posts\/servicenow-asset-data-in-snowflake\/"
+        },"genre": "posts","keywords": "asset data, endpoints, data insights","wordcount":  1883 ,
+        "url": "https:\/\/t-lark.github.io\/posts\/servicenow-asset-data-in-snowflake\/","datePublished": "2023-03-28T18:49:24-07:00","dateModified": "2023-03-28T18:49:24-07:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "tlark"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Servicenow Asset Data in Snowflake</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/data-cloud/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>data cloud</a>&nbsp;<a href="/categories/asset-inventory/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>asset inventory</a>&nbsp;<a href="/categories/servicenow/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>servicenow</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>snowflake</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-28">2023-03-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1883 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#benefits-from-data-upstream">Benefits from Data Upstream</a></li>
+        <li><a href="#modeling-the-data">Modeling the Data</a></li>
+        <li><a href="#leveraging-thew-new-asset-data">Leveraging thew New Asset Data</a></li>
+        <li><a href="#same-old-problems">Same Old Problems</a></li>
+        <li><a href="#asset-data-is-important">Asset Data is Important</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Inventory Asset data is extremely important to any organization. It is also some of the most difficult data to keep
+accurate and up-to-date. We have been shipping ServiceNow data to Snowflake here for a good while. Over the years the asset data
+has proven time after time to be extremely valuable. It helps filter out tons of noise and allows one to focus on
+specific asset data at any given time. Just by creating some simple queries and joining ServiceNow data with other data
+sources. I recently created a new <a href="https://docs.snowflake.com/en/user-guide/views-introduction" target="_blank" rel="noopener noreffer ">view</a> in Snowflake to help us better filter data down to more specifics.</p>
+<a class="lightgallery" href="/img/data_scientist_myself.jpeg" title="/img/data_scientist_myself.jpeg" data-thumbnail="/img/data_scientist_myself.jpeg">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/data_scientist_myself.jpeg"
+            data-srcset="/img/data_scientist_myself.jpeg, /img/data_scientist_myself.jpeg 1.5x, /img/data_scientist_myself.jpeg 2x"
+            data-sizes="auto"
+            alt="/img/data_scientist_myself.jpeg" />
+    </a>
+<h3 id="benefits-from-data-upstream">Benefits from Data Upstream</h3>
+<p>ServiceNow is a platform, which can host many applications within its ecosystem. You can have all sorts of workflows for
+different teams, ticketing systems for various departments, knowledge base articles, and of course asset inventory. When
+the ServiceNow developers or admins create new features or integrations within the application upstream, you can also have
+that data downstream. For example, I engaged with our ServiceNow team not too long ago to integrate with our HR system
+so if anyone was on a leave of absence we could mark their asset as <code>LOA</code> in the asset tracker in ServiceNow. This allows
+teams downstream consuming this data in Snowflake to easily filter all leave of absence devices into their own bucket.
+As a general philosophy, I tend to never get rid of data, but rather filter it into contextual buckets where it makes the
+most sense.</p>
+<p>Another thing we also got to benefit from, is that when someone marks an asset in ServiceNow as a <code>VIP</code> asset, we know it
+belongs to a VIP end user. These are executives, department heads, VPs, and other important people that might need more of
+an executive IT support model vs a standard IT support model. It also allows us to track VIP computers specifically, so we can
+ensure they have the latest security patches. These type of enhancements that your ServiceNow developers and admins can
+build within ServiceNow allow many other teams to benefit from this data downstream.</p>
+<h3 id="modeling-the-data">Modeling the Data</h3>
+<p>So, now that I have this new data added upstream by my ServiceNow team, I can easily just consume it downstream in Snowflake.
+Since we already have data pipelines coming in from the CMDB tables, when the person that developed these enhancements
+moved the changes to prod, the next time the data ingested it showed up in Snowflake. Now, I wanted to take advantage of this,
+so I created a view joining these tables together into a single spot within Snowflake we can consume this data from.</p>
+<p>example SQL code:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">SERVICENOW_ASSETS_V</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">DISPLAY_NAME</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w">	</span><span class="n">SERIAL_NUMBER</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w">	</span><span class="n">ASSET_TAG</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w">	</span><span class="n">USER_NAME</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w">	</span><span class="n">EMAIL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w">	</span><span class="n">INSTALL_STATUS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w">	</span><span class="n">RETIRED</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w">	</span><span class="n">IS_DELETED</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w">	</span><span class="n">SUBSTATUS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w">	</span><span class="n">MODEL_CATEGORY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w">	</span><span class="n">VIP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w">	</span><span class="n">ON_LEAVE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">select</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">a</span><span class="p">.</span><span class="n">display_name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">SERIAL_NUMBER</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">asset_tag</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">user_name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">install_status</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">Retired</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">IFF</span><span class="p">(</span><span class="n">documentkey</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="k">false</span><span class="p">,</span><span class="w"> </span><span class="k">true</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">is_deleted</span><span class="w"> </span><span class="c1">--marking deleted if it exists in the deleted table
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">,</span><span class="w"> </span><span class="n">substatus</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">model_category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">vip</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">vip</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">u_loa</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">on_leave</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">Select</span><span class="w"> </span><span class="n">assigned_to</span><span class="p">,</span><span class="w"> </span><span class="n">assigned_to_value</span><span class="p">,</span><span class="w"> </span><span class="n">display_name</span><span class="p">,</span><span class="w"> </span><span class="n">SERIAL_NUMBER</span><span class="p">,</span><span class="w"> </span><span class="n">asset_tag</span><span class="p">,</span><span class="w"> </span><span class="n">install_status</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">substatus</span><span class="p">,</span><span class="w"> </span><span class="n">Retired</span><span class="p">,</span><span class="w"> </span><span class="n">sys_id</span><span class="p">,</span><span class="w"> </span><span class="n">model_category</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">ALM_ASSET</span><span class="p">)</span><span class="n">a</span><span class="w"> </span><span class="c1">--listing of assets
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">left</span><span class="w"> </span><span class="k">outer</span><span class="w"> </span><span class="k">join</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">sys_id</span><span class="p">,</span><span class="w"> </span><span class="n">last_login</span><span class="p">,</span><span class="w"> </span><span class="n">user_name</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">vip</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">SYS_USER</span><span class="p">)</span><span class="n">b</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">on</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">assigned_to_value</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">b</span><span class="p">.</span><span class="n">sys_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">left</span><span class="w"> </span><span class="k">outer</span><span class="w"> </span><span class="k">join</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">sys_id</span><span class="p">,</span><span class="w"> </span><span class="n">u_loa</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">ALM_HARDWARE</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">e</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">sys_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">sys_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">left</span><span class="w"> </span><span class="k">outer</span><span class="w"> </span><span class="k">join</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">SYS_AUDIT_DELETE</span><span class="w">  </span><span class="k">c</span><span class="w"> </span><span class="c1">--joining the deleted table to check deletion status    
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">on</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">documentkey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">sys_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">left</span><span class="w"> </span><span class="k">outer</span><span class="w"> </span><span class="k">join</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">CMDB_MODEL_CATEGORY</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">d</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">on</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">model_category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">sys_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">is_deleted</span><span class="w"> </span><span class="c1">--filtering non deleted 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Things to Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>CMDB Tables in ServiceNow have a unique ID referred to as a <code>sys_id</code> that can act as a primary key</li>
+<li>When data modeling, try to keep the view specific and avoid joining every data source into a single monolithic view</li>
+<li>When updating a view, you may want to use <a href="https://docs.snowflake.com/en/sql-reference/sql/create-view" target="_blank" rel="noopener noreffer ">copy grants</a></li>
+<li>Always ask your local domain experts for guidance, don&rsquo;t assume what data means</li>
+</ul>
+</div>
+        </div>
+    </div>
+<p>ServiceNow is a massive product, with 1000s of database tables, and it takes a lot of time and effort to be an expert
+on it. I am very far from an expert, so I engaged with my internal experts to help understand and model this data. They
+were able to help me understand what the data means and how to best model it.</p>
+<h3 id="leveraging-thew-new-asset-data">Leveraging thew New Asset Data</h3>
+<p>We have an IT Remediation project, where we meet once a week and review our data and dashboards. A lot of things have surfaced
+from this meeting. We go through the data and dive into it, validating that is correct, and pointing out where we can
+enhance it. Our colleagues in the EU asked us to add geolocation to them, so they could easily identify assets in their
+region they supported that were out of compliance as an example. This shifted us into be proactive, but also we were
+validating the data was good. Before our support staff were manually filtering out device location to divide and conquer
+IT support projects. Now that data is joined into these dashboards.</p>
+<p>I feel this important because it will start a culture of looking at data, checking if the data is accurate, identifying
+gaps and enhancements, and it really helps with cross team collaboration. We recently heavily campaigned our fleet to
+all update to the latest version of Ventura. We combined the geo data, MDM data and all those upstream data enhancements
+we added to ServiceNow asset data.</p>
+<a class="lightgallery" href="/img/fleet-os-filtered.png" title="/img/fleet-os-filtered.png" data-thumbnail="/img/fleet-os-filtered.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/fleet-os-filtered.png"
+            data-srcset="/img/fleet-os-filtered.png, /img/fleet-os-filtered.png 1.5x, /img/fleet-os-filtered.png 2x"
+            data-sizes="auto"
+            alt="/img/fleet-os-filtered.png" />
+    </a>
+<p>In the above dashboard we first started out with just webhook data from our MDM (jamf pro) and were tracking active macOS devices current OS.
+This was an okay place to start. However, once we were able to add the ServiceNow Asset data we were able to really
+gain much more insight much faster. Then over time we enhanced this dashboard with the following asset data from ServiceNow:</p>
+<ul>
+<li><code>Asset function</code>: primary, secondary, testing, conference room, etc</li>
+<li><code>Asset status</code>: in-use, out for repairs, in-stock, retired, etc</li>
+<li><code>Integration data</code>: leave of absence, vip users</li>
+<li><code>Asset assignment</code>: what human has what device</li>
+</ul>
+<p>Since ServiceNow is the source of truth for asset assignments, this allowed us to enrich the data even further and use the
+email address of the assigned human and join that to HR employee directory data. This is how we were able to look up
+where the employee worked out of, and thus gave us the ability to easily filter by geolocation so local employees could
+better support their region of users.</p>
+<p>Imagine being a manager or an individual contributor(IC) for an international company and be able to easily filter out the
+regions you support, and review those specific device&rsquo;s data by just checking a dashboard? Managers can get high level
+overviews and ICs can proactively identify technical issues and set plans to address them.</p>
+<h3 id="same-old-problems">Same Old Problems</h3>
+<p>Many years ago I was scanning thousands of Macbook Air laptop serial numbers from a big laptop deployment my team and
+I were doing at a previous job of mine. We quickly noticed that the barcode we scanned would append the letter <code>S</code> as the
+beginning of the serial number. We programmed the scanners to ignore the first character and that fixed it. Well, this
+is one of those human error problems. Humans might forget to program their scanners sometimes. So, we can use data in Snowflake
+to audit and fix our asset data.</p>
+<p>Quick query to get serial numbers that start with <code>S</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">SERVICENOW_ASSETS_V</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">startswith</span><span class="p">(</span><span class="n">serial_number</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">and</span><span class="w"> </span><span class="n">display_name</span><span class="w"> </span><span class="k">ilike</span><span class="w"> </span><span class="s1">&#39;%apple%&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Another classic problem is how do you monitor your asset data to ensure you did not make a human error and forget to
+add assets to your asset tracker.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">JI</span><span class="p">.</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">varchar</span><span class="p">::</span><span class="n">TIMESTAMP_LTZ</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">last_contact</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">computer</span><span class="p">:</span><span class="n">serialNumber</span><span class="p">::</span><span class="nb">varchar</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">j_serial</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">computer</span><span class="p">.</span><span class="n">emailAddress</span><span class="p">::</span><span class="nb">varchar</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">EMAIL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">computer</span><span class="p">.</span><span class="n">department</span><span class="p">::</span><span class="nb">varchar</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">DEPARTMENT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="s2">&#34;DB&#34;</span><span class="p">.</span><span class="s2">&#34;SCHEMA&#34;</span><span class="p">.</span><span class="s2">&#34;JAMF_CHECKIN&#34;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">JI</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">TO_TIMESTAMP</span><span class="p">(</span><span class="n">WEBHOOK</span><span class="p">:</span><span class="n">eventTimestamp</span><span class="p">::</span><span class="nb">INTEGER</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">dateadd</span><span class="p">(</span><span class="n">days</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">QUALIFY</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ROW_NUMBER</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">computer</span><span class="p">:</span><span class="n">serialNumber</span><span class="p">::</span><span class="nb">varchar</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">last_contact</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">and</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">exists</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">select</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">SN</span><span class="p">.</span><span class="n">SERIAL_NUMBER</span><span class="p">)::</span><span class="nb">varchar</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sn_serial</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">from</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">SERVICENOW_ASSETS_V</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">SN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">where</span><span class="w"> </span><span class="n">sn_serial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JI</span><span class="p">.</span><span class="n">EVENT</span><span class="p">:</span><span class="n">computer</span><span class="p">:</span><span class="n">serialNumber</span><span class="p">::</span><span class="nb">varchar</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>In efforts to ensure our asset data is good and accurate, we can simply use <code>not exists</code> in Snowflake to compare serial
+numbers of actively checking in devices that do not have valid asset records in ServiceNow. This example is a webhook
+event from our MDM, and we check if the serial number of that device exists. That is it, that is how simple this check is.</p>
+<h3 id="asset-data-is-important">Asset Data is Important</h3>
+<p>Asset data accuracy is something that is so tough to keep up with. Assets change states when they go out for repairs,
+a hardware refresh, get returned, as each one of those states follows a process that involves a human doing work. Asset data
+is also some very important data that really needs to be always accurate. Having your hardware asset data in a product
+like Snowflake gives you avenues to actually actively test and ensure your asset data is accurate and audited. We find
+mistakes all the time, and we find them the second the data is ingested into Snowflake. The data it provides can be
+joined to other data sources and build insights and metrics off of it all. This data is used across many teams for many purposes.
+Security will want to vary their priorities based on people and teams, and with asset data they can do that. Teams that
+have more privileged access generally yield higher priority alerts. The asset data being accurate is a must for these things.
+Asset data gives us the person who the asset is assigned to, and we join that across tons of different data sets.</p>
+<p>We also were looking at secondary device data a lot over the past few years. There are times when someone might need
+another computer to perform work on in addition to their primary device. So we issue them another device to help them do
+their work. However, how do you know when the secondary device is no longer needed? If a secondary device is not needed
+anymore, and it is not online, it is most likely not getting patched either. Well, that asset data tells us the serial
+number and the human tied to that device, and we can join it to MDM or agent data. From here we can simply deduct if
+the device is not checking into our MDM servers it is not coming online, and likely not being used. If we detect a
+secondary device is not online greater than an arbitrary timeframe (30 or 60 days, etc) we can trigger workflows that
+will start a process to see if we can get that secondary system back.</p>
+<p>These are just some reasons and use cases I feel outline the importance of asset data and how having that in a tool like
+Snowflake can really help boost accuracy of your asset data. Thanks for reading!</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-03-28</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/servicenow-asset-data-in-snowflake/" data-title="Servicenow Asset Data in Snowflake" data-via="tlark8" data-hashtags="asset data,endpoints,data insights"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/servicenow-asset-data-in-snowflake/" data-hashtag="asset data"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/servicenow-asset-data-in-snowflake/" data-title="Servicenow Asset Data in Snowflake"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/servicenow-asset-data-in-snowflake/" data-title="Servicenow Asset Data in Snowflake"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/servicenow-asset-data-in-snowflake/" data-title="Servicenow Asset Data in Snowflake"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/asset-data/">asset data</a>,&nbsp;<a href="/tags/endpoints/">endpoints</a>,&nbsp;<a href="/tags/data-insights/">data insights</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/diversifying-your-tools-munki/" class="prev" rel="prev" title="Diversifying Your IT Tools: Integrating Munki"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Diversifying Your IT Tools: Integrating Munki</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
