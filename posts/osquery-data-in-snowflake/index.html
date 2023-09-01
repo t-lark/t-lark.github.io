@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>Working with osquery Data in Snowflake - t-lark.github.io</title><meta name="Description" content="I have no idea what I am doing"><meta property="og:title" content="Working with osquery Data in Snowflake" />
-<meta property="og:description" content="I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, it was quite impressed with all the use cases and in-depth data you can model about your fleet of laptops." />
+<meta property="og:description" content="I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, he was quite impressed with all the use cases and in-depth data you can model about your fleet of laptops using osquery data in Snowflake.
+Booms came to the office with me, and he even got a bit of company swag! As we spent the day working I told him all about all the work my team was doing with osquery." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://t-lark.github.io/posts/osquery-data-in-snowflake/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-08-31T18:01:31-07:00" />
@@ -13,7 +14,8 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Working with osquery Data in Snowflake"/>
-<meta name="twitter:description" content="I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, it was quite impressed with all the use cases and in-depth data you can model about your fleet of laptops."/>
+<meta name="twitter:description" content="I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, he was quite impressed with all the use cases and in-depth data you can model about your fleet of laptops using osquery data in Snowflake.
+Booms came to the office with me, and he even got a bit of company swag! As we spent the day working I told him all about all the work my team was doing with osquery."/>
 <meta name="application-name" content="tlark&#39;s blog">
 <meta name="apple-mobile-web-app-title" content="tlark&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -28,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/t-lark.github.io\/posts\/osquery-data-in-snowflake\/"
-        },"genre": "posts","keywords": "macOS, IT Tools, osquery, snowflake","wordcount":  39 ,
+        },"genre": "posts","keywords": "macOS, IT Tools, osquery, snowflake","wordcount":  2980 ,
         "url": "https:\/\/t-lark.github.io\/posts\/osquery-data-in-snowflake\/","datePublished": "2023-08-31T18:01:31-07:00","dateModified": "2023-08-31T18:01:31-07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,24 +105,889 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Working with osquery Data in Snowflake</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/data/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>data</a>&nbsp;<a href="/categories/osquery/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>osquery</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>snowflake</a>&nbsp;<a href="/categories/data-modeling/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>data modeling</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-31">2023-08-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;39 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-31">2023-08-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2980 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;14 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p>I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, it was quite impressed
-with all the use cases and in-depth data you can model about your fleet of laptops.</p>
-<a class="lightgallery" href="/img/booms-snow1.jpeg" title="/img/booms-snow1.jpeg" data-thumbnail="/img/booms-snow1.jpeg">
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#quick-recap">Quick Recap</a></li>
+        <li><a href="#some-problem-statements">Some Problem Statements</a></li>
+        <li><a href="#a-decent-start">A Decent Start</a></li>
+        <li><a href="#lets-look-at-some-data">Let&rsquo;s look at some data!</a></li>
+        <li><a href="#closing-thoughts">Closing thoughts</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, he was quite impressed
+with all the use cases and in-depth data you can model about your fleet of laptops using osquery data in Snowflake.</p>
+<a class="lightgallery" href="/img/booms-snow1.jpg" title="/img/booms-snow1.jpg" data-thumbnail="/img/booms-snow1.jpg">
         <img
             class="lazyload"
             src="/svg/loading.min.svg"
-            data-src="/img/booms-snow1.jpeg"
-            data-srcset="/img/booms-snow1.jpeg, /img/booms-snow1.jpeg 1.5x, /img/booms-snow1.jpeg 2x"
+            data-src="/img/booms-snow1.jpg"
+            data-srcset="/img/booms-snow1.jpg, /img/booms-snow1.jpg 1.5x, /img/booms-snow1.jpg 2x"
             data-sizes="auto"
-            alt="/img/booms-snow1.jpeg" />
+            alt="/img/booms-snow1.jpg" />
+    </a>
+<blockquote>
+<p>Booms came to the office with me, and he even got a bit of company swag! As we spent the day working I told him
+all about all the work my team was doing with osquery. Anyone can see in this pic of him, he is very impressed
+with the speed and scale one can leverage data from osquery in Snowflake</p>
+</blockquote>
+<h3 id="quick-recap">Quick Recap</h3>
+<p>A while ago I posted a blog about osquery, FleetDM, and Snowflake. You can find my old blog post, <a href="https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/" target="_blank" rel="noopener noreffer ">here</a>
+We are now using this tech stack even more today, and while we have been working on many other different projects we have
+made progress with our osquery story. If you are unfamiliar with FleetDM, osquery or Snowflake I suggest you read the
+previous blog post. The basics are covered there.</p>
+<p>Our setup is FleetDM managing osquery, integrated with Snowflake. Leveraging AWS cloud technologies like S3 storage, and
+Kinesis Firehose to stream data in near-real-time. With Snowflake&rsquo;s Snow Pipe to rapidly ingest data, so we can get data
+as fast as we choose to.</p>
+<h3 id="some-problem-statements">Some Problem Statements</h3>
+<p>People may be curious as to why we want to deploy more tools to collect data, when there are things like MDM that most
+IT Operations shops already have. The simple answer is that osquery is just way better at collecting data, it is cross-platform,
+and it gives us much better control over our data pipelines. So, here are some things are initially trying to solve:</p>
+<ul>
+<li>Proactive monitoring</li>
+<li>Performance monitoring</li>
+<li>Security and Compliance data</li>
+<li>Extended software gathering</li>
+<li>Bridging gaps in current data collection features our or tech stack</li>
+</ul>
+<p>We have many more use cases, but we will continue with the above. One of the problems IT has always faced, is the ability
+to predict when a device is going to have problems and proactively help or fix/replace an end user device. Security will
+want all the sweet data that osquery can provide, you just have to inform them you are able to leverage osquery, and they
+will have asks.</p>
+<p>Performance data is tough to track on end user devices. Unlike server infrastructure, end users can do, well anything they
+desire to do. Like run tons of apps, configure their technology how they see fit, and develop workflows that you have zero
+insights to. Your end user&rsquo;s workflows may be very foreign to you as well. IT folks may have no idea what a marketing or sales
+staff may do. Professional services folks are a great x-factor to mention as well. They do all sorts of things customers
+ask them to do. So, tracking an end user device&rsquo;s performance can be a great way to tell if you are over/under spec&rsquo;ing the
+device, or if certain applications on the device are potentially not optimally configured, etc. However, none of this should
+stop you from trying to understand what your coworkers do day to day, and how you could potentially help with data.</p>
+<a class="lightgallery" href="/img/booms-blink.jpg" title="/img/booms-blink.jpg" data-thumbnail="/img/booms-blink.jpg">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/booms-blink.jpg"
+            data-srcset="/img/booms-blink.jpg, /img/booms-blink.jpg 1.5x, /img/booms-blink.jpg 2x"
+            data-sizes="auto"
+            alt="/img/booms-blink.jpg" />
+    </a>
+<blockquote>
+<p>Booms felt skeptical that we could pull this off at scale. I told him we would never know if we didn&rsquo;t try</p>
+</blockquote>
+<h3 id="a-decent-start">A Decent Start</h3>
+<p>Before I dive into what we have done, and how we have leveraged the data, I would like to mention that we have not turned
+on any events based tables in osquery yet. So, the performance data we have is a snapshot in time, of the expensive compute
+processes since boot time. The caveat with this data is that it doesn&rsquo;t tell us how long these processes ran. If a process
+runs at 900% cpu usage from a 10core CPU system for 5 seconds, is likely a different story than a process running at 500%
+CPU usage for 25 minutes on that same system. As well as a process taking up 5 cores on a 6 CPU core system, versus 5
+cores on a 10 CPU core system. While we do not have the full on events&rsquo; data yet in osquery, we do have something to start with.</p>
+<p>Event tables in osquery are a bigger compute cost to leverage. We plan on exploring these tables, but we take UX of our
+laptops as a high priority. So, the enabling of the events&rsquo; data in osquery will be a slow roll-out while we monitor any
+potential impacts we could potentially encounter. I would also like to point out, tons and tons of effort has gone into
+making osquery much more performant over the years. So, if you have not tried a modern version of osquery I would recommend
+that you give it another go!</p>
+<h3 id="lets-look-at-some-data">Let&rsquo;s look at some data!</h3>
+<p>Consider this query in osquery:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">pid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">uid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">ci</span><span class="p">.</span><span class="n">model</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">ci</span><span class="p">.</span><span class="n">number_of_cores</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">ci</span><span class="p">.</span><span class="n">logical_processors</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">ci</span><span class="p">.</span><span class="n">max_clock_speed</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">ci</span><span class="p">.</span><span class="n">number_of_efficiency_cores</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">ci</span><span class="p">.</span><span class="n">number_of_performance_cores</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">ROUND</span><span class="p">((</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="n">user_time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">system_time</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">cpu_time</span><span class="p">.</span><span class="n">tsb</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cpu_time</span><span class="p">.</span><span class="n">itsb</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">percentage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">processes</span><span class="p">,(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="k">user</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">nice</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="k">system</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">idle</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">tsb</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="n">COALESCE</span><span class="p">(</span><span class="n">idle</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">COALESCE</span><span class="p">(</span><span class="n">iowait</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">itsb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">cpu_time</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cpu_time</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">cross</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">cpu_info</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ci</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">user_time</span><span class="o">+</span><span class="n">system_time</span><span class="w"> </span><span class="k">DESC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>The above query <a href="https://www.sqlitetutorial.net/sqlite-cross-join/" target="_blank" rel="noopener noreffer ">cross joins</a> the <code>processes</code> table and the <code>cpu_info</code> table
+to get some basic CPU usage and context of the CPU data. I found this query from a blog found <a href="https://zercurity.medium.com/process-monitoring-with-osquery-22c6f38fc239" target="_blank" rel="noopener noreffer ">here</a>.
+I also found that blog post pretty informative around some performance monitoring concepts with osquery. So, we loaded this
+query up in FleetDM and let it run to see what we got back.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;action&#34;</span><span class="p">:</span> <span class="s2">&#34;snapshot&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;calendarTime&#34;</span><span class="p">:</span> <span class="s2">&#34;Wed Aug 30 17:31:16 2023 UTC&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;counter&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;decorations&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;host_uuid&#34;</span><span class="p">:</span> <span class="s2">&#34;UUID string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;hostname&#34;</span><span class="p">:</span> <span class="s2">&#34;the-host-name&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;serial_number&#34;</span><span class="p">:</span> <span class="s2">&#34;the-serial-number&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;epoch&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;hostIdentifier&#34;</span><span class="p">:</span> <span class="s2">&#34;UUID-string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;pack/Global/ingest-macos-top-20-processes&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;numerics&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;snapshot&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;WindowServer&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;204.99000000000001&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;565&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;kernel_task&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;123.26000000000001&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;redacted&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;62.219999999999999&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;12800&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;AdobeReader&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;48.670000000000002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;78967&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;501&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Google Chrome&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;32.32&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;1667&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;501&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Google Chrome Helper (GPU)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;28.050000000000001&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;1767&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;501&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;redacted&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;21.800000000000001&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;70254&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;launchd&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;19.34&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;distnoted&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;16.460000000000001&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;867&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;501&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Google Chrome Helper (Renderer)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;15.69&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;40686&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;501&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;bluetoothd&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;11.039999999999999&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;557&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;distnoted&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;9.7799999999999994&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;548&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;241&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;redacted&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;9.7300000000000004&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;1875&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;501&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;RdrCEF Helper (GPU)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;8.6099999999999994&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;78987&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;501&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;mds_stores&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;7.6900000000000004&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;847&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Google Chrome Helper&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;7.5&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;1769&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;501&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Google Chrome Helper (Renderer)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;6.5800000000000001&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;55884&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;501&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;mds&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;6.0700000000000003&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;523&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;coreaudiod&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;5.9100000000000001&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;580&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;202&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3228&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M1 Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;redacted&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percentage&#34;</span><span class="p">:</span> <span class="s2">&#34;5.0300000000000002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;53600&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;unixTime&#34;</span><span class="p">:</span> <span class="mi">1693416676</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>When you automate a query in FleetDM, it puts the query in the Global Query Pack, and it uses the name of the query in FleetDM
+as the name of the query locally on the client. In the future I might dive deeper into the architecture, but for now I want
+to mention the query name as we will use this for a data model in Snowflake. Automated queries in FleetDM can be setup
+to stream to cloud storage, like S3 over AWS Kinesis Firehose, and the results are stored in JSON files like the example
+above. Snowflake can natively parse semi structured data, which is referred to as <a href="https://docs.snowflake.com/en/user-guide/semistructured-concepts" target="_blank" rel="noopener noreffer ">variant data</a></p>
+<p>Furthermore, Snowflake has a feature called <a href="https://docs.snowflake.com/en/sql-reference/functions/flatten" target="_blank" rel="noopener noreffer ">Flatten</a>. Which is
+essentially a table function that allows you to &ldquo;flatten&rdquo; keys and values in a JSON file into columns and values. It is quite
+the handy and powerful feature for IT Ops folks as we deal with JSON data structures in so many things. So, one could apply
+some of these concepts with REST APIs and JSON returns that one could ingest into Snowflake as well.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">OSQR_TOP_20_PROCS_MACOS_HISTORICAL</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">raw</span><span class="p">:</span><span class="n">unixTime</span><span class="p">::</span><span class="n">string</span><span class="p">::</span><span class="n">timestamp_ltz</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ingest_date</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">raw</span><span class="p">:</span><span class="n">decorations</span><span class="p">:</span><span class="n">host_uuid</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">hardware_uuid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">raw</span><span class="p">:</span><span class="n">decorations</span><span class="p">:</span><span class="n">serial_number</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">serial_number</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="n">name</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">process_name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="n">percentage</span><span class="p">::</span><span class="nb">float</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">percentage_cpu</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="n">pid</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">PID</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="n">uid</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">UID</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="n">logical_processors</span><span class="p">::</span><span class="nb">integer</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">logical_processors</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="n">max_clock_speed</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">max_clock_speed</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="n">model</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cpu_model</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="n">number_of_cores</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">number_of_cores</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="n">number_of_efficiency_cores</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">number_of_efficiency_cores</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="n">number_of_performance_cores</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">number_of_performance_cores</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">FLEET_OSQUERY_RESULTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">lateral</span><span class="w"> </span><span class="n">flatten</span><span class="p">(</span><span class="k">input</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&#34;RAW&#34;</span><span class="p">:</span><span class="s2">&#34;snapshot&#34;</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">f</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">raw</span><span class="p">:</span><span class="n">name</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pack/Global/ingest-macos-top-20-processes&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Things to Note in the above query<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>Since FleetDM streams query results to a single raw data table we are using <code>where raw:name::string = 'pack/Global/ingest-macos-top-20-processes' </code> to filter the data for this specific query</li>
+<li>Flatten was aliased as <code>f</code> and we use simple built-in features to get the value of a key in the original JSON query results</li>
+<li>Type casting each value is important, we probably don&rsquo;t want the data view to use variant data types, but rather specific data types</li>
+<li>Remember this is snapshot data, not historical. These are CPU usage spikes we do not know how long the process ran for</li>
+<li>When data modeling, try to keep the view specific and avoid joining every data source into a single monolithic view</li>
+<li>When updating a view, you may want to use <a href="https://docs.snowflake.com/en/sql-reference/sql/create-view" target="_blank" rel="noopener noreffer ">copy grants</a></li>
+</ul>
+</div>
+        </div>
+    </div>
+<p>Sample query from the view we created:</p>
+<a class="lightgallery" href="/img/blog-processes-results.png" title="/img/blog-processes-results.png" data-thumbnail="/img/blog-processes-results.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/blog-processes-results.png"
+            data-srcset="/img/blog-processes-results.png, /img/blog-processes-results.png 1.5x, /img/blog-processes-results.png 2x"
+            data-sizes="auto"
+            alt="/img/blog-processes-results.png" />
+    </a>
+<p>Let&rsquo;s have some fun, what is the CPU spike for virtual machines across our fleet? Remember this is just most CPU intestine
+processes since boot, as we do not have events data to get a more accurate data sample. We are in the beginning of our data
+journey here.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">TOP_20_PROCS_MACOS_HISTORICAL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">process_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;com.apple.Virtualization.VirtualMachine&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">and</span><span class="w"> </span><span class="n">cpu_model</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">NULL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">percentage_cpu</span><span class="w"> </span><span class="k">desc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">limit</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Things to Note in the above query<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">We can now query the view we created with simple SQL. This means it is accessible and easy to use when you data share this
+data across your org. Early JSON files from FleetDM had different data as we were experimenting with the query, so
+we know the earlier test data had <code>NULL</code> values, we just want to filter those out.</div>
+        </div>
+    </div>
+<p>The results:</p>
+<a class="lightgallery" href="/img/blog-vm-proc-data.png" title="/img/blog-vm-proc-data.png" data-thumbnail="/img/blog-vm-proc-data.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/blog-vm-proc-data.png"
+            data-srcset="/img/blog-vm-proc-data.png, /img/blog-vm-proc-data.png 1.5x, /img/blog-vm-proc-data.png 2x"
+            data-sizes="auto"
+            alt="/img/blog-vm-proc-data.png" />
+    </a>
+<p>So, now we have some info around peak compute local VMs take across our fleet, what model of CPU and compute specs the
+device has, and we can also join this data to other data sources to enrich it. We could join asset data from ServiceNow
+and filter for assets actually in production use, we could also join it to HR data to apply what human is using this device,
+and of course we can join many other data sets in Snowflake to this.</p>
+<p>Consider this osquery query:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">temperature_sensors</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>A simple one liner in FleetDM will have osquery return the entire contents of the <code>temperature_sensors</code> table. That is
+all we really need to do here, it is that simple. There are some osquery configurations we are adding via FleetDM as well,
+most noteworthy is we are adding in the hardware serial number of the device as a decorator. This is simply to ensure the
+serial number is in every query results and can be used as a <a href="https://en.wikipedia.org/wiki/Primary_key" target="_blank" rel="noopener noreffer ">primary key</a> we
+will use later downstream in Snowflake.</p>
+<p>Yet another simple data model in Snowflake:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">OSQR_MAC_TEMPS_HISTORICAL_V</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">raw</span><span class="p">:</span><span class="n">decorations</span><span class="p">.</span><span class="n">serial_number</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">serial_number</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">raw</span><span class="p">:</span><span class="n">unixTime</span><span class="p">::</span><span class="n">string</span><span class="p">::</span><span class="n">timestamp_ltz</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ingest_time</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">raw</span><span class="p">:</span><span class="n">decorations</span><span class="p">.</span><span class="n">hostname</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">hostname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="n">name</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="k">key</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="k">key</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="n">celsius</span><span class="p">::</span><span class="nb">float</span><span class="w"> </span><span class="n">celsius</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="n">fahrenheit</span><span class="p">::</span><span class="nb">float</span><span class="w"> </span><span class="n">fahernheit</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">IT</span><span class="p">.</span><span class="n">IT_PLATFORM_ENG</span><span class="p">.</span><span class="n">FLEET_OSQUERY_RESULTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">lateral</span><span class="w"> </span><span class="n">flatten</span><span class="p">(</span><span class="k">input</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&#34;RAW&#34;</span><span class="p">:</span><span class="s2">&#34;snapshot&#34;</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">f</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">raw</span><span class="p">:</span><span class="n">name</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pack/Global/ingest-macos-temp-sensors&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>As well as some cool (or hot to toss in a dad joke there) data results in Snowflake!</p>
+<p><a class="lightgallery" href="/img/blog-temp-sensors.png" title="/img/blog-temp-sensors.png" data-thumbnail="/img/blog-temp-sensors.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/blog-temp-sensors.png"
+            data-srcset="/img/blog-temp-sensors.png, /img/blog-temp-sensors.png 1.5x, /img/blog-temp-sensors.png 2x"
+            data-sizes="auto"
+            alt="/img/blog-temp-sensors.png" />
+    </a>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Things to Note in the above results<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">I have noticed some values that are negative integers, like that <code>-127</code>. I believe these to be a default value when a sensor
+is not present or perhaps not functioning. I have not fact-checked this yet, but I know from my experience building gaming
+PCs and constantly looking at temperature sensors, if you see a static value that looks off, that is oftentimes a default
+value when a sensor is either not hooked up or missing, or not functioning.</div>
+        </div>
+    </div></p>
+<p>Searching Apple&rsquo;s website I did find <a href="https://support.apple.com/en-us/102336" target="_blank" rel="noopener noreffer ">this</a> article which tells me I should operate
+my Mac with in a certain ambient temperature range, but I failed to find an article that stated what the acceptable internal
+temperatures should be. Typically, with gaming hardware, like a higher end GPU you don&rsquo;t want temps going over 90 degrees
+Celsius, but that is x86 and PC hardware. So I am not advocating that to be the line you don&rsquo;t want to cross. If anyone
+has a link to an official Appel document that states internal temperature thresholds I would love to know!</p>
+<p>What we can do with this data is trend it over time, and establish a baseline. If we take several months of temperature
+sensor data, organize it by hardware type (make/model), user type (developer, pro services, sales, IT, etc), and trend
+average temperatures we can at least establish a baseline. From there we can create alerts or automated ticket creation
+in ServiceNow to proactively reach out to users if we detect spikes in their internal temperature of their laptop. We
+should be able to determine that the average IT working using a M1 CPU operates in this temperature threshold and use
+that for a baseline of acceptable temperatures for all IT workers that have that same model.</p>
+<h3 id="closing-thoughts">Closing thoughts</h3>
+<p>We have more data coming in I did not cover yet. Things like browser extensions, application versions, systems data,
+how much memory is being consumed by what process, and more. We aren&rsquo;t as tenured as some Orgs with osquery, but better
+late than enver as they say! This is the beginning of this journey, and I would bet more blog posts will come from this.</p>
+<p>If you got this far, thanks for reading! Here is a bonus pic of Booms when we took him to see some mountains along the
+Pacific Ocean.</p>
+<a class="lightgallery" href="/img/happiest-boi-ever.jpg" title="/img/happiest-boi-ever.jpg" data-thumbnail="/img/happiest-boi-ever.jpg">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/happiest-boi-ever.jpg"
+            data-srcset="/img/happiest-boi-ever.jpg, /img/happiest-boi-ever.jpg 1.5x, /img/happiest-boi-ever.jpg 2x"
+            data-sizes="auto"
+            alt="/img/happiest-boi-ever.jpg" />
     </a>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">

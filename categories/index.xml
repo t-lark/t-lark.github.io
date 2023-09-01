@@ -3,7 +3,39 @@
         <title>Categories - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/</link>
         <description>Categories - Category - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 28 Mar 2023 18:49:24 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 31 Aug 2023 18:01:31 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>data</title>
+    <link>https://t-lark.github.io/categories/data/</link>
+    <pubDate>Thu, 31 Aug 2023 18:01:31 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/categories/data/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>data modeling</title>
+    <link>https://t-lark.github.io/categories/data-modeling/</link>
+    <pubDate>Thu, 31 Aug 2023 18:01:31 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/categories/data-modeling/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>osquery</title>
+    <link>https://t-lark.github.io/categories/osquery/</link>
+    <pubDate>Thu, 31 Aug 2023 18:01:31 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/categories/osquery/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>snowflake</title>
+    <link>https://t-lark.github.io/categories/snowflake/</link>
+    <pubDate>Thu, 31 Aug 2023 18:01:31 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/categories/snowflake/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>asset inventory</title>
     <link>https://t-lark.github.io/categories/asset-inventory/</link>
     <pubDate>Tue, 28 Mar 2023 18:49:24 -0700</pubDate>
@@ -28,14 +60,6 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>snowflake</title>
-    <link>https://t-lark.github.io/categories/snowflake/</link>
-    <pubDate>Tue, 28 Mar 2023 18:49:24 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/categories/snowflake/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
     <title>automation</title>
     <link>https://t-lark.github.io/categories/automation/</link>
     <pubDate>Sun, 22 Jan 2023 21:52:42 -0700</pubDate>
@@ -57,30 +81,6 @@
     <pubDate>Sun, 22 Jan 2023 21:52:42 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/categories/software-deployment/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>asset</title>
-    <link>https://t-lark.github.io/categories/asset/</link>
-    <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/categories/asset/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>data</title>
-    <link>https://t-lark.github.io/categories/data/</link>
-    <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/categories/data/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>IT Operations</title>
-    <link>https://t-lark.github.io/categories/it-operations/</link>
-    <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/categories/it-operations/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

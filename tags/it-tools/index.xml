@@ -3,7 +3,16 @@
         <title>IT Tools - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/it-tools/</link>
         <description>IT Tools - Tag - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 22 Jan 2023 21:52:42 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/it-tools/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 31 Aug 2023 18:01:31 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/it-tools/" rel="self" type="application/rss+xml" /><item>
+    <title>Working with osquery Data in Snowflake</title>
+    <link>https://t-lark.github.io/posts/osquery-data-in-snowflake/</link>
+    <pubDate>Thu, 31 Aug 2023 18:01:31 -0700</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/osquery-data-in-snowflake/</guid>
+    <description><![CDATA[I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, he was quite impressed with all the use cases and in-depth data you can model about your fleet of laptops using osquery data in Snowflake.
+Booms came to the office with me, and he even got a bit of company swag! As we spent the day working I told him all about all the work my team was doing with osquery.]]></description>
+</item>
+<item>
     <title>Diversifying Your IT Tools: Integrating Munki</title>
     <link>https://t-lark.github.io/posts/diversifying-your-tools-munki/</link>
     <pubDate>Sun, 22 Jan 2023 21:52:42 -0700</pubDate>

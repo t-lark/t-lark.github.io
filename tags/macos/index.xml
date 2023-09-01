@@ -3,7 +3,16 @@
         <title>macOS - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/macos/</link>
         <description>macOS - Tag - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 23 Sep 2020 18:22:00 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/macos/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 31 Aug 2023 18:01:31 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/macos/" rel="self" type="application/rss+xml" /><item>
+    <title>Working with osquery Data in Snowflake</title>
+    <link>https://t-lark.github.io/posts/osquery-data-in-snowflake/</link>
+    <pubDate>Thu, 31 Aug 2023 18:01:31 -0700</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/osquery-data-in-snowflake/</guid>
+    <description><![CDATA[I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, he was quite impressed with all the use cases and in-depth data you can model about your fleet of laptops using osquery data in Snowflake.
+Booms came to the office with me, and he even got a bit of company swag! As we spent the day working I told him all about all the work my team was doing with osquery.]]></description>
+</item>
+<item>
     <title>Using Spotlight with macOS</title>
     <link>https://t-lark.github.io/posts/using-spotlight-macos/</link>
     <pubDate>Wed, 23 Sep 2020 18:22:00 -0700</pubDate>

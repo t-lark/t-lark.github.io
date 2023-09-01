@@ -3,7 +3,39 @@
         <title>Tags - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/</link>
         <description>Tags - Tag - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 28 Mar 2023 18:49:24 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 31 Aug 2023 18:01:31 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>IT Tools</title>
+    <link>https://t-lark.github.io/tags/it-tools/</link>
+    <pubDate>Thu, 31 Aug 2023 18:01:31 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/it-tools/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>macOS</title>
+    <link>https://t-lark.github.io/tags/macos/</link>
+    <pubDate>Thu, 31 Aug 2023 18:01:31 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/macos/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>osquery</title>
+    <link>https://t-lark.github.io/tags/osquery/</link>
+    <pubDate>Thu, 31 Aug 2023 18:01:31 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/osquery/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>snowflake</title>
+    <link>https://t-lark.github.io/tags/snowflake/</link>
+    <pubDate>Thu, 31 Aug 2023 18:01:31 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/snowflake/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>asset data</title>
     <link>https://t-lark.github.io/tags/asset-data/</link>
     <pubDate>Tue, 28 Mar 2023 18:49:24 -0700</pubDate>
@@ -28,14 +60,6 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>IT Tools</title>
-    <link>https://t-lark.github.io/tags/it-tools/</link>
-    <pubDate>Sun, 22 Jan 2023 21:52:42 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/it-tools/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
     <title>munki</title>
     <link>https://t-lark.github.io/tags/munki/</link>
     <pubDate>Sun, 22 Jan 2023 21:52:42 -0700</pubDate>
@@ -57,30 +81,6 @@
     <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/tags/analytics/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>asset management</title>
-    <link>https://t-lark.github.io/tags/asset-management/</link>
-    <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/asset-management/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>big data</title>
-    <link>https://t-lark.github.io/tags/big-data/</link>
-    <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/big-data/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>data cloud</title>
-    <link>https://t-lark.github.io/tags/data-cloud/</link>
-    <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/data-cloud/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
