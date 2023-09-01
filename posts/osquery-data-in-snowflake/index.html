@@ -30,7 +30,7 @@ Booms came to the office with me, and he even got a bit of company swag! As we s
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/t-lark.github.io\/posts\/osquery-data-in-snowflake\/"
-        },"genre": "posts","keywords": "macOS, IT Tools, osquery, snowflake","wordcount":  2980 ,
+        },"genre": "posts","keywords": "macOS, IT Tools, osquery, snowflake","wordcount":  2982 ,
         "url": "https:\/\/t-lark.github.io\/posts\/osquery-data-in-snowflake\/","datePublished": "2023-08-31T18:01:31-07:00","dateModified": "2023-08-31T18:01:31-07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -105,7 +105,7 @@ Booms came to the office with me, and he even got a bit of company swag! As we s
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Working with osquery Data in Snowflake</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/data/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>data</a>&nbsp;<a href="/categories/osquery/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>osquery</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>snowflake</a>&nbsp;<a href="/categories/data-modeling/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>data modeling</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-31">2023-08-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2980 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-31">2023-08-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2982 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;14 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -152,7 +152,7 @@ as fast as we choose to.</p>
 <h3 id="some-problem-statements">Some Problem Statements</h3>
 <p>People may be curious as to why we want to deploy more tools to collect data, when there are things like MDM that most
 IT Operations shops already have. The simple answer is that osquery is just way better at collecting data, it is cross-platform,
-and it gives us much better control over our data pipelines. So, here are some things are initially trying to solve:</p>
+and it gives us much better control over our data pipelines. So, here are some things we are initially trying to solve:</p>
 <ul>
 <li>Proactive monitoring</li>
 <li>Performance monitoring</li>
@@ -185,7 +185,7 @@ stop you from trying to understand what your coworkers do day to day, and how yo
 </blockquote>
 <h3 id="a-decent-start">A Decent Start</h3>
 <p>Before I dive into what we have done, and how we have leveraged the data, I would like to mention that we have not turned
-on any events based tables in osquery yet. So, the performance data we have is a snapshot in time, of the expensive compute
+on any events based tables in osquery yet. So, the performance data we have is a snapshot in time, of the most expensive compute
 processes since boot time. The caveat with this data is that it doesn&rsquo;t tell us how long these processes ran. If a process
 runs at 900% cpu usage from a 10core CPU system for 5 seconds, is likely a different story than a process running at 500%
 CPU usage for 25 minutes on that same system. As well as a process taking up 5 cores on a 6 CPU core system, versus 5
@@ -935,7 +935,7 @@ will use later downstream in Snowflake.</p>
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="k">key</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="k">key</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="n">celsius</span><span class="p">::</span><span class="nb">float</span><span class="w"> </span><span class="n">celsius</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">:</span><span class="n">fahrenheit</span><span class="p">::</span><span class="nb">float</span><span class="w"> </span><span class="n">fahernheit</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">IT</span><span class="p">.</span><span class="n">IT_PLATFORM_ENG</span><span class="p">.</span><span class="n">FLEET_OSQUERY_RESULTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">FLEET_OSQUERY_RESULTS</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">lateral</span><span class="w"> </span><span class="n">flatten</span><span class="p">(</span><span class="k">input</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&#34;RAW&#34;</span><span class="p">:</span><span class="s2">&#34;snapshot&#34;</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">f</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">raw</span><span class="p">:</span><span class="n">name</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pack/Global/ingest-macos-temp-sensors&#39;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
@@ -977,7 +977,7 @@ that for a baseline of acceptable temperatures for all IT workers that have that
 <h3 id="closing-thoughts">Closing thoughts</h3>
 <p>We have more data coming in I did not cover yet. Things like browser extensions, application versions, systems data,
 how much memory is being consumed by what process, and more. We aren&rsquo;t as tenured as some Orgs with osquery, but better
-late than enver as they say! This is the beginning of this journey, and I would bet more blog posts will come from this.</p>
+late than never as they say! This is the beginning of this journey, and I would bet more blog posts will come from this.</p>
 <p>If you got this far, thanks for reading! Here is a bonus pic of Booms when we took him to see some mountains along the
 Pacific Ocean.</p>
 <a class="lightgallery" href="/img/happiest-boi-ever.jpg" title="/img/happiest-boi-ever.jpg" data-thumbnail="/img/happiest-boi-ever.jpg">
