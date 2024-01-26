@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>More Osquery Data Modeling in Snowflake - t-lark.github.io</title><meta name="Description" content="I have no idea what I am doing"><meta property="og:title" content="More Osquery Data Modeling in Snowflake" />
+<meta property="og:description" content="Data Modeling osquery Data in Snowflake We have been working on many projects the past few months, and osquery data pipelines with the help of FleetDM has been one of our constant works in progress. Before I dive into the data modeling part, I wanted to share how we scaled this data out. We ended up going forward with FleetDM&rsquo;s SaaS offering over self-hosting the app. However, we are still streaming query results from FleetDM cloud to Snowflake over AWS Kinesis Firehose and we now have data streaming from FleetDM into Snowflake at a very fast rate and high volume." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-25T20:24:28-08:00" />
+<meta property="article:modified_time" content="2024-01-25T20:24:28-08:00" /><meta property="og:site_name" content="My personal blog" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="More Osquery Data Modeling in Snowflake"/>
+<meta name="twitter:description" content="Data Modeling osquery Data in Snowflake We have been working on many projects the past few months, and osquery data pipelines with the help of FleetDM has been one of our constant works in progress. Before I dive into the data modeling part, I wanted to share how we scaled this data out. We ended up going forward with FleetDM&rsquo;s SaaS offering over self-hosting the app. However, we are still streaming query results from FleetDM cloud to Snowflake over AWS Kinesis Firehose and we now have data streaming from FleetDM into Snowflake at a very fast rate and high volume."/>
+<meta name="application-name" content="tlark&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="tlark&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/" /><link rel="prev" href="https://t-lark.github.io/posts/osquery-data-in-snowflake/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "More Osquery Data Modeling in Snowflake",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/t-lark.github.io\/posts\/more-osquery-data-modeling-snowflake\/"
+        },"genre": "posts","keywords": "macOS, IT Tools, osquery, snowflake","wordcount":  2798 ,
+        "url": "https:\/\/t-lark.github.io\/posts\/more-osquery-data-modeling-snowflake\/","datePublished": "2024-01-25T20:24:28-08:00","dateModified": "2024-01-25T20:24:28-08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "tlark"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">More Osquery Data Modeling in Snowflake</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/data/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>data</a>&nbsp;<a href="/categories/osquery/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>osquery</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>snowflake</a>&nbsp;<a href="/categories/data-modeling/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>data modeling</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-25">2024-01-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2798 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;14 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#scaling-the-data">Scaling the Data</a></li>
+        <li><a href="#some-examples-we-have-built">Some Examples We Have Built</a>
+          <ul>
+            <li><a href="#audit-logs">Audit Logs</a></li>
+          </ul>
+        </li>
+        <li><a href="#process-events-table">Process Events Table</a></li>
+        <li><a href="#third-party-application-data">Third Party Application Data</a></li>
+        <li><a href="#until-next-time">Until Next Time</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="data-modeling-osquery-data-in-snowflake">Data Modeling osquery Data in Snowflake</h1>
+<p>We have been working on many projects the past few months, and osquery data pipelines with the help of <a href="https://fleetdm.com/" target="_blank" rel="noopener noreffer ">FleetDM</a>
+has been one of our constant works in progress. Before I dive into the data modeling part, I wanted to share how we scaled
+this data out. We ended up going forward with FleetDM&rsquo;s SaaS offering over self-hosting the app. However, we are still
+streaming query results from FleetDM cloud to Snowflake over <a href="https://aws.amazon.com/kinesis/data-firehose/" target="_blank" rel="noopener noreffer ">AWS Kinesis Firehose</a> and
+we now have data streaming from FleetDM into Snowflake at a very fast rate and high volume. We are typically collecting
+data from osquery every hour on most things, and we have a lesser number of queries that run every 12 hours or once a
+day.</p>
+<h3 id="scaling-the-data">Scaling the Data</h3>
+<p>When a query comes into Snowflake, it is just a JSON document with lots of keys and values, with some of those key value
+pairs being nested. Snowflake treats this as a <a href="https://docs.snowflake.com/en/sql-reference/data-types-semistructured" target="_blank" rel="noopener noreffer ">variant data type</a> and
+if you are familiar with working with dictionary data in say Python or Ruby this might click pretty quickly how
+one can simply parse native JSON in Snowflake.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">column</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">][</span><span class="s1">&#39;nested-key&#39;</span><span class="p">]::</span><span class="k">type</span><span class="o">-</span><span class="k">cast</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>In the above pseudocode is a very quick and dirty example of how one could get a value from a nested key using SQL in
+Snowflake. This assumes you have a column with just raw JSON data inside it. However, when you are streaming data from
+thousands of endpoints to cloud storage and then rapidly ingesting them into Snowflake you end up with many JSON files to parse.
+Parsing the JSON can be a much heavier compute process at scale. So the first thing I did was work with my data engineering
+team here and setup what is called <a href="https://docs.snowflake.com/en/user-guide/tables-clustering-keys" target="_blank" rel="noopener noreffer ">key clustering</a></p>
+<p>This pre-processes the JSON files as they come into Snowflake and separates specific keys into their own columns, and you can
+then model the data further after that. The big benefit of this is that you get all that indexing and caching features
+where you don&rsquo;t really get that by parsing raw JSON variant data. So, we had already made some design decisions in our config
+files around this before, and we were now going to leverage those additions. We split up the following key/value data sets
+into their own columns from FleetDM osquery results:</p>
+<ul>
+<li>Serial number (unique identifier, can be used as primary key across many data sets)</li>
+<li>Hostname (not unique, but some tools only collect hostnames from other data ingests)</li>
+<li>Hardware UUID (unique and MDM tools collect this, so another primary key)</li>
+<li>Date stamp (we are going to be filtering by date ranges a bunch)</li>
+<li>Name (the query pack name, which again would be a very common filter)</li>
+</ul>
+<p>The main idea here is that we were splitting out values of data that we knew we would use heavily for filtering and joining
+other data sources to it, and this helped us scale immensely. From our design decisions, we also added decorators for the serial number,
+hardware UUID, and the hostname. These are included in all query results. These can be useful primary keys to join to many
+other data sources in Snowflake downstream. Remember to always think about making data quality decisions upstream, so you can
+benefit from them downstream.</p>
+<p>To give a quick summary of performance increase is I was querying 300 million rows of raw JSON data at first, and it would take
+20 to 30 minutes to complete my query pre-setting up the key clustering. Post key clustering that same query could complete
+in around 30 seconds. That is a pretty amazing increase and a vast UX improvement for anyone working with this data. So, if
+you go down the journey of streaming data to your Snowflake instance and want to really see performance increases definitely
+consider key clustering. Also, please talk to an expert on this subject. I am not an expert, but am lucky enough to work
+with a lot of experts on our data engineering team that works with us when we need their help.</p>
+<h3 id="some-examples-we-have-built">Some Examples We Have Built</h3>
+<p>The osquery log stream from Fleet DM has 3 different data sets you can ingest. It has the query results, which is the
+bread and butter of the data, the audit log, and the osquery status. The audit log is just what you probably think it is,
+a full on change log of what is happening in the application itself. I have to hand it to FleetDM the log is very thorough,
+and it is one of the better ones I have personally seen. The last bit of data is the osquery <a href="https://osquery.readthedocs.io/en/stable/deployment/logging/#status-logs" target="_blank" rel="noopener noreffer ">status logs</a>.</p>
+<h4 id="audit-logs">Audit Logs</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">OSQR_AUDIT</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">INGEST_DATE</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">FILE_NAME</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">USER_EMAIL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">USER_NAME</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">FLEET_USER_ID</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">CREATION_DATE</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">QUERY_CODE</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">QUERY_NAME</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">TARGETS_COUNT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">QUERY_ID</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">ACTION</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">snapshot_date</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ingest_date</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="p">::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">file_name</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;actor_email&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">user_email</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;actor_full_name&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">user_name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;actor_id&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">fleet_user_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;created_at&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">::</span><span class="nb">date</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">creation_date</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;details&#39;</span><span class="p">][</span><span class="s1">&#39;query_sql&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">query_code</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;details&#39;</span><span class="p">][</span><span class="s1">&#39;query_name&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">query_name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;details&#39;</span><span class="p">][</span><span class="s1">&#39;targets_count&#39;</span><span class="p">]::</span><span class="nb">integer</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">targets_count</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]::</span><span class="nb">integer</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">query_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">action</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">FLEET_OSQUERY_AUDIT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>The above data model is a real fantastic way to keep track of what actions users of FleetDM are performing and what
+objects in the application are being modified or accessed. This is the type of model you can hand off to your Threat
+Detection and Incident Response teams to monitor for anomalies.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">OSQR_AUDIT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="k">contains</span><span class="p">(</span><span class="n">query_code</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;curl&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>The above query against the audit data model will show results of any person who has used the <code>curl</code> table in the
+FleetDM product. This is really thorough, and if a bad actor were to gain access to an IT tool, they might try to
+start using tools like <code>curl</code> to deploy malicious software across your fleet. Most IT/Ops tools I have personally
+experienced in my career, do not have this level of auditing. Also, the power of Snowflake makes this such an easy query
+to write. There are many actions you can track like, but not limited to:</p>
+<ul>
+<li>User&rsquo;s logging in</li>
+<li>User&rsquo;s being created</li>
+<li>User&rsquo;s editing or executing queries</li>
+<li>Tables being accessed for live queries</li>
+<li>User&rsquo;s fail to log in</li>
+<li>User&rsquo;s role gets changed</li>
+<li>What the actual query code being ran is</li>
+</ul>
+<p>So, this is really great for monitoring and auditing access, editing all objects in FleetDM, tracking who ran what live
+queries, and much more. Other vendors should really take note and build auditing trails this good.</p>
+<h3 id="process-events-table">Process Events Table</h3>
+<p>The <a href="https://fleetdm.com/tables/es_process_events" target="_blank" rel="noopener noreffer ">es_process_events</a> table contains process events from the EndpointSecurity
+API in macOS. This table requires additional configurations to be set in the YAML config file for osquery. This is a table that
+also can sometimes take up more compute if you get heavy-handed with it. You can use this table for lots of different reasons
+like but not limited to: What processes are running, tracking how long processes run, and extended metadata about processes
+that are running on your macOS endpoint. This can be very useful for both IT/Ops and Security Teams on what processes are running to later
+join to resource usage query results to get compute costs. Security teams can also use this for a plethora of security monitoring
+across your fleet.</p>
+<p>This table is a bit &ldquo;crunchy&rdquo; to model in Snowflake due to the JSON data passing blank strings for things that should be
+<code>Null</code> and also an integer data type. Here is a sample of one of my query results, which is actually a 19,908 line JSON doc.
+Yes, each of the query results for each endpoint can be about 20,000 lines of JSON. This may seem like a lot, but it is really
+not much in terms of what Snowflake can handle.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;cdhash&#34;</span><span class="p">:</span> <span class="s2">&#34;1c06443abb6d077d15600fe3e5b8856345228707&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;child_pid&#34;</span><span class="p">:</span> <span class="s2">&#34;73831&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;cmdline&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;cmdline_count&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;codesigning_flags&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;cwd&#34;</span><span class="p">:</span> <span class="s2">&#34;/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;egid&#34;</span><span class="p">:</span> <span class="s2">&#34;20&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;env&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;env_count&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;euid&#34;</span><span class="p">:</span> <span class="s2">&#34;20&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;event_type&#34;</span><span class="p">:</span> <span class="s2">&#34;fork&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;exit_code&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;gid&#34;</span><span class="p">:</span> <span class="s2">&#34;20&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;global_seq_num&#34;</span><span class="p">:</span> <span class="s2">&#34;17966&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;original_parent&#34;</span><span class="p">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;parent&#34;</span><span class="p">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/Applications/Google Chrome.app/Contents/MacOS/Google Chrome&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;11559&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;platform_binary&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;seq_num&#34;</span><span class="p">:</span> <span class="s2">&#34;3887&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;signing_id&#34;</span><span class="p">:</span> <span class="s2">&#34;com.google.Chrome&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;team_id&#34;</span><span class="p">:</span> <span class="s2">&#34;EQHXZ8M8AV&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;time&#34;</span><span class="p">:</span> <span class="s2">&#34;1699986421&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;501&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;username&#34;</span><span class="p">:</span> <span class="s2">&#34;batman&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;7&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span><span class="err">,</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>In the above example you can see a key for <code>exit_code</code>, which according to the schema and docs should be an integer, but in
+the actual JSON results it is a blank string. This can be confusing and Snowflake has perfect ways to work around data
+that is imperfect. I would expect this to return a <code>Null</code> and not a blank string of <code>&quot;&quot;</code> since the schema states this
+should be an integer data type.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">OSQR_MACOS_PROCESS_EVENTS_V</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">HOSTNAME</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">HOST_UUID</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">SERIAL_NUMBER</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">CDHASH</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">CHILD_PID</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">CMDLINE</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">CMDLINE_COUNT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">CODESIGNING_FLAGS</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">CWD</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">EGID</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">ENV</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">ENV_COUNT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">EUID</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">EVENT_TYPE</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">EXIT_CODE</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">GID</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">GLOBAL_SEQ_NUM</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">ORIGINAL_PARENT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">PARENT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">PATH</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">PID</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">PLATFORM_BINARY</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">SEQ_NUM</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">SIGNING_ID</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">TEAM_ID</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">TIME</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">UID</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">USERNAME</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">VERSION</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">host_name</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">hostname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">host_uuid</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">host_uuid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">serial_number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">serial_number</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;cdhash&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cdhash</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;child_pid&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">child_pid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;cmdline&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cmdline</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;cmdline_count&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cmdline_count</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;codesigning_flags&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">codesigning_flags</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;cwd&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cwd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;egid&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">egid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;env&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">env</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;env_count&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">env_count</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;euid&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">euid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;event_type&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">event_type</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;exit_code&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">exit_code</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;gid&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">gid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;global_seq_num&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">global_seq_num</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;original_parent&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">original_parent</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;parent&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">parent</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">path</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;pid&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">pid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;platform_binary&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">platform_binary</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;seq_num&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">seq_num</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;signing_id&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">signing_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;team_id&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">team_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">time</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">uid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">username</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">version</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">FLEET_OSQUERY_RESULTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">lateral</span><span class="w"> </span><span class="n">flatten</span><span class="p">(</span><span class="k">input</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">snapshot</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">f</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pack/Global/ingest-process-events-all-macs&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Keeping on with the example, lets look at this code: <code>NULLIF(f.value['exit_code']::string, '')::number as exit_code</code> and
+break down why I had to do this. The JSON doc itself just passes a blank string since there was no exit code in this
+set of query results. Trying to type cast a blank string to an integer doesn&rsquo;t work, because there is nothing there.
+So, I Null the data if no value is found by checking if it is blank (see <a href="https://docs.snowflake.com/en/sql-reference/functions/nullif?utm_source=snowscope&amp;utm_medium=serp&amp;utm_term=nullif" target="_blank" rel="noopener noreffer ">NULLIF</a>). In this case since <code>exit code</code>
+has no value and the query results passed it as a blank string in the JSON doc, I am detecting if it is a blank string then
+casting it as a Null data type if so. From there I can type cast it as a number (synonymous with integer in Snowflake)
+if it is actually not blank. I definitely banged my head against my keyboard a bit on this one trying to figure it out
+when I first encountered it.</p>
+<p>So, when you are dealing with imperfect data remember that Snowflake has perfect solutions</p>
+<h3 id="third-party-application-data">Third Party Application Data</h3>
+<p>A very common data collection from osquery is the installed 3rd party apps on an end user device. This of course has many
+functions data wise. It is good for observing how fast you patch apps, what versions of apps are out in your fleet, what
+type of apps are users installing (helps understand their needs), and then the big one, collecting all the out of date and
+vulnerable versions of apps. Patch quickly, Patch often is a phrase you hear nowadays, and it is due to the amount of
+vulnerabilities dev shops are finding. With the help of bug bounty programs some efforts are also now crowd-sourced
+to the public. Thus, you can patch a single app multiple times in a month to fix known security issues.</p>
+<p>Model code:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">OSQR_MAC_INSTALLED_APPS_HISTORICAL_V</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">HOSTNAME</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">SERIAL_NUMBER</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">APP_NAME</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">INGEST_DATE_STAMP</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">EXECUTABLE_NAME</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">BUNDLE_ID</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">SHORT_VERSION</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">LONG_VERSION</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">LAST_TIME_USED_EPOCH</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">INSTALLATION_PATH</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">ARCH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">host_name</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">hostname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">serial_number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">serial_number</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">app_name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">event_timestamp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ingest_date_stamp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;bundle_executable&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">executable_name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;bundle_identifier&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bundle_id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;bundle_short_version&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">short_version</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;bundle_version&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">long_version</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;last_opened_time&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">last_time_used_epoch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">installation_path</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;bundle_package_type&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">arch</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">FLEET_OSQUERY_RESULTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">lateral</span><span class="w"> </span><span class="n">flatten</span><span class="p">(</span><span class="k">input</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">snapshot</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">f</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pack/Global/ingest-get-all-macos-apps&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>This is a pretty standard data model and nothing really out of the ordinary with it. I am using one of my favorite features
+of Snowflake, which is <a href="https://docs.snowflake.com/en/sql-reference/functions/flatten?utm_source=snowscope&amp;utm_medium=serp&amp;utm_term=flatten" target="_blank" rel="noopener noreffer ">flatten</a>
+and I use this feature so much. When we set up key clustering on our data ingest, we also put the <code>snapshot</code> key into its own
+column. This contains the actual query results and is a series of nested data sets under the <code>snapshot</code> key. This makes
+parsing dictionary-like-data easy-peasy. For context, the <code>snapshot</code> column is still variant data, and it is the remaining
+JSON of the query results. So, when you are modeling data during your ingest process to add things like key clustering, you
+can still just dump parts of the JSON file into its own column.</p>
+<p>This is the output of <code>select * from apps;</code> in osquery, so we have basically a giant historical data set of every item
+in the osquery <code>apps</code> table. This is very useful for many reasons, but really trending the data over time to observe how often
+certain apps patch or do not patch, how quickly they patch, what apps are constantly showing up but not in your automation pipeline
+yet? There are also some findings in here for security for things like a <a href="https://www.malwarebytes.com/cybersecurity/basics/what-is-pup" target="_blank" rel="noopener noreffer ">PUP</a>
+for example. It also can tell you how often apps are opened. This is super useful for tracking usage of licensed software.
+If you have licensed software that can cost $100s of dollars or more, and it is not being actively used, and historically not used,
+you can now trend that data to provide tons of cost savings for the organization.</p>
+<p>Consider this query:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">OSQR_MAC_INSTALLED_APPS_HISTORICAL_V</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">qualify</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">row_number</span><span class="p">()</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">serial_number</span><span class="p">,</span><span class="w"> </span><span class="n">app_name</span><span class="w">  </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">ingest_date_stamp</span><span class="w"> </span><span class="k">desc</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>I am now using my other favorite feature of Snowflake, the <a href="https://docs.snowflake.com/en/sql-reference/constructs/qualify?utm_source=snowscope&amp;utm_medium=serp&amp;utm_term=qualify" target="_blank" rel="noopener noreffer ">qualify</a>
+window function filter. This will return the latest data and only the latest data per an app per each serial number of devices in your fleet. This
+query was a bigger one, and it took about 1 minute to run and returned over half a million rows of data. I don&rsquo;t find it shocking
+and in fact I would have sort of assumed we would have closer to a million unique apps across the fleet, but we are big
+SaaS users, so it tracks.</p>
+<a class="lightgallery" href="/img/osqr-photoshop.png" title="/img/osqr-photoshop.png" data-thumbnail="/img/osqr-photoshop.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/osqr-photoshop.png"
+            data-srcset="/img/osqr-photoshop.png, /img/osqr-photoshop.png 1.5x, /img/osqr-photoshop.png 2x"
+            data-sizes="auto"
+            alt="/img/osqr-photoshop.png" />
+    </a>
+<p>I took the opportunity to look at an app we all know and love, Adobe Photoshop. As you can see from the screenshot above
+we are able to get the last used timestamp and can do all sorts of things with that. If we issue an expensive app like
+Photoshop to someone who ends up not needing it, we can reclaim that license for another user that does need one. We always want
+to enable humans to do their best work with the best technology we have here. However, we also want to be mindful of our
+budgets and spend on technology as well. This is a great compromise and UX where we can reclaim unused license and if the
+human who lost their Photoshop license needs it again they can just request it again through our IT Help Desk system, and we can auto provision them
+another license. This way users can get the tech they need, and we can save money when it is not needed.</p>
+<h3 id="until-next-time">Until Next Time</h3>
+<p>Tools like osquery are not always straight forward to use and get returns off of. The Snowflake Data Platform really solves a
+big problem with getting the biggest returns from your osquery data. FleetDM makes managing osquery a breeze and my experiences
+with them have been great. Data modeling isn&rsquo;t some mystic art and IT/Ops shops should really start thinking their data strategy if they
+don&rsquo;t already have one. This type of data is paradigm shifting, and words really cannot describe how great it is.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-01-25</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/" data-title="More Osquery Data Modeling in Snowflake" data-via="tlark8" data-hashtags="macOS,IT Tools,osquery,snowflake"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/" data-hashtag="macOS"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/" data-title="More Osquery Data Modeling in Snowflake"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/" data-title="More Osquery Data Modeling in Snowflake"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/" data-title="More Osquery Data Modeling in Snowflake"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/macos/">macOS</a>,&nbsp;<a href="/tags/it-tools/">IT Tools</a>,&nbsp;<a href="/tags/osquery/">osquery</a>,&nbsp;<a href="/tags/snowflake/">snowflake</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/osquery-data-in-snowflake/" class="prev" rel="prev" title="Working with osquery Data in Snowflake"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Working with osquery Data in Snowflake</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

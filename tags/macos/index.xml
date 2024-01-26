@@ -3,7 +3,15 @@
         <title>macOS - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/macos/</link>
         <description>macOS - Tag - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 31 Aug 2023 18:01:31 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/macos/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 25 Jan 2024 20:24:28 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/tags/macos/" rel="self" type="application/rss+xml" /><item>
+    <title>More Osquery Data Modeling in Snowflake</title>
+    <link>https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/</link>
+    <pubDate>Thu, 25 Jan 2024 20:24:28 -0800</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/</guid>
+    <description><![CDATA[Data Modeling osquery Data in Snowflake We have been working on many projects the past few months, and osquery data pipelines with the help of FleetDM has been one of our constant works in progress. Before I dive into the data modeling part, I wanted to share how we scaled this data out. We ended up going forward with FleetDM&rsquo;s SaaS offering over self-hosting the app. However, we are still streaming query results from FleetDM cloud to Snowflake over AWS Kinesis Firehose and we now have data streaming from FleetDM into Snowflake at a very fast rate and high volume.]]></description>
+</item>
+<item>
     <title>Working with osquery Data in Snowflake</title>
     <link>https://t-lark.github.io/posts/osquery-data-in-snowflake/</link>
     <pubDate>Thu, 31 Aug 2023 18:01:31 -0700</pubDate>
