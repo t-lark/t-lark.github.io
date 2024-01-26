@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/t-lark.github.io\/posts\/more-osquery-data-modeling-snowflake\/"
-        },"genre": "posts","keywords": "macOS, IT Tools, osquery, snowflake","wordcount":  2798 ,
+        },"genre": "posts","keywords": "macOS, IT Tools, osquery, snowflake","wordcount":  2803 ,
         "url": "https:\/\/t-lark.github.io\/posts\/more-osquery-data-modeling-snowflake\/","datePublished": "2024-01-25T20:24:28-08:00","dateModified": "2024-01-25T20:24:28-08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,7 +103,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">More Osquery Data Modeling in Snowflake</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/data/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>data</a>&nbsp;<a href="/categories/osquery/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>osquery</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>snowflake</a>&nbsp;<a href="/categories/data-modeling/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>data modeling</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-25">2024-01-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2798 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-25">2024-01-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2803 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;14 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -174,7 +174,7 @@ other data sources in Snowflake downstream. Remember to always think about makin
 benefit from them downstream.</p>
 <p>To give a quick summary of performance increase is I was querying 300 million rows of raw JSON data at first, and it would take
 20 to 30 minutes to complete my query pre-setting up the key clustering. Post key clustering that same query could complete
-in around 30 seconds. That is a pretty amazing increase and a vast UX improvement for anyone working with this data. So, if
+in around 30 seconds using the exact same compute. That is a pretty amazing increase and a vast UX improvement for anyone working with this data. So, if
 you go down the journey of streaming data to your Snowflake instance and want to really see performance increases definitely
 consider key clustering. Also, please talk to an expert on this subject. I am not an expert, but am lucky enough to work
 with a lot of experts on our data engineering team that works with us when we need their help.</p>
