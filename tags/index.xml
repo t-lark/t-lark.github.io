@@ -3,7 +3,39 @@
         <title>Tags - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/</link>
         <description>Tags - Tag - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 25 Jan 2024 20:24:28 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 27 Feb 2024 18:16:37 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>IT</title>
+    <link>https://t-lark.github.io/tags/it/</link>
+    <pubDate>Tue, 27 Feb 2024 18:16:37 -0800</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/it/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>security</title>
+    <link>https://t-lark.github.io/tags/security/</link>
+    <pubDate>Tue, 27 Feb 2024 18:16:37 -0800</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/security/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>tech</title>
+    <link>https://t-lark.github.io/tags/tech/</link>
+    <pubDate>Tue, 27 Feb 2024 18:16:37 -0800</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/tech/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>threat modeling</title>
+    <link>https://t-lark.github.io/tags/threat-modeling/</link>
+    <pubDate>Tue, 27 Feb 2024 18:16:37 -0800</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/threat-modeling/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>IT Tools</title>
     <link>https://t-lark.github.io/tags/it-tools/</link>
     <pubDate>Thu, 25 Jan 2024 20:24:28 -0800</pubDate>
@@ -49,38 +81,6 @@
     <pubDate>Tue, 28 Mar 2023 18:49:24 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/tags/data-insights/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>endpoints</title>
-    <link>https://t-lark.github.io/tags/endpoints/</link>
-    <pubDate>Tue, 28 Mar 2023 18:49:24 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/endpoints/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>munki</title>
-    <link>https://t-lark.github.io/tags/munki/</link>
-    <pubDate>Sun, 22 Jan 2023 21:52:42 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/munki/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>open source</title>
-    <link>https://t-lark.github.io/tags/open-source/</link>
-    <pubDate>Sun, 22 Jan 2023 21:52:42 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/open-source/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>analytics</title>
-    <link>https://t-lark.github.io/tags/analytics/</link>
-    <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/analytics/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

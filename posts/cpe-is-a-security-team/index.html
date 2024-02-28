@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>IT Teams are also Security Teams - t-lark.github.io</title><meta name="Description" content="I have no idea what I am doing"><meta property="og:title" content="IT Teams are also Security Teams" />
+<meta property="og:description" content="IT Teams are also Security Teams If you have worked in some tech related job odds are you have also worked with various security teams throughout your career. There has definitely been a divide between IT teams and Security teams I have observed in my near 25 years working in tech, but that doesn&rsquo;t have to be the case. During my career I have definitely observed security &ldquo;punting labor&rdquo; over the fence to IT teams, and I have seen IT teams dig their feet into the ground when security wants to change things." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://t-lark.github.io/posts/cpe-is-a-security-team/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-02-27T18:16:37-08:00" />
+<meta property="article:modified_time" content="2024-02-27T18:16:37-08:00" /><meta property="og:site_name" content="My personal blog" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="IT Teams are also Security Teams"/>
+<meta name="twitter:description" content="IT Teams are also Security Teams If you have worked in some tech related job odds are you have also worked with various security teams throughout your career. There has definitely been a divide between IT teams and Security teams I have observed in my near 25 years working in tech, but that doesn&rsquo;t have to be the case. During my career I have definitely observed security &ldquo;punting labor&rdquo; over the fence to IT teams, and I have seen IT teams dig their feet into the ground when security wants to change things."/>
+<meta name="application-name" content="tlark&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="tlark&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/cpe-is-a-security-team/" /><link rel="prev" href="https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "IT Teams are also Security Teams",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/t-lark.github.io\/posts\/cpe-is-a-security-team\/"
+        },"genre": "posts","keywords": "security, IT, threat modeling, tech","wordcount":  2480 ,
+        "url": "https:\/\/t-lark.github.io\/posts\/cpe-is-a-security-team\/","datePublished": "2024-02-27T18:16:37-08:00","dateModified": "2024-02-27T18:16:37-08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "tlark"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">IT Teams are also Security Teams</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/security/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>security</a>&nbsp;<a href="/categories/threat-models/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>threat models</a>&nbsp;<a href="/categories/it/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>IT</a>&nbsp;<a href="/categories/collaboration/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>collaboration</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-27">2024-02-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2480 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;12 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#engage-as-partners">Engage as Partners</a></li>
+        <li><a href="#threat-model-your-tech-stacks">Threat Model Your Tech Stacks</a></li>
+        <li><a href="#building-a-threat-model">Building a Threat Model</a></li>
+        <li><a href="#use-your-systems-knowledge-to-describe-threats">Use Your Systems Knowledge to Describe Threats</a></li>
+        <li><a href="#using-the-8020-model">Using the 80/20 Model</a></li>
+        <li><a href="#building-security-minded-development">Building Security Minded Development</a></li>
+        <li><a href="#cpe-teams-are-security-teams">CPE Teams are Security Teams</a></li>
+        <li><a href="#it-truly-is-a-community-effort">It Truly is a Community Effort</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="it-teams-are-also-security-teams">IT Teams are also Security Teams</h1>
+<p>If you have worked in some tech related job odds are you have also worked with various security teams throughout your career.
+There has definitely been a divide between IT teams and Security teams I have observed in my near 25 years working in tech,
+but that doesn&rsquo;t have to be the case. During my career I have definitely observed security &ldquo;punting labor&rdquo; over the fence
+to IT teams, and I have seen IT teams dig their feet into the ground when security wants to change things. This is just the
+wrong way to collaborate with IT and Security teams all together.</p>
+<p>I am very lucky and privileged to have at least been able to work with some passionate and collaborative security teams in
+recent years. When you approach the relationship of IT and security this way you get such a better return from every team&rsquo;s
+work, and you find yourself working with security teams on a constant basis to deliver solutions to your organization.
+I have also been lucky enough to be mentored by some of our security leaders and engineers over the past few years in my current
+job. So, here is a good old blog post about how IT and Security should be best friends!</p>
+<h3 id="engage-as-partners">Engage as Partners</h3>
+<p>We have a security partner program here at my current place of work. I am also a security partner, as I possess some
+expertise and skills in some specific tech domains. This allows me to apply that cross functionally, and help enable other
+IT staff to be better at security, and also help security bring domain experts into their consultation. It is unrealistic
+to expect security staff to be domain experts on your tech stacks. Likewise, it is unrealistic for security to tell IT how
+to design and scale systems. This is a generalization, so don&rsquo;t think this is a binary and absolute thing, as it is not.
+However, the generalization is the conceptual point I want to make here. Let the experts be experts, and work with each
+other from a partnership point of view. This is easier said than done, but one pro-tip I can give everyone who reads this post,
+breaking bread with other humans is a great way to start. One of our security leaders started bringing food to our meetings,
+and he would ensure we all had our snacks, and we chatted over food. As cheesy as this sounds, it worked! We were more
+relaxed, we got to snack on some food, we started chatting more casually about things, and we agreed to work toward common
+end goals.</p>
+<p>So, make a security partner program, train the security partners on how to be more security focused, because security is
+not just one department&rsquo;s job, it is everyone&rsquo;s job. It is very unrealistic to think that one department can cover
+every single risk an organization encounters on a daily basis, thus we do things like end user security training, partnerships,
+sync meetings, and so forth.</p>
+<p>I volunteered to be a security partner about 4-ish years ago, and have helped many folks across our org write threat models.
+I have been able to apply my work experience, my expertise, and my all around systems&rsquo; knowledge to this security partnership.</p>
+<h3 id="threat-model-your-tech-stacks">Threat Model Your Tech Stacks</h3>
+<p>This one can be controversial, but I have personally come to terms with it a few years ago. When I was a Principal Engineer
+designing systems at scale, I was the expert designing them. I knew the tech&rsquo;s features and abilities, I was best qualified
+to describe how the system worked, and how data flowed. Which is the bulk of a threat model. I also think that if you
+are in a position to design a system, the way you qualify yourself to build it, is if you can threat model it. I know that
+sounds a bit harsh or maybe absurd to some folks, but hear me out please. The designer and implementer will have the most
+intimate knowledge of the system, they should be able to describe how their tech stacks work together. If they cannot, maybe
+they should learn how they operate before building it in production. That is why we have POC and test environments, and why
+we run pilots, so we can get to know our tech stacks well before we ship them to production!</p>
+<p>I have learned how to use <a href="https://en.wikipedia.org/wiki/STRIDE_%28security%29" target="_blank" rel="noopener noreffer ">STRIDE</a>, which is a threat modeling framework.
+It is honestly not too difficult to understand the bits you need to once it finally clicks! While that is true of most things,
+at least this is a framework, so it is very repeatable once you learn it. The table below abstracts what S.T.R.I.D.E. stands
+for, and defines each threat to model in your tech stack.</p>
+<table>
+<thead>
+<tr>
+<th>Threat</th>
+<th>Desired property</th>
+<th>Threat Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spoofing</td>
+<td>Authenticity</td>
+<td>Pretending to be something or someone other than yourself</td>
+</tr>
+<tr>
+<td>Tampering</td>
+<td>Integrity</td>
+<td>Modifying something on disk, network, memory, or elsewhere</td>
+</tr>
+<tr>
+<td>Repudiation</td>
+<td>Non-repudiability</td>
+<td>Claiming that you didn&rsquo;t do something or were not responsible; can be honest or false</td>
+</tr>
+<tr>
+<td>Information disclosure</td>
+<td>Confidentiality</td>
+<td>Providing information to someone not authorized to access it</td>
+</tr>
+<tr>
+<td>Denial of service</td>
+<td>Availability</td>
+<td>Exhausting resources needed to provide service</td>
+</tr>
+<tr>
+<td>Elevation of privilege</td>
+<td>Authorization</td>
+<td>Allowing someone to do something they are not authorized to do</td>
+</tr>
+</tbody>
+</table>
+<p>As a systems designer, you should be able to data flow diagram (commonly referred to as DFD) your tech stacks and define
+each threat throughout the DFD. Each threat should have a mitigation or compensating control. IT and Security teams should
+walk through the threat model together so they both better understand what is being published to production.</p>
+<h3 id="building-a-threat-model">Building a Threat Model</h3>
+<p>Let&rsquo;s assume we have a simple integration we are building from a SaaS application into cloud storage, where our in-house
+application we have built will access the cloud storage data to do the thing it was designed to do.</p>
+<p>A simple DFD:</p>
+<a class="lightgallery" href="/img/example_dfd.png" title="/img/example_dfd.png" data-thumbnail="/img/example_dfd.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/example_dfd.png"
+            data-srcset="/img/example_dfd.png, /img/example_dfd.png 1.5x, /img/example_dfd.png 2x"
+            data-sizes="auto"
+            alt="/img/example_dfd.png" />
+    </a>
+<p>Quick notes on the DFD:</p>
+<ul>
+<li>Entities are defined by the square like shapes (may not be exact squares, could be rectangles haha!)</li>
+<li>Processes are defined by the circles (this is to show what actions or workflows are taking place)</li>
+<li>Label each threat with the corresponding letter in S.T.R.I.D.E.</li>
+<li>Label the trust zones (will explain below)</li>
+<li>Take the DFD and some form of notes describing the diagram to consult with your security teams</li>
+</ul>
+<p>Trust zones were something that took me a moment to really get what they are meant for. They are arbitrary numbers you
+assign a value to, and it is more of an offset than it is a scale. Assume trust zone 0 is the absolute lowest trust zone, and
+trust zone 9 is the absolute highest and most trusted of zones. What you are wanting to represent in your DFD is that
+you are either going up in trust zones or you are going down in trust zones. Typically, security teams will have some baseline
+definitions of trust zones like the end user is always in trust zone 0 no matter what, and only systems we fully design and
+build are in trust zone 9 as an example. I used this example in the DFD above as well. SaaS apps you do not own nor do you have
+direct access to the host, so it is a bit of a mystery box to you and your org on what goes on in the app. However,
+you likely have some level of admin access and some level of logging, and they aren&rsquo;t an end user so to remain relative
+to the flow I marked them as trust zone 1. As we can get some data, and we have some control out of the SaaS app.</p>
+<p>The private cloud I marked as a trust zone above the SaaS apps as we have more controls in this space. Things like, but not
+limited to: IAM, role assumption, RBAC, permissions, and other various forms of protections and limitations we can impose to
+follow the least privilege model. While the in-house app is something we can put in the highest trust zone, zone 9, as
+the company owns the code, employs the devs that built it, and essentially has full control over it. You can just as easily
+bumped the SaaS apps to Zone 3, the private cloud to zone 6 and the in-house app would remain a trust zone 9, because
+it is all relative to the model. It still conceptually makes sense. This was a big hang up for me in the beginning of
+learning how to threat model. Now that I know these are arbitrary values to show a relative movement in trust zones (going
+up or going down) it is much easier for me to grok.</p>
+<p>When changing a trust zone, an information disclosure threat should be automatically generated. Which is the <code>I</code> in
+S.T.R.I.D.E. This is because traffic of your data is transversing through various systems you have varied control over.
+So, some standard concepts should be defined by your security team you can follow, and then you just need to apply the
+relativity of your tech stacks through the DFD.</p>
+<h3 id="use-your-systems-knowledge-to-describe-threats">Use Your Systems Knowledge to Describe Threats</h3>
+<p>One of the ways we have described the threats is a syntax called <a href="https://cucumber.io/docs/gherkin/" target="_blank" rel="noopener noreffer ">Gherkin</a>, which uses
+some specific words to describe a threat to each scenario or process. It goes something like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gherkin" data-lang="gherkin"><span class="line"><span class="cl"><span class="nf"> </span><span class="k">Scenario:</span><span class="nf"> User Authentication
+</span></span></span><span class="line"><span class="cl"><span class="nf"> Threats: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege
+</span></span></span><span class="line"><span class="cl"><span class="nf"></span><span class="k">    When </span><span class="nf">a user authenticates to the sytsem, that user must prove to the authority federated to it that it is a valid user
+</span></span></span><span class="line"><span class="cl"><span class="nf">    and authenciates to the IdP
+</span></span></span><span class="line"><span class="cl"><span class="nf">    </span><span class="k">Then </span><span class="nf">that user is validated through our IdP and must provide MFA to proceed 
+</span></span></span><span class="line"><span class="cl"><span class="nf">    AND all traffic is ecnrypted over HTTPS
+</span></span></span><span class="line"><span class="cl"><span class="nf">    AND all login actions are logged to validate the user is a valid user
+</span></span></span><span class="line"><span class="cl"><span class="nf">    </span><span class="k">Given </span><span class="nf">a valid authentiation session, the user will assume the role they are assigned using least privilege models
+</span></span></span><span class="line"><span class="cl"><span class="nf">    </span><span class="k">Given </span><span class="nf">the app suffers too many login attempts, it will temporarily block IP addresses to mitigate DDoS attempts
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>I will admit, that is not my best work above when writing out the threat and mitigations, but I tried to keep it generic
+enough that it makes sense. So, this would represent the <code>Authentication</code> process in the DFD. You would then go through
+each process in your DFD and use the above syntax to describe your threat. You don&rsquo;t have to use Gherkin to do this and
+Gherkin is more of a framework than an authoritative language. You can bend it to your preference to use it in a way that
+it makes the most sense for your Org. Also, the description covers each letter in S.T.R.I.D.E. used.</p>
+<p>Another pro-tip to fast track this, is that some common threats like information disclosure can oftentimes be mitigated
+by enforcing TLS/HTTPS traffic. Which really almost everything nowadays does this. So, you don&rsquo;t need to overthink each threat.</p>
+<p>I also find Google Docs to be a great way to actually describe the threat model as well. Simply because a Google Doc is a
+living and collaborative document. You can tag folks in them, you can assign tasks, and so forth. So, something like Gherkin
+isn&rsquo;t even required, but it is something I learned, and I feel it has value if you are looking to have a bit more strict
+standards in your threat modeling.</p>
+<h3 id="using-the-8020-model">Using the 80/20 Model</h3>
+<p>Threat modeling should follow something around the 80/20 model give or take. Where you are expected to cover about 80%
+of the data flows, processes, and threats. If your security wanted to force 100% coverage on a threat model, then noting would
+get done in a timely fashion, and you could spend weeks or longer chasing down every edge case. You can focus on getting
+about 80% of the threats covered up front and the last 20% as you go through the process, or after you go to production.
+No one wants to block folks from shipping product, or block them from doing anything that impacts the business in a negative way.
+So, both IT and security teams should work together to streamline this process.</p>
+<h3 id="building-security-minded-development">Building Security Minded Development</h3>
+<p>The real end goal of something like this, is to get every individual to think about security when they are designing systems.
+Doing your own threat models helps this cause, and this is probably the biggest reason why I support the concept of
+having security partners, having IT involved in threat modeling, and having implementers threat model their own tech stacks.
+In the end, if done right, this can transform an entire organization into a security driven one, and everyone benefits from this.
+I do honestly believe that this process has made me a better engineer. It has made me think more and more about secure design,
+and honestly about convoluted workflows. If something is way too complex to threat model, then perhaps it is just too complex
+to even do. That is a sign for me personally to pivot, and look at accomplishing my goals another way. Not because it is too
+difficult to do, and I want it easier, but rather with complexity comes a ton of other problems. The threat model process
+sorta surfaces things like that.</p>
+<h3 id="cpe-teams-are-security-teams">CPE Teams are Security Teams</h3>
+<p>If you work in the CPE space (Client Platform Engineering), I would argue you are already working in security. A lot of what a CPE does is around securing
+the end user devices, reducing risks with the end user devices, and acting as a front line defense on end user devices. I
+believe CPEs are also more aligned with software engineers and DevOps engineers than compared to the classic Sys Admin.
+As a CPE team member, you can leverage your coding skills, GitOps, and automation pipelines to really help secure an end
+user device at an organization. So, CPE teams are already doing security work, building threat models for their automation
+systems and infrastructure should not be too difficult given their expertise on building and designing said systems.</p>
+<h3 id="it-truly-is-a-community-effort">It Truly is a Community Effort</h3>
+<p>That age-old saying, &ldquo;It takes a village,&rdquo; is very applicable here. Security will need to work on building an internal
+community around enabling teams to be more security driven. Security will also need to listen and take feedback from those
+teams to ensure there is actual community and collaboration happening. Just like IT needs to also put forth their effort
+in security as well. Once you build a culture of collaboration and community, it makes the debates easier to have. Bonus
+if your org has lots of data, because you can use data to help drive these conversations and help make decisions.</p>
+<p>So, in the end we all work together and are on the same team, and we need to act like it.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-02-27</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/cpe-is-a-security-team/" data-title="IT Teams are also Security Teams" data-via="tlark8" data-hashtags="security,IT,threat modeling,tech"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/cpe-is-a-security-team/" data-hashtag="security"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/cpe-is-a-security-team/" data-title="IT Teams are also Security Teams"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/cpe-is-a-security-team/" data-title="IT Teams are also Security Teams"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/cpe-is-a-security-team/" data-title="IT Teams are also Security Teams"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/security/">security</a>,&nbsp;<a href="/tags/it/">IT</a>,&nbsp;<a href="/tags/threat-modeling/">threat modeling</a>,&nbsp;<a href="/tags/tech/">tech</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/more-osquery-data-modeling-snowflake/" class="prev" rel="prev" title="More Osquery Data Modeling in Snowflake"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>More Osquery Data Modeling in Snowflake</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
