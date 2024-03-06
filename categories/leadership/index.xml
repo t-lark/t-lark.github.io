@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>leadership - Category - t-lark.github.io</title>
+        <link>https://t-lark.github.io/categories/leadership/</link>
+        <description>leadership - Category - t-lark.github.io</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 05 Mar 2024 18:20:44 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/categories/leadership/" rel="self" type="application/rss+xml" /><item>
+    <title>Building an IT Engineering Team</title>
+    <link>https://t-lark.github.io/posts/building-it-eng-team/</link>
+    <pubDate>Tue, 05 Mar 2024 18:20:44 -0800</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/building-it-eng-team/</guid>
+    <description><![CDATA[I started working in tech back in 1999. My first tech job was a repair technician at a computer store chain. I did hardware and software repairs, warranty repairs, OEM systems building, and similar support type work. Over the years I&rsquo;ve likely had a similar experience to most other workers in tech. I have had bad bosses, and good bosses. I also have worked with great people, and not-so-great people as well.]]></description>
+</item>
+</channel>
+</rss>

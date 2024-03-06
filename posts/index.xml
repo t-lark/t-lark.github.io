@@ -3,7 +3,15 @@
         <title>All Posts - t-lark.github.io</title>
         <link>https://t-lark.github.io/posts/</link>
         <description>All Posts | t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 27 Feb 2024 18:16:37 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 05 Mar 2024 18:20:44 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Building an IT Engineering Team</title>
+    <link>https://t-lark.github.io/posts/building-it-eng-team/</link>
+    <pubDate>Tue, 05 Mar 2024 18:20:44 -0800</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/building-it-eng-team/</guid>
+    <description><![CDATA[I started working in tech back in 1999. My first tech job was a repair technician at a computer store chain. I did hardware and software repairs, warranty repairs, OEM systems building, and similar support type work. Over the years I&rsquo;ve likely had a similar experience to most other workers in tech. I have had bad bosses, and good bosses. I also have worked with great people, and not-so-great people as well.]]></description>
+</item>
+<item>
     <title>IT Teams are also Security Teams</title>
     <link>https://t-lark.github.io/posts/cpe-is-a-security-team/</link>
     <pubDate>Tue, 27 Feb 2024 18:16:37 -0800</pubDate>
@@ -75,14 +83,6 @@ Booms came to the office with me, and he even got a bit of company swag! As we s
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/</guid>
     <description><![CDATA[Snowflake, osquery and Fleet is Pure Magic! Many of you have probably heard of osquery, which is software you can install onto a computer that allows humans to query the OS to return fast and reliable system data. Osquery is not new, and many Organizations have been using it in various capacity for years now. Vendors and developers also ship osquery with their products these days as well. This allows a developer or vendor to collect local data fast and reliably for their software and solutions.]]></description>
-</item>
-<item>
-    <title>Post JNUC 2021</title>
-    <link>https://t-lark.github.io/posts/post-jnuc-2021/</link>
-    <pubDate>Thu, 18 Nov 2021 20:44:15 -0800</pubDate>
-    <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/post-jnuc-2021/</guid>
-    <description><![CDATA[JNUC 2021 Recap Hello everyone, this will be a quick recap of my experience from the JNUC 2021 virtual conference, and a companion update to the talk I gave. First, I need to really thank Jamf for putting on a well produced virtual conference. I will admit that I was a bit skeptical of things like audio and video quality, participant interaction, and the look and feel of pre-recorded talks. Everything exceeded my expectations.]]></description>
 </item>
 </channel>
 </rss>
