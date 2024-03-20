@@ -3,7 +3,15 @@
         <title>All Posts - t-lark.github.io</title>
         <link>https://t-lark.github.io/posts/</link>
         <description>All Posts | t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 05 Mar 2024 18:20:44 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 18 Mar 2024 17:43:41 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Success Is Not Transitive</title>
+    <link>https://t-lark.github.io/posts/success-is-not-transitive/</link>
+    <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/success-is-not-transitive/</guid>
+    <description><![CDATA[Success Isn&rsquo;t Linear, Nor is it Transitive With the climate of tech workers in a weird state post Covid-19 pandemic, and with the rise of the tech influencer I feel this topic is not only relevant, but also important. There are people who really want to break into a tech career from their current path, and there are people who want to change careers within tech itself. Whether you are looking to level up your existing career, make a move into a different section of tech, or just trying to break into the tech industry any way you can, you have likely heard many other people tell their success stories.]]></description>
+</item>
+<item>
     <title>Building an IT Engineering Team</title>
     <link>https://t-lark.github.io/posts/building-it-eng-team/</link>
     <pubDate>Tue, 05 Mar 2024 18:20:44 -0800</pubDate>
@@ -75,14 +83,6 @@ Booms came to the office with me, and he even got a bit of company swag! As we s
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/creating-data-enabled-culture/</guid>
     <description><![CDATA[Creating a Data-enabled Culture I think the term data-driven is common, and a lot of people are aware of the term. It also has a broad area of application across many practices. I feel my Org is already data-driven. We use data in all our metrics, planning, discussions, collaboration and more. However, today during a cross team meeting I realized that we are also a data-enabled organization. When the term popped into my head I thought maybe I was on to something new, or perhaps maybe something a bit esoteric.]]></description>
-</item>
-<item>
-    <title>Snowflake Osquery Fleet Magic</title>
-    <link>https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/</link>
-    <pubDate>Thu, 13 Jan 2022 17:07:04 -0800</pubDate>
-    <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/</guid>
-    <description><![CDATA[Snowflake, osquery and Fleet is Pure Magic! Many of you have probably heard of osquery, which is software you can install onto a computer that allows humans to query the OS to return fast and reliable system data. Osquery is not new, and many Organizations have been using it in various capacity for years now. Vendors and developers also ship osquery with their products these days as well. This allows a developer or vendor to collect local data fast and reliably for their software and solutions.]]></description>
 </item>
 </channel>
 </rss>
