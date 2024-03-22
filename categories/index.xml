@@ -3,7 +3,31 @@
         <title>Categories - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/</link>
         <description>Categories - Category - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 18 Mar 2024 17:43:41 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 21 Mar 2024 17:45:59 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>fleetdm</title>
+    <link>https://t-lark.github.io/categories/fleetdm/</link>
+    <pubDate>Thu, 21 Mar 2024 17:45:59 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/categories/fleetdm/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>mdm</title>
+    <link>https://t-lark.github.io/categories/mdm/</link>
+    <pubDate>Thu, 21 Mar 2024 17:45:59 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/categories/mdm/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>osquery</title>
+    <link>https://t-lark.github.io/categories/osquery/</link>
+    <pubDate>Thu, 21 Mar 2024 17:45:59 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/categories/osquery/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>development</title>
     <link>https://t-lark.github.io/categories/development/</link>
     <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
@@ -57,30 +81,6 @@
     <pubDate>Tue, 05 Mar 2024 18:20:44 -0800</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/categories/team/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>IT</title>
-    <link>https://t-lark.github.io/categories/it/</link>
-    <pubDate>Tue, 27 Feb 2024 18:16:37 -0800</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/categories/it/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>security</title>
-    <link>https://t-lark.github.io/categories/security/</link>
-    <pubDate>Tue, 27 Feb 2024 18:16:37 -0800</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/categories/security/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>threat models</title>
-    <link>https://t-lark.github.io/categories/threat-models/</link>
-    <pubDate>Tue, 27 Feb 2024 18:16:37 -0800</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/categories/threat-models/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Using Custom MDM Payloads for FleetDM Labels - t-lark.github.io</title><meta name="Description" content="I have no idea what I am doing"><meta property="og:title" content="Using Custom MDM Payloads for FleetDM Labels" />
+<meta property="og:description" content="Programmatically Apply FleetDM Labels from Identity Data For a long time now it has been considered a &ldquo;bad practice,&rdquo; to join a macOS computer to any sort of directory service. Long have past the days of Binding to Active Directory, and the ancient lore of the golden (or magic) triangle is nearly lost in time, like tears in the rain. The one thing that we could consider missing from these days was the ability to locally query user and identity data through native tools like dscl in macOS." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-03-21T17:45:59-07:00" />
+<meta property="article:modified_time" content="2024-03-21T17:45:59-07:00" /><meta property="og:site_name" content="My personal blog" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Using Custom MDM Payloads for FleetDM Labels"/>
+<meta name="twitter:description" content="Programmatically Apply FleetDM Labels from Identity Data For a long time now it has been considered a &ldquo;bad practice,&rdquo; to join a macOS computer to any sort of directory service. Long have past the days of Binding to Active Directory, and the ancient lore of the golden (or magic) triangle is nearly lost in time, like tears in the rain. The one thing that we could consider missing from these days was the ability to locally query user and identity data through native tools like dscl in macOS."/>
+<meta name="application-name" content="tlark&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="tlark&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" /><link rel="prev" href="https://t-lark.github.io/posts/success-is-not-transitive/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Using Custom MDM Payloads for FleetDM Labels",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/t-lark.github.io\/posts\/using-custom-mdm-payloads-for-fleet-labels\/"
+        },"genre": "posts","keywords": "labels, fleetdm, osquery, data, identity","wordcount":  1381 ,
+        "url": "https:\/\/t-lark.github.io\/posts\/using-custom-mdm-payloads-for-fleet-labels\/","datePublished": "2024-03-21T17:45:59-07:00","dateModified": "2024-03-21T17:45:59-07:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Using Custom MDM Payloads for FleetDM Labels</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/fleetdm/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>fleetdm</a>&nbsp;<a href="/categories/osquery/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>osquery</a>&nbsp;<a href="/categories/mdm/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>mdm</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-21">2024-03-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1381 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#the-setup">The Setup</a></li>
+        <li><a href="#setting-up-the-label">Setting up the Label</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="programmatically-apply-fleetdm-labels-from-identity-data">Programmatically Apply FleetDM Labels from Identity Data</h1>
+<p>For a long time now it has been considered a &ldquo;bad practice,&rdquo; to join a macOS computer to any sort of directory service.
+Long have past the days of Binding to Active Directory, and the ancient lore of <a href="https://krypted.com/tag/magic-triangle/" target="_blank" rel="noopener noreffer ">the golden (or magic) triangle</a>
+is nearly lost in time, like tears in the rain. The one thing that we could consider missing from these days was the
+ability to locally query user and identity data through native tools like <code>dscl</code> in macOS. I have seen very clever
+replacement solutions over the years to get this data down to a macOS end user devices across various enterprises, but
+one thing has always bothered me about every method I have seen or sometimes used. The common theme was that they were all not very
+security focused solutions. At a previous job, LDAP lookups were just straight up open to anyone on network, like it did
+not have any authentication at all. When I was in vendor space I witnessed customers having various <code>curl</code> solutions
+to grab that data from some system they could cache locally. Typically, these also were not very secure either.</p>
+<p>The main problem being that if the service required authentication, the admin building the workflow still had to pass
+credentials in a script, and that script will always end up on disk in clear text at some point in time. This solution was
+of course better than the ones where no authentication was ever even required. So, a while ago I started playing around
+with <a href="https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Computer_Configuration_Profiles.html" target="_blank" rel="noopener noreffer ">custom payload variables</a> in
+Jamf Pro for several years now, and immediately thought they could fill a gap we had with getting user and identity data
+and not wanting to do it in a non-security focused way.</p>
+<p>So, I used this method to help me apply labels to devices in FleetDM.</p>
+<h3 id="the-setup">The Setup</h3>
+<p>We are an Okta shop, and we have enabled a feature in Okta called <a href="https://www.okta.com/products/universal-directory/" target="_blank" rel="noopener noreffer ">Okta UD</a>,
+which the TL;DR take here is that it can act like an LDAP connector for Jamf Pro. So, I worked with my CloudOps folks
+and Identity folks to get that setup pretty much back when I started here years ago. This is how we map User and Location
+data to device records in our Jamf Pro MDM.</p>
+<p>Once setup, you can create a <a href="https://learn.jamf.com/en-US/bundle/jamf-pro-documentation-current/page/Computer_Extension_Attributes.html" target="_blank" rel="noopener noreffer ">Directory Service EA</a>
+that will map the LDAP attribute from Okta UD to your device record in Jamf Pro. Then you can craft a simple custom
+Configuration Profile payload like so:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE plist PUBLIC &#34;-//Apple//DTD PLIST 1.0//EN&#34; &#34;http://www.apple.com/DTDs/PropertyList-1.0.dtd&#34;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&#34;1.0&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dict&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;key&gt;</span>email<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;string&gt;</span>$EMAIL<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;key&gt;</span>local_user<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;string&gt;</span>$USERNAME<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;key&gt;</span>full_name<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;string&gt;</span>$FULLNAME<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;key&gt;</span>position<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;string&gt;</span>$POSITION<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;key&gt;</span>department<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;string&gt;</span>$DEPARTMENTNAME<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;key&gt;</span>cost_center<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;string&gt;</span>$EXTENSIONATTRIBUTE_108<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;key&gt;</span>country<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;string&gt;</span>$EXTENSIONATTRIBUTE_60<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;key&gt;</span>city<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;string&gt;</span>$EXTENSIONATTRIBUTE_63<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;key&gt;</span>ldap_shortname<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;string&gt;</span>$EXTENSIONATTRIBUTE_86<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dict&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/plist&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>When looking at that XML payload you will notice <code>$EXTENSIONATTRIBUTE_&lt;ID&gt;</code> where the <code>ID</code> is the actual ID the EA has in
+Jamf Pro. You can get the ID by clicking on the object in the admin console and looking at the URL bar in your browser, you
+should see the integer ID that object is mapped to. So, I just filled them in according to how we have the data organized.
+Then when you payload the profile to disk, you can query it with simple binary tools like <code>defaults</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">% defaults <span class="nb">read</span> /Library/Managed<span class="se">\ </span>Preferences/com.mycustom.info.plist 
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">city</span> <span class="o">=</span> <span class="s2">&#34;my office city location&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;cost_center&#34;</span> <span class="o">=</span> <span class="s2">&#34;my cost center&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">country</span> <span class="o">=</span> US<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">department</span> <span class="o">=</span> <span class="s2">&#34;Information Technology&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">email</span> <span class="o">=</span> <span class="s2">&#34;tlark@acme.com&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;full_name&#34;</span> <span class="o">=</span> <span class="s2">&#34;tlark&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ldap_shortname&#34;</span> <span class="o">=</span> <span class="s2">&#34;my ldap shortname&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;local_user&#34;</span> <span class="o">=</span> <span class="s2">&#34;local user name&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">position</span> <span class="o">=</span> <span class="s2">&#34;Job Title&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Pretty cool, huh? We have now successfully cached some very basic identity data without having to query LDAP, without having
+to <code>curl</code> script with API credentials, or have something with no authentication on it so others can consume identity data.
+Also, the MDM protocol by default encrypts this traffic until it is on disk. So, zero need for AD/LDAP joining, definitely
+do not need a golden triangle setup, and we don&rsquo;t need to really do any bad security practices here to obtain this data.</p>
+<div class="details admonition Info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>More Info:<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">You will need to set up some sort of directory service into your MDM, and ensure your MDM supports custom variable payloads
+that can leverage those LDAP (or directory) mappings.</div>
+        </div>
+    </div>
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw" aria-hidden="true"></i>Warning:<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Also be warned that in Jamf Pro a new profile will not be pushed on data change server side. So, if a computer swaps hands
+to a new user you will have to have some sort of workflow account for that. In short, something like, but not limited to:
+touch a file, scope to an EA and use as an exclusion via Jamf Smart Groups, then once that data clears, remove the file
+so scope recalculates and pushes a fresh profile. If you do not like this, please file a feature request with jamf.</div>
+        </div>
+    </div>
+<h3 id="setting-up-the-label">Setting up the Label</h3>
+<p>Assuming all is well, and the MDM is pushing down a profile to your endpoints with valid data we may proceed. If you are
+familiar with <a href="https://fleetdm.com/docs/using-fleet/fleetctl-cli" target="_blank" rel="noopener noreffer ">fleetctl</a> you can use it to get the current labels
+to get an idea of how the product applies the default labels that are built-in, like so:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">% fleetctl get labels
+</span></span><span class="line"><span class="cl">+--------------------------------+----------+--------------------------------+---------------------------------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span>              NAME              <span class="p">|</span> PLATFORM <span class="p">|</span>          DESCRIPTION           <span class="p">|</span>                 QUERY                 <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+--------------------------------+----------+--------------------------------+---------------------------------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> All Hosts                      <span class="p">|</span>          <span class="p">|</span> All hosts which have enrolled  <span class="p">|</span> <span class="k">select</span> 1<span class="p">;</span>                             <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>                                <span class="p">|</span>          <span class="p">|</span> in Fleet                       <span class="p">|</span>                                       <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+--------------------------------+----------+--------------------------------+---------------------------------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> macOS                          <span class="p">|</span>          <span class="p">|</span> All macOS hosts                <span class="p">|</span> <span class="k">select</span> <span class="m">1</span> from os_version where        <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>                                <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span> <span class="nv">platform</span> <span class="o">=</span> <span class="s1">&#39;darwin&#39;</span><span class="p">;</span>                  <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+--------------------------------+----------+--------------------------------+---------------------------------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> Ubuntu Linux                   <span class="p">|</span>          <span class="p">|</span> All Ubuntu hosts               <span class="p">|</span> <span class="k">select</span> <span class="m">1</span> from os_version where        <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>                                <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span> <span class="nv">platform</span> <span class="o">=</span> <span class="s1">&#39;ubuntu&#39;</span><span class="p">;</span>                  <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+--------------------------------+----------+--------------------------------+---------------------------------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> CentOS Linux                   <span class="p">|</span>          <span class="p">|</span> All CentOS hosts               <span class="p">|</span> <span class="k">select</span> <span class="m">1</span> from os_version where        <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>                                <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span> <span class="nv">platform</span> <span class="o">=</span> <span class="s1">&#39;centos&#39;</span> or name           <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>                                <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span> like <span class="s1">&#39;%centos%&#39;</span>                       <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+--------------------------------+----------+--------------------------------+---------------------------------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> MS Windows                     <span class="p">|</span>          <span class="p">|</span> All Windows hosts              <span class="p">|</span> <span class="k">select</span> <span class="m">1</span> from os_version where        <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>                                <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span> <span class="nv">platform</span> <span class="o">=</span> <span class="s1">&#39;windows&#39;</span><span class="p">;</span>                 <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+--------------------------------+----------+--------------------------------+---------------------------------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> Red Hat Linux                  <span class="p">|</span>          <span class="p">|</span> All Red Hat Enterprise Linux   <span class="p">|</span> SELECT <span class="m">1</span> FROM os_version WHERE        <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>                                <span class="p">|</span>          <span class="p">|</span> hosts                          <span class="p">|</span> name LIKE <span class="s1">&#39;%red hat%&#39;</span>                 <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+--------------------------------+----------+--------------------------------+---------------------------------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> All Linux                      <span class="p">|</span>          <span class="p">|</span> All Linux distributions        <span class="p">|</span> SELECT <span class="m">1</span> FROM osquery_info            <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>                                <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span> WHERE build_platform LIKE             <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>                                <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span> <span class="s1">&#39;%ubuntu%&#39;</span> OR build_distro            <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>                                <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span> LIKE <span class="s1">&#39;%centos%&#39;</span><span class="p">;</span>                      <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+--------------------------------+----------+--------------------------------+---------------------------------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> chrome                         <span class="p">|</span>          <span class="p">|</span> All Chrome hosts               <span class="p">|</span> <span class="k">select</span> <span class="m">1</span> from os_version where        <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>                                <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span> <span class="nv">platform</span> <span class="o">=</span> <span class="s1">&#39;chrome&#39;</span><span class="p">;</span>                  <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+--------------------------------+----------+--------------------------------+---------------------------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Seems simple enough, just looks like some logic where if the value you are querying for exists, then return <code>1</code> and we can
+craft a custom label like so:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">plist</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/Library/Managed Preferences/com.mycustom.info.plist&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">and</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;department&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">and</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Information Technology&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Pro-tip, if you navigate the <code>/labels</code> URL in your FleetDM admin console, there is a GUI where you can drop a query in
+place and then name the label. I am not sure if FleetDM is going to add more UI features around this or go more into their
+<code>GitOps</code> approach. I personally really like both approaches, and I feel that if a product can pull off where everything in the
+UI you can also do through the API (and vice versa) that is the absolute best of both worlds.</p>
+<a class="lightgallery" href="/img/new-label-fleetdm.png" title="/img/new-label-fleetdm.png" data-thumbnail="/img/new-label-fleetdm.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/new-label-fleetdm.png"
+            data-srcset="/img/new-label-fleetdm.png, /img/new-label-fleetdm.png 1.5x, /img/new-label-fleetdm.png 2x"
+            data-sizes="auto"
+            alt="/img/new-label-fleetdm.png" />
+    </a>
+<p>Now to finally check our work, and we can see that when we filter by label we now can use a label for the IT department!</p>
+<a class="lightgallery" href="/img/dept-label-fleetdm.png" title="/img/dept-label-fleetdm.png" data-thumbnail="/img/dept-label-fleetdm.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/dept-label-fleetdm.png"
+            data-srcset="/img/dept-label-fleetdm.png, /img/dept-label-fleetdm.png 1.5x, /img/dept-label-fleetdm.png 2x"
+            data-sizes="auto"
+            alt="/img/dept-label-fleetdm.png" />
+    </a>
+<p>I now see a non-zero amount of devices in FleetDM with the <code>Information Technology</code> Department label applied to them. You
+should be able to now replicate this for all departments, cost centers, and any other LDAP attribute you can map into
+Jamf Pro and payload to disk via custom Configuration Profile payload.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-03-21</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" data-title="Using Custom MDM Payloads for FleetDM Labels" data-via="tlark8" data-hashtags="labels,fleetdm,osquery,data,identity"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" data-hashtag="labels"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" data-title="Using Custom MDM Payloads for FleetDM Labels"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" data-title="Using Custom MDM Payloads for FleetDM Labels"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" data-title="Using Custom MDM Payloads for FleetDM Labels"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/labels/">labels</a>,&nbsp;<a href="/tags/fleetdm/">fleetdm</a>,&nbsp;<a href="/tags/osquery/">osquery</a>,&nbsp;<a href="/tags/data/">data</a>,&nbsp;<a href="/tags/identity/">identity</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/success-is-not-transitive/" class="prev" rel="prev" title="Success Is Not Transitive"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Success Is Not Transitive</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

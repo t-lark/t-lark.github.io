@@ -2,7 +2,19 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://t-lark.github.io/categories/</loc><lastmod>2024-03-18T17:43:41-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/</loc><lastmod>2024-03-21T17:45:59-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/data/</loc><lastmod>2024-03-21T17:45:59-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/fleetdm/</loc><lastmod>2024-03-21T17:45:59-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/fleetdm/</loc><lastmod>2024-03-21T17:45:59-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/identity/</loc><lastmod>2024-03-21T17:45:59-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/labels/</loc><lastmod>2024-03-21T17:45:59-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/mdm/</loc><lastmod>2024-03-21T17:45:59-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/osquery/</loc><lastmod>2024-03-21T17:45:59-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/osquery/</loc><lastmod>2024-03-21T17:45:59-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/posts/</loc><lastmod>2024-03-21T17:45:59-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/</loc><lastmod>2024-03-21T17:45:59-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/</loc><lastmod>2024-03-21T17:45:59-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/</loc><lastmod>2024-03-21T17:45:59-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/development/</loc><lastmod>2024-03-18T17:43:41-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/growth/</loc><lastmod>2024-03-18T17:43:41-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/it/</loc><lastmod>2024-03-18T17:43:41-07:00</lastmod></url><url>
@@ -10,11 +22,8 @@
             <loc>https://t-lark.github.io/categories/leadership/</loc><lastmod>2024-03-18T17:43:41-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/leveling-up/</loc><lastmod>2024-03-18T17:43:41-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/mentoring/</loc><lastmod>2024-03-18T17:43:41-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/posts/</loc><lastmod>2024-03-18T17:43:41-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/professional-development/</loc><lastmod>2024-03-18T17:43:41-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/success-is-not-transitive/</loc><lastmod>2024-03-18T17:43:41-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/</loc><lastmod>2024-03-18T17:43:41-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/</loc><lastmod>2024-03-18T17:43:41-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/team-building/</loc><lastmod>2024-03-18T17:43:41-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/building-it-eng-team/</loc><lastmod>2024-03-05T18:20:44-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/collaboration/</loc><lastmod>2024-03-05T18:20:44-08:00</lastmod></url><url>
@@ -32,8 +41,6 @@
             <loc>https://t-lark.github.io/tags/it-tools/</loc><lastmod>2024-01-25T20:24:28-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/macos/</loc><lastmod>2024-01-25T20:24:28-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/</loc><lastmod>2024-01-25T20:24:28-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/osquery/</loc><lastmod>2024-01-25T20:24:28-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/osquery/</loc><lastmod>2024-01-25T20:24:28-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/snowflake/</loc><lastmod>2024-01-25T20:24:28-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/snowflake/</loc><lastmod>2024-01-25T20:24:28-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/osquery-data-in-snowflake/</loc><lastmod>2023-08-31T18:01:31-07:00</lastmod></url><url>
@@ -68,7 +75,6 @@
             <loc>https://t-lark.github.io/categories/culture/</loc><lastmod>2022-06-24T16:18:28-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/data-driven/</loc><lastmod>2022-06-24T16:18:28-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/data-sharing/</loc><lastmod>2022-06-24T16:18:28-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/data/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/data-driven/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/operations/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>

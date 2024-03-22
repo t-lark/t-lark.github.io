@@ -3,9 +3,17 @@
         <title>t-lark.github.io</title>
         <link>https://t-lark.github.io/</link>
         <description>I have no idea what I am doing</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 18 Mar 2024 17:43:41 -0700</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 21 Mar 2024 17:45:59 -0700</lastBuildDate>
             <atom:link href="https://t-lark.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Using Custom MDM Payloads for FleetDM Labels</title>
+    <link>https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/</link>
+    <pubDate>Thu, 21 Mar 2024 17:45:59 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/</guid>
+    <description><![CDATA[Programmatically Apply FleetDM Labels from Identity Data For a long time now it has been considered a &ldquo;bad practice,&rdquo; to join a macOS computer to any sort of directory service. Long have past the days of Binding to Active Directory, and the ancient lore of the golden (or magic) triangle is nearly lost in time, like tears in the rain. The one thing that we could consider missing from these days was the ability to locally query user and identity data through native tools like dscl in macOS.]]></description>
+</item>
+<item>
     <title>Success Is Not Transitive</title>
     <link>https://t-lark.github.io/posts/success-is-not-transitive/</link>
     <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
@@ -77,14 +85,6 @@ Booms came to the office with me, and he even got a bit of company swag! As we s
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/data-enabled-nudge-results/</guid>
     <description><![CDATA[Data-Enabled: Post Nudge Campaign Results A lot of Organizations have adopted things like CIS Controls and part of those controls are around patching and vulnerability management. Depending on what version of the CIS controls you are using, this could be CIS 3 or CIS 7. This can already be confusing as the controls are very similar between versions but the have moved places in the CIS framework. One thing I think most tech and security professionals can agree upon, is that patching often to the latest operating systems is a great way to avoid your fleet of devices from being exploited.]]></description>
-</item>
-<item>
-    <title>Creating Data Enabled Culture</title>
-    <link>https://t-lark.github.io/posts/creating-data-enabled-culture/</link>
-    <pubDate>Fri, 24 Jun 2022 16:18:28 -0700</pubDate>
-    <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/creating-data-enabled-culture/</guid>
-    <description><![CDATA[Creating a Data-enabled Culture I think the term data-driven is common, and a lot of people are aware of the term. It also has a broad area of application across many practices. I feel my Org is already data-driven. We use data in all our metrics, planning, discussions, collaboration and more. However, today during a cross team meeting I realized that we are also a data-enabled organization. When the term popped into my head I thought maybe I was on to something new, or perhaps maybe something a bit esoteric.]]></description>
 </item>
 </channel>
 </rss>
