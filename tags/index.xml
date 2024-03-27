@@ -3,10 +3,18 @@
         <title>Tags - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/</link>
         <description>Tags - Tag - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 21 Mar 2024 17:45:59 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 26 Mar 2024 18:43:26 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>application usage</title>
+    <link>https://t-lark.github.io/tags/application-usage/</link>
+    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/application-usage/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>data</title>
     <link>https://t-lark.github.io/tags/data/</link>
-    <pubDate>Thu, 21 Mar 2024 17:45:59 -0700</pubDate>
+    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/tags/data/</guid>
     <description><![CDATA[]]></description>
@@ -14,9 +22,33 @@
 <item>
     <title>fleetdm</title>
     <link>https://t-lark.github.io/tags/fleetdm/</link>
-    <pubDate>Thu, 21 Mar 2024 17:45:59 -0700</pubDate>
+    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/tags/fleetdm/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>munki</title>
+    <link>https://t-lark.github.io/tags/munki/</link>
+    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/munki/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>osquery</title>
+    <link>https://t-lark.github.io/tags/osquery/</link>
+    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/osquery/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>snowflake</title>
+    <link>https://t-lark.github.io/tags/snowflake/</link>
+    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/tags/snowflake/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
@@ -36,14 +68,6 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>osquery</title>
-    <link>https://t-lark.github.io/tags/osquery/</link>
-    <pubDate>Thu, 21 Mar 2024 17:45:59 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/osquery/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
     <title>IT</title>
     <link>https://t-lark.github.io/tags/it/</link>
     <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
@@ -57,30 +81,6 @@
     <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/tags/leadership/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>leveling up</title>
-    <link>https://t-lark.github.io/tags/leveling-up/</link>
-    <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/leveling-up/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>professional development</title>
-    <link>https://t-lark.github.io/tags/professional-development/</link>
-    <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/professional-development/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>team building</title>
-    <link>https://t-lark.github.io/tags/team-building/</link>
-    <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/tags/team-building/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

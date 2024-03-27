@@ -3,7 +3,15 @@
         <title>munki - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/munki/</link>
         <description>munki - Tag - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 22 Jan 2023 21:52:42 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/munki/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 26 Mar 2024 18:43:26 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/munki/" rel="self" type="application/rss+xml" /><item>
+    <title>Leveraging Application Usage Data From Munki</title>
+    <link>https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/</link>
+    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/</guid>
+    <description><![CDATA[Getting Application Usage Data at Scale With Munki Munki is a series of tools and a popular application state management tool many Mac Admins across the globe use. Some out-of-box features of Munki solve problems many commercial MDMs still cannot solve to this day. It allows a Mac Admin to write some declarative data and have Munki takes care of the rest for you. We use it to manage and patch all of our third party apps in conjunction with AutoPKG.]]></description>
+</item>
+<item>
     <title>Diversifying Your IT Tools: Integrating Munki</title>
     <link>https://t-lark.github.io/posts/diversifying-your-tools-munki/</link>
     <pubDate>Sun, 22 Jan 2023 21:52:42 -0700</pubDate>

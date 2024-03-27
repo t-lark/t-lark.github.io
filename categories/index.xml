@@ -3,12 +3,36 @@
         <title>Categories - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/</link>
         <description>Categories - Category - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 21 Mar 2024 17:45:59 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 26 Mar 2024 18:43:26 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>data</title>
+    <link>https://t-lark.github.io/categories/data/</link>
+    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/categories/data/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>fleetdm</title>
     <link>https://t-lark.github.io/categories/fleetdm/</link>
-    <pubDate>Thu, 21 Mar 2024 17:45:59 -0700</pubDate>
+    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/categories/fleetdm/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>osquery</title>
+    <link>https://t-lark.github.io/categories/osquery/</link>
+    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/categories/osquery/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>snowflake</title>
+    <link>https://t-lark.github.io/categories/snowflake/</link>
+    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
+    <author>Author</author>
+    <guid>https://t-lark.github.io/categories/snowflake/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
@@ -17,14 +41,6 @@
     <pubDate>Thu, 21 Mar 2024 17:45:59 -0700</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/categories/mdm/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>osquery</title>
-    <link>https://t-lark.github.io/categories/osquery/</link>
-    <pubDate>Thu, 21 Mar 2024 17:45:59 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/categories/osquery/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
@@ -65,22 +81,6 @@
     <pubDate>Tue, 05 Mar 2024 18:20:44 -0800</pubDate>
     <author>Author</author>
     <guid>https://t-lark.github.io/categories/collaboration/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>management</title>
-    <link>https://t-lark.github.io/categories/management/</link>
-    <pubDate>Tue, 05 Mar 2024 18:20:44 -0800</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/categories/management/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>team</title>
-    <link>https://t-lark.github.io/categories/team/</link>
-    <pubDate>Tue, 05 Mar 2024 18:20:44 -0800</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/categories/team/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

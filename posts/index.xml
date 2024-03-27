@@ -3,7 +3,15 @@
         <title>All Posts - t-lark.github.io</title>
         <link>https://t-lark.github.io/posts/</link>
         <description>All Posts | t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 21 Mar 2024 17:45:59 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 26 Mar 2024 18:43:26 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Leveraging Application Usage Data From Munki</title>
+    <link>https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/</link>
+    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/</guid>
+    <description><![CDATA[Getting Application Usage Data at Scale With Munki Munki is a series of tools and a popular application state management tool many Mac Admins across the globe use. Some out-of-box features of Munki solve problems many commercial MDMs still cannot solve to this day. It allows a Mac Admin to write some declarative data and have Munki takes care of the rest for you. We use it to manage and patch all of our third party apps in conjunction with AutoPKG.]]></description>
+</item>
+<item>
     <title>Using Custom MDM Payloads for FleetDM Labels</title>
     <link>https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/</link>
     <pubDate>Thu, 21 Mar 2024 17:45:59 -0700</pubDate>
@@ -75,14 +83,6 @@ Booms came to the office with me, and he even got a bit of company swag! As we s
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/complete-asset-oversight-datacloud/</guid>
     <description><![CDATA[Gain All the Insights You Never Had Asset and Inventory controls are difficult, and many Orgs spend tons of time and effort to try to solve problems around this very subject. In fact, they will hire humans, and spend lots of time and money to also get a hold of their inventory of assets. This problem is still very much difficult to solve, but the Data Cloud makes this problem at least solvable.]]></description>
-</item>
-<item>
-    <title>Data-Enabled: Post Nudge Campaign Results</title>
-    <link>https://t-lark.github.io/posts/data-enabled-nudge-results/</link>
-    <pubDate>Fri, 01 Jul 2022 18:11:46 -0700</pubDate>
-    <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/data-enabled-nudge-results/</guid>
-    <description><![CDATA[Data-Enabled: Post Nudge Campaign Results A lot of Organizations have adopted things like CIS Controls and part of those controls are around patching and vulnerability management. Depending on what version of the CIS controls you are using, this could be CIS 3 or CIS 7. This can already be confusing as the controls are very similar between versions but the have moved places in the CIS framework. One thing I think most tech and security professionals can agree upon, is that patching often to the latest operating systems is a great way to avoid your fleet of devices from being exploited.]]></description>
 </item>
 </channel>
 </rss>
