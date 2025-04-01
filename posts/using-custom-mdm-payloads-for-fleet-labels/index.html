@@ -4,16 +4,25 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Using Custom MDM Payloads for FleetDM Labels - t-lark.github.io</title><meta name="Description" content="I have no idea what I am doing"><meta property="og:title" content="Using Custom MDM Payloads for FleetDM Labels" />
-<meta property="og:description" content="Programmatically Apply FleetDM Labels from Identity Data For a long time now it has been considered a &ldquo;bad practice,&rdquo; to join a macOS computer to any sort of directory service. Long have past the days of Binding to Active Directory, and the ancient lore of the golden (or magic) triangle is nearly lost in time, like tears in the rain. The one thing that we could consider missing from these days was the ability to locally query user and identity data through native tools like dscl in macOS." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-03-21T17:45:59-07:00" />
-<meta property="article:modified_time" content="2024-03-21T17:45:59-07:00" /><meta property="og:site_name" content="My personal blog" />
+        <title>Using Custom MDM Payloads for FleetDM Labels - t-lark.github.io</title><meta name="Description" content="t-lark.github.io"><meta property="og:url" content="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/">
+  <meta property="og:site_name" content="t-lark.github.io">
+  <meta property="og:title" content="Using Custom MDM Payloads for FleetDM Labels">
+  <meta property="og:description" content="Programmatically Apply FleetDM Labels from Identity Data For a long time now it has been considered a “bad practice,” to join a macOS computer to any sort of directory service. Long have past the days of Binding to Active Directory, and the ancient lore of the golden (or magic) triangle is nearly lost in time, like tears in the rain. The one thing that we could consider missing from these days was the ability to locally query user and identity data through native tools like dscl in macOS. I have seen very clever replacement solutions over the years to get this data down to a macOS end user devices across various enterprises, but one thing has always bothered me about every method I have seen or sometimes used. The common theme was that they were all not very security focused solutions. At a previous job, LDAP lookups were just straight up open to anyone on network, like it did not have any authentication at all. When I was in vendor space I witnessed customers having various curl solutions to grab that data from some system they could cache locally. Typically, these also were not very secure either.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-03-21T17:45:59-07:00">
+    <meta property="article:modified_time" content="2024-03-21T17:45:59-07:00">
+    <meta property="article:tag" content="Labels">
+    <meta property="article:tag" content="Fleetdm">
+    <meta property="article:tag" content="Osquery">
+    <meta property="article:tag" content="Data">
+    <meta property="article:tag" content="Identity">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Using Custom MDM Payloads for FleetDM Labels"/>
-<meta name="twitter:description" content="Programmatically Apply FleetDM Labels from Identity Data For a long time now it has been considered a &ldquo;bad practice,&rdquo; to join a macOS computer to any sort of directory service. Long have past the days of Binding to Active Directory, and the ancient lore of the golden (or magic) triangle is nearly lost in time, like tears in the rain. The one thing that we could consider missing from these days was the ability to locally query user and identity data through native tools like dscl in macOS."/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Using Custom MDM Payloads for FleetDM Labels">
+  <meta name="twitter:description" content="Programmatically Apply FleetDM Labels from Identity Data For a long time now it has been considered a “bad practice,” to join a macOS computer to any sort of directory service. Long have past the days of Binding to Active Directory, and the ancient lore of the golden (or magic) triangle is nearly lost in time, like tears in the rain. The one thing that we could consider missing from these days was the ability to locally query user and identity data through native tools like dscl in macOS. I have seen very clever replacement solutions over the years to get this data down to a macOS end user devices across various enterprises, but one thing has always bothered me about every method I have seen or sometimes used. The common theme was that they were all not very security focused solutions. At a previous job, LDAP lookups were just straight up open to anyone on network, like it did not have any authentication at all. When I was in vendor space I witnessed customers having various curl solutions to grab that data from some system they could cache locally. Typically, these also were not very secure either.">
+      <meta name="twitter:site" content="@tlark8">
 <meta name="application-name" content="tlark&#39;s blog">
 <meta name="apple-mobile-web-app-title" content="tlark&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,11 +42,11 @@
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
-                "name": "Author"
+                "name": "tlark"
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
@@ -58,8 +67,7 @@
                         </span>
                     </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-                </a>
-            </div>
+                </a></div>
         </div>
     </div>
 </header><header class="mobile" id="header-mobile">
@@ -102,7 +110,7 @@
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Using Custom MDM Payloads for FleetDM Labels</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/fleetdm/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>fleetdm</a>&nbsp;<a href="/categories/osquery/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>osquery</a>&nbsp;<a href="/categories/mdm/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>mdm</a></span></div>
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/fleetdm/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Fleetdm</a>&nbsp;<a href="/categories/osquery/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Osquery</a>&nbsp;<a href="/categories/mdm/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Mdm</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-21">2024-03-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1381 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -386,13 +394,13 @@ Jamf Pro and payload to disk via custom Configuration Profile payload.</p>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" data-title="Using Custom MDM Payloads for FleetDM Labels" data-via="tlark8" data-hashtags="labels,fleetdm,osquery,data,identity"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" data-hashtag="labels"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" data-title="Using Custom MDM Payloads for FleetDM Labels"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" data-title="Using Custom MDM Payloads for FleetDM Labels"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" data-title="Using Custom MDM Payloads for FleetDM Labels"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" data-title="Using Custom MDM Payloads for FleetDM Labels" data-via="tlark8" data-hashtags="labels,fleetdm,osquery,data,identity"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" data-hashtag="labels"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" data-title="Using Custom MDM Payloads for FleetDM Labels"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" data-title="Using Custom MDM Payloads for FleetDM Labels"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" data-title="Using Custom MDM Payloads for FleetDM Labels"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/labels/">labels</a>,&nbsp;<a href="/tags/fleetdm/">fleetdm</a>,&nbsp;<a href="/tags/osquery/">osquery</a>,&nbsp;<a href="/tags/data/">data</a>,&nbsp;<a href="/tags/identity/">identity</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/labels/">Labels</a>,&nbsp;<a href="/tags/fleetdm/">Fleetdm</a>,&nbsp;<a href="/tags/osquery/">Osquery</a>,&nbsp;<a href="/tags/data/">Data</a>,&nbsp;<a href="/tags/identity/">Identity</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
@@ -403,8 +411,8 @@ Jamf Pro and payload to disk via custom Configuration Profile payload.</p>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.140.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xxxx</a></span></div>
         </div>
     </footer></div>
 

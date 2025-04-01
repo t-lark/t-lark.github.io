@@ -4,16 +4,25 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Complete Asset Oversight with the Data Cloud - t-lark.github.io</title><meta name="Description" content="I have no idea what I am doing"><meta property="og:title" content="Complete Asset Oversight with the Data Cloud" />
-<meta property="og:description" content="Gain All the Insights You Never Had Asset and Inventory controls are difficult, and many Orgs spend tons of time and effort to try to solve problems around this very subject. In fact, they will hire humans, and spend lots of time and money to also get a hold of their inventory of assets. This problem is still very much difficult to solve, but the Data Cloud makes this problem at least solvable." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://t-lark.github.io/posts/complete-asset-oversight-datacloud/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-08-08T21:48:09-07:00" />
-<meta property="article:modified_time" content="2022-08-08T21:48:09-07:00" /><meta property="og:site_name" content="My personal blog" />
+        <title>Complete Asset Oversight with the Data Cloud - t-lark.github.io</title><meta name="Description" content="t-lark.github.io"><meta property="og:url" content="https://t-lark.github.io/posts/complete-asset-oversight-datacloud/">
+  <meta property="og:site_name" content="t-lark.github.io">
+  <meta property="og:title" content="Complete Asset Oversight with the Data Cloud">
+  <meta property="og:description" content="Gain All the Insights You Never Had Asset and Inventory controls are difficult, and many Orgs spend tons of time and effort to try to solve problems around this very subject. In fact, they will hire humans, and spend lots of time and money to also get a hold of their inventory of assets. This problem is still very much difficult to solve, but the Data Cloud makes this problem at least solvable. I have been in tech for over 20 years, and I have even had jobs where inventory of assets was one of my job duties. I had a local database I built on a Linux desktop and a barcode scanner where I could manage my own little shop of computers and computer parts. I would manually enter data, I would scan barcodes, and I even had a sign-out sheet for people to sign for things they took, so I could balance my books later on. Systems like this do not scale, they are very error-prone, and they take so much labor. Oftentimes I had to play asset detective and dig through our IT software, the home-grown database that I had, and the various paperwork from other systems to get a feel for what our inventory actually was. Also, I was very new to Linux and databases at the time, and I highly doubt my little pet project was really any good at all. It was at least something I suppose.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-08-08T21:48:09-07:00">
+    <meta property="article:modified_time" content="2022-08-08T21:48:09-07:00">
+    <meta property="article:tag" content="Data Cloud">
+    <meta property="article:tag" content="Analytics">
+    <meta property="article:tag" content="Asset Management">
+    <meta property="article:tag" content="Metrics">
+    <meta property="article:tag" content="Big Data">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Complete Asset Oversight with the Data Cloud"/>
-<meta name="twitter:description" content="Gain All the Insights You Never Had Asset and Inventory controls are difficult, and many Orgs spend tons of time and effort to try to solve problems around this very subject. In fact, they will hire humans, and spend lots of time and money to also get a hold of their inventory of assets. This problem is still very much difficult to solve, but the Data Cloud makes this problem at least solvable."/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Complete Asset Oversight with the Data Cloud">
+  <meta name="twitter:description" content="Gain All the Insights You Never Had Asset and Inventory controls are difficult, and many Orgs spend tons of time and effort to try to solve problems around this very subject. In fact, they will hire humans, and spend lots of time and money to also get a hold of their inventory of assets. This problem is still very much difficult to solve, but the Data Cloud makes this problem at least solvable. I have been in tech for over 20 years, and I have even had jobs where inventory of assets was one of my job duties. I had a local database I built on a Linux desktop and a barcode scanner where I could manage my own little shop of computers and computer parts. I would manually enter data, I would scan barcodes, and I even had a sign-out sheet for people to sign for things they took, so I could balance my books later on. Systems like this do not scale, they are very error-prone, and they take so much labor. Oftentimes I had to play asset detective and dig through our IT software, the home-grown database that I had, and the various paperwork from other systems to get a feel for what our inventory actually was. Also, I was very new to Linux and databases at the time, and I highly doubt my little pet project was really any good at all. It was at least something I suppose.">
+      <meta name="twitter:site" content="@tlark8">
 <meta name="application-name" content="tlark&#39;s blog">
 <meta name="apple-mobile-web-app-title" content="tlark&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -37,7 +46,7 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
@@ -58,8 +67,7 @@
                         </span>
                     </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-                </a>
-            </div>
+                </a></div>
         </div>
     </div>
 </header><header class="mobile" id="header-mobile">
@@ -102,7 +110,7 @@
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Complete Asset Oversight with the Data Cloud</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/data/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>data</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>snowflake</a>&nbsp;<a href="/categories/it-operations/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>IT Operations</a>&nbsp;<a href="/categories/asset/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>asset</a></span></div>
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/data/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Data</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Snowflake</a>&nbsp;<a href="/categories/it-operations/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>IT Operations</a>&nbsp;<a href="/categories/asset/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Asset</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-08">2022-08-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2972 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;14 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -423,13 +431,13 @@ helps organizations in many ways. Wouldn&rsquo;t you rather know these things?</
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/complete-asset-oversight-datacloud/" data-title="Complete Asset Oversight with the Data Cloud" data-via="tlark8" data-hashtags="data cloud,analytics,asset management,metrics,big data"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/complete-asset-oversight-datacloud/" data-hashtag="data cloud"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/complete-asset-oversight-datacloud/" data-title="Complete Asset Oversight with the Data Cloud"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/complete-asset-oversight-datacloud/" data-title="Complete Asset Oversight with the Data Cloud"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/complete-asset-oversight-datacloud/" data-title="Complete Asset Oversight with the Data Cloud"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/complete-asset-oversight-datacloud/" data-title="Complete Asset Oversight with the Data Cloud" data-via="tlark8" data-hashtags="data cloud,analytics,asset management,metrics,big data"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/complete-asset-oversight-datacloud/" data-hashtag="data cloud"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/complete-asset-oversight-datacloud/" data-title="Complete Asset Oversight with the Data Cloud"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/complete-asset-oversight-datacloud/" data-title="Complete Asset Oversight with the Data Cloud"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/complete-asset-oversight-datacloud/" data-title="Complete Asset Oversight with the Data Cloud"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/data-cloud/">data cloud</a>,&nbsp;<a href="/tags/analytics/">analytics</a>,&nbsp;<a href="/tags/asset-management/">asset management</a>,&nbsp;<a href="/tags/metrics/">metrics</a>,&nbsp;<a href="/tags/big-data/">big data</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/data-cloud/">Data Cloud</a>,&nbsp;<a href="/tags/analytics/">Analytics</a>,&nbsp;<a href="/tags/asset-management/">Asset Management</a>,&nbsp;<a href="/tags/metrics/">Metrics</a>,&nbsp;<a href="/tags/big-data/">Big Data</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
@@ -440,8 +448,8 @@ helps organizations in many ways. Wouldn&rsquo;t you rather know these things?</
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.140.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xxxx</a></span></div>
         </div>
     </footer></div>
 

@@ -4,20 +4,30 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Leveraging Application Usage Data From Munki - t-lark.github.io</title><meta name="Description" content="I have no idea what I am doing"><meta property="og:title" content="Leveraging Application Usage Data From Munki" />
-<meta property="og:description" content="Getting Application Usage Data at Scale With Munki Munki is a series of tools and a popular application state management tool many Mac Admins across the globe use. Some out-of-box features of Munki solve problems many commercial MDMs still cannot solve to this day. It allows a Mac Admin to write some declarative data and have Munki takes care of the rest for you. We use it to manage and patch all of our third party apps in conjunction with AutoPKG." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-03-26T18:43:26-07:00" />
-<meta property="article:modified_time" content="2024-03-26T18:43:26-07:00" /><meta property="og:site_name" content="My personal blog" />
+        <title>Leveraging Application Usage Data From Munki - t-lark.github.io</title><meta name="Description" content="t-lark.github.io"><meta property="og:url" content="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/">
+  <meta property="og:site_name" content="t-lark.github.io">
+  <meta property="og:title" content="Leveraging Application Usage Data From Munki">
+  <meta property="og:description" content="Getting Application Usage Data at Scale With Munki Munki is a series of tools and a popular application state management tool many Mac Admins across the globe use. Some out-of-box features of Munki solve problems many commercial MDMs still cannot solve to this day. It allows a Mac Admin to write some declarative data and have Munki takes care of the rest for you. We use it to manage and patch all of our third party apps in conjunction with AutoPKG.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-03-26T18:43:26-07:00">
+    <meta property="article:modified_time" content="2024-03-26T18:43:26-07:00">
+    <meta property="article:tag" content="Application Usage">
+    <meta property="article:tag" content="Fleetdm">
+    <meta property="article:tag" content="Osquery">
+    <meta property="article:tag" content="Data">
+    <meta property="article:tag" content="Snowflake">
+    <meta property="article:tag" content="Munki">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Leveraging Application Usage Data From Munki"/>
-<meta name="twitter:description" content="Getting Application Usage Data at Scale With Munki Munki is a series of tools and a popular application state management tool many Mac Admins across the globe use. Some out-of-box features of Munki solve problems many commercial MDMs still cannot solve to this day. It allows a Mac Admin to write some declarative data and have Munki takes care of the rest for you. We use it to manage and patch all of our third party apps in conjunction with AutoPKG."/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Leveraging Application Usage Data From Munki">
+  <meta name="twitter:description" content="Getting Application Usage Data at Scale With Munki Munki is a series of tools and a popular application state management tool many Mac Admins across the globe use. Some out-of-box features of Munki solve problems many commercial MDMs still cannot solve to this day. It allows a Mac Admin to write some declarative data and have Munki takes care of the rest for you. We use it to manage and patch all of our third party apps in conjunction with AutoPKG.">
+      <meta name="twitter:site" content="@tlark8">
 <meta name="application-name" content="tlark&#39;s blog">
 <meta name="apple-mobile-web-app-title" content="tlark&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/" /><link rel="prev" href="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/" /><link rel="prev" href="https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/" /><link rel="next" href="https://t-lark.github.io/posts/building_endpoint_performance_metrics/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -37,7 +47,7 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
@@ -58,8 +68,7 @@
                         </span>
                     </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-                </a>
-            </div>
+                </a></div>
         </div>
     </div>
 </header><header class="mobile" id="header-mobile">
@@ -102,7 +111,7 @@
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Leveraging Application Usage Data From Munki</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/fleetdm/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>fleetdm</a>&nbsp;<a href="/categories/osquery/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>osquery</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>snowflake</a>&nbsp;<a href="/categories/data/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>data</a></span></div>
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/fleetdm/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Fleetdm</a>&nbsp;<a href="/categories/osquery/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Osquery</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Snowflake</a>&nbsp;<a href="/categories/data/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Data</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-26">2024-03-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2183 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -510,7 +519,7 @@ shell on a macOS device running Munki.</p>
 <h3 id="lets-test-drive-the-data-model">Lets Test Drive the Data Model!</h3>
 <p>Now we just need to test our data model in Snowflake, and validate it is good to data share and use in dashboards and data
 applications. First lets just run a basic query against our data model and see what we get.</p>
-<p>My favorite app in the world, Excel!
+<p>My favorite app in the world, Excel!</p>
 <a class="lightgallery" href="/img/excel_usage.png" title="/img/excel_usage.png" data-thumbnail="/img/excel_usage.png">
         <img
             class="lazyload"
@@ -519,7 +528,7 @@ applications. First lets just run a basic query against our data model and see w
             data-srcset="/img/excel_usage.png, /img/excel_usage.png 1.5x, /img/excel_usage.png 2x"
             data-sizes="auto"
             alt="/img/excel_usage.png" />
-    </a></p>
+    </a>
 <p>Now with a bit more filtering and more specific results for Photoshop!</p>
 <a class="lightgallery" href="/img/app_usage_photoshop.png" title="/img/app_usage_photoshop.png" data-thumbnail="/img/app_usage_photoshop.png">
         <img
@@ -552,24 +561,25 @@ initiatives (or things closely adjacent to these).</p>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/" data-title="Leveraging Application Usage Data From Munki" data-via="tlark8" data-hashtags="application usage,fleetdm,osquery,data,snowflake,munki"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/" data-hashtag="application usage"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/" data-title="Leveraging Application Usage Data From Munki"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/" data-title="Leveraging Application Usage Data From Munki"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/" data-title="Leveraging Application Usage Data From Munki"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/" data-title="Leveraging Application Usage Data From Munki" data-via="tlark8" data-hashtags="application usage,fleetdm,osquery,data,snowflake,munki"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/" data-hashtag="application usage"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/" data-title="Leveraging Application Usage Data From Munki"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/" data-title="Leveraging Application Usage Data From Munki"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/" data-title="Leveraging Application Usage Data From Munki"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/application-usage/">application usage</a>,&nbsp;<a href="/tags/fleetdm/">fleetdm</a>,&nbsp;<a href="/tags/osquery/">osquery</a>,&nbsp;<a href="/tags/data/">data</a>,&nbsp;<a href="/tags/snowflake/">snowflake</a>,&nbsp;<a href="/tags/munki/">munki</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/application-usage/">Application Usage</a>,&nbsp;<a href="/tags/fleetdm/">Fleetdm</a>,&nbsp;<a href="/tags/osquery/">Osquery</a>,&nbsp;<a href="/tags/data/">Data</a>,&nbsp;<a href="/tags/snowflake/">Snowflake</a>,&nbsp;<a href="/tags/munki/">Munki</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/using-custom-mdm-payloads-for-fleet-labels/" class="prev" rel="prev" title="Using Custom MDM Payloads for FleetDM Labels"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Using Custom MDM Payloads for FleetDM Labels</a></div>
+    <div class="post-nav"><a href="/posts/using-custom-mdm-payloads-for-fleet-labels/" class="prev" rel="prev" title="Using Custom MDM Payloads for FleetDM Labels"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Using Custom MDM Payloads for FleetDM Labels</a>
+            <a href="/posts/building_endpoint_performance_metrics/" class="next" rel="next" title="Building Endpoint Performance Metrics">Building Endpoint Performance Metrics<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.140.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xxxx</a></span></div>
         </div>
     </footer></div>
 

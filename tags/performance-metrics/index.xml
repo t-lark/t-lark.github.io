@@ -1,0 +1,20 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Performance Metrics - Tag - t-lark.github.io</title>
+        <link>https://t-lark.github.io/tags/performance-metrics/</link>
+        <description>Performance Metrics - Tag - t-lark.github.io</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 14 Jan 2025 15:35:46 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/tags/performance-metrics/" rel="self" type="application/rss+xml" /><item>
+    <title>Building Endpoint Performance Metrics</title>
+    <link>https://t-lark.github.io/posts/building_endpoint_performance_metrics/</link>
+    <pubDate>Tue, 14 Jan 2025 15:35:46 -0800</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/building_endpoint_performance_metrics/</guid>
+    <description><![CDATA[<p>Many organizations today still struggle with hardware refresh, right sizing hardware specs, and understanding the performance
+impact of tools and software across their fleet of end user devices. This has been a problem since the beginning of humans
+incorporating technology into their professional lives. In my 25+ year career I don&rsquo;t think I have ever had a job where
+these problems were considered solved, and I don&rsquo;t think we ever got close to solving them. A major factor we have all faced
+while trying to solve this problem is the lack of data compounded by the problem of being able to use and leverage the data
+in a meaningful way.</p>]]></description>
+</item>
+</channel>
+</rss>

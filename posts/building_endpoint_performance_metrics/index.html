@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Building Endpoint Performance Metrics - t-lark.github.io</title><meta name="Description" content="t-lark.github.io"><meta property="og:url" content="https://t-lark.github.io/posts/building_endpoint_performance_metrics/">
+  <meta property="og:site_name" content="t-lark.github.io">
+  <meta property="og:title" content="Building Endpoint Performance Metrics">
+  <meta property="og:description" content="Many organizations today still struggle with hardware refresh, right sizing hardware specs, and understanding the performance impact of tools and software across their fleet of end user devices. This has been a problem since the beginning of humans incorporating technology into their professional lives. In my 25&#43; year career I don’t think I have ever had a job where these problems were considered solved, and I don’t think we ever got close to solving them. A major factor we have all faced while trying to solve this problem is the lack of data compounded by the problem of being able to use and leverage the data in a meaningful way.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-01-14T15:35:46-08:00">
+    <meta property="article:modified_time" content="2025-01-14T15:35:46-08:00">
+    <meta property="article:tag" content="Data">
+    <meta property="article:tag" content="Data Apps">
+    <meta property="article:tag" content="Snowflake">
+    <meta property="article:tag" content="Performance Metrics">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Building Endpoint Performance Metrics">
+  <meta name="twitter:description" content="Many organizations today still struggle with hardware refresh, right sizing hardware specs, and understanding the performance impact of tools and software across their fleet of end user devices. This has been a problem since the beginning of humans incorporating technology into their professional lives. In my 25&#43; year career I don’t think I have ever had a job where these problems were considered solved, and I don’t think we ever got close to solving them. A major factor we have all faced while trying to solve this problem is the lack of data compounded by the problem of being able to use and leverage the data in a meaningful way.">
+      <meta name="twitter:site" content="@tlark8">
+<meta name="application-name" content="tlark&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="tlark&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/building_endpoint_performance_metrics/" /><link rel="prev" href="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Building Endpoint Performance Metrics",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/t-lark.github.io\/posts\/building_endpoint_performance_metrics\/"
+        },"genre": "posts","keywords": "data, data apps, snowflake, performance metrics","wordcount":  5314 ,
+        "url": "https:\/\/t-lark.github.io\/posts\/building_endpoint_performance_metrics\/","datePublished": "2025-01-14T15:35:46-08:00","dateModified": "2025-01-14T15:35:46-08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "tlark"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Building Endpoint Performance Metrics</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/osquery/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Osquery</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Snowflake</a>&nbsp;<a href="/categories/data/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Data</a>&nbsp;<a href="/categories/performance/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Performance</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-01-14">2025-01-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5314 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;25 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#common-struggles--problems">Common Struggles &amp; Problems</a></li>
+    <li><a href="#getting-started-with-data">Getting Started with Data</a></li>
+    <li><a href="#developing-data-collection-tools">Developing Data Collection Tools</a></li>
+    <li><a href="#data-collection--data-modeling">Data Collection &amp; Data Modeling</a></li>
+    <li><a href="#building-metrics">Building Metrics</a></li>
+    <li><a href="#data-collection-points">Data Collection Points</a></li>
+    <li><a href="#apple-silicon-hardware-caveats">Apple Silicon Hardware Caveats</a></li>
+    <li><a href="#looking-at-the-data">Looking at the Data</a></li>
+    <li><a href="#conclusion-benefits--roadmap">Conclusion, Benefits &amp; Roadmap</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Many organizations today still struggle with hardware refresh, right sizing hardware specs, and understanding the performance
+impact of tools and software across their fleet of end user devices. This has been a problem since the beginning of humans
+incorporating technology into their professional lives. In my 25+ year career I don&rsquo;t think I have ever had a job where
+these problems were considered solved, and I don&rsquo;t think we ever got close to solving them. A major factor we have all faced
+while trying to solve this problem is the lack of data compounded by the problem of being able to use and leverage the data
+in a meaningful way.</p>
+<p>Here at Snowflake I feel we have just met our first milestone at solving this problem, but to be clear we still have quite
+the journey ahead of us to fully solve these problems. We have just launched our first version of a <a href="https://streamlit.io/" target="_blank" rel="noopener noreffer ">Streamlit</a>
+app that contextualizes the data we collect in a meaningful way to tackle these problems.</p>
+<h2 id="common-struggles--problems">Common Struggles &amp; Problems</h2>
+<p>How much RAM does a developer need? How much disk space does a video editor need? Will a MacBook Air have enough compute
+power for folks that do mid to high level workloads on their laptop? When is a good time to refresh end user hardware to employees?
+Every 2 years, 4 years, maybe 5 years? The answers to all of these questions will be relative to your Org and how your
+Org uses technology. There isn&rsquo;t a magic answer that we can just ask for that would be guaranteed to fit all of your needs.
+We can, however, create frameworks and metrics with data and start iterate over these things to try to find those answers.</p>
+<p>I have had jobs that allowed for a 2-year hardware refresh, other jobs it was 4 years. I even had a job one time when it was
+5 years before you could get a refresh. When looking at the cost of this, you also have many ways to address the cost, and
+the potential cost savings. If we take a $3,000.00 laptop, add the cost of required software, and any additional costs
+(extended warranty, peripherals, etc.) and then divide that by the number of months and get the cost per a month for that
+employee. So let&rsquo;s assume the following costs and timelines:</p>
+<ul>
+<li>Laptop: $3,000.00</li>
+<li>required Software: $150.00
+<ul>
+<li>Required Software = cost per a license of required software (agents, apps, etc.)</li>
+</ul>
+</li>
+<li>Extended Warranty: $150.00</li>
+<li>Hardware Refresh Time: 3 years</li>
+</ul>
+<p>This would be a total of $3,300.00 over a 36-month (3 year) period. Thus, it would cost approximately $91.67 a month to provide
+that laptop to that type of employee. If we adjust the timeline to 4 years for a hardware refresh that lowers the monthly
+cost of that employee&rsquo;s laptop to $68.75. Which is a cost savings of $22.92 per a month. Now lets scale that out to an
+entire division of employees doing similar type work on their computer. Let&rsquo;s assume a large department of 2,000 employees
+are evaluated at this scale. That $22.92 per a month savings turns into $45,840.00 per a month, or $550,080.00 a year.</p>
+<p>How do we ensure in IT and in Procurement we are making the right decisions that balance user experience, productivity,
+and trying to keep costs down? We will want to use data for this, otherwise everyone will just be guessing. A half a million
+dollar savings by extending hardware refresh one extra year for 2,000 employees may look fantastic on paper in regard
+to overhead costs, but does it impact the employees in a way it hinders their productivity? Will that impact the organization
+in a negative way and hinder the ability to produce end results the Org wants? What if adding that extra year also adds
+tons of support costs, and increases labor demand of the help desk and IT support? If you aren&rsquo;t collecting these data
+points you simply will not know.</p>
+<p>There are many ways to calculate total costs, this was just an example that we toyed around with. There are always many
+other factors to figure out, and each Org will approach those differently. The above was merely an example and not
+necessarily one we use, or will use. There are more discussions to have and more data to analyze to find a final solution.</p>
+<h2 id="getting-started-with-data">Getting Started with Data</h2>
+<p>We knew this would be a long journey to get to this point, but before we could start the journey we had to build a plan
+with a roadmap to get to our final destination. This all started a couple of years ago when we decided to onboard
+<a href="https://fleetdm.com/" target="_blank" rel="noopener noreffer ">FleetDM</a> as our main tool to deploy and manage <a href="https://osquery.io/" target="_blank" rel="noopener noreffer ">osquery</a>. We wanted a good
+cross-platform data collector tool we could easily ship data to Snowflake with. FleetDM met our needs and at the time we
+were only interested in the osquery management itself. So, we started with setting up FleetDM, creating queries and
+<code>osquery</code> configurations, and a kinesis data stream to Snowflake. This took some time to POC the product, pilot it,
+then scale out the deployment across all departments. We also did a lot of slow moving testing to ensure we weren&rsquo;t
+going to hog-up the available compute with this tool on end user devices.</p>
+<p>During this time when we were building and scaling <code>osquery</code> our leaders wanted to build some sort of Laptop UX score
+with data, similar to other UX scores we have created here. So we started designing performance metrics queries and
+data models, we rolled them out, tested them, monitored them, then we finally created data models and shared those
+data models with our data science team.</p>
+<p>If you are unsure on where to start, here are some ideas you can research to see if this could be a good fit at your Org.
+First and foremost you will need data collection. I will state, that in my professional opinion, MDM is not a good tool for
+this. MDMs cannot collect inventory data at a high scale and frequency. Also, MDM products don&rsquo;t have data streaming
+abilities for the most part (if some MDM&rsquo;s offer this please let me know). Lastly, there is no real good cross-platform MDM.
+I wanted to avoid having to deal with multiple tools, with multiple different ways to collect data, which downstream would
+result in likely more labor to data model each different data pipeline. We also have to deal with Linux here, which also
+tosses another complexity in the grand scheme of things. This is what made <code>osquery</code> a pretty easy answer to solve these
+data collection problems. So, I would strongly suggest you plan for all platforms you have at your Org, all the data
+collection frequencies you think you will need, and finally you will need a destination to ship all this data into some
+sort of data platform. Snowflake is an excellent choice for this.</p>
+<h2 id="developing-data-collection-tools">Developing Data Collection Tools</h2>
+<p>With metrics data you must find a balance of collection frequency and what data you collect. If you were to collect data on
+compute say once or twice a day, that isn&rsquo;t very meaningful. Likewise, if you collect data every 5 minutes that is likely
+going to cause overhead in many areas, and could also impact user experience. So, you will want to balance this out in a way
+where you can collect data at a meaningful frequency, but also not get too aggressive to impact end user experience on their
+devices. There isn&rsquo;t really a magic number I can give anyone, and it will be relative to your goals. However, we can share
+our experiences here and hope that it may help others figure out what works best for them and their Org.</p>
+<p>We collect data at various intervals. Some data collections happen every hour, some every few hours, some are just once a
+day or perhaps a few times per a day. When it comes to running processes and their resources you may want to take more
+frequent snapshots to get better telemetry on the datapoint you wish to track into a metric. For example, battery capacity data we
+collect every hour as an end user on a laptop can be on the go throughout the day. They will dock their laptop, plug it into
+the AC adapter to charge it, and of course they will run it off the battery while running to meetings or collaborating with
+others in person. Due to the constant fluctuation of states the battery can be in, we do want to collect this specific
+data point at a frequent enough level that it is meaningful. If we collect battery capacity data in a laptop once or twice
+a day that is not very meaningful, and it reduces our chances of capturing data throughout all the different states a
+battery can be in.</p>
+<p>In FleetDM we set up labels to mark devices as early development testers, pilots groups, and the rest of the population.
+We use this as a scoping mechanism to performance and impact test queries from the development cycle, the stage cycle and the
+production cycle. Queries go through this process to test impact of the query, and we leverage FleetDM&rsquo;s <a href="https://fleetdm.com/releases/fleet-4-5-0" target="_blank" rel="noopener noreffer ">performance impact</a>
+metrics to determine if a query has anything over a <code>minimal impact</code> on end user devices. We also have a data ingest
+that monitors <code>osquery</code>&rsquo;s deny list. This is when the local watchdog denies a query due to the host already in a busy
+state running other queries. These type of things should be considered, developed, and in place before you start to
+deploy queries to your fleet of end user devices to mitigate impact.</p>
+<p>This type of work does take time and effort. My team spent about an entire year developing queries, testing queries,
+optimizing SQL code to reduce compute costs, and then slowly rolled them out to our fleet of laptops over time to collect data.
+We also needed a decent chunk of historical data to trend over time. Historical data in this type of project is quite
+valuable. You can then build daily, weekly, monthly and so forth performance metrics. If an end user device shows poor performance
+for 1 week out of an entire quarter, you now have that data point to investigate. Perhaps it was a bug in the software
+you deploy, or an unoptimized configuration. Perhaps it was one my favorites, a race condition bug! Which are difficult to
+reproduce and annoying to diagnose and troubleshoot. In contrast, if an end user device performs poorly for the majority of
+the quarter that is a better signal that the device could have problems, or perhaps should be prioritized for refresh.</p>
+<p>So if you go down this road you should set some expectations for yourself, your teams, and your Org that this will take time,
+and you will need to collect data constantly to build meaningful metrics out of it.</p>
+<h2 id="data-collection--data-modeling">Data Collection &amp; Data Modeling</h2>
+<p>One of the struggles we had in the beginning was that there are a good number of blogs and online resources that use <code>osquery</code>
+to track computer performance, but they lack in substance, and they don&rsquo;t really deep dive into the subject. Also, modern
+Apple hardware has changed a lot which makes this also very complex. Which I will touch on later. So, we did a lot of
+research and development with these queries. Even when reaching out to the community online I found not many folks
+were really doing a lot of this type of work. So, after looking at a lot of security and IT/Ops blogs around <code>osquery</code>
+we borrowed some ideas and added our own. This is another reason that this type of work takes time to develop. It seems
+that is not a very common use of <code>osquery</code>, or perhaps the folks that are doing these things just don&rsquo;t share what they do
+in the public space.</p>
+<p>A query to track macOS compute:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">p</span><span class="p">.</span><span class="n">cmdline</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">cwd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">path</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">pid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">on_disk</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">disk_bytes_read</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">disk_bytes_written</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">resident_size</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">wired_size</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">start_time</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">total_size</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ram_used_bytes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">uid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">user_time</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">ci</span><span class="p">.</span><span class="n">model</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">ci</span><span class="p">.</span><span class="n">number_of_cores</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">ci</span><span class="p">.</span><span class="n">logical_processors</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">ci</span><span class="p">.</span><span class="n">max_clock_speed</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">ci</span><span class="p">.</span><span class="n">number_of_efficiency_cores</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">ci</span><span class="p">.</span><span class="n">number_of_performance_cores</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">ROUND</span><span class="p">(((</span><span class="n">user_time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">system_time</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">cpu_time</span><span class="p">.</span><span class="n">tsb</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cpu_time</span><span class="p">.</span><span class="n">itsb</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">text</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">percent_cpu_process</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">ROUND</span><span class="p">(((</span><span class="n">total_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1024</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1024</span><span class="p">)),</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">text</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_ram_used_mb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">cpu_time</span><span class="p">.</span><span class="n">percent_cpu_sys</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">cpu_time</span><span class="p">.</span><span class="n">percent_cpu_user</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">cpu_time</span><span class="p">.</span><span class="n">percent_cpu_idle</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">cpu_time</span><span class="p">.</span><span class="n">steal</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">steal</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">cpu_time</span><span class="p">.</span><span class="n">core</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">core</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">processes</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">p</span><span class="p">,(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="k">user</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">nice</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="k">system</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">idle</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">tsb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">COALESCE</span><span class="p">(</span><span class="n">idle</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">COALESCE</span><span class="p">(</span><span class="n">iowait</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">itsb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">printf</span><span class="p">(</span><span class="n">ROUND</span><span class="p">((</span><span class="k">CAST</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="k">system</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">FLOAT</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">cpu_time</span><span class="p">.</span><span class="n">idle</span><span class="p">)</span><span class="o">+</span><span class="k">SUM</span><span class="p">(</span><span class="n">cpu_time</span><span class="p">.</span><span class="k">system</span><span class="p">)</span><span class="o">+</span><span class="k">SUM</span><span class="p">(</span><span class="n">cpu_time</span><span class="p">.</span><span class="k">user</span><span class="p">)))</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">percent_cpu_sys</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">printf</span><span class="p">(</span><span class="n">ROUND</span><span class="p">((</span><span class="k">CAST</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="k">user</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">FLOAT</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">idle</span><span class="p">)</span><span class="o">+</span><span class="k">SUM</span><span class="p">(</span><span class="k">system</span><span class="p">)</span><span class="o">+</span><span class="k">SUM</span><span class="p">(</span><span class="k">user</span><span class="p">)))</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">percent_cpu_user</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">printf</span><span class="p">(</span><span class="n">ROUND</span><span class="p">((</span><span class="k">CAST</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">idle</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">FLOAT</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">idle</span><span class="p">)</span><span class="o">+</span><span class="k">SUM</span><span class="p">(</span><span class="k">system</span><span class="p">)</span><span class="o">+</span><span class="k">SUM</span><span class="p">(</span><span class="k">user</span><span class="p">)))</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">percent_cpu_idle</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">steal</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">core</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">user</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">idle</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">system</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">cpu_time</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cpu_time</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">cross</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">cpu_info</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ci</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>I did have to chat with some folks in the official <code>osquery</code> Slack to get this query to work how we wanted it to. I also
+decided to join the <code>cpu_info</code> table to it, so I could get make and model of the CPU. It also allowed us to get how many
+CPU cores an end user device has.</p>
+<p>The raw output of the query looks like this (truncated):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;action&#34;</span><span class="p">:</span> <span class="s2">&#34;snapshot&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;calendarTime&#34;</span><span class="p">:</span> <span class="s2">&#34;Sat Jun 22 10:47:05 2024 UTC&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;counter&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;decorations&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;host_uuid&#34;</span><span class="p">:</span> <span class="s2">&#34;UUID of host&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;hostname&#34;</span><span class="p">:</span> <span class="s2">&#34;host name&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;serial_number&#34;</span><span class="p">:</span> <span class="s2">&#34;serial number&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;epoch&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;hostIdentifier&#34;</span><span class="p">:</span> <span class="s2">&#34;UUID&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;pack/Global/ingest-macos-compute-metrics&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;numerics&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;snapshot&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;cmdline&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;core&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;cwd&#34;</span><span class="p">:</span> <span class="s2">&#34;/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;disk_bytes_read&#34;</span><span class="p">:</span> <span class="s2">&#34;4110402048&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;disk_bytes_written&#34;</span><span class="p">:</span> <span class="s2">&#34;147008774144&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;logical_processors&#34;</span><span class="p">:</span> <span class="s2">&#34;12&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;max_clock_speed&#34;</span><span class="p">:</span> <span class="s2">&#34;3504&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;Apple M2 Pro&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;kernel_task&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;12&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_efficiency_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;4&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;number_of_performance_cores&#34;</span><span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;on_disk&#34;</span><span class="p">:</span> <span class="s2">&#34;-1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percent_cpu_idle&#34;</span><span class="p">:</span> <span class="s2">&#34;93.43&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percent_cpu_process&#34;</span><span class="p">:</span> <span class="s2">&#34;63.47&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percent_cpu_sys&#34;</span><span class="p">:</span> <span class="s2">&#34;1.82&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;percent_cpu_user&#34;</span><span class="p">:</span> <span class="s2">&#34;4.75&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;ram_used_bytes&#34;</span><span class="p">:</span> <span class="s2">&#34;29507584&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;resident_size&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_time&#34;</span><span class="p">:</span> <span class="s2">&#34;1717571471&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;steal&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;total_ram_used_mb&#34;</span><span class="p">:</span> <span class="s2">&#34;28.14&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;user_time&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;wired_size&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The above snip of JSON output from <code>osquery</code> is just one process of about 12,000 lines of output from the query on a single
+host computer. Luckily in Snowflake we can model this into a view which turns the JSON output into relational data. The
+JSON output does have a caveat with it. If you look at the FleetDM <a href="https://fleetdm.com/tables/processes#apple" target="_blank" rel="noopener noreffer ">docs</a> on
+the <code>processes</code> table, you will see it supplies the data types for each data value. This is great, because we want to keep
+the data the same in the local SQLite database that <code>osquery</code> uses in Snowflake. This reduces error, helps contextualize data,
+and of course keeps it the exact same as the tools that collect the data. However, the JSON data itself pretty much only
+uses strings. Not all data will have values when collected, and thus end up as a blank string. Well, when you type cast
+a blank string to say an integer, it will fail. Simply because you cannot cast something to a different type if there is
+no data to cast. So, we had to do a bit of extra work in our data models. This can be easily fixed in Snowflake and I have
+blogged about this previously.</p>
+<p>Let&rsquo;s look at a data model:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">DB</span><span class="p">.</span><span class="k">SCHEMA</span><span class="p">.</span><span class="n">OSQR_MACOS_COMPUTE_PERF_V</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">copy</span><span class="w"> </span><span class="n">grants</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">serial_number</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">event_timestamp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">host_uuid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;cmdline&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cmdline</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;core&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">core</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;cwd&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cwd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;disk_bytes_read&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">disk_bytes_read</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;disk_bytes_written&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">disk_bytes_written</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">model</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;logical_processors&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">logical_processors</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;max_clock_speed&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">max_clock_speed</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;number_of_cores&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">number_of_cores</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;number_of_efficiency_cores&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">number_of_efficiency_cores</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;number_of_performance_cores&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">number_of_performance_cores</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">proc_name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">proc_uid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;pid&#39;</span><span class="p">]::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">proc_pid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;on_disk&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">on_disk</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]::</span><span class="n">string</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">path</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;percent_cpu_process&#39;</span><span class="p">]::</span><span class="nb">float</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">percent_cpu_proc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;percent_cpu_idle&#39;</span><span class="p">]::</span><span class="nb">float</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">percent_cpu_idle</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;percent_cpu_user&#39;</span><span class="p">]::</span><span class="nb">float</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">percent_cpu_user</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;percent_cpu_sys&#39;</span><span class="p">]::</span><span class="nb">float</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">percent_cpu_sys</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;ram_used_bytes&#39;</span><span class="p">]::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ram_used_bytes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;total_ram_used_mb&#39;</span><span class="p">]::</span><span class="nb">float</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ram_used_mb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;resident_size&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">resident_size</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;steal&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">steal</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;user_time&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">user_time</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;wired_size&#39;</span><span class="p">]::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)::</span><span class="nb">number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">wired_size</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">IT</span><span class="p">.</span><span class="n">IT_PLATFORM_ENG</span><span class="p">.</span><span class="n">FLEET_OSQUERY_RESULTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">,</span><span class="w"> </span><span class="k">lateral</span><span class="w"> </span><span class="n">flatten</span><span class="p">(</span><span class="k">input</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">snapshot</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">f</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pack/Global/ingest-macos-compute-metrics&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>To get around this and keep the data types the same across the platforms and while ingested into Snowflake we took the
+approach of using <a href="https://docs.snowflake.com/en/sql-reference/functions/nullif" target="_blank" rel="noopener noreffer ">NULLIF</a>. This approach essentially
+allows us to <code>NULL</code> a blank string value if we are unable to type cast it to the proper data type.</p>
+<p>When you start your journey around this type of data collection you will want to spend time to fully understand what the
+data is, and to model it in a way downstream in Snowflake or a product like Snowflake so other teams or applications
+can use that data in a more meaningful way. This is another factor that just takes time to develop.</p>
+<div class="details admonition Info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>More Info:<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">We have many queries that cover macOS and Windows. While there is no way for us to publish all of these queries in a single
+blog post, feel free to engage with us or FleetDM on one of our community Slack channels. Each query is designed for a specific
+data point, and sometimes for a specific platform. I would suggest this approach over trying to create overly complex queries
+in <code>osquery</code> that may end up being too &ldquo;noisy&rdquo; on the client. We can do this because we ship all <code>osquery</code> results
+to Snowflake and do all of our data modeling and joins downstream in our data platform.</div>
+        </div>
+    </div>
+<h2 id="building-metrics">Building Metrics</h2>
+<p>My team has partnered with many other teams internally to build this Streamlit App. We also have asked teams we work with
+closely, like the IT Support Org, to also look at the app and data to ensure it makes sense and could be actionable. The CPE
+team here worked closely with our assets team, data science team, along with leadership to ensure we were building something
+that could be effectively and leverage our data.</p>
+<p>When building a metric there are many ways to approach it. Perhaps, there are actually too many ways, and this can be
+confusing and likely take time to figure out. You could copy the idea of a &ldquo;credit score&rdquo;, or simply pick an arbitrary
+range of numbers to score the metric on. For example, you could score a metric between 1 and 10, with 10 being the best
+possible outcome and 1 being the worst outcome. How you pick your number range to score your metric isn&rsquo;t necessarily
+important, but if you are going to build series of metrics it would make sense to be consistent across the board. Our teams
+here have already build service desk metrics, and have opted ot use a 1 through 5 scoring range. To keep the metric
+consistent we decided to also use this range.</p>
+<p>Once we established our metric system we started looking at scores. Our asset team would reach out to people that had
+specific score ranges. We also decided that a 5.0 was really not obtainable as it would just be a completely idle computer.
+We expect every computer to have some level of load on it, and for end users to consume some level of compute no
+matter what the tasks being done were. Our asset team reached out to folks in various ranges and were receiving feedback.
+We took that feedback and correlated it to UX scores. We discovered that a vast majority of devices that had under a 3.0 score
+the end user would always report performance issues. The data did back this up. When we reviewed the data, we could
+observe higher consumption of CPU and RAM and less free resources on these devices. We also had historical data, so we could
+also observe week over week, month over month and even quarter over quarter the performance metrics of the device. This
+helped us contextualize the scores.</p>
+<p>I would like to take a quick moment here and point out a few things. While our early established baseline for a healthy
+device would be anything over <code>3.0</code> or <code>3.25</code> we are still working through these correlations of scoring to actual performance.
+So, this could change, and we are open to it changing over time. This is the approach one should take when building
+something like this. You will need to collect data, run analysis, iterate over the data and improve it over time. We
+could discover later on that a <code>2.75</code> score is really the bare minimum a laptop needs to be considered performant, or it
+could go up to day <code>3.5</code>. We also plan on iterating over the app, adding in more data to contextualize the overall
+scoring metric system, and improving things as we go. For example, we might start to add ticket data to each asset where we
+track how many support tickets a specific device generates. This could help us discover a device that has intermittent hardware
+failure, or is just a good old-fashioned &ldquo;lemon.&rdquo; The main takeaway should be that when you start to build these type of
+systems there is always likely going to be iteration and adjustment over time.</p>
+<h2 id="data-collection-points">Data Collection Points</h2>
+<p>We have decided to collect some specific data points for the fleet of both Windows and Mac laptops we manage here. This
+was our starting point to gather enough data to make a meaningful metric as our output. We will likely expand on these
+over time, and I would also expect us to improve on existing data collection and telemetry.</p>
+<p>Our starting points:</p>
+<ul>
+<li>CPU usage</li>
+<li>RAM usage</li>
+<li>Disk I/O</li>
+<li>Disk Utilization</li>
+<li>Laptop battery health</li>
+<li>Number of running processes</li>
+<li>Department and Cost Center comparisons</li>
+<li>Hardware specifications</li>
+</ul>
+<p>Each platform is different, so you likely won&rsquo;t be able to develop a query in <code>osquery</code> that can track every statistic
+across Linux, macOS and Windows. You will have to split some of the data collectors up by platform they are collecting
+against. Likewise, when collecting CPU usage data, it is also very nice to include the make and model of the CPU along
+with how many CPU cores the device has. This can help provide more context to your data.</p>
+<p>We also included Department and Cost Center comparisons in our app. This allows anyone who is analyzing the data to
+quickly compare what employees have what metrics within the same group. Since the same group of humans are likely doing
+some overlapping work, and possibly almost the same work across devices. This will help us profile say a sales rep
+versus a software engineer&rsquo;s needs when it comes to hardware specification. If 90% of a Cost Center has acceptable scores
+with the same spec laptop and 10% have unacceptable scores we can use that as a starting point to investigate why. Is that
+10% doing slightly different and more demanding work? Is that 10% of devices experiencing some sort of software or
+hardware issue? Since we will not be able to really track every aspect of how a human uses a computer, we can group
+the data together to help us contextualize it in a way that makes it more actionable.</p>
+<h2 id="apple-silicon-hardware-caveats">Apple Silicon Hardware Caveats</h2>
+<p>With the introduction of Apple Silicon, we have observed Apple bring in an entire new level of performance to our
+beloved Apple laptops. While the advancements are definitely something to marvel at, they do introduce new challenges.
+With the advances in <a href="https://developer.apple.com/videos/play/wwdc2020/10686/" target="_blank" rel="noopener noreffer ">Unified Memory Architecture</a> a lot of the
+classic memory performance metrics aren&rsquo;t as applicable. Compound that with the fact that the kernel can now
+compress and swap memory on the fly between processes, this makes tracking memory usage somewhat challenging.</p>
+<p>Apple has moved over to a stat they have developed called <code>Memory Pressure</code>, and it is now present in <a href="https://support.apple.com/guide/activity-monitor/view-memory-usage-actmntr1004/mac#:~:text=When%20your%20computer%20approaches%20its,being%20compressed%20for%20that%20app." target="_blank" rel="noopener noreffer ">Activity Monitor</a>.
+There isn&rsquo;t a great way to track this statistic from a binary, nor from <code>osquery</code> either. There is a binary to simulate
+memory pressure, but that is just to simulate it, not collect the data on it. So, until Apple provides us a more meaningful
+way to collect memory pressure from an IT tool, we must use what we can collect today.</p>
+<div class="details admonition Info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>More Info:<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">If anyone has methods to collect memory pressure accurately and at scale, we would be very happy to hear how you have
+accomplished this. I have also filed a ticket with Apple Care asking for better features around this data point. Same
+goes with Thermal Pressure, if you are collecting that in a way to store historical data at scale with this, we would
+also be very happy to hear how you have accomplished this.</div>
+        </div>
+    </div>
+<p>Thermal sensors are in a similar boat. In the older Intel based hardware you could query the SMC controller to get actual
+temperatures of an Apple device. In Apple Silicon this has moved to <code>Thermal Pressure</code>, and there is a way to collect this
+from a binary, but <code>osquery</code> doesn&rsquo;t have a supported table for this yet. We cannot really use MDM to collect this data since
+we will want a faster frequency of data collection and historical data to trend it into a meaningful metric. So, <code>Thermal Pressure</code>
+is a &ldquo;future us,&rdquo; problem to solve at the moment. We will circle back to this one when we are able to find time to do so.</p>
+<h2 id="looking-at-the-data">Looking at the Data</h2>
+<p>If you have read this massive wall of text blog post, I applaud you! Now we can look at some visuals and go over them.</p>
+<a class="lightgallery" href="/img/laptop_ux_overview.png" title="/img/laptop_ux_overview.png" data-thumbnail="/img/laptop_ux_overview.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/laptop_ux_overview.png"
+            data-srcset="/img/laptop_ux_overview.png, /img/laptop_ux_overview.png 1.5x, /img/laptop_ux_overview.png 2x"
+            data-sizes="auto"
+            alt="/img/laptop_ux_overview.png" />
+    </a>
+<p>The above visual shows that a majority of our systems are scoring in the <code>4.0</code> to <code>5.0</code> range, and the secondary majority
+are in the <code>3.0</code> to <code>4.0</code> range. This aligns with our initial assessment of anything under a <code>3.0</code> should be investigated
+for hardware refresh, as well as any IT troubleshooting to help optimize user experience and performance of an employee laptop.
+This allows us to quickly visualize an overview of Laptop UX Scores and since it was built in Streamlit we can interact with
+the visuals to get more information.</p>
+<a class="lightgallery" href="/img/laptop_ux_drilled_viz.png" title="/img/laptop_ux_drilled_viz.png" data-thumbnail="/img/laptop_ux_drilled_viz.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/laptop_ux_drilled_viz.png"
+            data-srcset="/img/laptop_ux_drilled_viz.png, /img/laptop_ux_drilled_viz.png 1.5x, /img/laptop_ux_drilled_viz.png 2x"
+            data-sizes="auto"
+            alt="/img/laptop_ux_drilled_viz.png" />
+    </a>
+<p>In the above screenshot we can observe the peaks and valleys of performance of our fleet and get a quick overview of the
+groups of scoring ranges. This is to be expected as computers get used differently throughout the weeks and months by
+the humans that use them. We could also guess that near end of a quarter compute usage might go up as everyone is
+trying to close their end of quarter projects up, so they are ready to tackle next quarters. If that guess is true, we should
+be able to observe this in the data. The key is to let the data guide you, and while you can make assumptions ensure that
+you are also in a position to accept if your predictions are wrong. The data will tell you the truth!</p>
+<p>We can also look at individual devices and get a feel for their current state of performance:</p>
+<a class="lightgallery" href="/img/laptop_ux_1.png" title="/img/laptop_ux_1.png" data-thumbnail="/img/laptop_ux_1.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/laptop_ux_1.png"
+            data-srcset="/img/laptop_ux_1.png, /img/laptop_ux_1.png 1.5x, /img/laptop_ux_1.png 2x"
+            data-sizes="auto"
+            alt="/img/laptop_ux_1.png" />
+    </a>
+<p>This is my laptop, and we can see it displays some metadata about the device which allows us to quickly view it to get
+an idea of overall hardware spec. We can also use this data to do device to device comparisons at a cost center or at a
+department level to compare a laptop to its peer laptops.</p>
+<a class="lightgallery" href="/img/laptop_ux2.png" title="/img/laptop_ux2.png" data-thumbnail="/img/laptop_ux2.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/laptop_ux2.png"
+            data-srcset="/img/laptop_ux2.png, /img/laptop_ux2.png 1.5x, /img/laptop_ux2.png 2x"
+            data-sizes="auto"
+            alt="/img/laptop_ux2.png" />
+    </a>
+<p>The above image gives us the daily snapshot of data along with the last 30 days mean. This allows a user of our Streamlit
+app to quickly view the latest data of any given laptop in our fleet.</p>
+<p>If we scroll down the page, next we can view the CPU intensive apps. Admittedly this is where my device shows that I have
+transitioned from an IC to a Manager, as a lot of my time is spent in Zoom meetings. However, this is very useful when looking
+at an end user&rsquo;s computer. While we typically see processes like Chrome often the leader of compute consumption, we can also
+observe individual apps and processes that may also chomp at a computer&rsquo;s CPU. Think things like security agents, or IT agents
+we deploy to our fleet. We can now observe when they are in weird states and taking up more CPU than they normally do.</p>
+<a class="lightgallery" href="/img/laptop_ux3.png" title="/img/laptop_ux3.png" data-thumbnail="/img/laptop_ux3.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/laptop_ux3.png"
+            data-srcset="/img/laptop_ux3.png, /img/laptop_ux3.png 1.5x, /img/laptop_ux3.png 2x"
+            data-sizes="auto"
+            alt="/img/laptop_ux3.png" />
+    </a>
+<p>Then if we keep scrolling down the app looking at a single device we can observe the processes that consume the most memory.
+This is where I can &ldquo;prove&rdquo; that I still do some IC engineering work as my most intensive memory process is actually my IDE.
+As I still write code from time to time, test code, and other software development and coding workflows. So, my IDE is eating
+more RAM that Chrome for once. Typically, when I look up my devices Chrome (or other Chromium browsers) oftentimes take up the
+most RAM and CPU of my devices. This is also common across our fleet as well.</p>
+<a class="lightgallery" href="/img/laptop_ux4.png" title="/img/laptop_ux4.png" data-thumbnail="/img/laptop_ux4.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/laptop_ux4.png"
+            data-srcset="/img/laptop_ux4.png, /img/laptop_ux4.png 1.5x, /img/laptop_ux4.png 2x"
+            data-sizes="auto"
+            alt="/img/laptop_ux4.png" />
+    </a>
+<h2 id="conclusion-benefits--roadmap">Conclusion, Benefits &amp; Roadmap</h2>
+<p>I cannot think of a single job I have ever had where we had this level of data telemetry and so many options to make that
+data actionable. I also can recall many times at past jobs working with leadership, procurement teams, people who volunteered to test
+hardware and provide feedback, and so forth all got together to plan for what hardware spec to buy and what refresh lifecycle
+we would use. To be honest, it was a lot of guess work, and with minimal amounts of data being used back then. The great thing about
+Snowflake, FleetDM, <code>osquery</code>, and apps like Streamlit is that they are available to the public. This means any org that wants
+to build this type of tech stack can. I do have friends at other big prestigious tech companies that have data pipelines and
+have built custom in-house solutions that likely accomplish similar things, but those solutions they have built will never
+be publicly available.</p>
+<p>The benefits are there as well. You can use data like this to project cost savings initiatives, do data driven hardware refresh,
+use the data as way to drill into devices that are preforming well versus those that aren&rsquo;t. So, IT support can look at this
+as a way to be proactive on devices that are declining in UX score.</p>
+<p>For the future we will want to collect data, assess it, iterate over it and then improve it over time. This will allow us to
+expand the application&rsquo;s features and enhance our data collections over time as well. This is definitely not a once and done
+project, but rather a once and sustain forever. When approaching these types of projects it is highly beneficial for you
+to really think long term what your roadmap is going to be. I always suggest to start with a minimal viable product and
+get that into the hands of your stakeholders. Then get feedback from them to iterate over. These type of projects and data
+applications are highly likely going to have multiple use cases to multiple teams, so it is not a crazy idea to think you
+should plan long term for stuff like this.</p>
+<p>I know this was likely my longest blog post ever, and when I tried trim it down to fewer words it just felt it was missing
+context. If you actually read this entire thing I thank you and am grateful for your time!</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-01-14</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/building_endpoint_performance_metrics/" data-title="Building Endpoint Performance Metrics" data-via="tlark8" data-hashtags="data,data apps,snowflake,performance metrics"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/building_endpoint_performance_metrics/" data-hashtag="data"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/building_endpoint_performance_metrics/" data-title="Building Endpoint Performance Metrics"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/building_endpoint_performance_metrics/" data-title="Building Endpoint Performance Metrics"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/building_endpoint_performance_metrics/" data-title="Building Endpoint Performance Metrics"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/data/">Data</a>,&nbsp;<a href="/tags/data-apps/">Data Apps</a>,&nbsp;<a href="/tags/snowflake/">Snowflake</a>,&nbsp;<a href="/tags/performance-metrics/">Performance Metrics</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/app-usage-data-munki-fleet-snowflake/" class="prev" rel="prev" title="Leveraging Application Usage Data From Munki"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Leveraging Application Usage Data From Munki</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.140.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xxxx</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

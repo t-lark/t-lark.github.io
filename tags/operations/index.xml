@@ -1,15 +1,19 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>operations - Tag - t-lark.github.io</title>
+        <title>Operations - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/operations/</link>
-        <description>operations - Tag - t-lark.github.io</description>
+        <description>Operations - Tag - t-lark.github.io</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 13 Jan 2022 17:07:04 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/tags/operations/" rel="self" type="application/rss+xml" /><item>
     <title>Snowflake Osquery Fleet Magic</title>
     <link>https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/</link>
     <pubDate>Thu, 13 Jan 2022 17:07:04 -0800</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/</guid>
-    <description><![CDATA[Snowflake, osquery and Fleet is Pure Magic! Many of you have probably heard of osquery, which is software you can install onto a computer that allows humans to query the OS to return fast and reliable system data. Osquery is not new, and many Organizations have been using it in various capacity for years now. Vendors and developers also ship osquery with their products these days as well. This allows a developer or vendor to collect local data fast and reliably for their software and solutions.]]></description>
+    <description><![CDATA[<h1 id="snowflake-osquery-and-fleet-is-pure-magic">Snowflake, osquery and Fleet is Pure Magic!</h1>
+<p>Many of you have probably heard of <a href="https://osquery.io/" target="_blank" rel="noopener noreffer ">osquery</a>, which is software you can install onto a computer that
+allows humans to query the OS to return fast and reliable system data. Osquery is not new, and many Organizations have been
+using it in various capacity for years now. Vendors and developers also ship osquery with their products these days as well.
+This allows a developer or vendor to collect local data fast and reliably for their software and solutions.</p>]]></description>
 </item>
 </channel>
 </rss>

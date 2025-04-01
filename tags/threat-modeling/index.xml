@@ -1,15 +1,20 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>threat modeling - Tag - t-lark.github.io</title>
+        <title>Threat Modeling - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/threat-modeling/</link>
-        <description>threat modeling - Tag - t-lark.github.io</description>
+        <description>Threat Modeling - Tag - t-lark.github.io</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 27 Feb 2024 18:16:37 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/tags/threat-modeling/" rel="self" type="application/rss+xml" /><item>
     <title>IT Teams are also Security Teams</title>
     <link>https://t-lark.github.io/posts/cpe-is-a-security-team/</link>
     <pubDate>Tue, 27 Feb 2024 18:16:37 -0800</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/cpe-is-a-security-team/</guid>
-    <description><![CDATA[IT Teams are also Security Teams If you have worked in some tech related job odds are you have also worked with various security teams throughout your career. There has definitely been a divide between IT teams and Security teams I have observed in my near 25 years working in tech, but that doesn&rsquo;t have to be the case. During my career I have definitely observed security &ldquo;punting labor&rdquo; over the fence to IT teams, and I have seen IT teams dig their feet into the ground when security wants to change things.]]></description>
+    <description><![CDATA[<h1 id="it-teams-are-also-security-teams">IT Teams are also Security Teams</h1>
+<p>If you have worked in some tech related job odds are you have also worked with various security teams throughout your career.
+There has definitely been a divide between IT teams and Security teams I have observed in my near 25 years working in tech,
+but that doesn&rsquo;t have to be the case. During my career I have definitely observed security &ldquo;punting labor&rdquo; over the fence
+to IT teams, and I have seen IT teams dig their feet into the ground when security wants to change things. This is just the
+wrong way to collaborate with IT and Security teams all together.</p>]]></description>
 </item>
 </channel>
 </rss>

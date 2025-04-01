@@ -1,15 +1,26 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>data cloud - Tag - t-lark.github.io</title>
+        <title>Data Cloud - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/data-cloud/</link>
-        <description>data cloud - Tag - t-lark.github.io</description>
+        <description>Data Cloud - Tag - t-lark.github.io</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 08 Aug 2022 21:48:09 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/data-cloud/" rel="self" type="application/rss+xml" /><item>
     <title>Complete Asset Oversight with the Data Cloud</title>
     <link>https://t-lark.github.io/posts/complete-asset-oversight-datacloud/</link>
     <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/complete-asset-oversight-datacloud/</guid>
-    <description><![CDATA[Gain All the Insights You Never Had Asset and Inventory controls are difficult, and many Orgs spend tons of time and effort to try to solve problems around this very subject. In fact, they will hire humans, and spend lots of time and money to also get a hold of their inventory of assets. This problem is still very much difficult to solve, but the Data Cloud makes this problem at least solvable.]]></description>
+    <description><![CDATA[<h1 id="gain-all-the-insights-you-never-had">Gain All the Insights You Never Had</h1>
+<p>Asset and Inventory controls are difficult, and many Orgs spend tons of time and effort to try to solve problems around
+this very subject. In fact, they will hire humans, and spend lots of time and money to also get a hold of their inventory of
+assets. This problem is still very much difficult to solve, but the Data Cloud makes this problem at least solvable.
+I have been in tech for over 20 years, and I have even had jobs where inventory of assets was one of my job duties. I
+had a local database I built on a Linux desktop and a barcode scanner where I could manage my own little shop of computers
+and computer parts. I would manually enter data, I would scan barcodes, and I even had a sign-out sheet for people to sign
+for things they took, so I could balance my books later on. Systems like this do not scale, they are very error-prone,
+and they take so much labor. Oftentimes I had to play asset detective and dig through our IT software, the home-grown
+database that I had, and the various paperwork from other systems to get a feel for what our inventory actually was.
+Also, I was very new to Linux and databases at the time, and I highly doubt my little pet project was really any
+good at all. It was at least something I suppose.</p>]]></description>
 </item>
 <item>
     <title>Creating Data Enabled Culture</title>
@@ -17,7 +28,14 @@
     <pubDate>Fri, 24 Jun 2022 16:18:28 -0700</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/creating-data-enabled-culture/</guid>
-    <description><![CDATA[Creating a Data-enabled Culture I think the term data-driven is common, and a lot of people are aware of the term. It also has a broad area of application across many practices. I feel my Org is already data-driven. We use data in all our metrics, planning, discussions, collaboration and more. However, today during a cross team meeting I realized that we are also a data-enabled organization. When the term popped into my head I thought maybe I was on to something new, or perhaps maybe something a bit esoteric.]]></description>
+    <description><![CDATA[<h1 id="creating-a-data-enabled-culture">Creating a Data-enabled Culture</h1>
+<p>I think the term <a href="https://en.wikipedia.org/wiki/Data-driven" target="_blank" rel="noopener noreffer ">data-driven</a> is common, and a lot of people are aware of
+the term. It also has a broad area of application across many practices. I feel my Org is already data-driven. We use
+data in all our metrics, planning, discussions, collaboration and more. However, today during a cross team meeting I
+realized that we are also a data-enabled organization. When the term popped into my head I thought maybe I was on to
+something new, or perhaps maybe something a bit esoteric. Turns out, I was wrong, and this term is commonly used in areas already.
+A quick Google search will show lots of results for <code>data enabled</code>, and <a href="https://timelyapp.com/blog/from-data-driven-to-data-enabled" target="_blank" rel="noopener noreffer ">here</a>
+is a blog post I found from the first page of results.</p>]]></description>
 </item>
 </channel>
 </rss>

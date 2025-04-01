@@ -1,15 +1,19 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>servicenow - Category - t-lark.github.io</title>
+        <title>Servicenow - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/servicenow/</link>
-        <description>servicenow - Category - t-lark.github.io</description>
+        <description>Servicenow - Category - t-lark.github.io</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 28 Mar 2023 18:49:24 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/servicenow/" rel="self" type="application/rss+xml" /><item>
     <title>Servicenow Asset Data in Snowflake</title>
     <link>https://t-lark.github.io/posts/servicenow-asset-data-in-snowflake/</link>
     <pubDate>Tue, 28 Mar 2023 18:49:24 -0700</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/servicenow-asset-data-in-snowflake/</guid>
-    <description><![CDATA[Inventory Asset data is extremely important to any organization. It is also some of the most difficult data to keep accurate and up-to-date. We have been shipping ServiceNow data to Snowflake here for a good while. Over the years the asset data has proven time after time to be extremely valuable. It helps filter out tons of noise and allows one to focus on specific asset data at any given time.]]></description>
+    <description><![CDATA[<p>Inventory Asset data is extremely important to any organization. It is also some of the most difficult data to keep
+accurate and up-to-date. We have been shipping ServiceNow data to Snowflake here for a good while. Over the years the asset data
+has proven time after time to be extremely valuable. It helps filter out tons of noise and allows one to focus on
+specific asset data at any given time. Just by creating some simple queries and joining ServiceNow data with other data
+sources. I recently created a new <a href="https://docs.snowflake.com/en/user-guide/views-introduction" target="_blank" rel="noopener noreffer ">view</a> in Snowflake to help us better filter data down to more specifics.</p>]]></description>
 </item>
 </channel>
 </rss>

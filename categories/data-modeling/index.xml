@@ -1,15 +1,22 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>data modeling - Category - t-lark.github.io</title>
+        <title>Data Modeling - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/data-modeling/</link>
-        <description>data modeling - Category - t-lark.github.io</description>
+        <description>Data Modeling - Category - t-lark.github.io</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 25 Jan 2024 20:24:28 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/categories/data-modeling/" rel="self" type="application/rss+xml" /><item>
     <title>More Osquery Data Modeling in Snowflake</title>
     <link>https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/</link>
     <pubDate>Thu, 25 Jan 2024 20:24:28 -0800</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/</guid>
-    <description><![CDATA[Data Modeling osquery Data in Snowflake We have been working on many projects the past few months, and osquery data pipelines with the help of FleetDM has been one of our constant works in progress. Before I dive into the data modeling part, I wanted to share how we scaled this data out. We ended up going forward with FleetDM&rsquo;s SaaS offering over self-hosting the app. However, we are still streaming query results from FleetDM cloud to Snowflake over AWS Kinesis Firehose and we now have data streaming from FleetDM into Snowflake at a very fast rate and high volume.]]></description>
+    <description><![CDATA[<h1 id="data-modeling-osquery-data-in-snowflake">Data Modeling osquery Data in Snowflake</h1>
+<p>We have been working on many projects the past few months, and osquery data pipelines with the help of <a href="https://fleetdm.com/" target="_blank" rel="noopener noreffer ">FleetDM</a>
+has been one of our constant works in progress. Before I dive into the data modeling part, I wanted to share how we scaled
+this data out. We ended up going forward with FleetDM&rsquo;s SaaS offering over self-hosting the app. However, we are still
+streaming query results from FleetDM cloud to Snowflake over <a href="https://aws.amazon.com/kinesis/data-firehose/" target="_blank" rel="noopener noreffer ">AWS Kinesis Firehose</a> and
+we now have data streaming from FleetDM into Snowflake at a very fast rate and high volume. We are typically collecting
+data from osquery every hour on most things, and we have a lesser number of queries that run every 12 hours or once a
+day.</p>]]></description>
 </item>
 <item>
     <title>Working with osquery Data in Snowflake</title>
@@ -17,8 +24,15 @@
     <pubDate>Thu, 31 Aug 2023 18:01:31 -0700</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/osquery-data-in-snowflake/</guid>
-    <description><![CDATA[I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, he was quite impressed with all the use cases and in-depth data you can model about your fleet of laptops using osquery data in Snowflake.
-Booms came to the office with me, and he even got a bit of company swag! As we spent the day working I told him all about all the work my team was doing with osquery.]]></description>
+    <description><![CDATA[<p>I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, he was quite impressed
+with all the use cases and in-depth data you can model about your fleet of laptops using osquery data in Snowflake.</p>
+<a class="lightgallery" href="/img/booms-snow1.jpg" title="/img/booms-snow1.jpg" data-thumbnail="/img/booms-snow1.jpg">
+        
+    </a>
+<blockquote>
+<p>Booms came to the office with me, and he even got a bit of company swag! As we spent the day working I told him
+all about all the work my team was doing with osquery. Anyone can see in this pic of him, he is very impressed
+with the speed and scale one can leverage data from osquery in Snowflake</p>]]></description>
 </item>
 </channel>
 </rss>

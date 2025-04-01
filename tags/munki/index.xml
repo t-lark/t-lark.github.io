@@ -1,15 +1,22 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>munki - Tag - t-lark.github.io</title>
+        <title>Munki - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/munki/</link>
-        <description>munki - Tag - t-lark.github.io</description>
+        <description>Munki - Tag - t-lark.github.io</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 26 Mar 2024 18:43:26 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/munki/" rel="self" type="application/rss+xml" /><item>
     <title>Leveraging Application Usage Data From Munki</title>
     <link>https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/</link>
     <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/</guid>
-    <description><![CDATA[Getting Application Usage Data at Scale With Munki Munki is a series of tools and a popular application state management tool many Mac Admins across the globe use. Some out-of-box features of Munki solve problems many commercial MDMs still cannot solve to this day. It allows a Mac Admin to write some declarative data and have Munki takes care of the rest for you. We use it to manage and patch all of our third party apps in conjunction with AutoPKG.]]></description>
+    <description><![CDATA[<a class="lightgallery" href="/img/fleet_munki_snowflake.png" title="/img/fleet_munki_snowflake.png" data-thumbnail="/img/fleet_munki_snowflake.png">
+        
+    </a>
+<h3 id="getting-application-usage-data-at-scale-with-munki">Getting Application Usage Data at Scale With Munki</h3>
+<p><a href="https://github.com/munki/munki" target="_blank" rel="noopener noreffer ">Munki</a> is a series of tools and a popular application state management tool many Mac Admins across the globe
+use. Some out-of-box features of Munki solve problems many commercial MDMs still cannot solve to this day. It allows
+a Mac Admin to write some declarative data and have Munki takes care of the rest for you. We use it to manage
+and patch all of our third party apps in conjunction with <a href="https://github.com/autopkg/autopkg" target="_blank" rel="noopener noreffer ">AutoPKG</a>.</p>]]></description>
 </item>
 <item>
     <title>Diversifying Your IT Tools: Integrating Munki</title>
@@ -17,7 +24,12 @@
     <pubDate>Sun, 22 Jan 2023 21:52:42 -0700</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/diversifying-your-tools-munki/</guid>
-    <description><![CDATA[Hello Everyone, and it has been a while since my last blog post. I have been busy with work and with some other things outside of work as well. However, we did finally release Munki to our fleet last summer. This was a milestone project for us, and while we aren&rsquo;t the first Org to do this, I wanted to share with the community how and why we did this. Everything I will write here has probably already been done by many other Orgs that currently use Munki, and we aren&rsquo;t really doing much that is radically different.]]></description>
+    <description><![CDATA[<p>Hello Everyone, and it has been a while since my last blog post. I have been busy with work and with some other things
+outside of work as well. However, we did finally release Munki to our fleet last summer. This was a milestone project for us, and
+while we aren&rsquo;t the first Org to do this, I wanted to share with the community how and why we did this. Everything I will
+write here has probably already been done by many other Orgs that currently use Munki, and we aren&rsquo;t really doing much
+that is radically different. So, if you hae deployed a server-less Munki setup before, this is probably not going to be
+new to you. That being said, <code>server-less</code> is a pretty key word for our vision here.</p>]]></description>
 </item>
 </channel>
 </rss>

@@ -1,16 +1,26 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>test - Tag - t-lark.github.io</title>
-        <link>https://t-lark.github.io/tags/test/</link>
-        <description>test - Tag - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Sep 2020 18:46:32 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/test/" rel="self" type="application/rss+xml" /><item>
+        <title>Test - Tag - t-lark.github.io</title>
+        <link>http://localhost:1313/tags/test/</link>
+        <description>Test - Tag - t-lark.github.io</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Sep 2020 18:46:32 -0700</lastBuildDate><atom:link href="http://localhost:1313/tags/test/" rel="self" type="application/rss+xml" /><item>
     <title>First_post</title>
-    <link>https://t-lark.github.io/posts/first_post/</link>
+    <link>http://localhost:1313/posts/first_post/</link>
     <pubDate>Sat, 19 Sep 2020 18:46:32 -0700</pubDate>
     <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/first_post/</guid>
-    <description><![CDATA[fake python function
-1 2 def function(): print(&#39;hell world&#39;) ]]></description>
+    <guid>http://localhost:1313/posts/first_post/</guid>
+    <description><![CDATA[<p>fake python function</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">function</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hell world&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
 </item>
 </channel>
 </rss>

@@ -4,18 +4,27 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Shipping Jamf Webhooks with Fivetran - t-lark.github.io</title><meta name="Description" content="I have no idea what I am doing"><meta property="og:title" content="Shipping Jamf Webhooks with Fivetran" />
-<meta property="og:description" content="Shipping Jamf Pro Webhooks to Snowflake Jamf Pro has a builtin feature where you have the ability to ship a webhook event when specific events happen in their application. This allows for a near real time feed of event based data which you can consume and leverage to gain insights about your fleet. Jamf provides some documentation online, found here.
-Webhooks are generated automatically, and near instantly when an event occurs." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://t-lark.github.io/posts/shipping-jamf-webhooks/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-09-19T21:27:27-07:00" />
-<meta property="article:modified_time" content="2020-09-19T21:27:27-07:00" /><meta property="og:site_name" content="My personal blog" />
+        <title>Shipping Jamf Webhooks with Fivetran - t-lark.github.io</title><meta name="Description" content="t-lark.github.io"><meta property="og:url" content="https://t-lark.github.io/posts/shipping-jamf-webhooks/">
+  <meta property="og:site_name" content="t-lark.github.io">
+  <meta property="og:title" content="Shipping Jamf Webhooks with Fivetran">
+  <meta property="og:description" content="Shipping Jamf Pro Webhooks to Snowflake Jamf Pro has a builtin feature where you have the ability to ship a webhook event when specific events happen in their application. This allows for a near real time feed of event based data which you can consume and leverage to gain insights about your fleet. Jamf provides some documentation online, found here.
+Webhooks are generated automatically, and near instantly when an event occurs. In the linked documentation above you will see all the possible webhooks and sample data of what each webhook ships. There are many ways to ship webhooks, and you can choose from many paths to take. You can roll your own webhook receiver, you can ship webhooks directly to cloud storage (S3, Azure Blob, GCP Cloud Storage), use one of many data ingestion tools, and so forth. Right now we are leveraging a tool called Fivetran. Fivetran has built in integration to many SaaS and cloud services. What tools work best for your Organization will be up to your Org to decide.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-09-19T21:27:27-07:00">
+    <meta property="article:modified_time" content="2020-09-19T21:27:27-07:00">
+    <meta property="article:tag" content="Data">
+    <meta property="article:tag" content="Webhooks">
+    <meta property="article:tag" content="Fivetran">
+    <meta property="article:tag" content="Jamf">
+    <meta property="article:tag" content="Snowflake">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Shipping Jamf Webhooks with Fivetran"/>
-<meta name="twitter:description" content="Shipping Jamf Pro Webhooks to Snowflake Jamf Pro has a builtin feature where you have the ability to ship a webhook event when specific events happen in their application. This allows for a near real time feed of event based data which you can consume and leverage to gain insights about your fleet. Jamf provides some documentation online, found here.
-Webhooks are generated automatically, and near instantly when an event occurs."/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Shipping Jamf Webhooks with Fivetran">
+  <meta name="twitter:description" content="Shipping Jamf Pro Webhooks to Snowflake Jamf Pro has a builtin feature where you have the ability to ship a webhook event when specific events happen in their application. This allows for a near real time feed of event based data which you can consume and leverage to gain insights about your fleet. Jamf provides some documentation online, found here.
+Webhooks are generated automatically, and near instantly when an event occurs. In the linked documentation above you will see all the possible webhooks and sample data of what each webhook ships. There are many ways to ship webhooks, and you can choose from many paths to take. You can roll your own webhook receiver, you can ship webhooks directly to cloud storage (S3, Azure Blob, GCP Cloud Storage), use one of many data ingestion tools, and so forth. Right now we are leveraging a tool called Fivetran. Fivetran has built in integration to many SaaS and cloud services. What tools work best for your Organization will be up to your Org to decide.">
+      <meta name="twitter:site" content="@tlark8">
 <meta name="application-name" content="tlark&#39;s blog">
 <meta name="apple-mobile-web-app-title" content="tlark&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,7 +48,7 @@ Webhooks are generated automatically, and near instantly when an event occurs."/
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
@@ -60,8 +69,7 @@ Webhooks are generated automatically, and near instantly when an event occurs."/
                         </span>
                     </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-                </a>
-            </div>
+                </a></div>
         </div>
     </div>
 </header><header class="mobile" id="header-mobile">
@@ -104,7 +112,7 @@ Webhooks are generated automatically, and near instantly when an event occurs."/
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Shipping Jamf Webhooks with Fivetran</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/webhooks/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>webhooks</a>&nbsp;<a href="/categories/jamf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>jamf</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>snowflake</a></span></div>
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/webhooks/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Webhooks</a>&nbsp;<a href="/categories/jamf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Jamf</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Snowflake</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-09-19">2020-09-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1363 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -218,22 +226,22 @@ you can keep all your historic data as you see fit.  Here is an example query:</
 <p>NOTE:  Jamf Pro Webhooks ship with UTC millisecond epoch time stamps</p>
 </blockquote>
 <table>
-<thead>
-<tr>
-<th>COUNT(*)</th>
-<th>POLICY_ID</th>
-<th>JSS_ID</th>
-<th>STATE</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2</td>
-<td>256</td>
-<td>2240</td>
-<td>true</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>COUNT(*)</th>
+          <th>POLICY_ID</th>
+          <th>JSS_ID</th>
+          <th>STATE</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2</td>
+          <td>256</td>
+          <td>2240</td>
+          <td>true</td>
+      </tr>
+  </tbody>
 </table>
 <p>In the above output we can see that <code>Policy ID 256</code> has executed twice in the past 24 hours, and it has returned successful.
 We also know the <code>JJS ID</code> of the device that ran this policy, and it is the same computer.  This would allow Jamf Pro
@@ -261,46 +269,46 @@ query example:</p>
 </div>
 </div><p>Output:</p>
 <table>
-<thead>
-<tr>
-<th>INVENTORY_24HR</th>
-<th>ID</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>4363</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1577</td>
-</tr>
-<tr>
-<td>1</td>
-<td>4520</td>
-</tr>
-<tr>
-<td>2</td>
-<td>4132</td>
-</tr>
-<tr>
-<td>2</td>
-<td>2750</td>
-</tr>
-<tr>
-<td>2</td>
-<td>4319</td>
-</tr>
-<tr>
-<td>3</td>
-<td>1600</td>
-</tr>
-<tr>
-<td>37</td>
-<td>3272</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>INVENTORY_24HR</th>
+          <th>ID</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>4363</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>1577</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>4520</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>4132</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>2750</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>4319</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>1600</td>
+      </tr>
+      <tr>
+          <td>37</td>
+          <td>3272</td>
+      </tr>
+  </tbody>
 </table>
 <p>Look 👀 at that computer, <code>JSS ID 3272</code>!  This is older data, and I wanted to use this as an example of how powerful data
 can be.  That device spammed inventory to the Jamf Pro Servers 37 times in 24 hours.  Upon inspecting the device record
@@ -378,13 +386,13 @@ In the meantime, if you feel this is valuable and would like to also leverage th
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/shipping-jamf-webhooks/" data-title="Shipping Jamf Webhooks with Fivetran" data-via="tlark8" data-hashtags="data,webhooks,fivetran,jamf,snowflake"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/shipping-jamf-webhooks/" data-hashtag="data"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/shipping-jamf-webhooks/" data-title="Shipping Jamf Webhooks with Fivetran"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/shipping-jamf-webhooks/" data-title="Shipping Jamf Webhooks with Fivetran"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/shipping-jamf-webhooks/" data-title="Shipping Jamf Webhooks with Fivetran"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/shipping-jamf-webhooks/" data-title="Shipping Jamf Webhooks with Fivetran" data-via="tlark8" data-hashtags="data,webhooks,fivetran,jamf,snowflake"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/shipping-jamf-webhooks/" data-hashtag="data"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/shipping-jamf-webhooks/" data-title="Shipping Jamf Webhooks with Fivetran"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/shipping-jamf-webhooks/" data-title="Shipping Jamf Webhooks with Fivetran"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/shipping-jamf-webhooks/" data-title="Shipping Jamf Webhooks with Fivetran"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/data/">data</a>,&nbsp;<a href="/tags/webhooks/">webhooks</a>,&nbsp;<a href="/tags/fivetran/">fivetran</a>,&nbsp;<a href="/tags/jamf/">jamf</a>,&nbsp;<a href="/tags/snowflake/">snowflake</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/data/">Data</a>,&nbsp;<a href="/tags/webhooks/">Webhooks</a>,&nbsp;<a href="/tags/fivetran/">Fivetran</a>,&nbsp;<a href="/tags/jamf/">Jamf</a>,&nbsp;<a href="/tags/snowflake/">Snowflake</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
@@ -395,8 +403,8 @@ In the meantime, if you feel this is valuable and would like to also leverage th
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.140.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xxxx</a></span></div>
         </div>
     </footer></div>
 

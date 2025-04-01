@@ -1,15 +1,20 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>macOS - Category - t-lark.github.io</title>
+        <title>MacOS - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/macos/</link>
-        <description>macOS - Category - t-lark.github.io</description>
+        <description>MacOS - Category - t-lark.github.io</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 23 Sep 2020 18:22:00 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/macos/" rel="self" type="application/rss+xml" /><item>
     <title>Using Spotlight with macOS</title>
     <link>https://t-lark.github.io/posts/using-spotlight-macos/</link>
     <pubDate>Wed, 23 Sep 2020 18:22:00 -0700</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/using-spotlight-macos/</guid>
-    <description><![CDATA[Spotlight is a system wide metadata indexing system that Apple has been shipping since OS X 10.4 Tiger, and has been improved over the years with each OS. I like using Spotlight for some tasks and general searching for files in Terminal.app. I also use it for finding anything on my Mac. Typically, I do not use my mouse or trackpad to find files or navigate to folders. One just needs to hit cmd + spacebar on their Mac to pull up the Spotlight search menu and start typing.]]></description>
+    <description><![CDATA[<p><a href="https://en.wikipedia.org/wiki/Spotlight_%28software%29" target="_blank" rel="noopener noreffer ">Spotlight</a> is a system wide metadata indexing system that Apple has been
+shipping since <code>OS X 10.4 Tiger</code>, and has been improved over the years with each OS. I like using Spotlight for some tasks
+and general searching for files in Terminal.app.  I also use it for finding anything on my Mac. Typically, I do not use my mouse
+or trackpad to find files or navigate to folders. One just needs to hit <code>cmd + spacebar</code> on their Mac to pull up the Spotlight
+search menu and start typing.  If you use a Mac, there is a good chance you also use this regularly like I do.  This isn&rsquo;t
+anything groundbreaking or new, but I have enjoyed using Spotlight over the years when it fits as a good tool.</p>]]></description>
 </item>
 <item>
     <title>Shipping Your Own Python to macOS</title>
@@ -17,8 +22,11 @@
     <pubDate>Sun, 20 Sep 2020 17:52:37 -0700</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/shipping-python/</guid>
-    <description><![CDATA[With the announcement at Catalina&rsquo;s release that some third party run times will be removed, and the fact that Python 2 is end of life it is time to ship your own. Just like everything in tech, there are many ways to accomplish this. I have been using a tool for about over a year now called relocatable python.
-The reasons I chose to use relocatable python were pretty good ones in my opinion.]]></description>
+    <description><![CDATA[<p></p>
+<p>With the announcement at Catalina&rsquo;s release that some third party run times will be removed, and the fact that Python 2
+is end of life it is time to ship your own.  Just like everything in tech, there are many ways to accomplish this. I have
+been using a tool for about over a year now called <a href="https://github.com/gregneagle/relocatable-python" target="_blank" rel="noopener noreffer ">relocatable python</a>.</p>
+<p>The reasons I chose to use <code>relocatable python</code> were pretty good ones in my opinion.  They are:</p>]]></description>
 </item>
 </channel>
 </rss>

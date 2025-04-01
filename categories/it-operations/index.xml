@@ -9,7 +9,18 @@
     <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/complete-asset-oversight-datacloud/</guid>
-    <description><![CDATA[Gain All the Insights You Never Had Asset and Inventory controls are difficult, and many Orgs spend tons of time and effort to try to solve problems around this very subject. In fact, they will hire humans, and spend lots of time and money to also get a hold of their inventory of assets. This problem is still very much difficult to solve, but the Data Cloud makes this problem at least solvable.]]></description>
+    <description><![CDATA[<h1 id="gain-all-the-insights-you-never-had">Gain All the Insights You Never Had</h1>
+<p>Asset and Inventory controls are difficult, and many Orgs spend tons of time and effort to try to solve problems around
+this very subject. In fact, they will hire humans, and spend lots of time and money to also get a hold of their inventory of
+assets. This problem is still very much difficult to solve, but the Data Cloud makes this problem at least solvable.
+I have been in tech for over 20 years, and I have even had jobs where inventory of assets was one of my job duties. I
+had a local database I built on a Linux desktop and a barcode scanner where I could manage my own little shop of computers
+and computer parts. I would manually enter data, I would scan barcodes, and I even had a sign-out sheet for people to sign
+for things they took, so I could balance my books later on. Systems like this do not scale, they are very error-prone,
+and they take so much labor. Oftentimes I had to play asset detective and dig through our IT software, the home-grown
+database that I had, and the various paperwork from other systems to get a feel for what our inventory actually was.
+Also, I was very new to Linux and databases at the time, and I highly doubt my little pet project was really any
+good at all. It was at least something I suppose.</p>]]></description>
 </item>
 </channel>
 </rss>

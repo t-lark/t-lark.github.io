@@ -9,7 +9,15 @@
     <pubDate>Fri, 01 Jul 2022 18:11:46 -0700</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/data-enabled-nudge-results/</guid>
-    <description><![CDATA[Data-Enabled: Post Nudge Campaign Results A lot of Organizations have adopted things like CIS Controls and part of those controls are around patching and vulnerability management. Depending on what version of the CIS controls you are using, this could be CIS 3 or CIS 7. This can already be confusing as the controls are very similar between versions but the have moved places in the CIS framework. One thing I think most tech and security professionals can agree upon, is that patching often to the latest operating systems is a great way to avoid your fleet of devices from being exploited.]]></description>
+    <description><![CDATA[<h3 id="data-enabled-post-nudge-campaign-results">Data-Enabled: Post Nudge Campaign Results</h3>
+<p>A lot of Organizations have adopted things like <a href="https://www.cisecurity.org/controls" target="_blank" rel="noopener noreffer ">CIS Controls</a> and part of those
+controls are around patching and vulnerability management. Depending on what version of the CIS controls you are using, this
+could be <a href="https://www.cisecurity.org/controls/cis-controls-navigator/?version=7" target="_blank" rel="noopener noreffer ">CIS 3</a> or <a href="https://www.cisecurity.org/controls/cis-controls-navigator/" target="_blank" rel="noopener noreffer ">CIS 7</a>.
+This can already be confusing as the controls are very similar between versions but the have moved places in the CIS
+framework. One thing I think most tech and security professionals can agree upon, is that patching often to the latest
+operating systems is a great way to avoid your fleet of devices from being exploited. Known vulnerabilities have a shelf life,
+and bad actors know that some organizations do not patch, or patch extremely slow. So, they develop attacks against
+known published vulnerabilities.</p>]]></description>
 </item>
 </channel>
 </rss>

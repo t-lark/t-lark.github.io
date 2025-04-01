@@ -1,15 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>cloud - Tag - t-lark.github.io</title>
+        <title>Cloud - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/cloud/</link>
-        <description>cloud - Tag - t-lark.github.io</description>
+        <description>Cloud - Tag - t-lark.github.io</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 18 Nov 2021 20:44:15 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/tags/cloud/" rel="self" type="application/rss+xml" /><item>
     <title>Post JNUC 2021</title>
     <link>https://t-lark.github.io/posts/post-jnuc-2021/</link>
     <pubDate>Thu, 18 Nov 2021 20:44:15 -0800</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/post-jnuc-2021/</guid>
-    <description><![CDATA[JNUC 2021 Recap Hello everyone, this will be a quick recap of my experience from the JNUC 2021 virtual conference, and a companion update to the talk I gave. First, I need to really thank Jamf for putting on a well produced virtual conference. I will admit that I was a bit skeptical of things like audio and video quality, participant interaction, and the look and feel of pre-recorded talks. Everything exceeded my expectations.]]></description>
+    <description><![CDATA[<h1 id="jnuc-2021-recap">JNUC 2021 Recap</h1>
+<p>Hello everyone, this will be a quick recap of my experience from the JNUC 2021 virtual conference, and a companion update to
+the talk I gave. First, I need to really thank Jamf for putting on a well produced virtual conference. I will admit that
+I was a bit skeptical of things like audio and video quality, participant interaction, and the look and feel of pre-recorded
+talks. Everything exceeded my expectations. The audio and video quality were very well done. The recorded sessions
+were great to watch, and the attendee interaction was a lot better than I expected. We all hopped into various Slack channels
+to interact with each other on subjects or about specific talks that were given. While this does not come close to
+seeing everyone in person, it still felt great to see everyone virtually. Some of us even hopped on several web conference calls
+to interact with each other, talk shop, have a drink, and just in general have some fun.</p>]]></description>
 </item>
 </channel>
 </rss>

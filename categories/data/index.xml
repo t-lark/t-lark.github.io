@@ -1,15 +1,35 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>data - Category - t-lark.github.io</title>
+        <title>Data - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/data/</link>
-        <description>data - Category - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 26 Mar 2024 18:43:26 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/data/" rel="self" type="application/rss+xml" /><item>
+        <description>Data - Category - t-lark.github.io</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 14 Jan 2025 15:35:46 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/categories/data/" rel="self" type="application/rss+xml" /><item>
+    <title>Building Endpoint Performance Metrics</title>
+    <link>https://t-lark.github.io/posts/building_endpoint_performance_metrics/</link>
+    <pubDate>Tue, 14 Jan 2025 15:35:46 -0800</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/building_endpoint_performance_metrics/</guid>
+    <description><![CDATA[<p>Many organizations today still struggle with hardware refresh, right sizing hardware specs, and understanding the performance
+impact of tools and software across their fleet of end user devices. This has been a problem since the beginning of humans
+incorporating technology into their professional lives. In my 25+ year career I don&rsquo;t think I have ever had a job where
+these problems were considered solved, and I don&rsquo;t think we ever got close to solving them. A major factor we have all faced
+while trying to solve this problem is the lack of data compounded by the problem of being able to use and leverage the data
+in a meaningful way.</p>]]></description>
+</item>
+<item>
     <title>Leveraging Application Usage Data From Munki</title>
     <link>https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/</link>
     <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/</guid>
-    <description><![CDATA[Getting Application Usage Data at Scale With Munki Munki is a series of tools and a popular application state management tool many Mac Admins across the globe use. Some out-of-box features of Munki solve problems many commercial MDMs still cannot solve to this day. It allows a Mac Admin to write some declarative data and have Munki takes care of the rest for you. We use it to manage and patch all of our third party apps in conjunction with AutoPKG.]]></description>
+    <description><![CDATA[<a class="lightgallery" href="/img/fleet_munki_snowflake.png" title="/img/fleet_munki_snowflake.png" data-thumbnail="/img/fleet_munki_snowflake.png">
+        
+    </a>
+<h3 id="getting-application-usage-data-at-scale-with-munki">Getting Application Usage Data at Scale With Munki</h3>
+<p><a href="https://github.com/munki/munki" target="_blank" rel="noopener noreffer ">Munki</a> is a series of tools and a popular application state management tool many Mac Admins across the globe
+use. Some out-of-box features of Munki solve problems many commercial MDMs still cannot solve to this day. It allows
+a Mac Admin to write some declarative data and have Munki takes care of the rest for you. We use it to manage
+and patch all of our third party apps in conjunction with <a href="https://github.com/autopkg/autopkg" target="_blank" rel="noopener noreffer ">AutoPKG</a>.</p>]]></description>
 </item>
 <item>
     <title>More Osquery Data Modeling in Snowflake</title>
@@ -17,7 +37,14 @@
     <pubDate>Thu, 25 Jan 2024 20:24:28 -0800</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/</guid>
-    <description><![CDATA[Data Modeling osquery Data in Snowflake We have been working on many projects the past few months, and osquery data pipelines with the help of FleetDM has been one of our constant works in progress. Before I dive into the data modeling part, I wanted to share how we scaled this data out. We ended up going forward with FleetDM&rsquo;s SaaS offering over self-hosting the app. However, we are still streaming query results from FleetDM cloud to Snowflake over AWS Kinesis Firehose and we now have data streaming from FleetDM into Snowflake at a very fast rate and high volume.]]></description>
+    <description><![CDATA[<h1 id="data-modeling-osquery-data-in-snowflake">Data Modeling osquery Data in Snowflake</h1>
+<p>We have been working on many projects the past few months, and osquery data pipelines with the help of <a href="https://fleetdm.com/" target="_blank" rel="noopener noreffer ">FleetDM</a>
+has been one of our constant works in progress. Before I dive into the data modeling part, I wanted to share how we scaled
+this data out. We ended up going forward with FleetDM&rsquo;s SaaS offering over self-hosting the app. However, we are still
+streaming query results from FleetDM cloud to Snowflake over <a href="https://aws.amazon.com/kinesis/data-firehose/" target="_blank" rel="noopener noreffer ">AWS Kinesis Firehose</a> and
+we now have data streaming from FleetDM into Snowflake at a very fast rate and high volume. We are typically collecting
+data from osquery every hour on most things, and we have a lesser number of queries that run every 12 hours or once a
+day.</p>]]></description>
 </item>
 <item>
     <title>Working with osquery Data in Snowflake</title>
@@ -25,8 +52,15 @@
     <pubDate>Thu, 31 Aug 2023 18:01:31 -0700</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/osquery-data-in-snowflake/</guid>
-    <description><![CDATA[I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, he was quite impressed with all the use cases and in-depth data you can model about your fleet of laptops using osquery data in Snowflake.
-Booms came to the office with me, and he even got a bit of company swag! As we spent the day working I told him all about all the work my team was doing with osquery.]]></description>
+    <description><![CDATA[<p>I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, he was quite impressed
+with all the use cases and in-depth data you can model about your fleet of laptops using osquery data in Snowflake.</p>
+<a class="lightgallery" href="/img/booms-snow1.jpg" title="/img/booms-snow1.jpg" data-thumbnail="/img/booms-snow1.jpg">
+        
+    </a>
+<blockquote>
+<p>Booms came to the office with me, and he even got a bit of company swag! As we spent the day working I told him
+all about all the work my team was doing with osquery. Anyone can see in this pic of him, he is very impressed
+with the speed and scale one can leverage data from osquery in Snowflake</p>]]></description>
 </item>
 <item>
     <title>Complete Asset Oversight with the Data Cloud</title>
@@ -34,7 +68,18 @@ Booms came to the office with me, and he even got a bit of company swag! As we s
     <pubDate>Mon, 08 Aug 2022 21:48:09 -0700</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/complete-asset-oversight-datacloud/</guid>
-    <description><![CDATA[Gain All the Insights You Never Had Asset and Inventory controls are difficult, and many Orgs spend tons of time and effort to try to solve problems around this very subject. In fact, they will hire humans, and spend lots of time and money to also get a hold of their inventory of assets. This problem is still very much difficult to solve, but the Data Cloud makes this problem at least solvable.]]></description>
+    <description><![CDATA[<h1 id="gain-all-the-insights-you-never-had">Gain All the Insights You Never Had</h1>
+<p>Asset and Inventory controls are difficult, and many Orgs spend tons of time and effort to try to solve problems around
+this very subject. In fact, they will hire humans, and spend lots of time and money to also get a hold of their inventory of
+assets. This problem is still very much difficult to solve, but the Data Cloud makes this problem at least solvable.
+I have been in tech for over 20 years, and I have even had jobs where inventory of assets was one of my job duties. I
+had a local database I built on a Linux desktop and a barcode scanner where I could manage my own little shop of computers
+and computer parts. I would manually enter data, I would scan barcodes, and I even had a sign-out sheet for people to sign
+for things they took, so I could balance my books later on. Systems like this do not scale, they are very error-prone,
+and they take so much labor. Oftentimes I had to play asset detective and dig through our IT software, the home-grown
+database that I had, and the various paperwork from other systems to get a feel for what our inventory actually was.
+Also, I was very new to Linux and databases at the time, and I highly doubt my little pet project was really any
+good at all. It was at least something I suppose.</p>]]></description>
 </item>
 <item>
     <title>Creating Data Enabled Culture</title>
@@ -42,7 +87,14 @@ Booms came to the office with me, and he even got a bit of company swag! As we s
     <pubDate>Fri, 24 Jun 2022 16:18:28 -0700</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/creating-data-enabled-culture/</guid>
-    <description><![CDATA[Creating a Data-enabled Culture I think the term data-driven is common, and a lot of people are aware of the term. It also has a broad area of application across many practices. I feel my Org is already data-driven. We use data in all our metrics, planning, discussions, collaboration and more. However, today during a cross team meeting I realized that we are also a data-enabled organization. When the term popped into my head I thought maybe I was on to something new, or perhaps maybe something a bit esoteric.]]></description>
+    <description><![CDATA[<h1 id="creating-a-data-enabled-culture">Creating a Data-enabled Culture</h1>
+<p>I think the term <a href="https://en.wikipedia.org/wiki/Data-driven" target="_blank" rel="noopener noreffer ">data-driven</a> is common, and a lot of people are aware of
+the term. It also has a broad area of application across many practices. I feel my Org is already data-driven. We use
+data in all our metrics, planning, discussions, collaboration and more. However, today during a cross team meeting I
+realized that we are also a data-enabled organization. When the term popped into my head I thought maybe I was on to
+something new, or perhaps maybe something a bit esoteric. Turns out, I was wrong, and this term is commonly used in areas already.
+A quick Google search will show lots of results for <code>data enabled</code>, and <a href="https://timelyapp.com/blog/from-data-driven-to-data-enabled" target="_blank" rel="noopener noreffer ">here</a>
+is a blog post I found from the first page of results.</p>]]></description>
 </item>
 <item>
     <title>Snowflake Osquery Fleet Magic</title>
@@ -50,7 +102,11 @@ Booms came to the office with me, and he even got a bit of company swag! As we s
     <pubDate>Thu, 13 Jan 2022 17:07:04 -0800</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/</guid>
-    <description><![CDATA[Snowflake, osquery and Fleet is Pure Magic! Many of you have probably heard of osquery, which is software you can install onto a computer that allows humans to query the OS to return fast and reliable system data. Osquery is not new, and many Organizations have been using it in various capacity for years now. Vendors and developers also ship osquery with their products these days as well. This allows a developer or vendor to collect local data fast and reliably for their software and solutions.]]></description>
+    <description><![CDATA[<h1 id="snowflake-osquery-and-fleet-is-pure-magic">Snowflake, osquery and Fleet is Pure Magic!</h1>
+<p>Many of you have probably heard of <a href="https://osquery.io/" target="_blank" rel="noopener noreffer ">osquery</a>, which is software you can install onto a computer that
+allows humans to query the OS to return fast and reliable system data. Osquery is not new, and many Organizations have been
+using it in various capacity for years now. Vendors and developers also ship osquery with their products these days as well.
+This allows a developer or vendor to collect local data fast and reliably for their software and solutions.</p>]]></description>
 </item>
 <item>
     <title>Post JNUC 2021</title>
@@ -58,7 +114,15 @@ Booms came to the office with me, and he even got a bit of company swag! As we s
     <pubDate>Thu, 18 Nov 2021 20:44:15 -0800</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/post-jnuc-2021/</guid>
-    <description><![CDATA[JNUC 2021 Recap Hello everyone, this will be a quick recap of my experience from the JNUC 2021 virtual conference, and a companion update to the talk I gave. First, I need to really thank Jamf for putting on a well produced virtual conference. I will admit that I was a bit skeptical of things like audio and video quality, participant interaction, and the look and feel of pre-recorded talks. Everything exceeded my expectations.]]></description>
+    <description><![CDATA[<h1 id="jnuc-2021-recap">JNUC 2021 Recap</h1>
+<p>Hello everyone, this will be a quick recap of my experience from the JNUC 2021 virtual conference, and a companion update to
+the talk I gave. First, I need to really thank Jamf for putting on a well produced virtual conference. I will admit that
+I was a bit skeptical of things like audio and video quality, participant interaction, and the look and feel of pre-recorded
+talks. Everything exceeded my expectations. The audio and video quality were very well done. The recorded sessions
+were great to watch, and the attendee interaction was a lot better than I expected. We all hopped into various Slack channels
+to interact with each other on subjects or about specific talks that were given. While this does not come close to
+seeing everyone in person, it still felt great to see everyone virtually. Some of us even hopped on several web conference calls
+to interact with each other, talk shop, have a drink, and just in general have some fun.</p>]]></description>
 </item>
 </channel>
 </rss>

@@ -1,15 +1,20 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>growth - Category - t-lark.github.io</title>
+        <title>Growth - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/growth/</link>
-        <description>growth - Category - t-lark.github.io</description>
+        <description>Growth - Category - t-lark.github.io</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 18 Mar 2024 17:43:41 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/growth/" rel="self" type="application/rss+xml" /><item>
     <title>Success Is Not Transitive</title>
     <link>https://t-lark.github.io/posts/success-is-not-transitive/</link>
     <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
     <author>tlark</author>
     <guid>https://t-lark.github.io/posts/success-is-not-transitive/</guid>
-    <description><![CDATA[Success Isn&rsquo;t Linear, Nor is it Transitive With the climate of tech workers in a weird state post Covid-19 pandemic, and with the rise of the tech influencer I feel this topic is not only relevant, but also important. There are people who really want to break into a tech career from their current path, and there are people who want to change careers within tech itself. Whether you are looking to level up your existing career, make a move into a different section of tech, or just trying to break into the tech industry any way you can, you have likely heard many other people tell their success stories.]]></description>
+    <description><![CDATA[<h1 id="success-isnt-linear-nor-is-it-transitive">Success Isn&rsquo;t Linear, Nor is it Transitive</h1>
+<p>With the climate of tech workers in a weird state post Covid-19 pandemic, and with the rise of the tech <a href="https://en.wikipedia.org/wiki/Internet_celebrity" target="_blank" rel="noopener noreffer ">influencer</a>
+I feel this topic is not only relevant, but also important. There are people who really want to break into a tech career
+from their current path, and there are people who want to change careers within tech itself. Whether you are looking
+to level up your existing career, make a move into a different section of tech, or just trying to break into the
+tech industry any way you can, you have likely heard many other people tell their success stories.</p>]]></description>
 </item>
 </channel>
 </rss>

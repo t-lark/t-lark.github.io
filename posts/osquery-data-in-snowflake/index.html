@@ -4,18 +4,26 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Working with osquery Data in Snowflake - t-lark.github.io</title><meta name="Description" content="I have no idea what I am doing"><meta property="og:title" content="Working with osquery Data in Snowflake" />
-<meta property="og:description" content="I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, he was quite impressed with all the use cases and in-depth data you can model about your fleet of laptops using osquery data in Snowflake.
-Booms came to the office with me, and he even got a bit of company swag! As we spent the day working I told him all about all the work my team was doing with osquery." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://t-lark.github.io/posts/osquery-data-in-snowflake/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-08-31T18:01:31-07:00" />
-<meta property="article:modified_time" content="2023-08-31T18:01:31-07:00" /><meta property="og:site_name" content="My personal blog" />
+        <title>Working with osquery Data in Snowflake - t-lark.github.io</title><meta name="Description" content="t-lark.github.io"><meta property="og:url" content="https://t-lark.github.io/posts/osquery-data-in-snowflake/">
+  <meta property="og:site_name" content="t-lark.github.io">
+  <meta property="og:title" content="Working with osquery Data in Snowflake">
+  <meta property="og:description" content="I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, he was quite impressed with all the use cases and in-depth data you can model about your fleet of laptops using osquery data in Snowflake.
+Booms came to the office with me, and he even got a bit of company swag! As we spent the day working I told him all about all the work my team was doing with osquery. Anyone can see in this pic of him, he is very impressed with the speed and scale one can leverage data from osquery in Snowflake">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-08-31T18:01:31-07:00">
+    <meta property="article:modified_time" content="2023-08-31T18:01:31-07:00">
+    <meta property="article:tag" content="MacOS">
+    <meta property="article:tag" content="IT Tools">
+    <meta property="article:tag" content="Osquery">
+    <meta property="article:tag" content="Snowflake">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Working with osquery Data in Snowflake"/>
-<meta name="twitter:description" content="I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, he was quite impressed with all the use cases and in-depth data you can model about your fleet of laptops using osquery data in Snowflake.
-Booms came to the office with me, and he even got a bit of company swag! As we spent the day working I told him all about all the work my team was doing with osquery."/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Working with osquery Data in Snowflake">
+  <meta name="twitter:description" content="I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, he was quite impressed with all the use cases and in-depth data you can model about your fleet of laptops using osquery data in Snowflake.
+Booms came to the office with me, and he even got a bit of company swag! As we spent the day working I told him all about all the work my team was doing with osquery. Anyone can see in this pic of him, he is very impressed with the speed and scale one can leverage data from osquery in Snowflake">
+      <meta name="twitter:site" content="@tlark8">
 <meta name="application-name" content="tlark&#39;s blog">
 <meta name="apple-mobile-web-app-title" content="tlark&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,7 +47,7 @@ Booms came to the office with me, and he even got a bit of company swag! As we s
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
@@ -60,8 +68,7 @@ Booms came to the office with me, and he even got a bit of company swag! As we s
                         </span>
                     </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-                </a>
-            </div>
+                </a></div>
         </div>
     </div>
 </header><header class="mobile" id="header-mobile">
@@ -104,7 +111,7 @@ Booms came to the office with me, and he even got a bit of company swag! As we s
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Working with osquery Data in Snowflake</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/data/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>data</a>&nbsp;<a href="/categories/osquery/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>osquery</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>snowflake</a>&nbsp;<a href="/categories/data-modeling/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>data modeling</a></span></div>
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/data/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Data</a>&nbsp;<a href="/categories/osquery/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Osquery</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Snowflake</a>&nbsp;<a href="/categories/data-modeling/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Data Modeling</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-31">2023-08-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2982 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;14 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -998,13 +1005,13 @@ Pacific Ocean.</p>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/osquery-data-in-snowflake/" data-title="Working with osquery Data in Snowflake" data-via="tlark8" data-hashtags="macOS,IT Tools,osquery,snowflake"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/osquery-data-in-snowflake/" data-hashtag="macOS"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/osquery-data-in-snowflake/" data-title="Working with osquery Data in Snowflake"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/osquery-data-in-snowflake/" data-title="Working with osquery Data in Snowflake"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.0.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/osquery-data-in-snowflake/" data-title="Working with osquery Data in Snowflake"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/osquery-data-in-snowflake/" data-title="Working with osquery Data in Snowflake" data-via="tlark8" data-hashtags="macOS,IT Tools,osquery,snowflake"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/osquery-data-in-snowflake/" data-hashtag="macOS"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/osquery-data-in-snowflake/" data-title="Working with osquery Data in Snowflake"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/osquery-data-in-snowflake/" data-title="Working with osquery Data in Snowflake"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/osquery-data-in-snowflake/" data-title="Working with osquery Data in Snowflake"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/macos/">macOS</a>,&nbsp;<a href="/tags/it-tools/">IT Tools</a>,&nbsp;<a href="/tags/osquery/">osquery</a>,&nbsp;<a href="/tags/snowflake/">snowflake</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/macos/">MacOS</a>,&nbsp;<a href="/tags/it-tools/">IT Tools</a>,&nbsp;<a href="/tags/osquery/">Osquery</a>,&nbsp;<a href="/tags/snowflake/">Snowflake</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
@@ -1015,8 +1022,8 @@ Pacific Ocean.</p>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.140.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xxxx</a></span></div>
         </div>
     </footer></div>
 

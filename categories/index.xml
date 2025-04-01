@@ -3,84 +3,84 @@
         <title>Categories - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/</link>
         <description>Categories - Category - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 26 Mar 2024 18:43:26 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/" rel="self" type="application/rss+xml" /><item>
-    <title>data</title>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 14 Jan 2025 15:35:46 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>Data</title>
     <link>https://t-lark.github.io/categories/data/</link>
-    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
-    <author>Author</author>
+    <pubDate>Tue, 14 Jan 2025 15:35:46 -0800</pubDate>
+    <author>xxxx</author>
     <guid>https://t-lark.github.io/categories/data/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>fleetdm</title>
-    <link>https://t-lark.github.io/categories/fleetdm/</link>
-    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/categories/fleetdm/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>osquery</title>
+    <title>Osquery</title>
     <link>https://t-lark.github.io/categories/osquery/</link>
-    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
-    <author>Author</author>
+    <pubDate>Tue, 14 Jan 2025 15:35:46 -0800</pubDate>
+    <author>xxxx</author>
     <guid>https://t-lark.github.io/categories/osquery/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>snowflake</title>
+    <title>Performance</title>
+    <link>https://t-lark.github.io/categories/performance/</link>
+    <pubDate>Tue, 14 Jan 2025 15:35:46 -0800</pubDate>
+    <author>xxxx</author>
+    <guid>https://t-lark.github.io/categories/performance/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Snowflake</title>
     <link>https://t-lark.github.io/categories/snowflake/</link>
-    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
-    <author>Author</author>
+    <pubDate>Tue, 14 Jan 2025 15:35:46 -0800</pubDate>
+    <author>xxxx</author>
     <guid>https://t-lark.github.io/categories/snowflake/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>mdm</title>
+    <title>Fleetdm</title>
+    <link>https://t-lark.github.io/categories/fleetdm/</link>
+    <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
+    <author>xxxx</author>
+    <guid>https://t-lark.github.io/categories/fleetdm/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Mdm</title>
     <link>https://t-lark.github.io/categories/mdm/</link>
     <pubDate>Thu, 21 Mar 2024 17:45:59 -0700</pubDate>
-    <author>Author</author>
+    <author>xxxx</author>
     <guid>https://t-lark.github.io/categories/mdm/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>development</title>
+    <title>Development</title>
     <link>https://t-lark.github.io/categories/development/</link>
     <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
-    <author>Author</author>
+    <author>xxxx</author>
     <guid>https://t-lark.github.io/categories/development/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>growth</title>
+    <title>Growth</title>
     <link>https://t-lark.github.io/categories/growth/</link>
     <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
-    <author>Author</author>
+    <author>xxxx</author>
     <guid>https://t-lark.github.io/categories/growth/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>leadership</title>
+    <title>Leadership</title>
     <link>https://t-lark.github.io/categories/leadership/</link>
     <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
-    <author>Author</author>
+    <author>xxxx</author>
     <guid>https://t-lark.github.io/categories/leadership/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>mentoring</title>
+    <title>Mentoring</title>
     <link>https://t-lark.github.io/categories/mentoring/</link>
     <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
-    <author>Author</author>
+    <author>xxxx</author>
     <guid>https://t-lark.github.io/categories/mentoring/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>collaboration</title>
-    <link>https://t-lark.github.io/categories/collaboration/</link>
-    <pubDate>Tue, 05 Mar 2024 18:20:44 -0800</pubDate>
-    <author>Author</author>
-    <guid>https://t-lark.github.io/categories/collaboration/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
