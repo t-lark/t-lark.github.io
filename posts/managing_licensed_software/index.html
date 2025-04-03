@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Managing Licensed Software with Data - t-lark.github.io</title><meta name="Description" content="t-lark.github.io"><meta property="og:url" content="https://t-lark.github.io/posts/managing_licensed_software/">
+  <meta property="og:site_name" content="t-lark.github.io">
+  <meta property="og:title" content="Managing Licensed Software with Data">
+  <meta property="og:description" content="Turn an IT Cost Center into an IT Cost Savings Center! So many times in my career I have heard IT/Ops teams be referred to as overhead. I have also heard IT being described as “just keeping the lights on,” and all the adjacent things one can say similar to this. These type of statements has always made me want to prove that IT isn’t really just those type of things. I have always been trying to implement some sort of cost savings where we can definitively decide where to cut costs. You never want to cut costs around things that have a high positive impact. Since in many ways you do get what you pay for at times, and what you pay for may be very worth it. So, IT is a cost savings center, a service provider, an enabler, an enhancer and much more than some of the stereotypical things you might hear about how people perceive IT.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-03T12:18:44-07:00">
+    <meta property="article:modified_time" content="2025-04-03T12:18:44-07:00">
+    <meta property="article:tag" content="Data">
+    <meta property="article:tag" content="Data Apps">
+    <meta property="article:tag" content="Snowflake">
+    <meta property="article:tag" content="Licensed Software">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Managing Licensed Software with Data">
+  <meta name="twitter:description" content="Turn an IT Cost Center into an IT Cost Savings Center! So many times in my career I have heard IT/Ops teams be referred to as overhead. I have also heard IT being described as “just keeping the lights on,” and all the adjacent things one can say similar to this. These type of statements has always made me want to prove that IT isn’t really just those type of things. I have always been trying to implement some sort of cost savings where we can definitively decide where to cut costs. You never want to cut costs around things that have a high positive impact. Since in many ways you do get what you pay for at times, and what you pay for may be very worth it. So, IT is a cost savings center, a service provider, an enabler, an enhancer and much more than some of the stereotypical things you might hear about how people perceive IT.">
+      <meta name="twitter:site" content="@tlark8">
+<meta name="application-name" content="tlark&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="tlark&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://t-lark.github.io/posts/managing_licensed_software/" /><link rel="prev" href="https://t-lark.github.io/posts/building_endpoint_performance_metrics/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Managing Licensed Software with Data",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/t-lark.github.io\/posts\/managing_licensed_software\/"
+        },"genre": "posts","keywords": "data, data apps, snowflake, licensed software","wordcount":  1660 ,
+        "url": "https:\/\/t-lark.github.io\/posts\/managing_licensed_software\/","datePublished": "2025-04-03T12:18:44-07:00","dateModified": "2025-04-03T12:18:44-07:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "tlark"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="t-lark.github.io">t-lark.github.io</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Managing Licensed Software with Data</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>tlark</a></span>&nbsp;<span class="post-category">included in <a href="/categories/osquery/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Osquery</a>&nbsp;<a href="/categories/snowflake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Snowflake</a>&nbsp;<a href="/categories/data/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Data</a>&nbsp;<a href="/categories/licensed-software/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Licensed Software</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-04-03">2025-04-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1660 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#turn-an-it-cost-center-into-an-it-cost-savings-center">Turn an IT Cost Center into an IT Cost Savings Center!</a></li>
+    <li><a href="#defining-the-problems">Defining the Problems</a></li>
+    <li><a href="#how-the-donuts-are-made">How the Donuts are Made</a></li>
+    <li><a href="#streamlit-interface">Streamlit Interface</a></li>
+    <li><a href="#what-is-that-cortex-analyst">What is that Cortex Analyst?</a></li>
+    <li><a href="#just-the-beginning">Just the beginning</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="turn-an-it-cost-center-into-an-it-cost-savings-center">Turn an IT Cost Center into an IT Cost Savings Center!</h2>
+<p>So many times in my career I have heard IT/Ops teams be referred to as overhead. I have also heard IT being described as
+&ldquo;just keeping the lights on,&rdquo; and all the adjacent things one can say similar to this. These type of statements has always
+made me want to prove that IT isn&rsquo;t really just those type of things. I have always been trying to implement some sort of
+cost savings where we can definitively decide where to cut costs. You never want to cut costs around things that have
+a high positive impact. Since in many ways you do get what you pay for at times, and what you pay for may be very worth
+it. So, IT is a cost savings center, a service provider, an enabler, an enhancer and much more than some of the
+stereotypical things you might hear about how people perceive IT.</p>
+<p>How many times have you implemented a software stack that was mid to low bidder range over the more expensive stacks and
+regretted your purchase months and months later? How many times have you just guessed at how many licenses you need
+during a true up? Are you buying the right license bundle? Companies like Adobe and Microsoft love to shoehorn you into
+mass license bundles for discounts at higher volumes of purchasing. How often have you made mistakes in this area and over
+purchased or under purchased licenses?</p>
+<p>Previously, <a href="https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/" target="_blank" rel="noopener noreffer ">I blogged about</a> how we track licensed
+software from ingesting the application usage data from Munki. That previous blog post goes into details on how we
+integrated our osquery config to consume the Munki SQLite database of application usage. This is how we build the baseline
+of our application usage metrics.</p>
+<h2 id="defining-the-problems">Defining the Problems</h2>
+<p>What we are striving to achieve here are a few simple things.</p>
+<ol>
+<li>Enable cost savings around licensed software</li>
+<li>Enable procurement teams with better data to forecast true ups and renewals</li>
+<li>Enable our asset team to build data driven licensed software lifecycle workflows</li>
+</ol>
+<p>That is really it. We want to save money where we can, and where it makes sense the most backed by the data we collect.
+We also want to ensure that the user experience here is good. You need a copy of Adobe Photoshop? Just file a request
+ticket and we will automatically provision you a license no questions asked. You get the license and the access very
+quickly. However, if you stop using Photoshop over an arbitrary number of days, we will revoke that license and save
+money. If you need the license again, just file a ticket and get another license automatically. This balances a
+good UX with a cost savings initiative.</p>
+<p>We want to enable end users to have access to the best tools we can provide them to do their job with the least amount
+of friction to get them, while also enforcing cost savings initiatives wherever we can.</p>
+<h2 id="how-the-donuts-are-made">How the Donuts are Made</h2>
+<p>Last month I went to India to visit our team and offices in Pune. While onsite I tasked my India side of the team to build
+an app that can help us make our application usage data more actionable. As a team building exercise I asked them to
+design and build an app that can help us solve the problem of managing licensed software lifecycle here at Snowflake. So,
+the team brainstormed and built this app as a team exercise over the week while I was in town. I thought this could be
+a great way for all of us to collaborate in person since we were all going to be in the office at the same time.</p>
+<p>What the team built basically comes down to these specific data points joined in Snowflake and then built into a Streamlit
+app to help make it actionable:</p>
+<ul>
+<li>Munki application usage data</li>
+<li>HR directory data (email, department, cost center, manager name, etc)</li>
+<li>Asset data (primary, secondary, asset function, etc)</li>
+<li>App group membership (what users are in groups scoped to apps)</li>
+</ul>
+<p>These are the only building blocks you need to get started. This should get you enough context to replicate what we
+have built here at Snowflake.</p>
+<div class="details admonition Info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>More Info:<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>Note that this is for macOS data only. We do have Windows application usage data telemetry already enabled and ingesting
+into Snowflake, but we have not had time to implement this into our App just yet. That will come in the next release
+of ours. We collect the user assist data on the Windows side which tracks execution time of all exe files on disk.</p>
+<p>We don&rsquo;t really have this problem on Linux right now, but in the future if we need to heavily purchase licensed software
+for our Linux boxes, we will have to figure out how to track it there.</p>
+</div>
+        </div>
+    </div>
+<h2 id="streamlit-interface">Streamlit Interface</h2>
+<a class="lightgallery" href="/img/adobe_acrobat_usage.png" title="/img/adobe_acrobat_usage.png" data-thumbnail="/img/adobe_acrobat_usage.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/adobe_acrobat_usage.png"
+            data-srcset="/img/adobe_acrobat_usage.png, /img/adobe_acrobat_usage.png 1.5x, /img/adobe_acrobat_usage.png 2x"
+            data-sizes="auto"
+            alt="/img/adobe_acrobat_usage.png" />
+    </a>
+<p>In the above screenshot we will see all the copies of Adobe Acrobat Pro that have not been used in greater than 90 days.
+If you didn&rsquo;t read my previous blog post on Munki application usage data, the data tracks <code>activations</code> of an application.
+Meaning every time you tab to an app and make that app the more foreground running application in macOS that generates
+an <code>activate</code> event. This way we can assume every time you make an app the most foreground application you are actively
+using it.</p>
+<p>This should mitigate edge case in the data where a human has an app open running in the background but isn&rsquo;t actually using it.
+This is me with Excel. Anytime I get emailed a spreadsheet is really the only time I ever open up Excel. Then Excel
+just sits there running until I quit it, or I get emailed another spreadsheet. This means I have long run times for
+Excel running in the background, but I honestly barely ever use it. Which is why my O365 license got retired as I
+pretty much only use Google Docs these days.</p>
+<h2 id="what-is-that-cortex-analyst">What is that Cortex Analyst?</h2>
+<p>My team surprised me with this feature. They integrated Snowflake&rsquo;s <a href="https://www.snowflake.com/en/product/features/cortex/" target="_blank" rel="noopener noreffer ">Cortex AI Analyst</a>
+which can enable users to query data using natural language. This will enable consumers of this app that may not have
+deep technical SQL/Python skills to simply ask Snowflake a question in natural language and it will generate a response.</p>
+<p>Upon using this feature, you may immediately notice it generates the SQL code based off a prompt input by the user. This
+is also quite handy for those of us that do write code. I consider myself moderately good at SQL. I can write queries, CTEs,
+build data models, dashboards, data apps, and do generalist analyst type work. Even though my background is classically
+in IT, I have picked these skills up over the years of being volun-told I was the new DBA since I had &ldquo;some SQL experience.&rdquo;
+However, I can never generate a query in a matter of seconds, which Cortex can. The fact it generates the query code is
+great because if something is slightly off or wrong from my prompt I now have a fully functional query code I can tweak.</p>
+<p>Lets assume this is our prompt:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Show me all the data where Docker has not been used in greater than 90 days and mask all PIl data including serial 
+</span></span><span class="line"><span class="cl">numbers and replace the characters with a snowflake emoji
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Cortex Analyst in return would output a query like this and execute it:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">WITH</span><span class="w"> </span><span class="n">__license_usage_dt</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">app_version</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">bundle_id</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">app_path</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">serial_number</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">email</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">division</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">title</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">department</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">substatus</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">last_event_time</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">query_exe_time</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">number_times</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="k">schema</span><span class="p">.</span><span class="n">license_usage_dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">app_version</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">bundle_id</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">app_path</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">REGEXP_REPLACE</span><span class="p">(</span><span class="n">serial_number</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;❄️&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">serial_number</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">REGEXP_REPLACE</span><span class="p">(</span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;❄️&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">division</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">title</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">department</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">substatus</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">last_event_time</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">query_exe_time</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">number_times</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">__license_usage_dt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">LOWER</span><span class="p">(</span><span class="n">bundle_id</span><span class="p">)</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%docker%&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">last_event_time</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">DATEADD</span><span class="p">(</span><span class="k">DAY</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">90</span><span class="p">,</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">last_event_time</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="n">NULLS</span><span class="w"> </span><span class="k">LAST</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="c1">-- Generated by Cortex Analyst
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>So, it generated the above query in a few seconds. I could never write that query in a few seconds. So, from an engineering
+perspective Cortex Analyst can also very quickly generate syntactically correct SQL code for you to tweak if it
+doesn&rsquo;t get your desired end state from a prompt. I also see this as a huge accessibility feature for folks who
+want to leverage all the sweet data we have but may not have SQL analyst or developer skills to tweak the queries on the fly.</p>
+<p>The results:</p>
+<a class="lightgallery" href="/img/license_usage_example.png" title="/img/license_usage_example.png" data-thumbnail="/img/license_usage_example.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/license_usage_example.png"
+            data-srcset="/img/license_usage_example.png, /img/license_usage_example.png 1.5x, /img/license_usage_example.png 2x"
+            data-sizes="auto"
+            alt="/img/license_usage_example.png" />
+    </a>
+<p>So a couple of really cool things happened here. I was able to mask the PII data with a ❄️ by simply just asking Cortex
+to do so. This allows me to share this data on a blog post, or even say I need to share this data with a third party
+like a reseller or a direct vendor. I could scrape the PII data from the query results and now this is more sharable
+outside my org, if I needed or wanted to share that data with someone else.</p>
+<p>Now all the PII data is just a bunch of snowflakes!</p>
+<a class="lightgallery" href="/img/snowflake_masks.png" title="/img/snowflake_masks.png" data-thumbnail="/img/snowflake_masks.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/img/snowflake_masks.png"
+            data-srcset="/img/snowflake_masks.png, /img/snowflake_masks.png 1.5x, /img/snowflake_masks.png 2x"
+            data-sizes="auto"
+            alt="/img/snowflake_masks.png" />
+    </a>
+<h2 id="just-the-beginning">Just the beginning</h2>
+<p>This was our first attempt and integrating AI into one of our data apps. I can already see us iterating over this and
+improving it as well as adding more AI features to future products. We also plan on building more cost savings tools
+that will be data driven in the future. My team is already thinking about adding more than just licensed software as well
+to this app. We want to look at also tracking Windows Enterprise licenses (OS upgrades), jamf and other MDM licensing,
+agent licenses, and more. So, not just third party apps end users use, but all of our licensed tools we want to eventually
+track and use in this app. Thanks for reading!</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-04-03</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://t-lark.github.io/posts/managing_licensed_software/" data-title="Managing Licensed Software with Data" data-via="tlark8" data-hashtags="data,data apps,snowflake,licensed software"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://t-lark.github.io/posts/managing_licensed_software/" data-hashtag="data"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://t-lark.github.io/posts/managing_licensed_software/" data-title="Managing Licensed Software with Data"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://t-lark.github.io/posts/managing_licensed_software/" data-title="Managing Licensed Software with Data"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://t-lark.github.io/posts/managing_licensed_software/" data-title="Managing Licensed Software with Data"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/data/">Data</a>,&nbsp;<a href="/tags/data-apps/">Data Apps</a>,&nbsp;<a href="/tags/snowflake/">Snowflake</a>,&nbsp;<a href="/tags/licensed-software/">Licensed Software</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/building_endpoint_performance_metrics/" class="prev" rel="prev" title="Building Endpoint Performance Metrics"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Building Endpoint Performance Metrics</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.140.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xxxx</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

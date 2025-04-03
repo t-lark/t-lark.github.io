@@ -2,19 +2,22 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>https://t-lark.github.io/categories/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/data/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/data/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/data-apps/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/licensed-software/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/licensed-software/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/posts/managing_licensed_software/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/osquery/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/posts/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/snowflake/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/snowflake/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/building_endpoint_performance_metrics/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/data/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/data/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/data-apps/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/osquery/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/performance/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/performance-metrics/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/posts/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/snowflake/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/snowflake/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/application-usage/</loc><lastmod>2024-03-26T18:43:26-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/fleetdm/</loc><lastmod>2024-03-26T18:43:26-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/fleetdm/</loc><lastmod>2024-03-26T18:43:26-07:00</lastmod></url><url>

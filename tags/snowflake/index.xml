@@ -3,7 +3,22 @@
         <title>Snowflake - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/snowflake/</link>
         <description>Snowflake - Tag - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 14 Jan 2025 15:35:46 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/tags/snowflake/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 03 Apr 2025 12:18:44 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/snowflake/" rel="self" type="application/rss+xml" /><item>
+    <title>Managing Licensed Software with Data</title>
+    <link>https://t-lark.github.io/posts/managing_licensed_software/</link>
+    <pubDate>Thu, 03 Apr 2025 12:18:44 -0700</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/managing_licensed_software/</guid>
+    <description><![CDATA[<h2 id="turn-an-it-cost-center-into-an-it-cost-savings-center">Turn an IT Cost Center into an IT Cost Savings Center!</h2>
+<p>So many times in my career I have heard IT/Ops teams be referred to as overhead. I have also heard IT being described as
+&ldquo;just keeping the lights on,&rdquo; and all the adjacent things one can say similar to this. These type of statements has always
+made me want to prove that IT isn&rsquo;t really just those type of things. I have always been trying to implement some sort of
+cost savings where we can definitively decide where to cut costs. You never want to cut costs around things that have
+a high positive impact. Since in many ways you do get what you pay for at times, and what you pay for may be very worth
+it. So, IT is a cost savings center, a service provider, an enabler, an enhancer and much more than some of the
+stereotypical things you might hear about how people perceive IT.</p>]]></description>
+</item>
+<item>
     <title>Building Endpoint Performance Metrics</title>
     <link>https://t-lark.github.io/posts/building_endpoint_performance_metrics/</link>
     <pubDate>Tue, 14 Jan 2025 15:35:46 -0800</pubDate>
@@ -130,20 +145,6 @@ and you can choose from many paths to take.  You can roll your own webhook recei
 cloud storage (S3, Azure Blob, GCP Cloud Storage), use one of many data ingestion tools, and so forth.  Right now we are
 leveraging a tool called <a href="https://fivetran.com/" target="_blank" rel="noopener noreffer ">Fivetran</a>.  Fivetran has built in integration to many SaaS and cloud
 services.  What tools work best for your Organization will be up to your Org to decide.</p>]]></description>
-</item>
-<item>
-    <title>Data Sharing</title>
-    <link>https://t-lark.github.io/posts/data-sharing/</link>
-    <pubDate>Sat, 19 Sep 2020 19:45:03 -0700</pubDate>
-    <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/data-sharing/</guid>
-    <description><![CDATA[<h1 id="data-sharing-is-data-caring-">Data Sharing is Data Caring ❤️</h1>
-<p>I have come to the conclusion that there are essentially two types of people when it comes to data.  The people that
-have data, and the people that wish they had the data.  Another thought is that I would rather have the data and not need it
-versus need the data and not have it.  For almost the past two years I have had the privilege to work for a great
-data platform company.  The amount of data we have access to increases our return on what we do in the IT/Ops space
-exponentially.  It also helps drive collaboration between teams, allows for centralized data sharing, and enables everyone
-to make data driven decisions.</p>]]></description>
 </item>
 </channel>
 </rss>

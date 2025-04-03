@@ -3,7 +3,22 @@
         <title>All Posts - t-lark.github.io</title>
         <link>https://t-lark.github.io/posts/</link>
         <description>All Posts | t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 14 Jan 2025 15:35:46 -0800</lastBuildDate><atom:link href="https://t-lark.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 03 Apr 2025 12:18:44 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Managing Licensed Software with Data</title>
+    <link>https://t-lark.github.io/posts/managing_licensed_software/</link>
+    <pubDate>Thu, 03 Apr 2025 12:18:44 -0700</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/managing_licensed_software/</guid>
+    <description><![CDATA[<h2 id="turn-an-it-cost-center-into-an-it-cost-savings-center">Turn an IT Cost Center into an IT Cost Savings Center!</h2>
+<p>So many times in my career I have heard IT/Ops teams be referred to as overhead. I have also heard IT being described as
+&ldquo;just keeping the lights on,&rdquo; and all the adjacent things one can say similar to this. These type of statements has always
+made me want to prove that IT isn&rsquo;t really just those type of things. I have always been trying to implement some sort of
+cost savings where we can definitively decide where to cut costs. You never want to cut costs around things that have
+a high positive impact. Since in many ways you do get what you pay for at times, and what you pay for may be very worth
+it. So, IT is a cost savings center, a service provider, an enabler, an enhancer and much more than some of the
+stereotypical things you might hear about how people perceive IT.</p>]]></description>
+</item>
+<item>
     <title>Building Endpoint Performance Metrics</title>
     <link>https://t-lark.github.io/posts/building_endpoint_performance_metrics/</link>
     <pubDate>Tue, 14 Jan 2025 15:35:46 -0800</pubDate>
@@ -128,19 +143,6 @@ accurate and up-to-date. We have been shipping ServiceNow data to Snowflake here
 has proven time after time to be extremely valuable. It helps filter out tons of noise and allows one to focus on
 specific asset data at any given time. Just by creating some simple queries and joining ServiceNow data with other data
 sources. I recently created a new <a href="https://docs.snowflake.com/en/user-guide/views-introduction" target="_blank" rel="noopener noreffer ">view</a> in Snowflake to help us better filter data down to more specifics.</p>]]></description>
-</item>
-<item>
-    <title>Diversifying Your IT Tools: Integrating Munki</title>
-    <link>https://t-lark.github.io/posts/diversifying-your-tools-munki/</link>
-    <pubDate>Sun, 22 Jan 2023 21:52:42 -0700</pubDate>
-    <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/diversifying-your-tools-munki/</guid>
-    <description><![CDATA[<p>Hello Everyone, and it has been a while since my last blog post. I have been busy with work and with some other things
-outside of work as well. However, we did finally release Munki to our fleet last summer. This was a milestone project for us, and
-while we aren&rsquo;t the first Org to do this, I wanted to share with the community how and why we did this. Everything I will
-write here has probably already been done by many other Orgs that currently use Munki, and we aren&rsquo;t really doing much
-that is radically different. So, if you hae deployed a server-less Munki setup before, this is probably not going to be
-new to you. That being said, <code>server-less</code> is a pretty key word for our vision here.</p>]]></description>
 </item>
 </channel>
 </rss>
