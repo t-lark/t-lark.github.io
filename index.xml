@@ -1,16 +1,16 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>t-lark.github.io</title>
-        <link>https://t-lark.github.io/</link>
+        <link>http://localhost:1313/</link>
         <description>t-lark.github.io</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 25 Mar 2026 13:29:10 -0700</lastBuildDate>
-            <atom:link href="https://t-lark.github.io/index.xml" rel="self" type="application/rss+xml" />
+            <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>Data Cloud Automation Stack</title>
-    <link>https://t-lark.github.io/posts/data-cloud-automation-stack/</link>
+    <link>http://localhost:1313/posts/data-cloud-automation-stack/</link>
     <pubDate>Wed, 25 Mar 2026 13:29:10 -0700</pubDate>
     <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/data-cloud-automation-stack/</guid>
+    <guid>http://localhost:1313/posts/data-cloud-automation-stack/</guid>
     <description><![CDATA[<h1 id="building-an-automation-stack-with-snowflake">Building an Automation Stack with Snowflake</h1>
 <p>Have you ever wanted to have access to all the data that is relevant to your org, and dream that you could build some
 automation based upon that data? What if you could ship all of your IT and Systems data to a single platform, query that
@@ -20,10 +20,10 @@ have not had the time nor the resources to build something meaningful to automat
 </item>
 <item>
     <title>Managing Licensed Software with Data</title>
-    <link>https://t-lark.github.io/posts/managing_licensed_software/</link>
+    <link>http://localhost:1313/posts/managing_licensed_software/</link>
     <pubDate>Thu, 03 Apr 2025 12:18:44 -0700</pubDate>
     <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/managing_licensed_software/</guid>
+    <guid>http://localhost:1313/posts/managing_licensed_software/</guid>
     <description><![CDATA[<h2 id="turn-an-it-cost-center-into-an-it-cost-savings-center">Turn an IT Cost Center into an IT Cost Savings Center!</h2>
 <p>So many times in my career I have heard IT/Ops teams be referred to as overhead. I have also heard IT being described as
 &ldquo;just keeping the lights on,&rdquo; and all the adjacent things one can say similar to this. These type of statements has always
@@ -35,10 +35,10 @@ stereotypical things you might hear about how people perceive IT.</p>]]></descri
 </item>
 <item>
     <title>Building Endpoint Performance Metrics</title>
-    <link>https://t-lark.github.io/posts/building_endpoint_performance_metrics/</link>
+    <link>http://localhost:1313/posts/building_endpoint_performance_metrics/</link>
     <pubDate>Tue, 14 Jan 2025 15:35:46 -0800</pubDate>
     <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/building_endpoint_performance_metrics/</guid>
+    <guid>http://localhost:1313/posts/building_endpoint_performance_metrics/</guid>
     <description><![CDATA[<p>Many organizations today still struggle with hardware refresh, right sizing hardware specs, and understanding the performance
 impact of tools and software across their fleet of end user devices. This has been a problem since the beginning of humans
 incorporating technology into their professional lives. In my 25+ year career I don&rsquo;t think I have ever had a job where
@@ -48,10 +48,10 @@ in a meaningful way.</p>]]></description>
 </item>
 <item>
     <title>Leveraging Application Usage Data From Munki</title>
-    <link>https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/</link>
+    <link>http://localhost:1313/posts/app-usage-data-munki-fleet-snowflake/</link>
     <pubDate>Tue, 26 Mar 2024 18:43:26 -0700</pubDate>
     <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/app-usage-data-munki-fleet-snowflake/</guid>
+    <guid>http://localhost:1313/posts/app-usage-data-munki-fleet-snowflake/</guid>
     <description><![CDATA[<a class="lightgallery" href="/img/fleet_munki_snowflake.png" title="/img/fleet_munki_snowflake.png" data-thumbnail="/img/fleet_munki_snowflake.png">
         
     </a>
@@ -63,10 +63,10 @@ and patch all of our third party apps in conjunction with <a href="https://githu
 </item>
 <item>
     <title>Using Custom MDM Payloads for FleetDM Labels</title>
-    <link>https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/</link>
+    <link>http://localhost:1313/posts/using-custom-mdm-payloads-for-fleet-labels/</link>
     <pubDate>Thu, 21 Mar 2024 17:45:59 -0700</pubDate>
     <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/using-custom-mdm-payloads-for-fleet-labels/</guid>
+    <guid>http://localhost:1313/posts/using-custom-mdm-payloads-for-fleet-labels/</guid>
     <description><![CDATA[<h1 id="programmatically-apply-fleetdm-labels-from-identity-data">Programmatically Apply FleetDM Labels from Identity Data</h1>
 <p>For a long time now it has been considered a &ldquo;bad practice,&rdquo; to join a macOS computer to any sort of directory service.
 Long have past the days of Binding to Active Directory, and the ancient lore of <a href="https://krypted.com/tag/magic-triangle/" target="_blank" rel="noopener noreffer ">the golden (or magic) triangle</a>
@@ -80,10 +80,10 @@ to grab that data from some system they could cache locally. Typically, these al
 </item>
 <item>
     <title>Success Is Not Transitive</title>
-    <link>https://t-lark.github.io/posts/success-is-not-transitive/</link>
+    <link>http://localhost:1313/posts/success-is-not-transitive/</link>
     <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
     <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/success-is-not-transitive/</guid>
+    <guid>http://localhost:1313/posts/success-is-not-transitive/</guid>
     <description><![CDATA[<h1 id="success-isnt-linear-nor-is-it-transitive">Success Isn&rsquo;t Linear, Nor is it Transitive</h1>
 <p>With the climate of tech workers in a weird state post Covid-19 pandemic, and with the rise of the tech <a href="https://en.wikipedia.org/wiki/Internet_celebrity" target="_blank" rel="noopener noreffer ">influencer</a>
 I feel this topic is not only relevant, but also important. There are people who really want to break into a tech career
@@ -93,10 +93,10 @@ tech industry any way you can, you have likely heard many other people tell thei
 </item>
 <item>
     <title>Building an IT Engineering Team</title>
-    <link>https://t-lark.github.io/posts/building-it-eng-team/</link>
+    <link>http://localhost:1313/posts/building-it-eng-team/</link>
     <pubDate>Tue, 05 Mar 2024 18:20:44 -0800</pubDate>
     <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/building-it-eng-team/</guid>
+    <guid>http://localhost:1313/posts/building-it-eng-team/</guid>
     <description><![CDATA[<p>I started working in tech back in 1999. My first tech job was a repair technician at a computer store chain. I did
 hardware and software repairs, warranty repairs, OEM systems building, and similar support type work. Over the years
 I&rsquo;ve likely had a similar experience to most other workers in tech. I have had bad bosses, and good bosses. I  also
@@ -105,10 +105,10 @@ I have worked with have generally been great, and the not-so-great experiences w
 </item>
 <item>
     <title>IT Teams are also Security Teams</title>
-    <link>https://t-lark.github.io/posts/cpe-is-a-security-team/</link>
+    <link>http://localhost:1313/posts/cpe-is-a-security-team/</link>
     <pubDate>Tue, 27 Feb 2024 18:16:37 -0800</pubDate>
     <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/cpe-is-a-security-team/</guid>
+    <guid>http://localhost:1313/posts/cpe-is-a-security-team/</guid>
     <description><![CDATA[<h1 id="it-teams-are-also-security-teams">IT Teams are also Security Teams</h1>
 <p>If you have worked in some tech related job odds are you have also worked with various security teams throughout your career.
 There has definitely been a divide between IT teams and Security teams I have observed in my near 25 years working in tech,
@@ -118,10 +118,10 @@ wrong way to collaborate with IT and Security teams all together.</p>]]></descri
 </item>
 <item>
     <title>More Osquery Data Modeling in Snowflake</title>
-    <link>https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/</link>
+    <link>http://localhost:1313/posts/more-osquery-data-modeling-snowflake/</link>
     <pubDate>Thu, 25 Jan 2024 20:24:28 -0800</pubDate>
     <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/more-osquery-data-modeling-snowflake/</guid>
+    <guid>http://localhost:1313/posts/more-osquery-data-modeling-snowflake/</guid>
     <description><![CDATA[<h1 id="data-modeling-osquery-data-in-snowflake">Data Modeling osquery Data in Snowflake</h1>
 <p>We have been working on many projects the past few months, and osquery data pipelines with the help of <a href="https://fleetdm.com/" target="_blank" rel="noopener noreffer ">FleetDM</a>
 has been one of our constant works in progress. Before I dive into the data modeling part, I wanted to share how we scaled
@@ -133,10 +133,10 @@ day.</p>]]></description>
 </item>
 <item>
     <title>Working with osquery Data in Snowflake</title>
-    <link>https://t-lark.github.io/posts/osquery-data-in-snowflake/</link>
+    <link>http://localhost:1313/posts/osquery-data-in-snowflake/</link>
     <pubDate>Thu, 31 Aug 2023 18:01:31 -0700</pubDate>
     <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/osquery-data-in-snowflake/</guid>
+    <guid>http://localhost:1313/posts/osquery-data-in-snowflake/</guid>
     <description><![CDATA[<p>I recently told my dog, Booms, all about how you can use osquery data in Snowflake. Needless to say, he was quite impressed
 with all the use cases and in-depth data you can model about your fleet of laptops using osquery data in Snowflake.</p>
 <a class="lightgallery" href="/img/booms-snow1.jpg" title="/img/booms-snow1.jpg" data-thumbnail="/img/booms-snow1.jpg">
