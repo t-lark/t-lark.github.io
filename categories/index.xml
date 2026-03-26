@@ -3,12 +3,36 @@
         <title>Categories - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/</link>
         <description>Categories - Category - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 03 Apr 2025 12:18:44 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 25 Mar 2026 13:29:10 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>Automation</title>
+    <link>https://t-lark.github.io/categories/automation/</link>
+    <pubDate>Wed, 25 Mar 2026 13:29:10 -0700</pubDate>
+    <author>xxxx</author>
+    <guid>https://t-lark.github.io/categories/automation/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>Data</title>
     <link>https://t-lark.github.io/categories/data/</link>
-    <pubDate>Thu, 03 Apr 2025 12:18:44 -0700</pubDate>
+    <pubDate>Wed, 25 Mar 2026 13:29:10 -0700</pubDate>
     <author>xxxx</author>
     <guid>https://t-lark.github.io/categories/data/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Remediation</title>
+    <link>https://t-lark.github.io/categories/remediation/</link>
+    <pubDate>Wed, 25 Mar 2026 13:29:10 -0700</pubDate>
+    <author>xxxx</author>
+    <guid>https://t-lark.github.io/categories/remediation/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Snowflake</title>
+    <link>https://t-lark.github.io/categories/snowflake/</link>
+    <pubDate>Wed, 25 Mar 2026 13:29:10 -0700</pubDate>
+    <author>xxxx</author>
+    <guid>https://t-lark.github.io/categories/snowflake/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
@@ -25,14 +49,6 @@
     <pubDate>Thu, 03 Apr 2025 12:18:44 -0700</pubDate>
     <author>xxxx</author>
     <guid>https://t-lark.github.io/categories/osquery/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Snowflake</title>
-    <link>https://t-lark.github.io/categories/snowflake/</link>
-    <pubDate>Thu, 03 Apr 2025 12:18:44 -0700</pubDate>
-    <author>xxxx</author>
-    <guid>https://t-lark.github.io/categories/snowflake/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
@@ -65,22 +81,6 @@
     <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
     <author>xxxx</author>
     <guid>https://t-lark.github.io/categories/development/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Growth</title>
-    <link>https://t-lark.github.io/categories/growth/</link>
-    <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
-    <author>xxxx</author>
-    <guid>https://t-lark.github.io/categories/growth/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Leadership</title>
-    <link>https://t-lark.github.io/categories/leadership/</link>
-    <pubDate>Mon, 18 Mar 2024 17:43:41 -0700</pubDate>
-    <author>xxxx</author>
-    <guid>https://t-lark.github.io/categories/leadership/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

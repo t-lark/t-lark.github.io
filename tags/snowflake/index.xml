@@ -3,7 +3,20 @@
         <title>Snowflake - Tag - t-lark.github.io</title>
         <link>https://t-lark.github.io/tags/snowflake/</link>
         <description>Snowflake - Tag - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 03 Apr 2025 12:18:44 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/snowflake/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 25 Mar 2026 13:29:10 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/tags/snowflake/" rel="self" type="application/rss+xml" /><item>
+    <title>Data Cloud Automation Stack</title>
+    <link>https://t-lark.github.io/posts/data-cloud-automation-stack/</link>
+    <pubDate>Wed, 25 Mar 2026 13:29:10 -0700</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/data-cloud-automation-stack/</guid>
+    <description><![CDATA[<h1 id="building-an-automation-stack-with-snowflake">Building an Automation Stack with Snowflake</h1>
+<p>Have you ever wanted to have access to all the data that is relevant to your org, and dream that you could build some
+automation based upon that data? What if you could ship all of your IT and Systems data to a single platform, query that
+data, then take action based upon the query results? If you have worked in IT long enough you have likely thought about this
+to some varying degree. Thinking about mundane labor heavy tasks that you know the root cause and the fix for, but just
+have not had the time nor the resources to build something meaningful to automate it all?</p>]]></description>
+</item>
+<item>
     <title>Managing Licensed Software with Data</title>
     <link>https://t-lark.github.io/posts/managing_licensed_software/</link>
     <pubDate>Thu, 03 Apr 2025 12:18:44 -0700</pubDate>
@@ -128,23 +141,6 @@ systems have systems.  It doesn&rsquo;t have to be complex and daunting to get r
 data, while getting it fast, is key to developing data driven strategies.  We no longer have to live in the constraints of
 capacity, limited storage, and limited scalability. With the power and scale of the cloud, you can now simply just ship all of
 your IT/Ops data to a centralized location and share it among your teams.</p>]]></description>
-</item>
-<item>
-    <title>Shipping Jamf Webhooks with Fivetran</title>
-    <link>https://t-lark.github.io/posts/shipping-jamf-webhooks/</link>
-    <pubDate>Sat, 19 Sep 2020 21:27:27 -0700</pubDate>
-    <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/shipping-jamf-webhooks/</guid>
-    <description><![CDATA[<h1 id="shipping-jamf-pro-webhooks-to-snowflake">Shipping Jamf Pro Webhooks to Snowflake</h1>
-<p>Jamf Pro has a builtin feature where you have the ability to ship a webhook event when specific events happen in their
-application.  This allows for a near real time feed of event based data which you can consume and leverage to gain insights
-about your fleet.  Jamf provides some documentation online, found <a href="https://www.jamf.com/developers/webhooks/" target="_blank" rel="noopener noreffer ">here</a>.</p>
-<p>Webhooks are generated automatically, and near instantly when an event occurs.  In the linked documentation above you
-will see all the possible webhooks and sample data of what each webhook ships.  There are many ways to ship webhooks,
-and you can choose from many paths to take.  You can roll your own webhook receiver, you can ship webhooks directly to
-cloud storage (S3, Azure Blob, GCP Cloud Storage), use one of many data ingestion tools, and so forth.  Right now we are
-leveraging a tool called <a href="https://fivetran.com/" target="_blank" rel="noopener noreffer ">Fivetran</a>.  Fivetran has built in integration to many SaaS and cloud
-services.  What tools work best for your Organization will be up to your Org to decide.</p>]]></description>
 </item>
 </channel>
 </rss>
