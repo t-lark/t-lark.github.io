@@ -2,24 +2,19 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://t-lark.github.io/tags/automation/</loc><lastmod>2026-03-25T13:29:10-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/automation/</loc><lastmod>2026-03-25T13:29:10-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/</loc><lastmod>2026-03-25T13:29:10-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/cloud/</loc><lastmod>2026-03-25T13:29:10-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/data/</loc><lastmod>2026-03-25T13:29:10-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/data/</loc><lastmod>2026-03-25T13:29:10-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/data-apps/</loc><lastmod>2026-03-25T13:29:10-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/posts/data-cloud-automation-stack/</loc><lastmod>2026-03-25T13:29:10-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/</loc><lastmod>2026-03-25T13:29:10-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/remediation/</loc><lastmod>2026-03-25T13:29:10-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/snowflake/</loc><lastmod>2026-03-25T13:29:10-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/categories/snowflake/</loc><lastmod>2026-03-25T13:29:10-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/</loc><lastmod>2026-03-25T13:29:10-07:00</lastmod></url><url>
-            <loc>https://t-lark.github.io/tags/</loc><lastmod>2026-03-25T13:29:10-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/data/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/data/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/data-apps/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/licensed-software/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/licensed-software/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/managing_licensed_software/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/osquery/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/snowflake/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/snowflake/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/</loc><lastmod>2025-04-03T12:18:44-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/building_endpoint_performance_metrics/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/performance/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/performance-metrics/</loc><lastmod>2025-01-14T15:35:46-08:00</lastmod></url><url>
@@ -66,6 +61,7 @@
             <loc>https://t-lark.github.io/tags/endpoints/</loc><lastmod>2023-03-28T18:49:24-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/servicenow/</loc><lastmod>2023-03-28T18:49:24-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/servicenow-asset-data-in-snowflake/</loc><lastmod>2023-03-28T18:49:24-07:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/categories/automation/</loc><lastmod>2023-01-22T21:52:42-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/diversifying-your-tools-munki/</loc><lastmod>2023-01-22T21:52:42-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/open-source/</loc><lastmod>2023-01-22T21:52:42-07:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/patching/</loc><lastmod>2023-01-22T21:52:42-07:00</lastmod></url><url>
@@ -91,6 +87,7 @@
             <loc>https://t-lark.github.io/tags/data-driven/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/operations/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/snowflake-osquery-fleet-magic/</loc><lastmod>2022-01-13T17:07:04-08:00</lastmod></url><url>
+            <loc>https://t-lark.github.io/tags/cloud/</loc><lastmod>2021-11-18T20:44:15-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/categories/conference/</loc><lastmod>2021-11-18T20:44:15-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/tags/it-ops-data/</loc><lastmod>2021-11-18T20:44:15-08:00</lastmod></url><url>
             <loc>https://t-lark.github.io/posts/post-jnuc-2021/</loc><lastmod>2021-11-18T20:44:15-08:00</lastmod></url><url>

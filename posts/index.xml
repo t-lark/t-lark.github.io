@@ -4,19 +4,6 @@
         <link>https://t-lark.github.io/posts/</link>
         <description>All Posts | t-lark.github.io</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 25 Mar 2026 13:29:10 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>Data Cloud Automation Stack</title>
-    <link>https://t-lark.github.io/posts/data-cloud-automation-stack/</link>
-    <pubDate>Wed, 25 Mar 2026 13:29:10 -0700</pubDate>
-    <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/data-cloud-automation-stack/</guid>
-    <description><![CDATA[<h1 id="building-an-automation-stack-with-snowflake">Building an Automation Stack with Snowflake</h1>
-<p>Have you ever wanted to have access to all the data that is relevant to your org, and dream that you could build some
-automation based upon that data? What if you could ship all of your IT and Systems data to a single platform, query that
-data, then take action based upon the query results? If you have worked in IT long enough you have likely thought about this
-to some varying degree. Thinking about mundane labor heavy tasks that you know the root cause and the fix for, but just
-have not had the time nor the resources to build something meaningful to automate it all?</p>]]></description>
-</item>
-<item>
     <title>Managing Licensed Software with Data</title>
     <link>https://t-lark.github.io/posts/managing_licensed_software/</link>
     <pubDate>Thu, 03 Apr 2025 12:18:44 -0700</pubDate>
@@ -144,6 +131,18 @@ with all the use cases and in-depth data you can model about your fleet of lapto
 <p>Booms came to the office with me, and he even got a bit of company swag! As we spent the day working I told him
 all about all the work my team was doing with osquery. Anyone can see in this pic of him, he is very impressed
 with the speed and scale one can leverage data from osquery in Snowflake</p>]]></description>
+</item>
+<item>
+    <title>Servicenow Asset Data in Snowflake</title>
+    <link>https://t-lark.github.io/posts/servicenow-asset-data-in-snowflake/</link>
+    <pubDate>Tue, 28 Mar 2023 18:49:24 -0700</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/servicenow-asset-data-in-snowflake/</guid>
+    <description><![CDATA[<p>Inventory Asset data is extremely important to any organization. It is also some of the most difficult data to keep
+accurate and up-to-date. We have been shipping ServiceNow data to Snowflake here for a good while. Over the years the asset data
+has proven time after time to be extremely valuable. It helps filter out tons of noise and allows one to focus on
+specific asset data at any given time. Just by creating some simple queries and joining ServiceNow data with other data
+sources. I recently created a new <a href="https://docs.snowflake.com/en/user-guide/views-introduction" target="_blank" rel="noopener noreffer ">view</a> in Snowflake to help us better filter data down to more specifics.</p>]]></description>
 </item>
 </channel>
 </rss>

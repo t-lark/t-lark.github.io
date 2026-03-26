@@ -3,20 +3,7 @@
         <title>Snowflake - Category - t-lark.github.io</title>
         <link>https://t-lark.github.io/categories/snowflake/</link>
         <description>Snowflake - Category - t-lark.github.io</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 25 Mar 2026 13:29:10 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/snowflake/" rel="self" type="application/rss+xml" /><item>
-    <title>Data Cloud Automation Stack</title>
-    <link>https://t-lark.github.io/posts/data-cloud-automation-stack/</link>
-    <pubDate>Wed, 25 Mar 2026 13:29:10 -0700</pubDate>
-    <author>tlark</author>
-    <guid>https://t-lark.github.io/posts/data-cloud-automation-stack/</guid>
-    <description><![CDATA[<h1 id="building-an-automation-stack-with-snowflake">Building an Automation Stack with Snowflake</h1>
-<p>Have you ever wanted to have access to all the data that is relevant to your org, and dream that you could build some
-automation based upon that data? What if you could ship all of your IT and Systems data to a single platform, query that
-data, then take action based upon the query results? If you have worked in IT long enough you have likely thought about this
-to some varying degree. Thinking about mundane labor heavy tasks that you know the root cause and the fix for, but just
-have not had the time nor the resources to build something meaningful to automate it all?</p>]]></description>
-</item>
-<item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 03 Apr 2025 12:18:44 -0700</lastBuildDate><atom:link href="https://t-lark.github.io/categories/snowflake/" rel="self" type="application/rss+xml" /><item>
     <title>Managing Licensed Software with Data</title>
     <link>https://t-lark.github.io/posts/managing_licensed_software/</link>
     <pubDate>Thu, 03 Apr 2025 12:18:44 -0700</pubDate>
@@ -145,6 +132,20 @@ how an organization can leverage a platform like Snowflake to improve their asse
 and <a href="https://t-lark.github.io/posts/ops-data-snowflake-pt2/" target="_blank" rel="noopener noreffer ">Part II</a> can be viewed with those links if you haven&rsquo;t read
 them yet. This post will focus on end user devices for the most part and not networking hardware, application catalogs,
 servers, and so forth.  The concepts in this post could be applied to those things though.</p>]]></description>
+</item>
+<item>
+    <title>IT &amp; Ops Data with Snowflake Part II</title>
+    <link>https://t-lark.github.io/posts/ops-data-snowflake-pt2/</link>
+    <pubDate>Thu, 22 Apr 2021 20:02:00 -0700</pubDate>
+    <author>tlark</author>
+    <guid>https://t-lark.github.io/posts/ops-data-snowflake-pt2/</guid>
+    <description><![CDATA[<h1 id="working-with-data-in-snowflake">Working with Data in Snowflake</h1>
+<p>Welcome to Part II of my miniseries blog around Snowflake with IT &amp; Ops Data. If you have not read <a href="https://t-lark.github.io/posts/ops-data-snowflake/" target="_blank" rel="noopener noreffer ">Part I</a>,
+you may click that link to read it first. Data has always been very important, and Snowflake just makes using the data a ton
+easier than we have ever had before. This post will focus on some basic ways one can work with data with in Snowflake.
+For this blog I will be focusing on JSON data stored in Snowflake columns. <a href="https://en.wikipedia.org/wiki/JSON" target="_blank" rel="noopener noreffer ">JSON</a> documents are very common all over tech. Especially in things
+like <a href="https://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank" rel="noopener noreffer ">REST APIs</a>, so if you haven&rsquo;t worked with JSON
+you will work with JSON data most likely at some point.</p>]]></description>
 </item>
 </channel>
 </rss>
